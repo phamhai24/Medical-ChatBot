@@ -1,0 +1,100 @@
+version: "3.9"
+
+services:
+  # ─── FastAPI Backend ────────────────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: medical-rag-api
+    ports:
+      - "${API_PORT:-8000}:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+
+      # API
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - API_CORS_ORIGINS=*
+
+      # Redis
+      - REDIS_ENABLED=true
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+
+      # RAG
+      - EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+      - EMBEDDING_DEVICE=cpu
+      - VECTOR_STORE_TYPE=chroma
+      - VECTOR_STORE_PATH=/app/data/vectorstore
+      - VECTOR_STORE_COLLECTION=medical_qa
+      - RETRIEVAL_TOP_K=5
+
+      # Generation (local or API)
+      - GENERATOR_MODE=${GENERATOR_MODE:-local}
+      - GENERATOR_MODEL=Qwen/Qwen2.5-7B-Instruct
+      - GENERATOR_MAX_TOKENS=512
+      - GENERATOR_TEMPERATURE=0.3
+
+      # Logging
+      - LOG_LEVEL=INFO
+      - LOG_JSON=false
+      - LOG_FILE=/app/logs/app.log
+
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # ─── Redis ────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: medical-rag-redis
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # ─── Streamlit UI ─────────────────────────────────────────────────────────
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: medical-rag-ui
+    command: streamlit run src/web/app.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "${STREAMLIT_PORT:-8501}:8501"
+    environment:
+      - API_BASE_URL=http://api:8000
+      - STREAMLIT_SERVER_HEADLESS=true
+    volumes:
+      - ./src:/app/src
+      - ./config:/app/config
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+
+networks:
+  default:
+    name: medical-rag-network

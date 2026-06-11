@@ -1,0 +1,1129 @@
+{
+  "summary": {
+    "started_at": "2026-06-11T16:11:48+07:00",
+    "finished_at": "2026-06-11T16:12:32+07:00",
+    "duration_seconds": 44.36,
+    "benchmark_questions": 12,
+    "retrieval_hit_rate": 0.8333,
+    "avg_precision_at_k": 0.6333,
+    "avg_recall_proxy_at_k": 0.8333,
+    "avg_mrr": 0.7667,
+    "retrieval_avg_seconds": 0.0186,
+    "retrieval_p50_seconds": 0.0176,
+    "retrieval_p95_seconds": 0.023,
+    "generation_success": 12,
+    "generation_errors": 0,
+    "api_rate_limited": true,
+    "generation_avg_seconds": 1.2554,
+    "generation_p50_seconds": 0.7555,
+    "generation_p95_seconds": 3.5584,
+    "answers_not_found_rate": 0.0833,
+    "avg_generation_term_coverage": 0.6528,
+    "avg_context_grounding": 0.7639,
+    "medical_caveat_rate": 0.8333,
+    "single_retrieve_status": "ok",
+    "single_retrieve_calls": 1,
+    "api_rate_limit_recovered": true,
+    "api_rate_limit_note": "Observed transient 429 retries; all generation calls eventually succeeded."
+  },
+  "previous_summary": {
+    "started_at": "2026-06-11T15:25:15+07:00",
+    "finished_at": "2026-06-11T15:26:00+07:00",
+    "duration_seconds": 45.14,
+    "benchmark_questions": 12,
+    "generation_success": 8,
+    "generation_errors": 4,
+    "execution_errors": 0,
+    "api_rate_limited": true,
+    "retrieval_hit_rate": 0.6667,
+    "avg_precision_at_k": 0.5333,
+    "avg_recall_proxy_at_k": 0.6667,
+    "avg_mrr": 0.6667,
+    "answers_not_found_rate": 0.0,
+    "avg_generation_term_coverage": 0.8333,
+    "avg_context_grounding": 0.75,
+    "medical_caveat_rate": 0.0,
+    "latency_avg_seconds": 0.8334,
+    "latency_p50_seconds": 0.7305,
+    "latency_p95_seconds": 1.4429,
+    "retrieval_avg_seconds": 0.0301,
+    "generation_avg_seconds": 0.5613
+  },
+  "config": {
+    "data_records": 16506,
+    "processed_data_path": "C:\\Users\\pc\\Documents\\code\\Medical_RAG_Chatbot\\data\\processed\\data.json",
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "embedding_device": "cuda",
+    "vectorstore_type": "chroma",
+    "vectorstore_path": "C:\\Users\\pc\\Documents\\code\\Medical_RAG_Chatbot\\data\\vectorstore",
+    "collection_name": "medical_qa",
+    "vector_search_type": "similarity",
+    "retrieval_top_k": 5,
+    "retrieval_score_threshold": 0.3,
+    "generator_mode": "api",
+    "generator_provider": "groq",
+    "generator_model": "llama-3.3-70b-versatile",
+    "api_max_retries": 2,
+    "api_retry_backoff": 1.0,
+    "api_retry_max_backoff": 8.0,
+    "api_host": "0.0.0.0",
+    "api_port": 8000
+  },
+  "warmup": {
+    "document_count": 708714,
+    "probe_results": 1,
+    "generator_mode": "api",
+    "timings": {
+      "embedder_load_seconds": 12.15,
+      "probe_embedding_seconds": 0.233,
+      "vector_count_seconds": 6.48,
+      "probe_search_seconds": 0.004,
+      "generator_warmup_seconds": 0.095,
+      "total_seconds": 18.961
+    }
+  },
+  "single_retrieve_check": {
+    "status": "ok",
+    "retrieve_calls": 1,
+    "sources": 5,
+    "retrieved_docs": 5,
+    "retrieval_latency": 0.0184,
+    "generation_latency": 0.0
+  },
+  "benchmark": [
+    {
+      "id": "q01",
+      "source_index": 0,
+      "query": "Phương pháp điều trị áp xe não do amip",
+      "expected_question": "Phương pháp điều trị áp xe não do amip",
+      "expected_terms": [
+        "áp xe",
+        "phương"
+      ],
+      "answer_excerpt": "Điều trị áp xe não do amip bao gồm cả nội khoa và ngoại khoa. Kết quả điều trị phụ thuộc vào các yếu tố: Tổng trạng của bệnh nhân; giai đoạn phát triển và chẩn đoán bệnh; giai đoạn áp xe, kích thước cùng số lượng và vị trí ổ áp xe; tình trạng tổn thương não..."
+    },
+    {
+      "id": "q02",
+      "source_index": 1,
+      "query": "Dùng thuốc trong điều trị áp xe não",
+      "expected_question": "Dùng thuốc trong điều trị áp xe não",
+      "expected_terms": [
+        "amip",
+        "thuốc",
+        "trong"
+      ],
+      "answer_excerpt": "Trên lý thuyết, phác đồ điều trị cần sử thuốc diệt amip (đơn trị liệu hoặc phối hợp thuốc) có thể ngấm tốt qua hàng rào máu não. Theo khuyến cáo của Trung tâm Kiểm soát và phòng ngừa dịch bệnh Hoa Kỳ (CDC), các thuốc được sử dụng để điều trị amip não bao gồ..."
+    },
+    {
+      "id": "q03",
+      "source_index": 342,
+      "query": "Nguyên nhân gây viêm tai xương chũm",
+      "expected_question": "Nguyên nhân gây viêm tai xương chũm",
+      "expected_terms": [
+        "bạch hầu",
+        "nguyên",
+        "xương"
+      ],
+      "answer_excerpt": "Viêm tai xương chũm cấp tính: Thường xuất hiện sau khi mắc viêm tai giữa. Thông thường bệnh nhân bị viêm tai giữa trước đó khoảng 20 ngày với tình trạng viêm thông bào xương chũm. Viêm tai xương chũm mạn tính: Được xác định khi tình trạng chảy mủ tai kéo dà..."
+    },
+    {
+      "id": "q04",
+      "source_index": 238,
+      "query": "Acid uric là gì?",
+      "expected_question": "Acid uric là gì?",
+      "expected_terms": [
+        "gout"
+      ],
+      "answer_excerpt": "Vậy câu hỏi đặt ra là nguyên nhân của tình trạng tăng acid uric máu là gì, khi nào thì phải điều trị tình trạng tăng acid uric máu không triệu chứng.Bình thường lượng acid uric trong máu luôn được giữ ổn định ở nồng độ dưới 7,0 mg/dl (420 micromol/l) và đượ..."
+    },
+    {
+      "id": "q05",
+      "source_index": 239,
+      "query": "Tăng acid uric máu và bệnh Gout",
+      "expected_question": "Tăng acid uric máu và bệnh Gout",
+      "expected_terms": [
+        "acid uric"
+      ],
+      "answer_excerpt": "Gout là một bệnh khớp do rối loạn chuyển hóa, gây ra bởi tình trạng lắng đọng các tinh thể urat ở các mô của cơ thể, do tăng acid uric trong máu. Tuy nhiên không phải bất kỳ ai tăng acid uric máu đều bị bệnh Gout.Hiện nay có một thực tế là rất nhiều người, ..."
+    },
+    {
+      "id": "q06",
+      "source_index": 33,
+      "query": "Triệu chứng lâm sàng và chẩn đoán bệnh",
+      "expected_question": "Triệu chứng lâm sàng và chẩn đoán bệnh",
+      "expected_terms": [
+        "lao",
+        "triệu",
+        "chứng"
+      ],
+      "answer_excerpt": "Khi mắc bệnh ấu trùng sán lợn, biểu hiện triệu chứng bệnh lý tùy thuộc vào vị trí ký sinh của nang ấu trùng sán. Trên lâm sàng thường phát hiện được các nốt sán dưới da bằng hạt đỗ, hạt lạc, di động dễ, không ngứa, không đau, nằm ở vị trí cơ vân, không ở tr..."
+    },
+    {
+      "id": "q07",
+      "source_index": 464,
+      "query": "Virus cúm A lây qua đường nào?",
+      "expected_question": "Virus cúm A lây qua đường nào?",
+      "expected_terms": [
+        "tê bì",
+        "virus",
+        "đường"
+      ],
+      "answer_excerpt": "Cúm A là căn bệnh nhiễm trùng đường hô hấp cấp tính thường lưu hành khi thời tiết chuyển mùa, do các chủng virus cúm phổ biến như A/H1N1, A/H3N2, A/H5N1, A/H7N9 gây nên. Bệnh cúm A thường bị nhầm lẫn với bệnh cảm thông thường do những triệu chứng tương tự. ..."
+    },
+    {
+      "id": "q08",
+      "source_index": 52,
+      "query": "Đông y có chữa được Alkapton niệu không?",
+      "expected_question": "Đông y có chữa được Alkapton niệu không?",
+      "expected_terms": [
+        "viêm khớp",
+        "alkapton",
+        "không"
+      ],
+      "answer_excerpt": "Alkapton niệu là một loại bệnh di truyền hiếm gặp, ảnh hưởng đến hoạt động của hệ thống niệu quản trong cơ thể. Bệnh có thể gây ra nhiều vấn đề sức khỏe nguy hiểm nếu không được phát hiện và điều trị kịp thời nên đông y không thể chữa được căn bệnh này.2. C..."
+    },
+    {
+      "id": "q09",
+      "source_index": 116,
+      "query": "Điều trị áp xe gan do amip",
+      "expected_question": "Điều trị áp xe gan do amip",
+      "expected_terms": [
+        "xoa bóp"
+      ],
+      "answer_excerpt": "Điều trị áp xe gan do amip thì lựa chọn đầu tay là tinidazole hoặc metronidazole phối hợp với một số loại thuốc khác (theo chỉ định của bác sĩ).- Tinidazole chỉ định trong điều trị các nhiễm khuẩn do vi khuẩn kỵ khí, trong đó có áp xe gan do amip entamoeba ..."
+    },
+    {
+      "id": "q10",
+      "source_index": 3,
+      "query": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+      "expected_question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+      "expected_terms": [
+        "dinh dưỡng",
+        "trọng",
+        "người"
+      ],
+      "answer_excerpt": "Áp xe não do Entamoeba histolytica thường có các biểu hiện phổ biến bao gồm đau đầu, nôn mửa và thay đổi trạng thái tinh thần.Các dấu hiệu của áp xe não do amip bao gồm phổ biến nhất là các dấu hiệu màng não, liệt dây thần kinh mặt (VII), liệt vận động và c..."
+    },
+    {
+      "id": "q11",
+      "source_index": 5,
+      "query": "Vai trò của tập luyện với người bệnh áp xe não do amip",
+      "expected_question": "Vai trò của tập luyện với người bệnh áp xe não do amip",
+      "expected_terms": [
+        "thuốc",
+        "luyện",
+        "người"
+      ],
+      "answer_excerpt": "- Giảm các triệu chứng stress, lo lắng; giảm triệu chứng sốt, đau đầu, buồn nôn, chóng mặt của bệnh áp xe não do amip.- Tăng cường lưu thông khí huyết vùng cổ gáy, não... giúp giảm triệu chứng đau vai gáy, động kinh, co quắp chân tay, giãn cơ, thư giãn tinh..."
+    },
+    {
+      "id": "q12",
+      "source_index": 2,
+      "query": "Dự phòng nhiễm amip",
+      "expected_question": "Dự phòng nhiễm amip",
+      "expected_terms": [
+        "dự phòng",
+        "phòng",
+        "nhiễm"
+      ],
+      "answer_excerpt": "Áp xe não do amip là bệnh lý nguy hiểm, nếu không được phát hiện sớm và điều trị còn đe dọa đến tính mạng. Nếu điều trị sống sót thì nguy cơ để lại di chứng khá cao. Do đó, phòng bệnh là ưu tiên hàng đầu. Phòng bệnh cũng khá đơn giản, chỉ bằng việc vệ sinh ..."
+    }
+  ],
+  "retrieval_results": [
+    {
+      "id": "q01",
+      "source_index": 0,
+      "query": "Phương pháp điều trị áp xe não do amip",
+      "expected_question": "Phương pháp điều trị áp xe não do amip",
+      "expected_terms": [
+        "áp xe",
+        "phương"
+      ],
+      "answer_excerpt": "Điều trị áp xe não do amip bao gồm cả nội khoa và ngoại khoa. Kết quả điều trị phụ thuộc vào các yếu tố: Tổng trạng của bệnh nhân; giai đoạn phát triển và chẩn đoán bệnh; giai đoạn áp xe, kích thước cùng số lượng và vị trí ổ áp xe; tình trạng tổn thương não...",
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0183,
+      "precision_at_k": 0.4,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "source_count": 5,
+      "context_chars": 2175,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "19_3",
+          "metadata_question": "Cách điều trị áp xe não do amip",
+          "source": "medical_qa",
+          "chunk_index": 3,
+          "distance": 0.3557708263397217,
+          "relevant": true,
+          "preview": "Câu hỏi: Cách điều trị áp xe não do amip Trả lời: S - Áp xe não do amip là bệnh lý nguy hiểm, nguy cơ tử vong cao. Tuy nhiên, sau quá trình điều trị, người bệnh có thể thực hiện một số bài tập giúp nâng cao sức khỏe, ..."
+        },
+        {
+          "rank": 2,
+          "id": "19_14",
+          "metadata_question": "Cách điều trị áp xe não do amip",
+          "source": "medical_qa",
+          "chunk_index": 14,
+          "distance": 0.38878658413887024,
+          "relevant": false,
+          "preview": "Câu hỏi: Cách điều trị áp xe não do amip Trả lời: S - Áp xe não do amip là bệnh lý nguy hiểm, nguy cơ tử vong cao. Tuy nhiên, sau quá trình điều trị, người bệnh có thể thực hiện một số bài tập giúp nâng cao sức khỏe, ..."
+        },
+        {
+          "rank": 3,
+          "id": "0_11",
+          "metadata_question": "Phương pháp điều trị áp xe não do amip",
+          "source": "medical_qa",
+          "chunk_index": 11,
+          "distance": 0.4015690088272095,
+          "relevant": true,
+          "preview": "Câu hỏi: Phương pháp điều trị áp xe não do amip Trả lời: yết, phác đồ điều trị cần sử thuốc diệt amip (đơn trị liệu hoặc phối hợp thuốc) có thể ngấm tốt qua hàng rào máu não. Theo khuyến cáo của Trung tâm Kiểm soát và..."
+        }
+      ]
+    },
+    {
+      "id": "q02",
+      "source_index": 1,
+      "query": "Dùng thuốc trong điều trị áp xe não",
+      "expected_question": "Dùng thuốc trong điều trị áp xe não",
+      "expected_terms": [
+        "amip",
+        "thuốc",
+        "trong"
+      ],
+      "answer_excerpt": "Trên lý thuyết, phác đồ điều trị cần sử thuốc diệt amip (đơn trị liệu hoặc phối hợp thuốc) có thể ngấm tốt qua hàng rào máu não. Theo khuyến cáo của Trung tâm Kiểm soát và phòng ngừa dịch bệnh Hoa Kỳ (CDC), các thuốc được sử dụng để điều trị amip não bao gồ...",
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0174,
+      "precision_at_k": 0.0,
+      "recall_proxy_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevance_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_count": 5,
+      "context_chars": 2577,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "336_0",
+          "metadata_question": "Các phương pháp điều trị áp xe não",
+          "source": "medical_qa",
+          "chunk_index": 0,
+          "distance": 0.3941441476345062,
+          "relevant": false,
+          "preview": "Câu hỏi: Các phương pháp điều trị áp xe não Trả lời: Mục tiêu điều trị áp xe não là giảm áp lực nội sọ và loại bỏ nhiễm trùng. Điều trị kịp thời bệnh áp xe não là điều cần thiết để ngăn ngừa tổn thương lâu dài và hậu ..."
+        },
+        {
+          "rank": 2,
+          "id": "3227_4",
+          "metadata_question": "Thuốc trị giãn não thất",
+          "source": "medical_qa",
+          "chunk_index": 4,
+          "distance": 0.4061335623264313,
+          "relevant": false,
+          "preview": "Câu hỏi: Thuốc trị giãn não thất Trả lời: lTác dụng: Được sử dụng để giảm áp lực nội sọ và khối lượng não. Thuốc hiếm khi được sử dụng ngoại trừ ở người lớn bị não úng thủy cấp tính do xuất huyết nội sọ. Mannitol được..."
+        },
+        {
+          "rank": 3,
+          "id": "3227_15",
+          "metadata_question": "Thuốc trị giãn não thất",
+          "source": "medical_qa",
+          "chunk_index": 15,
+          "distance": 0.4061335623264313,
+          "relevant": false,
+          "preview": "Câu hỏi: Thuốc trị giãn não thất Trả lời: lTác dụng: Được sử dụng để giảm áp lực nội sọ và khối lượng não. Thuốc hiếm khi được sử dụng ngoại trừ ở người lớn bị não úng thủy cấp tính do xuất huyết nội sọ. Mannitol được..."
+        }
+      ]
+    },
+    {
+      "id": "q03",
+      "source_index": 342,
+      "query": "Nguyên nhân gây viêm tai xương chũm",
+      "expected_question": "Nguyên nhân gây viêm tai xương chũm",
+      "expected_terms": [
+        "bạch hầu",
+        "nguyên",
+        "xương"
+      ],
+      "answer_excerpt": "Viêm tai xương chũm cấp tính: Thường xuất hiện sau khi mắc viêm tai giữa. Thông thường bệnh nhân bị viêm tai giữa trước đó khoảng 20 ngày với tình trạng viêm thông bào xương chũm. Viêm tai xương chũm mạn tính: Được xác định khi tình trạng chảy mủ tai kéo dà...",
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0178,
+      "precision_at_k": 0.6,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_count": 5,
+      "context_chars": 2679,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "13518_1",
+          "metadata_question": "Viêm tai xương chũm là gì?",
+          "source": "medical_qa",
+          "chunk_index": 1,
+          "distance": 0.27627912163734436,
+          "relevant": true,
+          "preview": "Câu hỏi: Viêm tai xương chũm là gì? Trả lời: . Nguyên nhân của viêm tai xương chũm cấp tính là viêm tai giữa. Viêm tai giữa có thể tiềm tàng hoặc biểu hiện rõ rệt và có thể gây viêm xương chũm cấp do những yếu tố thuậ..."
+        },
+        {
+          "rank": 2,
+          "id": "341_1",
+          "metadata_question": "Nguyên nhân gây viêm tai xương chũm",
+          "source": "medical_qa",
+          "chunk_index": 1,
+          "distance": 0.2790825366973877,
+          "relevant": true,
+          "preview": "Câu hỏi: Nguyên nhân gây viêm tai xương chũm Trả lời: ng… dễ dẫn tới tử vong. - Viêm tai giữa không được điều trị tốt. - Biến chứng của viêm tai giữa cấp và mạn tính. - Viêm tai giữa sau các bệnh cúm, sởi, ho gà và bạ..."
+        },
+        {
+          "rank": 3,
+          "id": "349_15",
+          "metadata_question": "Biểu hiện viêm tai xương chũm và biến chứng",
+          "source": "medical_qa",
+          "chunk_index": 15,
+          "distance": 0.2895873188972473,
+          "relevant": true,
+          "preview": "Câu hỏi: Biểu hiện viêm tai xương chũm và biến chứng Trả lời: sẽ và khô ráo, không tự ý điều trị, ngoáy tai dễ gây tổn thương. Bệnh viêm tai xương chũm nếu không được điều trị có thể gây ra các bệnh lý như viêm màng n..."
+        }
+      ]
+    },
+    {
+      "id": "q04",
+      "source_index": 238,
+      "query": "Acid uric là gì?",
+      "expected_question": "Acid uric là gì?",
+      "expected_terms": [
+        "gout"
+      ],
+      "answer_excerpt": "Vậy câu hỏi đặt ra là nguyên nhân của tình trạng tăng acid uric máu là gì, khi nào thì phải điều trị tình trạng tăng acid uric máu không triệu chứng.Bình thường lượng acid uric trong máu luôn được giữ ổn định ở nồng độ dưới 7,0 mg/dl (420 micromol/l) và đượ...",
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0162,
+      "precision_at_k": 0.0,
+      "recall_proxy_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevance_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_count": 5,
+      "context_chars": 2592,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "264_27",
+          "metadata_question": "Chỉ định xét nghiệm acid uric máu",
+          "source": "medical_qa",
+          "chunk_index": 27,
+          "distance": 0.4912063777446747,
+          "relevant": false,
+          "preview": "Câu hỏi: Chỉ định xét nghiệm acid uric máu Trả lời: Acid uric được tạo ra khi cơ thể phân hủy các bazơ purin ngoại sinh có trong thực phẩm hoặc purin nội sinh tạo ra trong quá trình phá hủy tế bào tự nhiên trong cơ th..."
+        },
+        {
+          "rank": 2,
+          "id": "290_6",
+          "metadata_question": "Nhóm thuốc giảm tổng hợp acid uric",
+          "source": "medical_qa",
+          "chunk_index": 6,
+          "distance": 0.5519075393676758,
+          "relevant": false,
+          "preview": "Câu hỏi: Nhóm thuốc giảm tổng hợp acid uric Trả lời: c thành chất allatonin tan trong nước và được đào thải qua thận. Chính vì vậy, biện pháp truyền enzyme uricase tái tổ hợp được sử dụng trong những trường hợp cần hạ..."
+        },
+        {
+          "rank": 3,
+          "id": "290_33",
+          "metadata_question": "Nhóm thuốc giảm tổng hợp acid uric",
+          "source": "medical_qa",
+          "chunk_index": 33,
+          "distance": 0.5519075393676758,
+          "relevant": false,
+          "preview": "Câu hỏi: Nhóm thuốc giảm tổng hợp acid uric Trả lời: c thành chất allatonin tan trong nước và được đào thải qua thận. Chính vì vậy, biện pháp truyền enzyme uricase tái tổ hợp được sử dụng trong những trường hợp cần hạ..."
+        }
+      ]
+    },
+    {
+      "id": "q05",
+      "source_index": 239,
+      "query": "Tăng acid uric máu và bệnh Gout",
+      "expected_question": "Tăng acid uric máu và bệnh Gout",
+      "expected_terms": [
+        "acid uric"
+      ],
+      "answer_excerpt": "Gout là một bệnh khớp do rối loạn chuyển hóa, gây ra bởi tình trạng lắng đọng các tinh thể urat ở các mô của cơ thể, do tăng acid uric trong máu. Tuy nhiên không phải bất kỳ ai tăng acid uric máu đều bị bệnh Gout.Hiện nay có một thực tế là rất nhiều người, ...",
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0215,
+      "precision_at_k": 0.4,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "source_count": 5,
+      "context_chars": 2209,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "239_19",
+          "metadata_question": "Tăng acid uric máu và bệnh Gout",
+          "source": "medical_qa",
+          "chunk_index": 19,
+          "distance": 0.24828949570655823,
+          "relevant": true,
+          "preview": "Câu hỏi: Tăng acid uric máu và bệnh Gout Trả lời: ức độ trung bình (dưới 10mg/dl) đều cần thực hiện các chế độ ăn uống sinh hoạt hợp lý như với các bệnh nhân bị Gout mà chưa cần dùng thuốc hạ acid uric máu.Lưu ý, nếu ..."
+        },
+        {
+          "rank": 2,
+          "id": "239_0",
+          "metadata_question": "Tăng acid uric máu và bệnh Gout",
+          "source": "medical_qa",
+          "chunk_index": 0,
+          "distance": 0.2637205719947815,
+          "relevant": true,
+          "preview": "Câu hỏi: Tăng acid uric máu và bệnh Gout Trả lời: Gout là một bệnh khớp do rối loạn chuyển hóa, gây ra bởi tình trạng lắng đọng các tinh thể urat ở các mô của cơ thể, do tăng acid uric trong máu. Tuy nhiên không phải ..."
+        },
+        {
+          "rank": 3,
+          "id": "241_0",
+          "metadata_question": "Điều trị thế nào?",
+          "source": "medical_qa",
+          "chunk_index": 0,
+          "distance": 0.26924869418144226,
+          "relevant": false,
+          "preview": "Câu hỏi: Điều trị thế nào? Trả lời: Lợi ích của việc điều trị tình trạng tăng acid uric máu ở những bệnh nhân đã bị cơn Gout là điều đã được chứng minh. Nó góp phần hạn chế, ngừng các cơn Gout cấp tái phát cũng như bi..."
+        }
+      ]
+    },
+    {
+      "id": "q06",
+      "source_index": 33,
+      "query": "Triệu chứng lâm sàng và chẩn đoán bệnh",
+      "expected_question": "Triệu chứng lâm sàng và chẩn đoán bệnh",
+      "expected_terms": [
+        "lao",
+        "triệu",
+        "chứng"
+      ],
+      "answer_excerpt": "Khi mắc bệnh ấu trùng sán lợn, biểu hiện triệu chứng bệnh lý tùy thuộc vào vị trí ký sinh của nang ấu trùng sán. Trên lâm sàng thường phát hiện được các nốt sán dưới da bằng hạt đỗ, hạt lạc, di động dễ, không ngứa, không đau, nằm ở vị trí cơ vân, không ở tr...",
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0164,
+      "precision_at_k": 1.0,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_count": 5,
+      "context_chars": 2841,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "7539_27",
+          "metadata_question": "Một số biểu hiện của bệnh",
+          "source": "medical_qa",
+          "chunk_index": 27,
+          "distance": 0.3552037477493286,
+          "relevant": true,
+          "preview": "Câu hỏi: Một số biểu hiện của bệnh Trả lời: a người nhân sau khi ghép - Thói quen đại tiện thay đổi kéo dài. -Các triệu chứng toàn thân: Sốt, nôn, thiếu máu, chân tay mệt mỏi, suy nhược cơ thể…Nếu phát hiện những triệ..."
+        },
+        {
+          "rank": 2,
+          "id": "7539_2",
+          "metadata_question": "Một số biểu hiện của bệnh",
+          "source": "medical_qa",
+          "chunk_index": 2,
+          "distance": 0.36180153489112854,
+          "relevant": true,
+          "preview": "Câu hỏi: Một số biểu hiện của bệnh Trả lời: ệnh dễ bị đau bụng dữ dội - Thói quen đại tiện thay đổi kéo dài. -Các triệu chứng toàn thân: Sốt, nôn, thiếu máu, chân tay mệt mỏi, suy nhược cơ thể…Nếu phát hiện những triệ..."
+        },
+        {
+          "rank": 3,
+          "id": "7539_11",
+          "metadata_question": "Một số biểu hiện của bệnh",
+          "source": "medical_qa",
+          "chunk_index": 11,
+          "distance": 0.36180153489112854,
+          "relevant": true,
+          "preview": "Câu hỏi: Một số biểu hiện của bệnh Trả lời: ệnh dễ bị đau bụng dữ dội - Thói quen đại tiện thay đổi kéo dài. -Các triệu chứng toàn thân: Sốt, nôn, thiếu máu, chân tay mệt mỏi, suy nhược cơ thể…Nếu phát hiện những triệ..."
+        }
+      ]
+    },
+    {
+      "id": "q07",
+      "source_index": 464,
+      "query": "Virus cúm A lây qua đường nào?",
+      "expected_question": "Virus cúm A lây qua đường nào?",
+      "expected_terms": [
+        "tê bì",
+        "virus",
+        "đường"
+      ],
+      "answer_excerpt": "Cúm A là căn bệnh nhiễm trùng đường hô hấp cấp tính thường lưu hành khi thời tiết chuyển mùa, do các chủng virus cúm phổ biến như A/H1N1, A/H3N2, A/H5N1, A/H7N9 gây nên. Bệnh cúm A thường bị nhầm lẫn với bệnh cảm thông thường do những triệu chứng tương tự. ...",
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0166,
+      "precision_at_k": 1.0,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_count": 5,
+      "context_chars": 2662,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "469_17",
+          "metadata_question": "Phân loại virus cúm",
+          "source": "medical_qa",
+          "chunk_index": 17,
+          "distance": 0.3067587614059448,
+          "relevant": true,
+          "preview": "Câu hỏi: Phân loại virus cúm Trả lời: qua phương thức lây truyền chủ yếu là \"giọt bắn\" và \"không khí\", virus cúm A đi vào cơ thể qua đường hô hấp, xâm nhiễm các tế bào niêm mạc đường hô hấp trên, gây tổn thương niêm m..."
+        },
+        {
+          "rank": 2,
+          "id": "458_0",
+          "metadata_question": "Đường lây truyền của cúm A",
+          "source": "medical_qa",
+          "chunk_index": 0,
+          "distance": 0.3404451906681061,
+          "relevant": true,
+          "preview": "Câu hỏi: Đường lây truyền của cúm A Trả lời: Cúm A là một trong những căn bệnh rất dễ lây lan trực tiếp vì tốc độ phát triển của virus nhanh chóng. Bệnh nhân bị cúm A có thể lây lan sang người kha..."
+        },
+        {
+          "rank": 3,
+          "id": "458_11",
+          "metadata_question": "Đường lây truyền của cúm A",
+          "source": "medical_qa",
+          "chunk_index": 11,
+          "distance": 0.35338419675827026,
+          "relevant": true,
+          "preview": "Câu hỏi: Đường lây truyền của cúm A Trả lời: i gian tới vẫn tiềm ẩn nguy cơ lây nhiễm cúm gia cầm sang người. Hiện tại chưa có bằng chứng cho thấy cúm A/H5N1 lây từ người sang người, tuy nhiên virus A/H5N1 là chủng cú..."
+        }
+      ]
+    },
+    {
+      "id": "q08",
+      "source_index": 52,
+      "query": "Đông y có chữa được Alkapton niệu không?",
+      "expected_question": "Đông y có chữa được Alkapton niệu không?",
+      "expected_terms": [
+        "viêm khớp",
+        "alkapton",
+        "không"
+      ],
+      "answer_excerpt": "Alkapton niệu là một loại bệnh di truyền hiếm gặp, ảnh hưởng đến hoạt động của hệ thống niệu quản trong cơ thể. Bệnh có thể gây ra nhiều vấn đề sức khỏe nguy hiểm nếu không được phát hiện và điều trị kịp thời nên đông y không thể chữa được căn bệnh này.2. C...",
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0165,
+      "precision_at_k": 1.0,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_count": 5,
+      "context_chars": 2889,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "53_18",
+          "metadata_question": "Các phương pháp điều trị Alkapton niệu",
+          "source": "medical_qa",
+          "chunk_index": 18,
+          "distance": 0.5657950043678284,
+          "relevant": true,
+          "preview": "Câu hỏi: Các phương pháp điều trị Alkapton niệu Trả lời: u ảnh hưởng đến hoạt động của hệ thống niệu quản trong cơ thể.3. Alkapton niệu có chữa khỏi được không?Bệnh Alkapton niệu không thể chữa khỏi hoàn toàn, vì bản ..."
+        },
+        {
+          "rank": 2,
+          "id": "53_31",
+          "metadata_question": "Các phương pháp điều trị Alkapton niệu",
+          "source": "medical_qa",
+          "chunk_index": 31,
+          "distance": 0.5657950043678284,
+          "relevant": true,
+          "preview": "Câu hỏi: Các phương pháp điều trị Alkapton niệu Trả lời: u ảnh hưởng đến hoạt động của hệ thống niệu quản trong cơ thể.3. Alkapton niệu có chữa khỏi được không?Bệnh Alkapton niệu không thể chữa khỏi hoàn toàn, vì bản ..."
+        },
+        {
+          "rank": 3,
+          "id": "53_56",
+          "metadata_question": "Các phương pháp điều trị Alkapton niệu",
+          "source": "medical_qa",
+          "chunk_index": 56,
+          "distance": 0.5657950043678284,
+          "relevant": true,
+          "preview": "Câu hỏi: Các phương pháp điều trị Alkapton niệu Trả lời: u ảnh hưởng đến hoạt động của hệ thống niệu quản trong cơ thể.3. Alkapton niệu có chữa khỏi được không?Bệnh Alkapton niệu không thể chữa khỏi hoàn toàn, vì bản ..."
+        }
+      ]
+    },
+    {
+      "id": "q09",
+      "source_index": 116,
+      "query": "Điều trị áp xe gan do amip",
+      "expected_question": "Điều trị áp xe gan do amip",
+      "expected_terms": [
+        "xoa bóp"
+      ],
+      "answer_excerpt": "Điều trị áp xe gan do amip thì lựa chọn đầu tay là tinidazole hoặc metronidazole phối hợp với một số loại thuốc khác (theo chỉ định của bác sĩ).- Tinidazole chỉ định trong điều trị các nhiễm khuẩn do vi khuẩn kỵ khí, trong đó có áp xe gan do amip entamoeba ...",
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0219,
+      "precision_at_k": 1.0,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_count": 5,
+      "context_chars": 2575,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "123_0",
+          "metadata_question": "Biện pháp điều trị áp xe gan do amip",
+          "source": "medical_qa",
+          "chunk_index": 0,
+          "distance": 0.37405434250831604,
+          "relevant": true,
+          "preview": "Câu hỏi: Biện pháp điều trị áp xe gan do amip Trả lời: Phương pháp chính điều trị áp xe gan do amip là điều trị nội khoa bằng thuốc chống ký sinh trùng như metronidazole hoặc tinidazole.Dẫn lưu mủ qua da được thực hiệ..."
+        },
+        {
+          "rank": 2,
+          "id": "135_85",
+          "metadata_question": "Dấu hiệu áp xe gan do amip",
+          "source": "medical_qa",
+          "chunk_index": 85,
+          "distance": 0.42403537034988403,
+          "relevant": true,
+          "preview": "Câu hỏi: Dấu hiệu áp xe gan do amip Trả lời: ng bào nang, đặc biệt là ở những người làm nghề phục vụ ăn uống. Điều trị những người mang kén amip bằng thuốc Metronidazole.Khi bị chứng lỵ do amip đại tràng, người bệnh c..."
+        },
+        {
+          "rank": 3,
+          "id": "135_101",
+          "metadata_question": "Dấu hiệu áp xe gan do amip",
+          "source": "medical_qa",
+          "chunk_index": 101,
+          "distance": 0.42403537034988403,
+          "relevant": true,
+          "preview": "Câu hỏi: Dấu hiệu áp xe gan do amip Trả lời: ng bào nang, đặc biệt là ở những người làm nghề phục vụ ăn uống. Điều trị những người mang kén amip bằng thuốc Metronidazole.Khi bị chứng lỵ do amip đại tràng, người bệnh c..."
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "source_index": 3,
+      "query": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+      "expected_question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+      "expected_terms": [
+        "dinh dưỡng",
+        "trọng",
+        "người"
+      ],
+      "answer_excerpt": "Áp xe não do Entamoeba histolytica thường có các biểu hiện phổ biến bao gồm đau đầu, nôn mửa và thay đổi trạng thái tinh thần.Các dấu hiệu của áp xe não do amip bao gồm phổ biến nhất là các dấu hiệu màng não, liệt dây thần kinh mặt (VII), liệt vận động và c...",
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0244,
+      "precision_at_k": 1.0,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_count": 5,
+      "context_chars": 2429,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "3_25",
+          "metadata_question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+          "source": "medical_qa",
+          "chunk_index": 25,
+          "distance": 0.27193087339401245,
+          "relevant": true,
+          "preview": "Câu hỏi: Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip Trả lời: ó khăn và để lại di chứng, đặc biệt nếu bệnh đã tiến triển nặng. Vì vậy, điều cực kỳ quan trọng là khi nghi ngờ mình hoặc người thân có các..."
+        },
+        {
+          "rank": 2,
+          "id": "3_43",
+          "metadata_question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+          "source": "medical_qa",
+          "chunk_index": 43,
+          "distance": 0.29518696665763855,
+          "relevant": true,
+          "preview": "Câu hỏi: Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip Trả lời: o amip: Nguyên nhân, triệu chứng, cách điều trị và phòng ngừaSKĐS - Áp xe não do amip thường dễ nhầm lẫn với viêm màng não ở giai đoạn đầu ..."
+        },
+        {
+          "rank": 3,
+          "id": "3_33",
+          "metadata_question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+          "source": "medical_qa",
+          "chunk_index": 33,
+          "distance": 0.29518699645996094,
+          "relevant": true,
+          "preview": "Câu hỏi: Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip Trả lời: o amip: Nguyên nhân, triệu chứng, cách điều trị và phòng ngừaSKĐS - Áp xe não do amip thường dễ nhầm lẫn với viêm màng não ở giai đoạn đầu ..."
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "source_index": 5,
+      "query": "Vai trò của tập luyện với người bệnh áp xe não do amip",
+      "expected_question": "Vai trò của tập luyện với người bệnh áp xe não do amip",
+      "expected_terms": [
+        "thuốc",
+        "luyện",
+        "người"
+      ],
+      "answer_excerpt": "- Giảm các triệu chứng stress, lo lắng; giảm triệu chứng sốt, đau đầu, buồn nôn, chóng mặt của bệnh áp xe não do amip.- Tăng cường lưu thông khí huyết vùng cổ gáy, não... giúp giảm triệu chứng đau vai gáy, động kinh, co quắp chân tay, giãn cơ, thư giãn tinh...",
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.017,
+      "precision_at_k": 1.0,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_count": 5,
+      "context_chars": 2660,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "316_1",
+          "metadata_question": "Vai trò của tập luyện đối với người bị amip ăn não",
+          "source": "medical_qa",
+          "chunk_index": 1,
+          "distance": 0.35004499554634094,
+          "relevant": true,
+          "preview": "Câu hỏi: Vai trò của tập luyện đối với người bị amip ăn não Trả lời: với người bị amip ăn não2.Các bài tập cho người bị amip ăn não3. Những lưu ý khi tập luyệnCác amip này thường đi lên mũi qua các dây thần kinh dẫn t..."
+        },
+        {
+          "rank": 2,
+          "id": "316_22",
+          "metadata_question": "Vai trò của tập luyện đối với người bị amip ăn não",
+          "source": "medical_qa",
+          "chunk_index": 22,
+          "distance": 0.3719148635864258,
+          "relevant": true,
+          "preview": "Câu hỏi: Vai trò của tập luyện đối với người bị amip ăn não Trả lời: các thuốc diệt amip, một chế độ ăn uống và tập luyện tốt sẽ phần nào hỗ trợ, giúp cho người bệnh dần phục hồi và cải thiện được cuộc sống sinh hoạt ..."
+        },
+        {
+          "rank": 3,
+          "id": "316_73",
+          "metadata_question": "Vai trò của tập luyện đối với người bị amip ăn não",
+          "source": "medical_qa",
+          "chunk_index": 73,
+          "distance": 0.3719148635864258,
+          "relevant": true,
+          "preview": "Câu hỏi: Vai trò của tập luyện đối với người bị amip ăn não Trả lời: các thuốc diệt amip, một chế độ ăn uống và tập luyện tốt sẽ phần nào hỗ trợ, giúp cho người bệnh dần phục hồi và cải thiện được cuộc sống sinh hoạt ..."
+        }
+      ]
+    },
+    {
+      "id": "q12",
+      "source_index": 2,
+      "query": "Dự phòng nhiễm amip",
+      "expected_question": "Dự phòng nhiễm amip",
+      "expected_terms": [
+        "dự phòng",
+        "phòng",
+        "nhiễm"
+      ],
+      "answer_excerpt": "Áp xe não do amip là bệnh lý nguy hiểm, nếu không được phát hiện sớm và điều trị còn đe dọa đến tính mạng. Nếu điều trị sống sót thì nguy cơ để lại di chứng khá cao. Do đó, phòng bệnh là ưu tiên hàng đầu. Phòng bệnh cũng khá đơn giản, chỉ bằng việc vệ sinh ...",
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0186,
+      "precision_at_k": 0.2,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 0.2,
+      "hit": true,
+      "relevance_flags": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "source_count": 5,
+      "context_chars": 2788,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "621_8",
+          "metadata_question": "Cách điều trị bạch hầu thanh quản",
+          "source": "medical_qa",
+          "chunk_index": 8,
+          "distance": 0.6606646776199341,
+          "relevant": false,
+          "preview": "Câu hỏi: Cách điều trị bạch hầu thanh quản Trả lời: an tổn thương do bệnh bạch hầu thanh quảnSKĐS - Bệnh bạch hầu thanh quản là bệnh truyền nhiễm cấp tính do trực khuẩn bạch hầu (Corynebacteria diphtheriae) gây ra. Bệ..."
+        },
+        {
+          "rank": 2,
+          "id": "622_46",
+          "metadata_question": "Chăm sóc bệnh nhân bạch hầu thanh quản",
+          "source": "medical_qa",
+          "chunk_index": 46,
+          "distance": 0.6686275005340576,
+          "relevant": false,
+          "preview": "Câu hỏi: Chăm sóc bệnh nhân bạch hầu thanh quản Trả lời: thêm:Bài tập phục hồi chức năng cơ quan tổn thương do bệnh bạch hầu thanh quảnSKĐS - Bệnh bạch hầu thanh quản là bệnh truyền nhiễm cấp tính do trực khuẩn bạch h..."
+        },
+        {
+          "rank": 3,
+          "id": "622_67",
+          "metadata_question": "Chăm sóc bệnh nhân bạch hầu thanh quản",
+          "source": "medical_qa",
+          "chunk_index": 67,
+          "distance": 0.6686275005340576,
+          "relevant": false,
+          "preview": "Câu hỏi: Chăm sóc bệnh nhân bạch hầu thanh quản Trả lời: thêm:Bài tập phục hồi chức năng cơ quan tổn thương do bệnh bạch hầu thanh quảnSKĐS - Bệnh bạch hầu thanh quản là bệnh truyền nhiễm cấp tính do trực khuẩn bạch h..."
+        }
+      ]
+    }
+  ],
+  "generation_results": [
+    {
+      "id": "q01",
+      "query": "Phương pháp điều trị áp xe não do amip",
+      "status": "success",
+      "generation_seconds": 0.9385,
+      "answer_preview": "Để điều trị áp xe não do amip, các bác sĩ sẽ áp dụng cả nội khoa và ngoại khoa. Phác đồ điều trị cần sử dụng thuốc diệt amip (đơn trị liệu hoặc phối hợp thuốc) có thể ngấm tốt qua hàng rào máu não. Theo khuyến cáo của Trung tâm Kiểm soát và phòng ngừa dịch bệnh Hoa Kỳ (CDC), các thuốc được sử dụng để điều trị amip n...",
+      "generation_scores": {
+        "term_coverage": 0.5,
+        "context_term_coverage": 1.0,
+        "context_grounding": 1.0,
+        "answer_words": 168,
+        "has_medical_caveat": true,
+        "says_not_found": false
+      }
+    },
+    {
+      "id": "q02",
+      "query": "Dùng thuốc trong điều trị áp xe não",
+      "status": "success",
+      "generation_seconds": 1.1716,
+      "answer_preview": "Trong điều trị áp xe não, thuốc được sử dụng để loại bỏ nguồn lây nhiễm và giảm áp lực nội sọ. Một loại thuốc cụ thể được nhắc đến là Mannitol, được sử dụng để giảm áp lực nội sọ và khối lượng não. Tuy nhiên, Mannitol thường được sử dụng trong trường hợp não úng thủy cấp tính do xuất huyết nội sọ và hiếm khi được sử...",
+      "generation_scores": {
+        "term_coverage": 0.6667,
+        "context_term_coverage": 0.3333,
+        "context_grounding": 0.5,
+        "answer_words": 213,
+        "has_medical_caveat": true,
+        "says_not_found": false
+      }
+    },
+    {
+      "id": "q03",
+      "query": "Nguyên nhân gây viêm tai xương chũm",
+      "status": "success",
+      "generation_seconds": 0.9078,
+      "answer_preview": "Nguyên nhân gây viêm tai xương chũm bao gồm: - Viêm tai giữa không được điều trị tốt. - Biến chứng của viêm tai giữa cấp và mạn tính. - Viêm tai giữa sau các bệnh cúm, sởi, ho gà và bạch hầu. - Bị nhiễm trùng bởi các loại vi khuẩn như Haemophilus influenza, Staphylococcus hoặc Streptococcus. Ngoài ra, các yếu tố thu...",
+      "generation_scores": {
+        "term_coverage": 1.0,
+        "context_term_coverage": 1.0,
+        "context_grounding": 1.0,
+        "answer_words": 168,
+        "has_medical_caveat": true,
+        "says_not_found": false
+      }
+    },
+    {
+      "id": "q04",
+      "query": "Acid uric là gì?",
+      "status": "success",
+      "generation_seconds": 0.5893,
+      "answer_preview": "Acid uric là một chất được tạo ra khi cơ thể phân hủy các bazơ purin ngoại sinh có trong thực phẩm hoặc purin nội sinh tạo ra trong quá trình phá hủy tế bào tự nhiên trong cơ thể. Quá trình này được thực hiện chủ yếu ở gan, sau đó acid uric được lọc ở thận và bài tiết ra ngoài theo nước tiểu. Một ít acid uric được t...",
+      "generation_scores": {
+        "term_coverage": 0.0,
+        "context_term_coverage": 0.0,
+        "context_grounding": 0.0,
+        "answer_words": 118,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      }
+    },
+    {
+      "id": "q05",
+      "query": "Tăng acid uric máu và bệnh Gout",
+      "status": "success",
+      "generation_seconds": 0.8835,
+      "answer_preview": "Tăng acid uric máu và bệnh Gout có mối quan hệ chặt chẽ nhưng không phải bất kỳ ai tăng acid uric máu đều bị bệnh Gout. Gout là một bệnh khớp do rối loạn chuyển hóa, gây ra bởi tình trạng lắng đọng các tinh thể urat ở các mô của cơ thể, do tăng acid uric trong máu. Tuy nhiên, không phải tất cả các trường hợp tăng ac...",
+      "generation_scores": {
+        "term_coverage": 1.0,
+        "context_term_coverage": 1.0,
+        "context_grounding": 1.0,
+        "answer_words": 213,
+        "has_medical_caveat": true,
+        "says_not_found": false
+      }
+    },
+    {
+      "id": "q06",
+      "query": "Triệu chứng lâm sàng và chẩn đoán bệnh",
+      "status": "success",
+      "generation_seconds": 0.7177,
+      "answer_preview": "Dựa trên thông tin được cung cấp trong ngữ cảnh, triệu chứng lâm sàng của bệnh bao gồm: - Đau bụng dữ dội - Thói quen đại tiện thay đổi kéo dài - Các triệu chứng toàn thân: Sốt, nôn, thiếu máu, chân tay mệt mỏi, suy nhược cơ thể Để chẩn đoán bệnh chính xác, bác sĩ có thể chỉ định cho bệnh nhân thực hiện các xét nghi...",
+      "generation_scores": {
+        "term_coverage": 0.6667,
+        "context_term_coverage": 0.6667,
+        "context_grounding": 1.0,
+        "answer_words": 132,
+        "has_medical_caveat": true,
+        "says_not_found": false
+      }
+    },
+    {
+      "id": "q07",
+      "query": "Virus cúm A lây qua đường nào?",
+      "status": "success",
+      "generation_seconds": 0.7716,
+      "answer_preview": "Virus cúm A lây qua đường hô hấp, chủ yếu là \"giọt bắn\" và \"không khí\" khi người bệnh ho, hắt hơi, những giọt nước bắn vào không khí và sau đó vô tình rơi vào miệng, mũi của những người xung quanh. Ngoài ra, virus cúm A cũng có thể lây lan qua việc tiếp xúc với các đồ vật bị nhiễm virus, khi người bệnh ho, hắt hơi, ...",
+      "generation_scores": {
+        "term_coverage": 0.6667,
+        "context_term_coverage": 0.6667,
+        "context_grounding": 1.0,
+        "answer_words": 112,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      }
+    },
+    {
+      "id": "q08",
+      "query": "Đông y có chữa được Alkapton niệu không?",
+      "status": "success",
+      "generation_seconds": 0.6417,
+      "answer_preview": "Tôi không tìm thấy thông tin về việc Đông y có thể chữa được Alkapton niệu trong dữ liệu được cung cấp. Dữ liệu chỉ đề cập đến việc Alkapton niệu là một bệnh di truyền không thể chữa khỏi hoàn toàn và việc điều trị hiện nay chủ yếu nhằm cải thiện các triệu chứng và ngăn ngừa bệnh tiến triển. Để có thông tin chính xá...",
+      "generation_scores": {
+        "term_coverage": 0.6667,
+        "context_term_coverage": 0.6667,
+        "context_grounding": 1.0,
+        "answer_words": 85,
+        "has_medical_caveat": true,
+        "says_not_found": true
+      }
+    },
+    {
+      "id": "q09",
+      "query": "Điều trị áp xe gan do amip",
+      "status": "success",
+      "generation_seconds": 0.6407,
+      "answer_preview": "Phương pháp chính điều trị áp xe gan do amip là điều trị nội khoa bằng thuốc chống ký sinh trùng như metronidazole hoặc tinidazole. Dẫn lưu mủ qua da được thực hiện trong trường hợp bệnh nhân không đáp ứng với thuốc chống amip trong 3 đến 5 ngày, khi áp xe gan bị nhiễm vi khuẩn hoặc khi có nguy cơ cao bị vỡ thùy trá...",
+      "generation_scores": {
+        "term_coverage": 0.0,
+        "context_term_coverage": 0.0,
+        "context_grounding": 0.0,
+        "answer_words": 123,
+        "has_medical_caveat": true,
+        "says_not_found": false
+      }
+    },
+    {
+      "id": "q10",
+      "query": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+      "status": "success",
+      "generation_seconds": 0.5877,
+      "answer_preview": "Chế độ ăn đóng vai trò quan trọng trong việc hỗ trợ điều trị và phục hồi cho người bị áp xe não do amip. Người bệnh nên tránh đồ ăn nhiều dầu mỡ và các loại thực phẩm có nguy cơ gây nhiễm khuẩn cao như thực phẩm sống hoặc chưa nấu chín kỹ. Tuy nhiên, chế độ ăn uống chỉ là một phần của quá trình điều trị áp xe não do...",
+      "generation_scores": {
+        "term_coverage": 1.0,
+        "context_term_coverage": 1.0,
+        "context_grounding": 1.0,
+        "answer_words": 125,
+        "has_medical_caveat": true,
+        "says_not_found": false
+      }
+    },
+    {
+      "id": "q11",
+      "query": "Vai trò của tập luyện với người bệnh áp xe não do amip",
+      "status": "success",
+      "generation_seconds": 0.7395,
+      "answer_preview": "Vai trò của tập luyện với người bệnh áp xe não do amip bao gồm: - Giảm các triệu chứng stress, lo lắng; giảm triệu chứng sốt, đau đầu, buồn nôn, chóng mặt của bệnh áp xe não do amip. - Tăng cường lưu thông khí huyết vùng cổ gáy, não... giúp giảm triệu chứng đau vai gáy, động kinh, co quắp chân tay, giãn cơ, thư giãn...",
+      "generation_scores": {
+        "term_coverage": 0.6667,
+        "context_term_coverage": 1.0,
+        "context_grounding": 1.0,
+        "answer_words": 135,
+        "has_medical_caveat": true,
+        "says_not_found": false
+      }
+    },
+    {
+      "id": "q12",
+      "query": "Dự phòng nhiễm amip",
+      "status": "success",
+      "generation_seconds": 6.4755,
+      "answer_preview": "Để dự phòng nhiễm amip, bạn nên thực hiện các biện pháp sau: - Rửa tay thường xuyên bằng xà phòng hoặc dung dịch sát khuẩn, đặc biệt là trước khi ăn và sau khi sử dụng nhà vệ sinh. - Tránh ăn thức ăn không được nấu chín hoặc không được bảo quản đúng cách, vì amip có thể tồn tại trong thực phẩm không được nấu chín ho...",
+      "generation_scores": {
+        "term_coverage": 1.0,
+        "context_term_coverage": 0.6667,
+        "context_grounding": 0.6667,
+        "answer_words": 219,
+        "has_medical_caveat": true,
+        "says_not_found": false
+      }
+    }
+  ]
+}

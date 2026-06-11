@@ -1,0 +1,660 @@
+{
+  "summary": {
+    "started_at": "2026-06-11T15:16:40+07:00",
+    "finished_at": "2026-06-11T15:17:06+07:00",
+    "duration_seconds": 26.35,
+    "questions": 10,
+    "success": 7,
+    "generation_errors": 3,
+    "errors": 0,
+    "retrieval_hit_rate": 0.0,
+    "avg_precision_at_k": 0.0,
+    "avg_recall_at_k": 0.0,
+    "avg_mrr": 0.0,
+    "avg_topic_coverage": 0.0893,
+    "avg_context_grounding": 0.1429,
+    "medical_caveat_rate": 0.0,
+    "latency_avg_seconds": 0.8512,
+    "latency_p50_seconds": 0.8111,
+    "latency_p95_seconds": 1.238,
+    "retrieval_avg_seconds": 0.0309,
+    "generation_avg_seconds": 0.5998
+  },
+  "config": {
+    "embedding_model": null,
+    "vectorstore_path": null,
+    "retrieval_top_k": null,
+    "retrieval_search_type": null,
+    "retrieval_score_threshold": null,
+    "generator_mode": null,
+    "generator_provider": null,
+    "generator_model": null,
+    "api_generator_model": null
+  },
+  "warmup": {
+    "document_count": 708714,
+    "probe_results": 1,
+    "generator_mode": "api",
+    "timings": {
+      "embedder_load_seconds": 12.383,
+      "probe_embedding_seconds": 0.236,
+      "vector_count_seconds": 6.981,
+      "probe_search_seconds": 0.005,
+      "generator_warmup_seconds": 0.137,
+      "total_seconds": 19.742
+    }
+  },
+  "results": [
+    {
+      "id": "q01",
+      "category": "noi_tiet",
+      "question": "Tri?u ch?ng b?nh ti?u ???ng type 2 l? g??",
+      "expected_topics": [
+        "ti?u ???ng",
+        "??i th?o ???ng",
+        "kh?t n??c",
+        "ti?u nhi?u",
+        "m?t m?i",
+        "s?t c?n"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0317,
+      "generation_seconds": 0.6119,
+      "total_seconds": 0.673,
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevant_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "answer_topics": [],
+      "generation_scores": {
+        "topic_coverage": 0.0,
+        "context_grounding": 0.0,
+        "useful_length": 1.0,
+        "has_medical_caveat": false
+      },
+      "answer_words": 54,
+      "source_count": 5,
+      "top_sources": [
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        }
+      ],
+      "answer_preview": "Tôi không tìm thấy thông tin về bệnh tiểu đường type 2 trong ngữ cảnh được cung cấp. Để có thông tin chính xác và đầy đủ về bệnh tiểu đường type 2, tôi khuyến nghị bạn nên tham khảo ý kiến của bác sĩ hoặc các nguồn thông tin y tế uy tín.",
+      "error": ""
+    },
+    {
+      "id": "q02",
+      "category": "tim_mach",
+      "question": "L?m th? n?o ?? ph?ng ng?a t?ng huy?t ?p?",
+      "expected_topics": [
+        "t?ng huy?t ?p",
+        "huy?t ?p",
+        "mu?i",
+        "v?n ??ng",
+        "c?n n?ng",
+        "r??u",
+        "thu?c l?"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0308,
+      "generation_seconds": 0.8084,
+      "total_seconds": 0.8654,
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevant_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "answer_topics": [],
+      "generation_scores": {
+        "topic_coverage": 0.0,
+        "context_grounding": 0.0,
+        "useful_length": 1.0,
+        "has_medical_caveat": false
+      },
+      "answer_words": 56,
+      "source_count": 5,
+      "top_sources": [
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        }
+      ],
+      "answer_preview": "Tôi không tìm thấy thông tin về cách phòng ngừa tăng huyết áp trong dữ liệu được cung cấp. Để có thông tin chính xác và đầy đủ về cách phòng ngừa tăng huyết áp, tôi khuyến nghị bạn nên tham khảo ý kiến của bác sĩ hoặc các nguồn thông tin y tế uy tín.",
+      "error": ""
+    },
+    {
+      "id": "q03",
+      "category": "duoc",
+      "question": "Paracetamol c? t?c d?ng ph? g? v? d?ng qu? li?u c? nguy hi?m kh?ng?",
+      "expected_topics": [
+        "paracetamol",
+        "acetaminophen",
+        "qu? li?u",
+        "gan",
+        "??c",
+        "t?c d?ng ph?"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0315,
+      "generation_seconds": 0.5655,
+      "total_seconds": 0.6256,
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevant_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "answer_topics": [
+        "paracetamol"
+      ],
+      "generation_scores": {
+        "topic_coverage": 0.1667,
+        "context_grounding": 0.0,
+        "useful_length": 1.0,
+        "has_medical_caveat": false
+      },
+      "answer_words": 50,
+      "source_count": 5,
+      "top_sources": [
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        }
+      ],
+      "answer_preview": "Tôi không tìm thấy thông tin về Paracetamol trong ngữ cảnh được cung cấp. Để có thông tin chính xác về tác dụng phụ và nguy hiểm của Paracetamol, tôi khuyến nghị bạn tham khảo ý kiến của bác sĩ hoặc các nguồn thông tin y tế đáng tin cậy.",
+      "error": ""
+    },
+    {
+      "id": "q04",
+      "category": "co_xuong_khop",
+      "question": "Ng??i b? gout n?n ?n u?ng nh? th? n?o?",
+      "expected_topics": [
+        "gout",
+        "g?t",
+        "purin",
+        "r??u",
+        "bia",
+        "h?i s?n",
+        "th?t ??",
+        "acid uric"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0293,
+      "generation_seconds": 0.6357,
+      "total_seconds": 0.6933,
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevant_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "answer_topics": [
+        "gout"
+      ],
+      "generation_scores": {
+        "topic_coverage": 0.125,
+        "context_grounding": 0.0,
+        "useful_length": 1.0,
+        "has_medical_caveat": false
+      },
+      "answer_words": 71,
+      "source_count": 5,
+      "top_sources": [
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        }
+      ],
+      "answer_preview": "Tôi không tìm thấy thông tin về vấn đề này trong dữ liệu được cung cấp. Để có thông tin chính xác và đầy đủ về chế độ ăn uống cho người bị gout, tôi khuyên bạn nên tham khảo ý kiến của bác sĩ hoặc chuyên gia dinh dưỡng. Họ có thể cung cấp cho bạn thông tin ...",
+      "error": ""
+    },
+    {
+      "id": "q05",
+      "category": "truyen_nhiem",
+      "question": "D?u hi?u b?nh vi?m gan B l? g??",
+      "expected_topics": [
+        "vi?m gan b",
+        "hbv",
+        "v?ng da",
+        "m?t m?i",
+        "gan",
+        "n??c ti?u"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.029,
+      "generation_seconds": 0.8577,
+      "total_seconds": 0.9124,
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevant_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "answer_topics": [
+        "gan"
+      ],
+      "generation_scores": {
+        "topic_coverage": 0.1667,
+        "context_grounding": 0.0,
+        "useful_length": 1.0,
+        "has_medical_caveat": false
+      },
+      "answer_words": 67,
+      "source_count": 5,
+      "top_sources": [
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        }
+      ],
+      "answer_preview": "Tôi không tìm thấy thông tin về dấu hiệu bệnh viêm gan B trong ngữ cảnh được cung cấp. Ngữ cảnh chỉ cung cấp thông tin về xoa bóp bấm huyệt điều trị liệt VII ngoại biên. Để có thông tin chính xác về dấu hiệu bệnh viêm gan B, tôi khuyến nghị bạn tham khảo ý ...",
+      "error": ""
+    },
+    {
+      "id": "q06",
+      "category": "ho_hap",
+      "question": "C?c tri?u ch?ng th??ng g?p c?a vi?m ph?i l? g??",
+      "expected_topics": [
+        "vi?m ph?i",
+        "s?t",
+        "ho",
+        "??m",
+        "kh? th?",
+        "?au ng?c"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0336,
+      "generation_seconds": 0.7487,
+      "total_seconds": 0.8111,
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevant_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "answer_topics": [
+        "ho"
+      ],
+      "generation_scores": {
+        "topic_coverage": 0.1667,
+        "context_grounding": 1.0,
+        "useful_length": 1.0,
+        "has_medical_caveat": false
+      },
+      "answer_words": 58,
+      "source_count": 5,
+      "top_sources": [
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        }
+      ],
+      "answer_preview": "Tôi không tìm thấy thông tin về các triệu chứng thường gặp của viêm phổi trong dữ liệu được cung cấp. Để có thông tin chính xác và đầy đủ về các triệu chứng của viêm phổi, tôi khuyến nghị bạn nên tham khảo ý kiến của bác sĩ hoặc các nguồn thông tin y tế uy ...",
+      "error": ""
+    },
+    {
+      "id": "q07",
+      "category": "tam_than",
+      "question": "D?u hi?u tr?m c?m th??ng g?p g?m nh?ng g??",
+      "expected_topics": [
+        "tr?m c?m",
+        "bu?n",
+        "m?t h?ng th?",
+        "m?t ng?",
+        "m?t m?i",
+        "t? t?"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0299,
+      "generation_seconds": 1.3191,
+      "total_seconds": 1.3776,
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevant_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "answer_topics": [],
+      "generation_scores": {
+        "topic_coverage": 0.0,
+        "context_grounding": 0.0,
+        "useful_length": 1.0,
+        "has_medical_caveat": false
+      },
+      "answer_words": 159,
+      "source_count": 5,
+      "top_sources": [
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        }
+      ],
+      "answer_preview": "Dựa trên thông tin được cung cấp trong ngữ cảnh, không có thông tin cụ thể về dấu hiệu thường gặp của một tình trạng bệnh lý cụ thể. Tuy nhiên, có thể thấy rằng các bài thuốc được đề cập đến trong ngữ cảnh có liên quan đến các vấn đề về tiêu hóa, như đau dạ...",
+      "error": ""
+    },
+    {
+      "id": "q08",
+      "category": "truyen_nhiem",
+      "question": "Ph?ng b?nh s?t xu?t huy?t b?ng c?ch n?o?",
+      "expected_topics": [
+        "s?t xu?t huy?t",
+        "mu?i",
+        "dengue",
+        "b? g?y",
+        "l?ng qu?ng",
+        "n??c ??ng"
+      ],
+      "status": "generation_error",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0304,
+      "generation_seconds": 0.1503,
+      "total_seconds": 0.2081,
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevant_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "answer_topics": [],
+      "generation_scores": {
+        "topic_coverage": 0.0,
+        "context_grounding": 0.0,
+        "useful_length": 0.2,
+        "has_medical_caveat": false
+      },
+      "answer_words": 0,
+      "source_count": 5,
+      "top_sources": [
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        }
+      ],
+      "answer_preview": "",
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "q09",
+      "category": "ho_hap",
+      "question": "Hen ph? qu?n ???c ?i?u tr? v? ki?m so?t nh? th? n?o?",
+      "expected_topics": [
+        "hen",
+        "ph? qu?n",
+        "corticosteroid",
+        "h?t",
+        "gi?n ph? qu?n",
+        "ki?m so?t"
+      ],
+      "status": "generation_error",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0289,
+      "generation_seconds": 0.1475,
+      "total_seconds": 0.2048,
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevant_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "answer_topics": [],
+      "generation_scores": {
+        "topic_coverage": 0.0,
+        "context_grounding": 0.0,
+        "useful_length": 0.2,
+        "has_medical_caveat": false
+      },
+      "answer_words": 0,
+      "source_count": 5,
+      "top_sources": [
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        }
+      ],
+      "answer_preview": "",
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "q10",
+      "category": "dinh_duong",
+      "question": "Ch? s? BMI l? g? v? ???c d?ng ?? ??nh gi? ?i?u g??",
+      "expected_topics": [
+        "bmi",
+        "ch? s? kh?i c? th?",
+        "c?n n?ng",
+        "chi?u cao",
+        "b?o ph?",
+        "thi?u c?n"
+      ],
+      "status": "generation_error",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0339,
+      "generation_seconds": 0.1529,
+      "total_seconds": 0.2152,
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevant_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "answer_topics": [],
+      "generation_scores": {
+        "topic_coverage": 0.0,
+        "context_grounding": 0.0,
+        "useful_length": 0.2,
+        "has_medical_caveat": false
+      },
+      "answer_words": 0,
+      "source_count": 5,
+      "top_sources": [
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        },
+        {
+          "source": "unknown",
+          "chunk_id": null,
+          "topic_hits": [],
+          "preview": ""
+        }
+      ],
+      "answer_preview": "",
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    }
+  ]
+}

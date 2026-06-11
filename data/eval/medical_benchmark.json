@@ -1,0 +1,168 @@
+﻿{
+  "version": 1,
+  "description": "UTF-8 corpus-grounded smoke benchmark for Medical RAG Chatbot.",
+  "source_report": "reports/evaluation_report_20260611_161148.json",
+  "items": [
+    {
+      "id": "corpus_001",
+      "source_index": 0,
+      "question": "Phương pháp điều trị áp xe não do amip",
+      "expected_source_question": "Phương pháp điều trị áp xe não do amip",
+      "expected_terms": [
+        "áp xe",
+        "phương"
+      ],
+      "answer_excerpt": "Điều trị áp xe não do amip bao gồm cả nội khoa và ngoại khoa. Kết quả điều trị phụ thuộc vào các yếu tố: Tổng trạng của bệnh nhân; giai đoạn phát triển và chẩn đoán bệnh; giai đoạn áp xe, kích thước cùng số lượng và vị trí ổ áp xe; tình trạng tổn thương não...",
+      "category": "corpus_smoke",
+      "difficulty": "medium"
+    },
+    {
+      "id": "corpus_002",
+      "source_index": 1,
+      "question": "Dùng thuốc trong điều trị áp xe não",
+      "expected_source_question": "Dùng thuốc trong điều trị áp xe não",
+      "expected_terms": [
+        "amip",
+        "thuốc",
+        "trong"
+      ],
+      "answer_excerpt": "Trên lý thuyết, phác đồ điều trị cần sử thuốc diệt amip (đơn trị liệu hoặc phối hợp thuốc) có thể ngấm tốt qua hàng rào máu não. Theo khuyến cáo của Trung tâm Kiểm soát và phòng ngừa dịch bệnh Hoa Kỳ (CDC), các thuốc được sử dụng để điều trị amip não bao gồ...",
+      "category": "corpus_smoke",
+      "difficulty": "medium"
+    },
+    {
+      "id": "corpus_003",
+      "source_index": 342,
+      "question": "Nguyên nhân gây viêm tai xương chũm",
+      "expected_source_question": "Nguyên nhân gây viêm tai xương chũm",
+      "expected_terms": [
+        "bạch hầu",
+        "nguyên",
+        "xương"
+      ],
+      "answer_excerpt": "Viêm tai xương chũm cấp tính: Thường xuất hiện sau khi mắc viêm tai giữa. Thông thường bệnh nhân bị viêm tai giữa trước đó khoảng 20 ngày với tình trạng viêm thông bào xương chũm. Viêm tai xương chũm mạn tính: Được xác định khi tình trạng chảy mủ tai kéo dà...",
+      "category": "corpus_smoke",
+      "difficulty": "medium"
+    },
+    {
+      "id": "corpus_004",
+      "source_index": 238,
+      "question": "Acid uric là gì?",
+      "expected_source_question": "Acid uric là gì?",
+      "expected_terms": [
+        "gout"
+      ],
+      "answer_excerpt": "Vậy câu hỏi đặt ra là nguyên nhân của tình trạng tăng acid uric máu là gì, khi nào thì phải điều trị tình trạng tăng acid uric máu không triệu chứng.Bình thường lượng acid uric trong máu luôn được giữ ổn định ở nồng độ dưới 7,0 mg/dl (420 micromol/l) và đượ...",
+      "category": "corpus_smoke",
+      "difficulty": "medium"
+    },
+    {
+      "id": "corpus_005",
+      "source_index": 239,
+      "question": "Tăng acid uric máu và bệnh Gout",
+      "expected_source_question": "Tăng acid uric máu và bệnh Gout",
+      "expected_terms": [
+        "acid uric"
+      ],
+      "answer_excerpt": "Gout là một bệnh khớp do rối loạn chuyển hóa, gây ra bởi tình trạng lắng đọng các tinh thể urat ở các mô của cơ thể, do tăng acid uric trong máu. Tuy nhiên không phải bất kỳ ai tăng acid uric máu đều bị bệnh Gout.Hiện nay có một thực tế là rất nhiều người, ...",
+      "category": "corpus_smoke",
+      "difficulty": "medium"
+    },
+    {
+      "id": "corpus_006",
+      "source_index": 33,
+      "question": "Triệu chứng lâm sàng và chẩn đoán bệnh",
+      "expected_source_question": "Triệu chứng lâm sàng và chẩn đoán bệnh",
+      "expected_terms": [
+        "lao",
+        "triệu",
+        "chứng"
+      ],
+      "answer_excerpt": "Khi mắc bệnh ấu trùng sán lợn, biểu hiện triệu chứng bệnh lý tùy thuộc vào vị trí ký sinh của nang ấu trùng sán. Trên lâm sàng thường phát hiện được các nốt sán dưới da bằng hạt đỗ, hạt lạc, di động dễ, không ngứa, không đau, nằm ở vị trí cơ vân, không ở tr...",
+      "category": "corpus_smoke",
+      "difficulty": "medium"
+    },
+    {
+      "id": "corpus_007",
+      "source_index": 464,
+      "question": "Virus cúm A lây qua đường nào?",
+      "expected_source_question": "Virus cúm A lây qua đường nào?",
+      "expected_terms": [
+        "tê bì",
+        "virus",
+        "đường"
+      ],
+      "answer_excerpt": "Cúm A là căn bệnh nhiễm trùng đường hô hấp cấp tính thường lưu hành khi thời tiết chuyển mùa, do các chủng virus cúm phổ biến như A/H1N1, A/H3N2, A/H5N1, A/H7N9 gây nên. Bệnh cúm A thường bị nhầm lẫn với bệnh cảm thông thường do những triệu chứng tương tự. ...",
+      "category": "corpus_smoke",
+      "difficulty": "medium"
+    },
+    {
+      "id": "corpus_008",
+      "source_index": 52,
+      "question": "Đông y có chữa được Alkapton niệu không?",
+      "expected_source_question": "Đông y có chữa được Alkapton niệu không?",
+      "expected_terms": [
+        "viêm khớp",
+        "alkapton",
+        "không"
+      ],
+      "answer_excerpt": "Alkapton niệu là một loại bệnh di truyền hiếm gặp, ảnh hưởng đến hoạt động của hệ thống niệu quản trong cơ thể. Bệnh có thể gây ra nhiều vấn đề sức khỏe nguy hiểm nếu không được phát hiện và điều trị kịp thời nên đông y không thể chữa được căn bệnh này.2. C...",
+      "category": "corpus_smoke",
+      "difficulty": "medium"
+    },
+    {
+      "id": "corpus_009",
+      "source_index": 116,
+      "question": "Điều trị áp xe gan do amip",
+      "expected_source_question": "Điều trị áp xe gan do amip",
+      "expected_terms": [
+        "xoa bóp"
+      ],
+      "answer_excerpt": "Điều trị áp xe gan do amip thì lựa chọn đầu tay là tinidazole hoặc metronidazole phối hợp với một số loại thuốc khác (theo chỉ định của bác sĩ).- Tinidazole chỉ định trong điều trị các nhiễm khuẩn do vi khuẩn kỵ khí, trong đó có áp xe gan do amip entamoeba ...",
+      "category": "corpus_smoke",
+      "difficulty": "medium"
+    },
+    {
+      "id": "corpus_010",
+      "source_index": 3,
+      "question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+      "expected_source_question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+      "expected_terms": [
+        "dinh dưỡng",
+        "trọng",
+        "người"
+      ],
+      "answer_excerpt": "Áp xe não do Entamoeba histolytica thường có các biểu hiện phổ biến bao gồm đau đầu, nôn mửa và thay đổi trạng thái tinh thần.Các dấu hiệu của áp xe não do amip bao gồm phổ biến nhất là các dấu hiệu màng não, liệt dây thần kinh mặt (VII), liệt vận động và c...",
+      "category": "corpus_smoke",
+      "difficulty": "medium"
+    },
+    {
+      "id": "corpus_011",
+      "source_index": 5,
+      "question": "Vai trò của tập luyện với người bệnh áp xe não do amip",
+      "expected_source_question": "Vai trò của tập luyện với người bệnh áp xe não do amip",
+      "expected_terms": [
+        "thuốc",
+        "luyện",
+        "người"
+      ],
+      "answer_excerpt": "- Giảm các triệu chứng stress, lo lắng; giảm triệu chứng sốt, đau đầu, buồn nôn, chóng mặt của bệnh áp xe não do amip.- Tăng cường lưu thông khí huyết vùng cổ gáy, não... giúp giảm triệu chứng đau vai gáy, động kinh, co quắp chân tay, giãn cơ, thư giãn tinh...",
+      "category": "corpus_smoke",
+      "difficulty": "medium"
+    },
+    {
+      "id": "corpus_012",
+      "source_index": 2,
+      "question": "Dự phòng nhiễm amip",
+      "expected_source_question": "Dự phòng nhiễm amip",
+      "expected_terms": [
+        "dự phòng",
+        "phòng",
+        "nhiễm"
+      ],
+      "answer_excerpt": "Áp xe não do amip là bệnh lý nguy hiểm, nếu không được phát hiện sớm và điều trị còn đe dọa đến tính mạng. Nếu điều trị sống sót thì nguy cơ để lại di chứng khá cao. Do đó, phòng bệnh là ưu tiên hàng đầu. Phòng bệnh cũng khá đơn giản, chỉ bằng việc vệ sinh ...",
+      "category": "corpus_smoke",
+      "difficulty": "medium"
+    }
+  ]
+}

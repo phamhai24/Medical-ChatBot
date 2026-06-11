@@ -1,0 +1,89 @@
+# RAG Configuration for Medical Chatbot
+
+rag:
+  # Data settings
+  data:
+    input_path: "data/processed/data.json"
+    chunk_size: 512
+    chunk_overlap: 64
+    min_chunk_length: 50
+
+  # Embedding settings
+  embedding:
+    model_name: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    # model_name: "BAAI/bge-m3"  # Alternative: stronger but slower
+    # model_name: "intfloat/multilingual-e5-small"  # Alternative
+    batch_size: 32
+    device: "cuda"  # "cuda" or "cpu"
+    normalize_embeddings: true
+    max_length: 512
+
+  # Vector store settings
+  vector_store:
+    type: "chroma"  # "chroma", "faiss", "milvus"
+    persist_directory: "data/vectorstore"
+    collection_name: "medical_qa"
+    search_type: "mmr"  # "similarity", "mmr" (max marginal relevance)
+    fetch_k: 20
+    lambda_mult: 0.5  # For MMR diversity control
+
+  # Retrieval settings
+  retrieval:
+    top_k: 5
+    score_threshold: 0.3  # Minimum similarity score
+
+  # Generation settings
+  generation:
+    model_name: "Qwen/Qwen2.5-7B-Instruct"
+    # model_name: "microsoft/Phi-3-mini-128k-instruct"  # Alternative
+    # model_name: "mistralai/Mistral-7B-Instruct-v0.2"  # Alternative
+    max_new_tokens: 512
+    temperature: 0.3
+    top_p: 0.9
+    top_k: 50
+    do_sample: true
+    repetition_penalty: 1.1
+    streaming: true
+
+  # Prompt template
+  prompt:
+    system: |
+      Bạn là trợ lý y tế chuyên nghiệp. Nhiệm vụ của bạn là trả lời câu hỏi của người dùng
+      dựa trên thông tin được cung cấp trong ngữ cảnh (context) bên dưới.
+
+      HƯỚNG DẪN QUAN TRỌNG:
+      - Chỉ trả lời dựa trên thông tin có trong ngữ cảnh. Không bịa đặt thông tin.
+      - Nếu ngữ cảnh không chứa thông tin để trả lời câu hỏi, hãy nói rõ rằng bạn không tìm thấy thông tin đó trong dữ liệu được cung cấp.
+      - Trả lời bằng tiếng Việt, rõ ràng và dễ hiểu.
+      - Nếu câu hỏi yêu cầu thông tin y tế chuyên môn, hãy trình bày logic và chi tiết.
+      - Luôn nhắc nhở người dùng tham khảo ý kiến bác sĩ cho các quyết định y tế quan trọng.
+      - Không đưa ra chẩn đoán y khoa cụ thể cho cá nhân.
+
+    user_template: |
+      Ngữ cảnh (Context):
+      {context}
+
+      Câu hỏi: {question}
+
+      Trả lời:
+
+  # Fallback (when retrieval fails)
+  fallback:
+    enabled: true
+    model_name: "Qwen/Qwen2.5-7B-Instruct"
+
+# API settings
+api:
+  host: "0.0.0.0"
+  port: 8000
+  cors_origins:
+    - "http://localhost:8501"
+    - "http://localhost:3000"
+  reload: true
+
+# Web UI settings
+web:
+  title: "Chatbot Y tế - RAG"
+  icon: "🏥"
+  description: "Trợ lý y tế sử dụng RAG"
+  page_layout: "wide"

@@ -1,0 +1,1023 @@
+{
+  "summary": {
+    "started_at": "2026-06-11T15:25:15+07:00",
+    "finished_at": "2026-06-11T15:26:00+07:00",
+    "duration_seconds": 45.14,
+    "benchmark_questions": 12,
+    "generation_success": 8,
+    "generation_errors": 4,
+    "execution_errors": 0,
+    "api_rate_limited": true,
+    "retrieval_hit_rate": 0.6667,
+    "avg_precision_at_k": 0.5333,
+    "avg_recall_proxy_at_k": 0.6667,
+    "avg_mrr": 0.6667,
+    "answers_not_found_rate": 0.0,
+    "avg_generation_term_coverage": 0.8333,
+    "avg_context_grounding": 0.75,
+    "medical_caveat_rate": 0.0,
+    "latency_avg_seconds": 0.8334,
+    "latency_p50_seconds": 0.7305,
+    "latency_p95_seconds": 1.4429,
+    "retrieval_avg_seconds": 0.0301,
+    "generation_avg_seconds": 0.5613
+  },
+  "config": {
+    "data_records": 16506,
+    "processed_data_path": "C:\\Users\\pc\\Documents\\code\\Medical_RAG_Chatbot\\data\\processed\\data.json",
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "embedding_device": "cuda",
+    "vectorstore_type": "chroma",
+    "vectorstore_path": "C:\\Users\\pc\\Documents\\code\\Medical_RAG_Chatbot\\data\\vectorstore",
+    "collection_name": "medical_qa",
+    "vector_search_type": "similarity",
+    "retrieval_top_k": 5,
+    "retrieval_score_threshold": 0.3,
+    "generator_mode": "api",
+    "generator_provider": "groq",
+    "generator_model": "llama-3.3-70b-versatile",
+    "api_host": "0.0.0.0",
+    "api_port": 8000
+  },
+  "warmup": {
+    "document_count": 708714,
+    "probe_results": 1,
+    "generator_mode": "api",
+    "timings": {
+      "embedder_load_seconds": 10.798,
+      "probe_embedding_seconds": 0.264,
+      "vector_count_seconds": 6.396,
+      "probe_search_seconds": 0.004,
+      "generator_warmup_seconds": 0.109,
+      "total_seconds": 17.571
+    }
+  },
+  "benchmark": [
+    {
+      "id": "q01",
+      "source_index": 0,
+      "question": "Phương pháp điều trị áp xe não do amip",
+      "query": "Phương pháp điều trị áp xe não do amip l? g??",
+      "answer_excerpt": "Điều trị áp xe não do amip bao gồm cả nội khoa và ngoại khoa. Kết quả điều trị phụ thuộc vào các yếu tố: Tổng trạng của bệnh nhân; giai đoạn phát triển và chẩn đoán bệnh; giai đoạn áp xe, kích thước cùng số lượng và vị trí ổ áp xe; tình trạng tổn thương não...",
+      "expected_question": "Phương pháp điều trị áp xe não do amip",
+      "expected_terms": [
+        "amip",
+        "phương"
+      ]
+    },
+    {
+      "id": "q02",
+      "source_index": 238,
+      "question": "Acid uric là gì?",
+      "query": "Acid uric là gì?",
+      "answer_excerpt": "Vậy câu hỏi đặt ra là nguyên nhân của tình trạng tăng acid uric máu là gì, khi nào thì phải điều trị tình trạng tăng acid uric máu không triệu chứng.Bình thường lượng acid uric trong máu luôn được giữ ổn định ở nồng độ dưới 7,0 mg/dl (420 micromol/l) và đượ...",
+      "expected_question": "Acid uric là gì?",
+      "expected_terms": [
+        "gout"
+      ]
+    },
+    {
+      "id": "q03",
+      "source_index": 239,
+      "question": "Tăng acid uric máu và bệnh Gout",
+      "query": "Tăng acid uric máu và bệnh Gout l? g??",
+      "answer_excerpt": "Gout là một bệnh khớp do rối loạn chuyển hóa, gây ra bởi tình trạng lắng đọng các tinh thể urat ở các mô của cơ thể, do tăng acid uric trong máu. Tuy nhiên không phải bất kỳ ai tăng acid uric máu đều bị bệnh Gout.Hiện nay có một thực tế là rất nhiều người, ...",
+      "expected_question": "Tăng acid uric máu và bệnh Gout",
+      "expected_terms": [
+        "acid uric"
+      ]
+    },
+    {
+      "id": "q04",
+      "source_index": 33,
+      "question": "Triệu chứng lâm sàng và chẩn đoán bệnh",
+      "query": "Triệu chứng lâm sàng và chẩn đoán bệnh l? g??",
+      "answer_excerpt": "Khi mắc bệnh ấu trùng sán lợn, biểu hiện triệu chứng bệnh lý tùy thuộc vào vị trí ký sinh của nang ấu trùng sán. Trên lâm sàng thường phát hiện được các nốt sán dưới da bằng hạt đỗ, hạt lạc, di động dễ, không ngứa, không đau, nằm ở vị trí cơ vân, không ở tr...",
+      "expected_question": "Triệu chứng lâm sàng và chẩn đoán bệnh",
+      "expected_terms": [
+        "lao",
+        "triệu",
+        "chứng"
+      ]
+    },
+    {
+      "id": "q05",
+      "source_index": 1,
+      "question": "Dùng thuốc trong điều trị áp xe não",
+      "query": "Dùng thuốc trong điều trị áp xe não l? g??",
+      "answer_excerpt": "Trên lý thuyết, phác đồ điều trị cần sử thuốc diệt amip (đơn trị liệu hoặc phối hợp thuốc) có thể ngấm tốt qua hàng rào máu não. Theo khuyến cáo của Trung tâm Kiểm soát và phòng ngừa dịch bệnh Hoa Kỳ (CDC), các thuốc được sử dụng để điều trị amip não bao gồ...",
+      "expected_question": "Dùng thuốc trong điều trị áp xe não",
+      "expected_terms": [
+        "thuốc",
+        "trong"
+      ]
+    },
+    {
+      "id": "q06",
+      "source_index": 2,
+      "question": "Dự phòng nhiễm amip",
+      "query": "Dự phòng nhiễm amip l? g??",
+      "answer_excerpt": "Áp xe não do amip là bệnh lý nguy hiểm, nếu không được phát hiện sớm và điều trị còn đe dọa đến tính mạng. Nếu điều trị sống sót thì nguy cơ để lại di chứng khá cao. Do đó, phòng bệnh là ưu tiên hàng đầu. Phòng bệnh cũng khá đơn giản, chỉ bằng việc vệ sinh ...",
+      "expected_question": "Dự phòng nhiễm amip",
+      "expected_terms": [
+        "phòng",
+        "nhiễm"
+      ]
+    },
+    {
+      "id": "q07",
+      "source_index": 3,
+      "question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+      "query": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip l? g??",
+      "answer_excerpt": "Áp xe não do Entamoeba histolytica thường có các biểu hiện phổ biến bao gồm đau đầu, nôn mửa và thay đổi trạng thái tinh thần.Các dấu hiệu của áp xe não do amip bao gồm phổ biến nhất là các dấu hiệu màng não, liệt dây thần kinh mặt (VII), liệt vận động và c...",
+      "expected_question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+      "expected_terms": [
+        "trọng",
+        "người"
+      ]
+    },
+    {
+      "id": "q08",
+      "source_index": 4,
+      "question": "Tham khảo chế độ dinh dưỡng cho người bị áp xe não do amip",
+      "query": "Tham khảo chế độ dinh dưỡng cho người bị áp xe não do amip l? g??",
+      "answer_excerpt": "Dựa trên hướng dẫn dinh dưỡng chung của Tổ chức Y tế thế giới (WHO) và các tổ chức y tế uy tín khác, tham khảo một số nguyên tắc dinh dưỡng cho người bị áp xe não do amip:Dinh dưỡng đầy đủ và cân bằngNăng lượng: Đảm bảo cung cấp đủ năng lượng để đáp ứng nhu...",
+      "expected_question": "Tham khảo chế độ dinh dưỡng cho người bị áp xe não do amip",
+      "expected_terms": [
+        "dưỡng",
+        "người"
+      ]
+    },
+    {
+      "id": "q09",
+      "source_index": 5,
+      "question": "Vai trò của tập luyện với người bệnh áp xe não do amip",
+      "query": "Vai trò của tập luyện với người bệnh áp xe não do amip l? g??",
+      "answer_excerpt": "- Giảm các triệu chứng stress, lo lắng; giảm triệu chứng sốt, đau đầu, buồn nôn, chóng mặt của bệnh áp xe não do amip.- Tăng cường lưu thông khí huyết vùng cổ gáy, não... giúp giảm triệu chứng đau vai gáy, động kinh, co quắp chân tay, giãn cơ, thư giãn tinh...",
+      "expected_question": "Vai trò của tập luyện với người bệnh áp xe não do amip",
+      "expected_terms": [
+        "luyện",
+        "người"
+      ]
+    },
+    {
+      "id": "q10",
+      "source_index": 6,
+      "question": "Các bài tập cho bệnh nhân áp xe não do amip",
+      "query": "Các bài tập cho bệnh nhân áp xe não do amip l? g??",
+      "answer_excerpt": "2.1 Yoga- Tư thế gập người sát đấtTác dụng: Bài tập này giúp thư giãn cơ cổ gáy đồng thời tăng cường lưu thông máu tới vùng đầu cổ.Cách thực hiện:Quỳ gối trên sàn nhà, hai đầu gối mở rộng bằng hông và ngồi trên gót chân.Sau đó từ từ hạ thân thấp xuống giữa ...",
+      "expected_question": "Các bài tập cho bệnh nhân áp xe não do amip",
+      "expected_terms": []
+    },
+    {
+      "id": "q11",
+      "source_index": 7,
+      "question": "Những lưu ý dành cho người áp xe não do amip khi tập luyện",
+      "query": "Những lưu ý dành cho người áp xe não do amip khi tập luyện l? g??",
+      "answer_excerpt": "- Thời điểm tập tốt trong ngày: Nên tập vào buổi sáng, hoặc chiều tối tránh tập luyện khi cơ thể mệt mỏi, đang đói, khi mới ăn xong, không tập quá khuya dẫn tới mất ngủ. Thời gian 20 phút đến 40 phút một ngày.Trong giai đoạn bệnh cấp tính đau nhức nhiều, số...",
+      "expected_question": "Những lưu ý dành cho người áp xe não do amip khi tập luyện",
+      "expected_terms": [
+        "những",
+        "người",
+        "luyện"
+      ]
+    },
+    {
+      "id": "q12",
+      "source_index": 8,
+      "question": "Đông y có chữa được áp xe não do amip không?",
+      "query": "Đông y có chữa được áp xe não do amip không?",
+      "answer_excerpt": "Áp xe não do amip gây ra và phải cần được điều trị cả ngoại khoa lẫn nội khoa. Đông y không thể chữa khỏi áp xe não do amip.NỘI DUNG:::1. Đông y có chữa được áp xe não do amip hay không?2. Amip là gì?3. Áp xe não do amip có chữa khỏi được không?4. Chăm sóc ...",
+      "expected_question": "Đông y có chữa được áp xe não do amip không?",
+      "expected_terms": [
+        "không"
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "q01",
+      "source_index": 0,
+      "question": "Phương pháp điều trị áp xe não do amip",
+      "query": "Phương pháp điều trị áp xe não do amip l? g??",
+      "answer_excerpt": "Điều trị áp xe não do amip bao gồm cả nội khoa và ngoại khoa. Kết quả điều trị phụ thuộc vào các yếu tố: Tổng trạng của bệnh nhân; giai đoạn phát triển và chẩn đoán bệnh; giai đoạn áp xe, kích thước cùng số lượng và vị trí ổ áp xe; tình trạng tổn thương não...",
+      "expected_question": "Phương pháp điều trị áp xe não do amip",
+      "expected_terms": [
+        "amip",
+        "phương"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.03,
+      "context_seconds": 0.0249,
+      "generation_seconds": 0.9985,
+      "total_seconds": 1.0537,
+      "precision_at_k": 0.6,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      "source_count": 5,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "19_3",
+          "source": "medical_qa",
+          "metadata_question": "Cách điều trị áp xe não do amip",
+          "distance": 0.4823628067970276,
+          "preview": "Câu hỏi: Cách điều trị áp xe não do amip Trả lời: S - Áp xe não do amip là bệnh lý nguy hiểm, nguy cơ tử vong cao. Tuy nhiên, sau quá trình điều trị, người bệnh có thể thực hiện một số bài tập giúp nâng cao sức khỏe, ...",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "id": "0_0",
+          "source": "medical_qa",
+          "metadata_question": "Phương pháp điều trị áp xe não do amip",
+          "distance": 0.48687994480133057,
+          "preview": "Câu hỏi: Phương pháp điều trị áp xe não do amip Trả lời: Điều trị áp xe não do amip bao gồm cả nội khoa và ngoại khoa. Kết quả điều trị phụ thuộc vào các yếu tố: Tổng trạng của bệnh nhân; giai đoạn phát triển và chẩn ...",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "id": "325_28",
+          "source": "medical_qa",
+          "metadata_question": "Cách phòng amip ăn não",
+          "distance": 0.4986365735530853,
+          "preview": "Câu hỏi: Cách phòng amip ăn não Trả lời: g của người mắc amip ăn não rất cao, dù có sống sót họ vẫn thường đối mặt với nhiều di chứng. Trên lý thuyết phác đồ điều trị bệnh này cần sử thuốc diệt amip (đơn trị liệu hoặc...",
+          "relevant": false
+        }
+      ],
+      "answer_preview": "Để điều trị áp xe não do amip, các bác sĩ sẽ áp dụng cả nội khoa và ngoại khoa. Các phương pháp điều trị bao gồm: - Dùng thuốc đặc trị amip - Loại bỏ ổ mủ khi nó đã hình thành - Sử dụng kháng sinh kết hợp - Phẫu thuật kết hợp với điều trị nội khoa Một số thuốc được sử dụng để điều trị áp xe não do amip bao gồm: - Am...",
+      "generation_scores": {
+        "term_coverage": 1.0,
+        "context_term_coverage": 1.0,
+        "context_grounding": 1.0,
+        "answer_words": 197,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      },
+      "error": ""
+    },
+    {
+      "id": "q02",
+      "source_index": 238,
+      "question": "Acid uric là gì?",
+      "query": "Acid uric là gì?",
+      "answer_excerpt": "Vậy câu hỏi đặt ra là nguyên nhân của tình trạng tăng acid uric máu là gì, khi nào thì phải điều trị tình trạng tăng acid uric máu không triệu chứng.Bình thường lượng acid uric trong máu luôn được giữ ổn định ở nồng độ dưới 7,0 mg/dl (420 micromol/l) và đượ...",
+      "expected_question": "Acid uric là gì?",
+      "expected_terms": [
+        "gout"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.028,
+      "context_seconds": 0.0252,
+      "generation_seconds": 0.5464,
+      "total_seconds": 0.5997,
+      "precision_at_k": 0.0,
+      "recall_proxy_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevance_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_count": 5,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "264_27",
+          "source": "medical_qa",
+          "metadata_question": "Chỉ định xét nghiệm acid uric máu",
+          "distance": 0.4912063777446747,
+          "preview": "Câu hỏi: Chỉ định xét nghiệm acid uric máu Trả lời: Acid uric được tạo ra khi cơ thể phân hủy các bazơ purin ngoại sinh có trong thực phẩm hoặc purin nội sinh tạo ra trong quá trình phá hủy tế bào tự nhiên trong cơ th...",
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "id": "290_6",
+          "source": "medical_qa",
+          "metadata_question": "Nhóm thuốc giảm tổng hợp acid uric",
+          "distance": 0.5519075393676758,
+          "preview": "Câu hỏi: Nhóm thuốc giảm tổng hợp acid uric Trả lời: c thành chất allatonin tan trong nước và được đào thải qua thận. Chính vì vậy, biện pháp truyền enzyme uricase tái tổ hợp được sử dụng trong những trường hợp cần hạ...",
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "id": "290_33",
+          "source": "medical_qa",
+          "metadata_question": "Nhóm thuốc giảm tổng hợp acid uric",
+          "distance": 0.5519075393676758,
+          "preview": "Câu hỏi: Nhóm thuốc giảm tổng hợp acid uric Trả lời: c thành chất allatonin tan trong nước và được đào thải qua thận. Chính vì vậy, biện pháp truyền enzyme uricase tái tổ hợp được sử dụng trong những trường hợp cần hạ...",
+          "relevant": false
+        }
+      ],
+      "answer_preview": "Acid uric là một chất được tạo ra khi cơ thể phân hủy các bazơ purin ngoại sinh có trong thực phẩm hoặc purin nội sinh tạo ra trong quá trình phá hủy tế bào tự nhiên trong cơ thể. Quá trình này được thực hiện chủ yếu ở gan, sau đó acid uric được lọc ở thận và bài tiết ra ngoài theo nước tiểu. Một ít acid uric được t...",
+      "generation_scores": {
+        "term_coverage": 0.0,
+        "context_term_coverage": 0.0,
+        "context_grounding": 0.0,
+        "answer_words": 96,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      },
+      "error": ""
+    },
+    {
+      "id": "q03",
+      "source_index": 239,
+      "question": "Tăng acid uric máu và bệnh Gout",
+      "query": "Tăng acid uric máu và bệnh Gout l? g??",
+      "answer_excerpt": "Gout là một bệnh khớp do rối loạn chuyển hóa, gây ra bởi tình trạng lắng đọng các tinh thể urat ở các mô của cơ thể, do tăng acid uric trong máu. Tuy nhiên không phải bất kỳ ai tăng acid uric máu đều bị bệnh Gout.Hiện nay có một thực tế là rất nhiều người, ...",
+      "expected_question": "Tăng acid uric máu và bệnh Gout",
+      "expected_terms": [
+        "acid uric"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0297,
+      "context_seconds": 0.0276,
+      "generation_seconds": 1.5949,
+      "total_seconds": 1.6524,
+      "precision_at_k": 0.2,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_count": 5,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "239_19",
+          "source": "medical_qa",
+          "metadata_question": "Tăng acid uric máu và bệnh Gout",
+          "distance": 0.3546554446220398,
+          "preview": "Câu hỏi: Tăng acid uric máu và bệnh Gout Trả lời: ức độ trung bình (dưới 10mg/dl) đều cần thực hiện các chế độ ăn uống sinh hoạt hợp lý như với các bệnh nhân bị Gout mà chưa cần dùng thuốc hạ acid uric máu.Lưu ý, nếu ...",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "id": "240_38",
+          "source": "medical_qa",
+          "metadata_question": "Nguyên nhân tăng acid uric máu",
+          "distance": 0.3674052059650421,
+          "preview": "Câu hỏi: Nguyên nhân tăng acid uric máu Trả lời: ức độ trung bình (dưới 10mg/dl) đều cần thực hiện các chế độ ăn uống sinh hoạt hợp lý như với các bệnh nhân bị Gout mà chưa cần dùng thuốc hạ acid uric máu.Lưu ý, nếu n...",
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "id": "240_8",
+          "source": "medical_qa",
+          "metadata_question": "Nguyên nhân tăng acid uric máu",
+          "distance": 0.3674052357673645,
+          "preview": "Câu hỏi: Nguyên nhân tăng acid uric máu Trả lời: ức độ trung bình (dưới 10mg/dl) đều cần thực hiện các chế độ ăn uống sinh hoạt hợp lý như với các bệnh nhân bị Gout mà chưa cần dùng thuốc hạ acid uric máu.Lưu ý, nếu n...",
+          "relevant": false
+        }
+      ],
+      "answer_preview": "Tăng acid uric máu và bệnh Gout liên quan chặt chẽ với nhau. Tăng acid uric máu là tình trạng nồng độ axit uric trong máu cao hơn mức bình thường. Bệnh Gout là một tình trạng viêm khớp gây đau, sưng và đỏ, thường xảy ra ở các khớp, đặc biệt là ở ngón chân cái, do sự tích tụ của các tinh thể urat (muối của axit uric)...",
+      "generation_scores": {
+        "term_coverage": 1.0,
+        "context_term_coverage": 1.0,
+        "context_grounding": 1.0,
+        "answer_words": 344,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      },
+      "error": ""
+    },
+    {
+      "id": "q04",
+      "source_index": 33,
+      "question": "Triệu chứng lâm sàng và chẩn đoán bệnh",
+      "query": "Triệu chứng lâm sàng và chẩn đoán bệnh l? g??",
+      "answer_excerpt": "Khi mắc bệnh ấu trùng sán lợn, biểu hiện triệu chứng bệnh lý tùy thuộc vào vị trí ký sinh của nang ấu trùng sán. Trên lâm sàng thường phát hiện được các nốt sán dưới da bằng hạt đỗ, hạt lạc, di động dễ, không ngứa, không đau, nằm ở vị trí cơ vân, không ở tr...",
+      "expected_question": "Triệu chứng lâm sàng và chẩn đoán bệnh",
+      "expected_terms": [
+        "lao",
+        "triệu",
+        "chứng"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0326,
+      "context_seconds": 0.0278,
+      "generation_seconds": 0.7382,
+      "total_seconds": 0.7988,
+      "precision_at_k": 1.0,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_count": 5,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "7539_27",
+          "source": "medical_qa",
+          "metadata_question": "Một số biểu hiện của bệnh",
+          "distance": 0.43711942434310913,
+          "preview": "Câu hỏi: Một số biểu hiện của bệnh Trả lời: a người nhân sau khi ghép - Thói quen đại tiện thay đổi kéo dài. -Các triệu chứng toàn thân: Sốt, nôn, thiếu máu, chân tay mệt mỏi, suy nhược cơ thể…Nếu phát hiện những triệ...",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "id": "7539_2",
+          "source": "medical_qa",
+          "metadata_question": "Một số biểu hiện của bệnh",
+          "distance": 0.45009738206863403,
+          "preview": "Câu hỏi: Một số biểu hiện của bệnh Trả lời: ệnh dễ bị đau bụng dữ dội - Thói quen đại tiện thay đổi kéo dài. -Các triệu chứng toàn thân: Sốt, nôn, thiếu máu, chân tay mệt mỏi, suy nhược cơ thể…Nếu phát hiện những triệ...",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "id": "7539_11",
+          "source": "medical_qa",
+          "metadata_question": "Một số biểu hiện của bệnh",
+          "distance": 0.45009738206863403,
+          "preview": "Câu hỏi: Một số biểu hiện của bệnh Trả lời: ệnh dễ bị đau bụng dữ dội - Thói quen đại tiện thay đổi kéo dài. -Các triệu chứng toàn thân: Sốt, nôn, thiếu máu, chân tay mệt mỏi, suy nhược cơ thể…Nếu phát hiện những triệ...",
+          "relevant": true
+        }
+      ],
+      "answer_preview": "Tôi không tìm thấy thông tin cụ thể về triệu chứng lâm sàng và chẩn đoán bệnh \"l? g??\" trong ngữ cảnh được cung cấp. Các thông tin trong ngữ cảnh chủ yếu đề cập đến các triệu chứng và phương pháp chẩn đoán của một số bệnh khác nhau, nhưng không có thông tin cụ thể về bệnh \"l? g??\". Nếu bạn có thể cung cấp thêm thông...",
+      "generation_scores": {
+        "term_coverage": 0.6667,
+        "context_term_coverage": 0.6667,
+        "context_grounding": 1.0,
+        "answer_words": 117,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      },
+      "error": ""
+    },
+    {
+      "id": "q05",
+      "source_index": 1,
+      "question": "Dùng thuốc trong điều trị áp xe não",
+      "query": "Dùng thuốc trong điều trị áp xe não l? g??",
+      "answer_excerpt": "Trên lý thuyết, phác đồ điều trị cần sử thuốc diệt amip (đơn trị liệu hoặc phối hợp thuốc) có thể ngấm tốt qua hàng rào máu não. Theo khuyến cáo của Trung tâm Kiểm soát và phòng ngừa dịch bệnh Hoa Kỳ (CDC), các thuốc được sử dụng để điều trị amip não bao gồ...",
+      "expected_question": "Dùng thuốc trong điều trị áp xe não",
+      "expected_terms": [
+        "thuốc",
+        "trong"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0295,
+      "context_seconds": 0.0256,
+      "generation_seconds": 0.3905,
+      "total_seconds": 0.4457,
+      "precision_at_k": 0.0,
+      "recall_proxy_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevance_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_count": 5,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "3673_64",
+          "source": "medical_qa",
+          "metadata_question": "Điều trị hôn mê như thế nào?",
+          "distance": 0.4696532189846039,
+          "preview": "Câu hỏi: Điều trị hôn mê như thế nào? Trả lời: ứu cần được điều trị tại bệnh viện có đầy đủ trang thiết bị.2.4. Chống phù não và tăng áp lực nội sọTrường hợp có các biểu hiện lâm sàng của phù não, tăng áp lực nội sọ, ...",
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "id": "3673_143",
+          "source": "medical_qa",
+          "metadata_question": "Điều trị hôn mê như thế nào?",
+          "distance": 0.4696532189846039,
+          "preview": "Câu hỏi: Điều trị hôn mê như thế nào? Trả lời: ứu cần được điều trị tại bệnh viện có đầy đủ trang thiết bị.2.4. Chống phù não và tăng áp lực nội sọTrường hợp có các biểu hiện lâm sàng của phù não, tăng áp lực nội sọ, ...",
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "id": "47_2",
+          "source": "medical_qa",
+          "metadata_question": "Đông y có chữa được ấu trùng sán lợn không?",
+          "distance": 0.5023378133773804,
+          "preview": "Câu hỏi: Đông y có chữa được ấu trùng sán lợn không? Trả lời: g áp lực nội sọ bằng cách dùng thuốc để giảm viêm, giảm phù não. Người bệnh có giãn não thất, não úng thủy: can thiệp ngoại khoa sớm để giảm áp lực nội sọ ...",
+          "relevant": false
+        }
+      ],
+      "answer_preview": "Tôi không tìm thấy thông tin về việc dùng thuốc trong điều trị áp xe não trong ngữ cảnh được cung cấp. Để có thông tin chính xác và đầy đủ về điều trị áp xe não, tôi khuyến nghị bạn nên tham khảo ý kiến của bác sĩ chuyên khoa hoặc các nguồn thông tin y tế uy tín.",
+      "generation_scores": {
+        "term_coverage": 1.0,
+        "context_term_coverage": 0.5,
+        "context_grounding": 0.5,
+        "answer_words": 60,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      },
+      "error": ""
+    },
+    {
+      "id": "q06",
+      "source_index": 2,
+      "question": "Dự phòng nhiễm amip",
+      "query": "Dự phòng nhiễm amip l? g??",
+      "answer_excerpt": "Áp xe não do amip là bệnh lý nguy hiểm, nếu không được phát hiện sớm và điều trị còn đe dọa đến tính mạng. Nếu điều trị sống sót thì nguy cơ để lại di chứng khá cao. Do đó, phòng bệnh là ưu tiên hàng đầu. Phòng bệnh cũng khá đơn giản, chỉ bằng việc vệ sinh ...",
+      "expected_question": "Dự phòng nhiễm amip",
+      "expected_terms": [
+        "phòng",
+        "nhiễm"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0318,
+      "context_seconds": 0.0284,
+      "generation_seconds": 0.4777,
+      "total_seconds": 0.5381,
+      "precision_at_k": 0.0,
+      "recall_proxy_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevance_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_count": 5,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "1003_124",
+          "source": "medical_qa",
+          "metadata_question": "Tổng quan về bệnh bạch hầu",
+          "distance": 0.6878229975700378,
+          "preview": "Câu hỏi: Tổng quan về bệnh bạch hầu Trả lời: ước đây thì nên tiêm nhắc lại một liều giải độc tố bạch hầu.+ Xử lý môi trường: Phải sát trùng tẩy uế đồng thời và sát trùng tẩy uế lần cuối tất cả các đồ vật có liên quan ...",
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "id": "985_5",
+          "source": "medical_qa",
+          "metadata_question": "Triệu chứng bệnh bạch hầu",
+          "distance": 0.6967799663543701,
+          "preview": "Câu hỏi: Triệu chứng bệnh bạch hầu Trả lời: h; Đi du lịch đến một khu vực đang có dịch bệnh bệnh bạch hầu…6. Cần điều trị sớm bệnh bạch hầuBệnh nhân bị bạch hầu sẽ được tiêm 1 loại giải độc tố đặc hiệu để chống lại độ...",
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "id": "985_20",
+          "source": "medical_qa",
+          "metadata_question": "Triệu chứng bệnh bạch hầu",
+          "distance": 0.6967799663543701,
+          "preview": "Câu hỏi: Triệu chứng bệnh bạch hầu Trả lời: h; Đi du lịch đến một khu vực đang có dịch bệnh bệnh bạch hầu…6. Cần điều trị sớm bệnh bạch hầuBệnh nhân bị bạch hầu sẽ được tiêm 1 loại giải độc tố đặc hiệu để chống lại độ...",
+          "relevant": false
+        }
+      ],
+      "answer_preview": "Tôi không tìm thấy thông tin về dự phòng nhiễm amip trong dữ liệu được cung cấp. Để có thông tin chính xác và đầy đủ về dự phòng nhiễm amip, tôi khuyến nghị bạn tham khảo ý kiến của bác sĩ hoặc các nguồn thông tin y tế uy tín.",
+      "generation_scores": {
+        "term_coverage": 1.0,
+        "context_term_coverage": 0.5,
+        "context_grounding": 0.5,
+        "answer_words": 51,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      },
+      "error": ""
+    },
+    {
+      "id": "q07",
+      "source_index": 3,
+      "question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+      "query": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip l? g??",
+      "answer_excerpt": "Áp xe não do Entamoeba histolytica thường có các biểu hiện phổ biến bao gồm đau đầu, nôn mửa và thay đổi trạng thái tinh thần.Các dấu hiệu của áp xe não do amip bao gồm phổ biến nhất là các dấu hiệu màng não, liệt dây thần kinh mặt (VII), liệt vận động và c...",
+      "expected_question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+      "expected_terms": [
+        "trọng",
+        "người"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0316,
+      "context_seconds": 0.0267,
+      "generation_seconds": 0.8584,
+      "total_seconds": 0.9168,
+      "precision_at_k": 1.0,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_count": 5,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "3_8",
+          "source": "medical_qa",
+          "metadata_question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+          "distance": 0.3356887996196747,
+          "preview": "Câu hỏi: Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip Trả lời: đồ ăn nhiều dầu mỡ.Tránh các loại thực phẩm có nguy cơ gây nhiễm khuẩn cao như thực phẩm sống hoặc chưa nấu chín kỹ.Chế độ ăn uống chỉ là m...",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "id": "3_20",
+          "source": "medical_qa",
+          "metadata_question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+          "distance": 0.3356887996196747,
+          "preview": "Câu hỏi: Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip Trả lời: đồ ăn nhiều dầu mỡ.Tránh các loại thực phẩm có nguy cơ gây nhiễm khuẩn cao như thực phẩm sống hoặc chưa nấu chín kỹ.Chế độ ăn uống chỉ là m...",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "id": "853_67",
+          "source": "medical_qa",
+          "metadata_question": "Tầm quan trọng của chế độ ăn cho người bệnh bại não",
+          "distance": 0.3546111583709717,
+          "preview": "Câu hỏi: Tầm quan trọng của chế độ ăn cho người bệnh bại não Trả lời: họ nhận được tất cả các chất dinh dưỡng thiết yếu mà cơ thể cần. Người bệnh bại não có nhu cầu ăn kiêng, lượng calo nạp vào có thể khác nhau do trư...",
+          "relevant": true
+        }
+      ],
+      "answer_preview": "Chế độ ăn cho người bị áp xe não do amip là rất quan trọng. Theo thông tin có sẵn, người bị áp xe não do amip nên ăn đồ ăn nhiều dầu mỡ và tránh các loại thực phẩm có nguy cơ gây nhiễm khuẩn cao như thực phẩm sống hoặc chưa nấu chín kỹ. Điều quan trọng là chế độ ăn uống chỉ là một phần của quá trình điều trị áp xe n...",
+      "generation_scores": {
+        "term_coverage": 1.0,
+        "context_term_coverage": 1.0,
+        "context_grounding": 1.0,
+        "answer_words": 193,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      },
+      "error": ""
+    },
+    {
+      "id": "q08",
+      "source_index": 4,
+      "question": "Tham khảo chế độ dinh dưỡng cho người bị áp xe não do amip",
+      "query": "Tham khảo chế độ dinh dưỡng cho người bị áp xe não do amip l? g??",
+      "answer_excerpt": "Dựa trên hướng dẫn dinh dưỡng chung của Tổ chức Y tế thế giới (WHO) và các tổ chức y tế uy tín khác, tham khảo một số nguyên tắc dinh dưỡng cho người bị áp xe não do amip:Dinh dưỡng đầy đủ và cân bằngNăng lượng: Đảm bảo cung cấp đủ năng lượng để đáp ứng nhu...",
+      "expected_question": "Tham khảo chế độ dinh dưỡng cho người bị áp xe não do amip",
+      "expected_terms": [
+        "dưỡng",
+        "người"
+      ],
+      "status": "success",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.031,
+      "context_seconds": 0.0263,
+      "generation_seconds": 0.6046,
+      "total_seconds": 0.6621,
+      "precision_at_k": 1.0,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_count": 5,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "854_17",
+          "source": "medical_qa",
+          "metadata_question": "Các chất dinh dưỡng cần thiết cho người bệnh bại não",
+          "distance": 0.44789621233940125,
+          "preview": "Câu hỏi: Các chất dinh dưỡng cần thiết cho người bệnh bại não Trả lời: n làm việc với chuyên gia y tế để đưa ra chế độ ăn uống phù hợp. Ngoài ra chú ý các hướng dẫn sau:Áp dụng chế độ ăn nhiều chất xơ, ít chất béo để ...",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "id": "854_51",
+          "source": "medical_qa",
+          "metadata_question": "Các chất dinh dưỡng cần thiết cho người bệnh bại não",
+          "distance": 0.44789621233940125,
+          "preview": "Câu hỏi: Các chất dinh dưỡng cần thiết cho người bệnh bại não Trả lời: n làm việc với chuyên gia y tế để đưa ra chế độ ăn uống phù hợp. Ngoài ra chú ý các hướng dẫn sau:Áp dụng chế độ ăn nhiều chất xơ, ít chất béo để ...",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "id": "854_67",
+          "source": "medical_qa",
+          "metadata_question": "Các chất dinh dưỡng cần thiết cho người bệnh bại não",
+          "distance": 0.44789621233940125,
+          "preview": "Câu hỏi: Các chất dinh dưỡng cần thiết cho người bệnh bại não Trả lời: n làm việc với chuyên gia y tế để đưa ra chế độ ăn uống phù hợp. Ngoài ra chú ý các hướng dẫn sau:Áp dụng chế độ ăn nhiều chất xơ, ít chất béo để ...",
+          "relevant": true
+        }
+      ],
+      "answer_preview": "Tôi không tìm thấy thông tin về chế độ dinh dưỡng cho người bị áp xe não do amip trong dữ liệu được cung cấp. Dữ liệu chỉ cung cấp thông tin về chế độ dinh dưỡng cho người bệnh bại não. Để có thông tin chính xác và phù hợp về chế độ dinh dưỡng cho người bị áp xe não do amip, tôi khuyến nghị bạn nên tham khảo ý kiến ...",
+      "generation_scores": {
+        "term_coverage": 1.0,
+        "context_term_coverage": 1.0,
+        "context_grounding": 1.0,
+        "answer_words": 106,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      },
+      "error": ""
+    },
+    {
+      "id": "q09",
+      "source_index": 5,
+      "question": "Vai trò của tập luyện với người bệnh áp xe não do amip",
+      "query": "Vai trò của tập luyện với người bệnh áp xe não do amip l? g??",
+      "answer_excerpt": "- Giảm các triệu chứng stress, lo lắng; giảm triệu chứng sốt, đau đầu, buồn nôn, chóng mặt của bệnh áp xe não do amip.- Tăng cường lưu thông khí huyết vùng cổ gáy, não... giúp giảm triệu chứng đau vai gáy, động kinh, co quắp chân tay, giãn cơ, thư giãn tinh...",
+      "expected_question": "Vai trò của tập luyện với người bệnh áp xe não do amip",
+      "expected_terms": [
+        "luyện",
+        "người"
+      ],
+      "status": "generation_error",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0291,
+      "context_seconds": 0.0261,
+      "generation_seconds": 0.1233,
+      "total_seconds": 0.1787,
+      "precision_at_k": 1.0,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_count": 5,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "2663_135",
+          "source": "medical_qa",
+          "metadata_question": "Vai trò của tập luyện đối với người dị dạng mạch não",
+          "distance": 0.3853781223297119,
+          "preview": "Câu hỏi: Vai trò của tập luyện đối với người dị dạng mạch não Trả lời: o phải được hướng dẫn bởi các chuyên gia y tế, đặc biệt là bác sĩ chuyên về vật lý trị liệu và phục hồi chức năng. Bệnh nhân cần tránh các bài tập...",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "id": "5_51",
+          "source": "medical_qa",
+          "metadata_question": "Vai trò của tập luyện với người bệnh áp xe não do amip",
+          "distance": 0.40501654148101807,
+          "preview": "Câu hỏi: Vai trò của tập luyện với người bệnh áp xe não do amip Trả lời: ộ tập tăng dần, phối hợp nhiều bài tập, tham khảo ý kiến bác sỹ.Tập trong môi trường thoáng mát, quần áo mặc rộng rãi, uống đủ nước.Khi triệu ch...",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "id": "2663_233",
+          "source": "medical_qa",
+          "metadata_question": "Vai trò của tập luyện đối với người dị dạng mạch não",
+          "distance": 0.40677928924560547,
+          "preview": "Câu hỏi: Vai trò của tập luyện đối với người dị dạng mạch não Trả lời: phải được hướng dẫn bởi các chuyên gia y tế, đặc biệt là bác sĩ chuyên về vật lý trị liệu và phục hồi chức năng. Bệnh nhân cần tránh các bài tập c...",
+          "relevant": true
+        }
+      ],
+      "answer_preview": "",
+      "generation_scores": {
+        "term_coverage": 0.0,
+        "context_term_coverage": 1.0,
+        "context_grounding": 0.0,
+        "answer_words": 0,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      },
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "q10",
+      "source_index": 6,
+      "question": "Các bài tập cho bệnh nhân áp xe não do amip",
+      "query": "Các bài tập cho bệnh nhân áp xe não do amip l? g??",
+      "answer_excerpt": "2.1 Yoga- Tư thế gập người sát đấtTác dụng: Bài tập này giúp thư giãn cơ cổ gáy đồng thời tăng cường lưu thông máu tới vùng đầu cổ.Cách thực hiện:Quỳ gối trên sàn nhà, hai đầu gối mở rộng bằng hông và ngồi trên gót chân.Sau đó từ từ hạ thân thấp xuống giữa ...",
+      "expected_question": "Các bài tập cho bệnh nhân áp xe não do amip",
+      "expected_terms": [],
+      "status": "generation_error",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0283,
+      "context_seconds": 0.0261,
+      "generation_seconds": 0.1487,
+      "total_seconds": 0.2033,
+      "precision_at_k": 0.6,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        0,
+        1,
+        1,
+        0
+      ],
+      "source_count": 5,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "6_141",
+          "source": "medical_qa",
+          "metadata_question": "Các bài tập cho bệnh nhân áp xe não do amip",
+          "distance": 0.4935992956161499,
+          "preview": "Câu hỏi: Các bài tập cho bệnh nhân áp xe não do amip Trả lời: ộ tập tăng dần, phối hợp nhiều bài tập, tham khảo ý kiến bác sỹ.Tập trong môi trường thoáng mát, quần áo mặc rộng rãi, uống đủ nước.Khi triệu chứng như đau...",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "id": "317_52",
+          "source": "medical_qa",
+          "metadata_question": "Các bài tập cho người bị amip ăn não",
+          "distance": 0.5048761367797852,
+          "preview": "Câu hỏi: Các bài tập cho người bị amip ăn não Trả lời: m:Bệnh nhi 10 tháng tuổi nhiễm amip ăn não nguy kịch hôn mê sâu. + Sau đó, ngẩng đầu lên và lặp lại động tác này nhưng lần này nghiêng đầu sang bên trái.+ Nên thự...",
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "id": "6_144",
+          "source": "medical_qa",
+          "metadata_question": "Các bài tập cho bệnh nhân áp xe não do amip",
+          "distance": 0.5098169445991516,
+          "preview": "Câu hỏi: Các bài tập cho bệnh nhân áp xe não do amip Trả lời: ộ tập tăng dần, phối hợp nhiều bài tập, tham khảo ý kiến bác sỹ.Tập trong môi trường thoáng mát, quần áo mặc rộng rãi, uống đủ nước.Khi triệu chứng như đau...",
+          "relevant": true
+        }
+      ],
+      "answer_preview": "",
+      "generation_scores": {
+        "term_coverage": 0.0,
+        "context_term_coverage": 0.0,
+        "context_grounding": 0.0,
+        "answer_words": 0,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      },
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "q11",
+      "source_index": 7,
+      "question": "Những lưu ý dành cho người áp xe não do amip khi tập luyện",
+      "query": "Những lưu ý dành cho người áp xe não do amip khi tập luyện l? g??",
+      "answer_excerpt": "- Thời điểm tập tốt trong ngày: Nên tập vào buổi sáng, hoặc chiều tối tránh tập luyện khi cơ thể mệt mỏi, đang đói, khi mới ăn xong, không tập quá khuya dẫn tới mất ngủ. Thời gian 20 phút đến 40 phút một ngày.Trong giai đoạn bệnh cấp tính đau nhức nhiều, số...",
+      "expected_question": "Những lưu ý dành cho người áp xe não do amip khi tập luyện",
+      "expected_terms": [
+        "những",
+        "người",
+        "luyện"
+      ],
+      "status": "generation_error",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0304,
+      "context_seconds": 0.0291,
+      "generation_seconds": 0.1283,
+      "total_seconds": 0.1879,
+      "precision_at_k": 1.0,
+      "recall_proxy_at_k": 1.0,
+      "mrr": 1.0,
+      "hit": true,
+      "relevance_flags": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_count": 5,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "7_7",
+          "source": "medical_qa",
+          "metadata_question": "Những lưu ý dành cho người áp xe não do amip khi tập luyện",
+          "distance": 0.4168383777141571,
+          "preview": "Câu hỏi: Những lưu ý dành cho người áp xe não do amip khi tập luyện Trả lời: e não / SKĐS Chọn bài tập phù hợp thể trạng, cường độ tập tăng dần, phối hợp nhiều bài tập, tham khảo ý kiến bác sỹ.Tập trong môi trường tho...",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "id": "7_2",
+          "source": "medical_qa",
+          "metadata_question": "Những lưu ý dành cho người áp xe não do amip khi tập luyện",
+          "distance": 0.5045675039291382,
+          "preview": "Câu hỏi: Những lưu ý dành cho người áp xe não do amip khi tập luyện Trả lời: tamin C, E tránh xa dầu mỡ, chất kích thích như cà phê, rượu, bỏ thuốc lá...Mời bạn xem tiếp video:Nguy kịch vì không điều trị dứt điểm viêm...",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "id": "316_105",
+          "source": "medical_qa",
+          "metadata_question": "Vai trò của tập luyện đối với người bị amip ăn não",
+          "distance": 0.5177603363990784,
+          "preview": "Câu hỏi: Vai trò của tập luyện đối với người bị amip ăn não Trả lời: h hoạt của mình.Đối với người bệnh mắc amip ăn não còn sống sót thì các biến chứng như đau đầu dai dẳng, ảo giác, rối loạn tâm thần, động kinh… gây ...",
+          "relevant": true
+        }
+      ],
+      "answer_preview": "",
+      "generation_scores": {
+        "term_coverage": 0.0,
+        "context_term_coverage": 1.0,
+        "context_grounding": 0.0,
+        "answer_words": 0,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      },
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "q12",
+      "source_index": 8,
+      "question": "Đông y có chữa được áp xe não do amip không?",
+      "query": "Đông y có chữa được áp xe não do amip không?",
+      "answer_excerpt": "Áp xe não do amip gây ra và phải cần được điều trị cả ngoại khoa lẫn nội khoa. Đông y không thể chữa khỏi áp xe não do amip.NỘI DUNG:::1. Đông y có chữa được áp xe não do amip hay không?2. Amip là gì?3. Áp xe não do amip có chữa khỏi được không?4. Chăm sóc ...",
+      "expected_question": "Đông y có chữa được áp xe não do amip không?",
+      "expected_terms": [
+        "không"
+      ],
+      "status": "generation_error",
+      "retrieved_count": 5,
+      "retrieval_seconds": 0.0297,
+      "context_seconds": 0.0284,
+      "generation_seconds": 0.1256,
+      "total_seconds": 0.1838,
+      "precision_at_k": 0.0,
+      "recall_proxy_at_k": 0.0,
+      "mrr": 0.0,
+      "hit": false,
+      "relevance_flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_count": 5,
+      "top_sources": [
+        {
+          "rank": 1,
+          "id": "10_18",
+          "source": "medical_qa",
+          "metadata_question": "Áp xe não do amip có chữa khỏi được không?",
+          "distance": 0.2801649570465088,
+          "preview": "Câu hỏi: Áp xe não do amip có chữa khỏi được không? Trả lời: phát hiện sớm có ảnh hưởng rất lớn đến kết quả điều trị bệnh.4. Chăm sóc người bệnh áp xe não do amipVới người bệnh áp xe não do amip cần được điều trị tại ...",
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "id": "19_12",
+          "source": "medical_qa",
+          "metadata_question": "Cách điều trị áp xe não do amip",
+          "distance": 0.33745718002319336,
+          "preview": "Câu hỏi: Cách điều trị áp xe não do amip Trả lời: c hồi di chứng cho người bệnh áp xe não do amipSKĐS - Áp xe não do amip là bệnh lý nguy hiểm, nguy cơ tử vong cao. Tuy nhiên, sau quá trình điều trị, người bệnh có thể...",
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "id": "19_3",
+          "source": "medical_qa",
+          "metadata_question": "Cách điều trị áp xe não do amip",
+          "distance": 0.34331122040748596,
+          "preview": "Câu hỏi: Cách điều trị áp xe não do amip Trả lời: S - Áp xe não do amip là bệnh lý nguy hiểm, nguy cơ tử vong cao. Tuy nhiên, sau quá trình điều trị, người bệnh có thể thực hiện một số bài tập giúp nâng cao sức khỏe, ...",
+          "relevant": false
+        }
+      ],
+      "answer_preview": "",
+      "generation_scores": {
+        "term_coverage": 0.0,
+        "context_term_coverage": 1.0,
+        "context_grounding": 0.0,
+        "answer_words": 0,
+        "has_medical_caveat": false,
+        "says_not_found": false
+      },
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    }
+  ]
+}
