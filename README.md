@@ -28,7 +28,7 @@ Assistant: Bệnh tiểu đường type 2 có các triệu chứng thường g�
 | **RAG Pipeline** | Retrieval-Augmented Generation với ChromaDB vector store |
 | **Embedder** | `paraphrase-multilingual-MiniLM-L12-v2` — hỗ trợ tiếng Việt |
 | **Generator** | Local (Qwen2.5-7B-Instruct) hoặc API (Groq/OpenAI) |
-| **Retrieval** | Vector search + BM25 hybrid + MMR reranking |
+| **Retrieval** | Vector search + BM25 hybrid + MMR (Max Marginal Relevance) |
 | **Evaluation** | Hit Rate, MRR, NDCG, RAGAS, LLM-as-Judge |
 | **API** | FastAPI với versioned endpoints, Pydantic schemas |
 | **CI/CD** | GitHub Actions — lint, test, eval, Docker build |
@@ -45,7 +45,8 @@ Assistant: Bệnh tiểu đường type 2 có các triệu chứng thường g�
 ┌──────────────────────▼────────────────────────────────────┐
 │                   FastAPI Backend                            │
 │  /api/v1/chat/ask  ·  /api/v1/chat/stream                 │
-│  /api/v1/admin/ingest  ·  /health  ·  /metrics             │
+│  /api/v1/chat/history  ·  /api/v1/admin/ingest             │
+│  /api/v1/admin/reindex  ·  /health  ·  /metrics             │
 └──────┬──────────────────┬──────────────────┬───────────────┘
        │                  │                  │
 ┌──────▼──────┐  ┌───────▼──────┐  ┌──────▼──────┐
@@ -56,7 +57,7 @@ Assistant: Bệnh tiểu đường type 2 có các triệu chứng thường g�
 
 ```
 RAG Pipeline Flow:
-User Query → Embed Query → ChromaDB Retrieval → Rerank (MMR)
+User Query → Embed Query → ChromaDB Retrieval → Hybrid Rerank (BM25 + vector)
            → Build Context → LLM Generation → Response + Sources
 ```
 
@@ -190,6 +191,8 @@ LOG_JSON=false
 | `POST` | `/api/v1/chat/ask` | Hỏi câu hỏi, nhận JSON response |
 | `POST` | `/api/v1/chat/stream` | Streaming response |
 | `GET` | `/api/v1/chat/history/{session_id}` | Lấy lịch sử chat |
+| `POST` | `/api/v1/chat/history/new` | Tạo session ID mới |
+| `DELETE` | `/api/v1/chat/history/{session_id}` | Xóa lịch sử chat |
 | `POST` | `/api/v1/admin/ingest` | Trigger data ingestion |
 | `POST` | `/api/v1/admin/reindex` | Rebuild vector index |
 | `GET` | `/health` | Health check |
@@ -225,6 +228,7 @@ Chatbot Y tế/
 │   │   ├── metrics/    # Retrieval + generation metrics
 │   │   ├── benchmarks/ # Medical Q&A dataset
 │   │   └── reporters/   # HTML/CSV reports
+│   │       └── report.py
 │   ├── core/            # Foundation modules
 │   │   ├── config.py   # Pydantic Settings
 │   │   ├── logging.py  # Loguru setup

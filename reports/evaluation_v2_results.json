@@ -1,0 +1,3945 @@
+{
+  "summary": {
+    "total_questions": 50,
+    "successful": 34,
+    "no_results": 0,
+    "errors": 16,
+    "success_rate": 0.68,
+    "n_successful_used_for_metrics": 34,
+    "hit_rate": 1.0,
+    "mrr": 1.0,
+    "ndcg@k": 0.9622994652406417,
+    "precision@k": 0.9647058823529412,
+    "recall@k": 0.9117647058823529,
+    "avg_faithfulness": 0.39298012081680095,
+    "avg_relevance": 0.9137838468720821,
+    "avg_retrieval_latency_ms": 1533.5882352941176,
+    "avg_generation_latency_ms": 2197.030588235294,
+    "p95_retrieval_latency_ms": 16995.82,
+    "p95_generation_latency_ms": 5241.45,
+    "generator_model": "groq/llama-3.3-70b-versatile",
+    "embedder": "paraphrase-multilingual-MiniLM-L12-v2",
+    "vector_db": "ChromaDB",
+    "chunks_indexed": 708714,
+    "retrieval_mode": "hybrid (BM25 + vector + RRF)",
+    "notes": "16 questions skipped due to Groq API 429 rate limit. Metrics computed from 34 successful questions."
+  },
+  "results": [
+    {
+      "id": "b01",
+      "question": "Phương pháp điều trị áp xe não do amip",
+      "category": "infection_parasitic",
+      "difficulty": "medium",
+      "expected_topics": [
+        "áp xe",
+        "điều trị",
+        "amip"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.2454545454545454,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.6428571428571429,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 15955.46,
+      "generation_latency_ms": 1031.48,
+      "total_latency_ms": 19001.83,
+      "answer": "Để điều trị áp xe não do amip, các bác sĩ sẽ áp dụng cả nội khoa và ngoại khoa. Hiệu quả điều trị sẽ phải phụ thuộc vào nhiều yếu tố như: thể trạng người bệnh, giai đoạn phát triển của bệnh… Việc điều trị cho người bệnh cần được tiến hành sớm để hạn chế các biến chứng nguy hiểm.\n\nCác phương pháp điều trị áp xe não do amip gồm:\n\n- Sử dụng thuốc đặc trị, thuốc diệt amip.\n- Sử dụng các phương pháp nhằm loại bỏ mủ khi đã hình thành (chọc hút, dẫn lưu mủ).\n- Thuốc kháng sinh kết hợp.\n- Phẫu thuật ổ áp xe trong một số trường hợp.\n\nTheo khuyến cáo của Trung tâm Kiểm soát và phòng ngừa dịch bệnh Hoa Kỳ (CDC), các thuốc được sử dụng để điều trị amip não bao gồm amphotericin B, rifampicin, fluconazole, azithromycin... Trong đó, Amphotericin B là thuốc kháng nấm, chỉ định tiêm vào tĩnh mạch hoặc tiêm ở vùng tủy sống để tiêu diệt amip.\n\nĐể được tư vấn cụ thể và chính xác, người bệnh nên tham khảo ý kiến của bác sĩ chuyên khoa.",
+      "sources": [
+        {
+          "id": "19_3",
+          "question": "Cách điều trị áp xe não do amip",
+          "score": 0.3557708263397217,
+          "chunk_index": 3
+        },
+        {
+          "id": "0_11",
+          "question": "Phương pháp điều trị áp xe não do amip",
+          "score": 0.4015690088272095,
+          "chunk_index": 11
+        },
+        {
+          "id": "16_5",
+          "question": "Triệu chứng áp xe não do amip",
+          "score": 0.4487273097038269,
+          "chunk_index": 5
+        },
+        {
+          "id": "11_9",
+          "question": "Chăm sóc người bệnh áp xe não do amip",
+          "score": 0.4242359399795532,
+          "chunk_index": 9
+        },
+        {
+          "id": "10_19",
+          "question": "Áp xe não do amip có chữa khỏi được không?",
+          "score": 0.4761137366294861,
+          "chunk_index": 19
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "19_3",
+          "text": "Câu hỏi: Cách điều trị áp xe não do amip\n\nTrả lời: S - Áp xe não do amip là bệnh lý nguy hiểm, nguy cơ tử vong cao. Tuy nhiên, sau quá trình điều trị, người bệnh có thể thực hiện một số bài tập giúp n",
+          "distance": 0.3557708263397217,
+          "vector_score": 1.0,
+          "bm25_score": 0.71621168673545,
+          "hybrid_score": 0.8864846746941799
+        },
+        {
+          "id": "0_11",
+          "text": "Câu hỏi: Phương pháp điều trị áp xe não do amip\n\nTrả lời: yết, phác đồ điều trị cần sử thuốc diệt amip (đơn trị liệu hoặc phối hợp thuốc) có thể ngấm tốt qua hàng rào máu não. Theo khuyến cáo của Trun",
+          "distance": 0.4015690088272095,
+          "vector_score": 0.6194359736089655,
+          "bm25_score": 0.7621572790095846,
+          "hybrid_score": 0.6765244957692131
+        },
+        {
+          "id": "16_5",
+          "text": "Câu hỏi: Triệu chứng áp xe não do amip\n\nTrả lời: í tử vong.Để điều trị áp xe não do amip, các bác sĩ sẽ áp dụng cả nội khoa và ngoại khoa. Hiệu quả điều trị sẽ phải phụ thuộc vào nhiều yếu tố như: thể",
+          "distance": 0.4487273097038269,
+          "vector_score": 0.22756992380953325,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.5365419542857199
+        },
+        {
+          "id": "11_9",
+          "text": "Câu hỏi: Chăm sóc người bệnh áp xe não do amip\n\nTrả lời: S - Áp xe não do amip là bệnh lý nguy hiểm, nguy cơ tử vong cao. Tuy nhiên, sau quá trình điều trị, người bệnh có thể thực hiện một số bài tập ",
+          "distance": 0.4242359399795532,
+          "vector_score": 0.4310831151167968,
+          "bm25_score": 0.07221271036575108,
+          "hybrid_score": 0.2875349532163785
+        },
+        {
+          "id": "10_19",
+          "text": "Câu hỏi: Áp xe não do amip có chữa khỏi được không?\n\nTrả lời: đó, người mắc áp xe não do amip cần tuân thủ tuyệt đối điều trị của các bác sĩ chuyên khoa để hạn chế các nguy cơ biến chứng, thậm chí có ",
+          "distance": 0.4761137366294861,
+          "vector_score": 0.0,
+          "bm25_score": 0.6939648535764885,
+          "hybrid_score": 0.2775859414305954
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b02",
+      "question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+      "category": "infection_parasitic",
+      "difficulty": "medium",
+      "expected_topics": [
+        "dinh dưỡng",
+        "chế độ ăn",
+        "áp xe não"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.8606060606060606,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.38461538461538464,
+        "answer_relevance": 0.8888888888888888,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 22.84,
+      "generation_latency_ms": 863.07,
+      "total_latency_ms": 2898.25,
+      "answer": "Chế độ ăn đóng vai trò quan trọng trong việc hỗ trợ điều trị và phục hồi cho người bị áp xe não do amip. Khi nghi ngờ mình hoặc người thân có các triệu chứng của áp xe não do amip, điều cực kỳ quan trọng là phải đến cơ sở y tế để được khám, chẩn đoán và điều trị kịp thời. \n\nMột chế độ ăn phù hợp có thể bao gồm việc tránh các loại thực phẩm có nguy cơ gây nhiễm khuẩn cao như thực phẩm sống hoặc chưa nấu chín kỹ, cũng như hạn chế các món ăn nhiều dầu mỡ. Tuy nhiên, chế độ ăn uống chỉ là một phần của quá trình điều trị áp xe não do amip. \n\nNên tham khảo ý kiến của bác sĩ hoặc chuyên gia dinh dưỡng để được tư vấn dựa trên tình trạng sức khỏe và nhu cầu dinh dưỡng cụ thể của mỗi cá nhân khác nhau. Điều quan trọng nhất là tuân thủ phác đồ điều trị của bác sĩ. \n\nĐể có được thông tin chính xác và đầy đủ về chế độ ăn cho người bị áp xe não do amip, bạn nên tham khảo ý kiến của bác sĩ hoặc chuyên gia dinh dưỡng.",
+      "sources": [
+        {
+          "id": "3_25",
+          "question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+          "score": 0.27193087339401245,
+          "chunk_index": 25
+        },
+        {
+          "id": "4_5",
+          "question": "Tham khảo chế độ dinh dưỡng cho người bị áp xe não do amip",
+          "score": 0.33656710386276245,
+          "chunk_index": 5
+        },
+        {
+          "id": "9816_5",
+          "question": "Tầm quan trọng của chế độ ăn cho người bệnh sa sút trí tuệ",
+          "score": 0.37491095066070557,
+          "chunk_index": 5
+        },
+        {
+          "id": "3_43",
+          "question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+          "score": 0.29518696665763855,
+          "chunk_index": 43
+        },
+        {
+          "id": "3_33",
+          "question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
+          "score": 0.29518699645996094,
+          "chunk_index": 33
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "3_25",
+          "text": "Câu hỏi: Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip\n\nTrả lời: ó khăn và để lại di chứng, đặc biệt nếu bệnh đã tiến triển nặng. Vì vậy, điều cực kỳ quan trọng là khi nghi ngờ mình hoặc",
+          "distance": 0.27193087339401245,
+          "vector_score": 1.0,
+          "bm25_score": 0.9450423937135256,
+          "hybrid_score": 0.9780169574854103
+        },
+        {
+          "id": "4_5",
+          "text": "Câu hỏi: Tham khảo chế độ dinh dưỡng cho người bị áp xe não do amip\n\nTrả lời: đồ ăn nhiều dầu mỡ.Tránh các loại thực phẩm có nguy cơ gây nhiễm khuẩn cao như thực phẩm sống hoặc chưa nấu chín kỹ.Chế độ",
+          "distance": 0.33656710386276245,
+          "vector_score": 0.37234274072187623,
+          "bm25_score": 0.6128081338151554,
+          "hybrid_score": 0.46852889795918795
+        },
+        {
+          "id": "9816_5",
+          "text": "Câu hỏi: Tầm quan trọng của chế độ ăn cho người bệnh sa sút trí tuệ\n\nTrả lời: rong việc truyền tín hiệu thần kinh và duy trì chức năng não bộ. Ví dụ, acid béo omega-3 có trong cá béo, quả óc chó, hạt ",
+          "distance": 0.37491095066070557,
+          "vector_score": 5.787974903340819e-07,
+          "bm25_score": 0.0,
+          "hybrid_score": 3.4727849420044914e-07
+        },
+        {
+          "id": "3_43",
+          "text": "Câu hỏi: Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip\n\nTrả lời: o amip: Nguyên nhân, triệu chứng, cách điều trị và phòng ngừaSKĐS - Áp xe não do amip thường dễ nhầm lẫn với viêm màng nã",
+          "distance": 0.29518696665763855,
+          "vector_score": 0.7741691362026254,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.8645014817215753
+        },
+        {
+          "id": "3_33",
+          "text": "Câu hỏi: Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip\n\nTrả lời: o amip: Nguyên nhân, triệu chứng, cách điều trị và phòng ngừaSKĐS - Áp xe não do amip thường dễ nhầm lẫn với viêm màng nã",
+          "distance": 0.29518699645996094,
+          "vector_score": 0.7741688468038802,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.8645013080823281
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b03",
+      "question": "Amip ăn não lây qua những con đường nào?",
+      "category": "infection_parasitic",
+      "difficulty": "easy",
+      "expected_topics": [
+        "amip",
+        "lây",
+        "đường"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.8242424242424243,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.13333333333333333,
+        "answer_relevance": 0.75,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 19.86,
+      "generation_latency_ms": 766.93,
+      "total_latency_ms": 2790.47,
+      "answer": "Thông tin về các con đường lây truyền của amip ăn não không được cung cấp đầy đủ trong ngữ cảnh. Tuy nhiên, có thể thấy rằng amip xâm nhập vào não bộ của người thông qua niêm mạc đường mũi, sau đó di chuyển qua dây thần kinh khứu giác vào thùy trán của não.\n\nKhông có thông tin cụ thể về các con đường lây truyền khác, như qua tiếp xúc trực tiếp, qua nước, qua thực phẩm, v.v. Do đó, để có thông tin chính xác và đầy đủ, bạn nên tham khảo ý kiến của bác sĩ hoặc các nguồn thông tin y tế uy tín.",
+      "sources": [
+        {
+          "id": "330_1",
+          "question": "Làm thế nào amip xâm nhập vào não?",
+          "score": 0.5462305545806885,
+          "chunk_index": 1
+        },
+        {
+          "id": "318_49",
+          "question": "Amip ăn não là gì?",
+          "score": 0.5327709317207336,
+          "chunk_index": 49
+        },
+        {
+          "id": "14_2",
+          "question": "Áp xe não do amip là gì?",
+          "score": 0.6176578402519226,
+          "chunk_index": 2
+        },
+        {
+          "id": "322_2",
+          "question": "Nguyên nhân gây amip ăn não",
+          "score": 0.6425938606262207,
+          "chunk_index": 2
+        },
+        {
+          "id": "313_26",
+          "question": "Amip ăn não rất nguy hiểm nhưng khó phát hiện",
+          "score": 0.6483927369117737,
+          "chunk_index": 26
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "330_1",
+          "text": "Câu hỏi: Làm thế nào amip xâm nhập vào não?\n\nTrả lời: Amip xâm nhập vào não bộ của người thông qua niêm mạc đường mũi. Thực hư đường lây nhiễm của \"amip ăn não người\"ĐỌC NGAY Các nghiên cứu cho thấy a",
+          "distance": 0.5462305545806885,
+          "vector_score": 0.921918357199441,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.9531510143196646
+        },
+        {
+          "id": "318_49",
+          "text": "Câu hỏi: Amip ăn não là gì?\n\nTrả lời: ùa giỡn như trấn nước nhau để xộc nước vào mũi\", bác sĩ Mẫn nói. Theo VnExpress",
+          "distance": 0.5327709317207336,
+          "vector_score": 1.0,
+          "bm25_score": 0.1744741485252716,
+          "hybrid_score": 0.6697896594101086
+        },
+        {
+          "id": "14_2",
+          "text": "Câu hỏi: Áp xe não do amip là gì?\n\nTrả lời: những vị trí như: ngoài màng cứng, dưới màng cứng và trong não. Thông thường, amip sẽ gây ra các ổ áp xe ở 2 bán cầu đại não.Ngoài ra, có một số yếu tố làm ",
+          "distance": 0.6176578402519226,
+          "vector_score": 0.5075560928162399,
+          "bm25_score": 0.3305052608620739,
+          "hybrid_score": 0.4367357600345735
+        },
+        {
+          "id": "322_2",
+          "text": "Câu hỏi: Nguyên nhân gây amip ăn não\n\nTrả lời: chúng nhân lên nhanh chóng và bắt đầu ăn tế bào não để tồn tại. Chúng ăn tế bào não từng phần một bằng cách dùng một dụng cụ hút kéo dài từ bề mặt tế bào",
+          "distance": 0.6425938606262207,
+          "vector_score": 0.36289784674262465,
+          "bm25_score": 0.4356294924671318,
+          "hybrid_score": 0.3919905050324275
+        },
+        {
+          "id": "313_26",
+          "text": "Câu hỏi: Amip ăn não rất nguy hiểm nhưng khó phát hiện\n\nTrả lời: lẫn, mê sảng, ảo giác, mất thăng bằng và cuối cùng là hôn mê.Bệnh amip ăn não rất hiếm gặp cũng như khó chẩn đoán và phát hiện. Nếu bác",
+          "distance": 0.6483927369117737,
+          "vector_score": 0.32925754407706403,
+          "bm25_score": 0.1885382971526639,
+          "hybrid_score": 0.27296984530730395
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b04",
+      "question": "Triệu chứng lâm sàng của bệnh áp xe não do amip là gì?",
+      "category": "infection_parasitic",
+      "difficulty": "medium",
+      "expected_topics": [
+        "triệu chứng",
+        "áp xe não",
+        "lâm sàng"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.6515151515151515,
+        "precision@5": 0.8,
+        "recall@5": 0.6666666666666666,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.2857142857142857,
+        "answer_relevance": 1.0,
+        "context_precision": 0.9124087591240875,
+        "context_recall": 0.6666666666666666
+      },
+      "retrieval_latency_ms": 21.85,
+      "generation_latency_ms": 876.78,
+      "total_latency_ms": 2908.26,
+      "answer": "Dựa trên thông tin được cung cấp trong ngữ cảnh, triệu chứng lâm sàng của bệnh áp xe não do amip có thể bao gồm:\n\n- Hội chứng tăng áp lực nội sọ, đau đầu\n- Giảm trương lực cơ, thất điều cùng bên với tổn thương\n- Hạn chế liếc mắt sang bên tổn thương\n- Rung giật nhãn cầu, liệt nửa người giao bên, liệt dây thần kinh số VII ngoại biên (trong trường hợp áp xe thân não)\n- Triệu chứng đặc trưng của viêm não và phá hủy mô não, bao gồm các dấu hiệu như sốt, đau đầu, buồn nôn, nôn, và các vấn đề về thần kinh khác.\n\nTuy nhiên, để có thông tin chính xác và đầy đủ về triệu chứng lâm sàng của bệnh áp xe não do amip, người dùng nên tham khảo ý kiến của bác sĩ chuyên khoa.",
+      "sources": [
+        {
+          "id": "345_17",
+          "question": "Dấu hiệu bệnh áp xe não",
+          "score": 0.41662371158599854,
+          "chunk_index": 17
+        },
+        {
+          "id": "16_2",
+          "question": "Triệu chứng áp xe não do amip",
+          "score": 0.4937024712562561,
+          "chunk_index": 2
+        },
+        {
+          "id": "15_10",
+          "question": "Nguyên nhân gây áp xe não do amip",
+          "score": 0.4875856935977936,
+          "chunk_index": 10
+        },
+        {
+          "id": "323_0",
+          "question": "Dấu hiệu amip ăn não",
+          "score": 0.5063352584838867,
+          "chunk_index": 0
+        },
+        {
+          "id": "329_1",
+          "question": "Cần phát hiện sớm dấu hiệu bệnh amip gây tổn thương não",
+          "score": 0.5058225989341736,
+          "chunk_index": 1
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "345_17",
+          "text": "Câu hỏi: Dấu hiệu bệnh áp xe não\n\nTrả lời: : Thường biểu hiện các triệu chứng giảm trương lực cơ, thất điều cùng bên với tổn thương, nếu hạn chế liếc mắt sang bên tổn thương nên nghĩ đến áp xe đang ph",
+          "distance": 0.41662371158599854,
+          "vector_score": 1.0,
+          "bm25_score": 0.26640720500672344,
+          "hybrid_score": 0.7065628820026894
+        },
+        {
+          "id": "16_2",
+          "text": "Câu hỏi: Triệu chứng áp xe não do amip\n\nTrả lời: ip không phải là bệnh truyền nhiễm từ người này sang người khác. Tuy nhiên, nếu người thân hoặc người sống chung với bạn bị áp xe não do amip, bạn cũng",
+          "distance": 0.4937024712562561,
+          "vector_score": 0.2317763516287149,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.5390658109772289
+        },
+        {
+          "id": "15_10",
+          "text": "Câu hỏi: Nguyên nhân gây áp xe não do amip\n\nTrả lời: hiện một số bài tập giúp nâng cao sức khỏe, cải thiện di chứng. Nếu bệnh không được điều trị sẽ gây ra các biến chứng. Amip sẽ theo đường mạch máu ",
+          "distance": 0.4875856935977936,
+          "vector_score": 0.2927406596840412,
+          "bm25_score": 0.5579520757058493,
+          "hybrid_score": 0.39882522609276444
+        },
+        {
+          "id": "323_0",
+          "text": "Câu hỏi: Dấu hiệu amip ăn não\n\nTrả lời: Khi bị nhiễm amip Naegleria, người bệnh sẽ mắc chứng viêm não màng não tiên phát do amip. Bệnh có tên khoa học là Primary Amebic Meningoencephalitis) với triệu ",
+          "distance": 0.5063352584838867,
+          "vector_score": 0.10586869646371666,
+          "bm25_score": 0.42279484798694733,
+          "hybrid_score": 0.23263915707300892
+        },
+        {
+          "id": "329_1",
+          "text": "Câu hỏi: Cần phát hiện sớm dấu hiệu bệnh amip gây tổn thương não\n\nTrả lời: đã nhiễm loại ký sinh trùng này, bệnh nhân gần như đều tử vong. Trên thực tế, amip gây bệnh đường tiêu hóa hay nặng hơn là áp",
+          "distance": 0.5058225989341736,
+          "vector_score": 0.11097823885046286,
+          "bm25_score": 0.3205866170560874,
+          "hybrid_score": 0.19482159013271266
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b05",
+      "question": "Cách phòng ngừa nhiễm amip ăn não",
+      "category": "infection_parasitic",
+      "difficulty": "medium",
+      "expected_topics": [
+        "phòng ngừa",
+        "amip",
+        "vệ sinh"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.4151515151515152,
+        "precision@5": 1.0,
+        "recall@5": 0.6666666666666666,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.09090909090909091,
+        "answer_relevance": 0.8333333333333334,
+        "context_precision": 1.0,
+        "context_recall": 0.6666666666666666
+      },
+      "retrieval_latency_ms": 21.49,
+      "generation_latency_ms": 1024.68,
+      "total_latency_ms": 3056.32,
+      "answer": "Để phòng ngừa nhiễm amip ăn não, bạn nên tránh sặc nước vào mũi, đặc biệt là khi bơi ở những vùng nước có thể chứa amip. Ngoài ra, nên sử dụng kẹp mũi hoặc nút mũi khi bơi để hạn chế nước vào mũi và giảm nguy cơ nhiễm bệnh. Đây là những biện pháp đơn giản nhưng hiệu quả để phòng ngừa nhiễm amip ăn não. Tuy nhiên, nếu bạn có bất kỳ triệu chứng nào nghi ngờ về nhiễm amip ăn não, hãy tham khảo ý kiến bác sĩ để được tư vấn và điều trị kịp thời.",
+      "sources": [
+        {
+          "id": "325_16",
+          "question": "Cách phòng amip ăn não",
+          "score": 0.39186912775039673,
+          "chunk_index": 16
+        },
+        {
+          "id": "15082_30",
+          "question": "Tổng quan bệnh viêm màng não do não mô cầu là gì?",
+          "score": 0.3637455403804779,
+          "chunk_index": 30
+        },
+        {
+          "id": "15084_2",
+          "question": "Bệnh viêm màng não do não mô cầu có lây nhiễm không?",
+          "score": 0.3827263116836548,
+          "chunk_index": 2
+        },
+        {
+          "id": "15083_4",
+          "question": "Triệu chứng của bệnh viêm màng não do não mô cầu",
+          "score": 0.4259366989135742,
+          "chunk_index": 4
+        },
+        {
+          "id": "15053_5",
+          "question": "Phòng ngừa bệnh viêm màng não mủ",
+          "score": 0.4321954846382141,
+          "chunk_index": 5
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "325_16",
+          "text": "Câu hỏi: Cách phòng amip ăn não\n\nTrả lời: ng bị sặc nước vào mũi, tránh khuấy lớp bùn lắng ở dưới đáy lên. Nên sử dụng kẹp mũi hay nút mũi khi bơi giúp hạn chế nhiễm bẩn, trong đó có amip ăn não5. Các",
+          "distance": 0.39186912775039673,
+          "vector_score": 0.6409263676666269,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.7845558205999761
+        },
+        {
+          "id": "15082_30",
+          "text": "Câu hỏi: Tổng quan bệnh viêm màng não do não mô cầu là gì?\n\nTrả lời: ộng đông đúc.Bệnh nhân mắc viêm màng não do não mô cầu có thể xuất hiện các đốm đỏ hoặc tím trên da.4. Cách phòng bệnh viêm màng nã",
+          "distance": 0.3637455403804779,
+          "vector_score": 1.0,
+          "bm25_score": 0.12643881908477508,
+          "hybrid_score": 0.65057552763391
+        },
+        {
+          "id": "15084_2",
+          "text": "Câu hỏi: Bệnh viêm màng não do não mô cầu có lây nhiễm không?\n\nTrả lời: ão do não mô cầu có thể xuất hiện các đốm đỏ hoặc tím trên da.4. Cách phòng bệnh viêm màng não do não mô cầuPhòng ngừa bệnh viêm",
+          "distance": 0.3827263116836548,
+          "vector_score": 0.7576591347798443,
+          "bm25_score": 0.33509994237425733,
+          "hybrid_score": 0.5886354578176094
+        },
+        {
+          "id": "15083_4",
+          "text": "Câu hỏi: Triệu chứng của bệnh viêm màng não do não mô cầu\n\nTrả lời: ão do não mô cầu có thể xuất hiện các đốm đỏ hoặc tím trên da.4. Cách phòng bệnh viêm màng não do não mô cầuPhòng ngừa bệnh viêm màn",
+          "distance": 0.4259366989135742,
+          "vector_score": 0.205961711080104,
+          "bm25_score": 0.134736079967135,
+          "hybrid_score": 0.1774714586349164
+        },
+        {
+          "id": "15053_5",
+          "text": "Câu hỏi: Phòng ngừa bệnh viêm màng não mủ\n\nTrả lời: Viêm màng não là tình trạng viêm ở màng não và khoang dưới nhện. Viêm màng não không được phát hiện và điều trị sớm có thể để lại nhiều biến chứng n",
+          "distance": 0.4321954846382141,
+          "vector_score": 0.1260513890225949,
+          "bm25_score": 0.0,
+          "hybrid_score": 0.07563083341355695
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b06",
+      "question": "Thuốc điều trị nhiễm ấu trùng sán lợn có hiệu quả không?",
+      "category": "infection_parasitic",
+      "difficulty": "medium",
+      "expected_topics": [
+        "ấu trùng sán lợn",
+        "thuốc",
+        "điều trị"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.1484848484848487,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.38095238095238093,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 24.61,
+      "generation_latency_ms": 769.72,
+      "total_latency_ms": 2808.51,
+      "answer": "Theo thông tin được cung cấp trong ngữ cảnh, thuốc điều trị nhiễm ấu trùng sán lợn có hiệu quả trong việc điều trị bệnh ấu trùng sán lợn thần kinh, trừ bệnh ấu trùng sán lợn ở mắt. Tuy nhiên, các tác dụng phụ của thuốc có thể xuất hiện do sự giải phóng các chất bên trong ký sinh trùng khi chúng chết đi và phản ứng miễn dịch của cơ thể với các chất này. Tác dụng phụ càng nghiêm trọng hơn khi nhiễm ký sinh trùng càng nặng.\n\nNhư vậy, thuốc điều trị nhiễm ấu trùng sán lợn có hiệu quả, nhưng người bệnh cần tuân thủ theo chỉ định của bác sĩ và theo dõi sát các triệu chứng để tránh các biến chứng không mong muốn. Để có thông tin chính xác và đầy đủ, bạn nên tham khảo ý kiến của bác sĩ chuyên khoa.",
+      "sources": [
+        {
+          "id": "27_16",
+          "question": "Dùng thuốc điều trị nhiễm ấu trùng sán lợn",
+          "score": 0.3424093425273895,
+          "chunk_index": 16
+        },
+        {
+          "id": "26_7",
+          "question": "Cách điều trị ấu trùng sán lợn",
+          "score": 0.3641796112060547,
+          "chunk_index": 7
+        },
+        {
+          "id": "48_14",
+          "question": "Các phương pháp điều trị ấu trùng sán lợn",
+          "score": 0.35945916175842285,
+          "chunk_index": 14
+        },
+        {
+          "id": "28_3",
+          "question": "Lưu ý khi điều trị bệnh ấu trùng sán lợn",
+          "score": 0.38638395071029663,
+          "chunk_index": 3
+        },
+        {
+          "id": "47_5",
+          "question": "Đông y có chữa được ấu trùng sán lợn không?",
+          "score": 0.4093173146247864,
+          "chunk_index": 5
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "27_16",
+          "text": "Câu hỏi: Dùng thuốc điều trị nhiễm ấu trùng sán lợn\n\nTrả lời: ác giai đoạn ấu trùng, chưa trưởng thành và sán đã trưởng thành. Thuốc đã được dùng để điều trị có hiệu quả bệnh ấu trùng sán lợn thần kin",
+          "distance": 0.3424093425273895,
+          "vector_score": 0.9541288854922011,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.9724773312953207
+        },
+        {
+          "id": "26_7",
+          "text": "Câu hỏi: Cách điều trị ấu trùng sán lợn\n\nTrả lời: chín, ăn các thức ăn đã được nấu chín kỹ, chế biến hợp vệ sinh. Một số phương pháp điều trị khác được áp dụng đối với trường hợp nhiễm trùng xâm lấn g",
+          "distance": 0.3641796112060547,
+          "vector_score": 0.7027647716061979,
+          "bm25_score": 0.15780784093694394,
+          "hybrid_score": 0.4847819993384963
+        },
+        {
+          "id": "48_14",
+          "text": "Câu hỏi: Các phương pháp điều trị ấu trùng sán lợn\n\nTrả lời: , cần hội chẩn với chuyên gia ngoại khoa để phối hợp điều trị.3. Ấu trùng sán lợn có chữa khỏi được không?Sán lợn không phải là bệnh cấp tí",
+          "distance": 0.35945916175842285,
+          "vector_score": 0.7572680765521065,
+          "bm25_score": 0.06388263674741056,
+          "hybrid_score": 0.4799139006302281
+        },
+        {
+          "id": "28_3",
+          "text": "Câu hỏi: Lưu ý khi điều trị bệnh ấu trùng sán lợn\n\nTrả lời: ia tăng các triệu chứng của nhiễm ấu trùng thần kinh trung ương. Bác sĩ có thể chỉ định sử dụng kèm với thuốc kháng viêm.Trường hợp nhiễm ấu",
+          "distance": 0.38638395071029663,
+          "vector_score": 0.4463887844151214,
+          "bm25_score": 0.22577405421595692,
+          "hybrid_score": 0.35814289233545565
+        },
+        {
+          "id": "47_5",
+          "text": "Câu hỏi: Đông y có chữa được ấu trùng sán lợn không?\n\nTrả lời: , cần hội chẩn với chuyên gia ngoại khoa để phối hợp điều trị.3. Ấu trùng sán lợn có chữa khỏi được không?Sán lợn không phải là bệnh cấp ",
+          "distance": 0.4093173146247864,
+          "vector_score": 0.1815953276196028,
+          "bm25_score": 0.08402637297907502,
+          "hybrid_score": 0.14256774576339168
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b07",
+      "question": "Triệu chứng và cách chẩn đoán bệnh ấu trùng sán lợn",
+      "category": "infection_parasitic",
+      "difficulty": "medium",
+      "expected_topics": [
+        "ấu trùng sán lợn",
+        "triệu chứng",
+        "chẩn đoán"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.2000000000000002,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.3333333333333333,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 34.57,
+      "generation_latency_ms": 950.49,
+      "total_latency_ms": 2994.42,
+      "answer": "Để trả lời câu hỏi về triệu chứng và cách chẩn đoán bệnh ấu trùng sán lợn, tôi sẽ tổng hợp thông tin từ các câu trả lời trước đó.\n\nTriệu chứng của bệnh ấu trùng sán lợn có thể không rõ ràng, nhưng khi xuất hiện, chúng có thể liên quan đến các vấn đề sức khỏe khác nhau. Tuy nhiên, thông tin cụ thể về triệu chứng không được cung cấp đầy đủ trong các câu trả lời trước đó.\n\nVề cách chẩn đoán, bệnh ấu trùng sán lợn cần được chẩn đoán dựa vào các yếu tố khai thác dịch tễ - tiền sử tiếp xúc, triệu chứng lâm sàng và các xét nghiệm. Chẩn đoán xác định khi thấy hình ảnh đặc trưng của nang sán/ ký sinh trùng trên mô bệnh học hoặc trực tiếp thấy ký sinh trùng khi soi đáy mắt hoặc hình ảnh đầu sán trên phim cắt lớp vi tính hoặc cộng hưởng từ.\n\nDo đó, để có thông tin chính xác và đầy đủ về triệu chứng và cách chẩn đoán bệnh ấu trùng sán lợn, tôi khuyên bạn nên tham khảo ý kiến của bác sĩ hoặc các chuyên gia y tế. Họ có thể cung cấp thông tin cụ thể và hướng dẫn phù hợp dựa trên tình trạng sức khỏe của bạn.",
+      "sources": [
+        {
+          "id": "22_22",
+          "question": "Nguyên nhân ấu trùng sán lợn",
+          "score": 0.38265538215637207,
+          "chunk_index": 22
+        },
+        {
+          "id": "23_6",
+          "question": "Dấu hiệu nhiễm ấu trùng sán lợn",
+          "score": 0.39066946506500244,
+          "chunk_index": 6
+        },
+        {
+          "id": "26_0",
+          "question": "Cách điều trị ấu trùng sán lợn",
+          "score": 0.3949257731437683,
+          "chunk_index": 0
+        },
+        {
+          "id": "28_19",
+          "question": "Lưu ý khi điều trị bệnh ấu trùng sán lợn",
+          "score": 0.45746076107025146,
+          "chunk_index": 19
+        },
+        {
+          "id": "33_10",
+          "question": "Triệu chứng lâm sàng và chẩn đoán bệnh",
+          "score": 0.49976181983947754,
+          "chunk_index": 10
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "22_22",
+          "text": "Câu hỏi: Nguyên nhân ấu trùng sán lợn\n\nTrả lời: bệnh cần được phát hiện, chẩn đoán sớm và điều trị đúng phác đồ. Trước khi chế biến thực phẩm hoặc trước khi ăn phải rửa tay bằng xà phòng.5. Cách điều ",
+          "distance": 0.38265538215637207,
+          "vector_score": 1.0,
+          "bm25_score": 0.9851687798080443,
+          "hybrid_score": 0.9940675119232177
+        },
+        {
+          "id": "23_6",
+          "text": "Câu hỏi: Dấu hiệu nhiễm ấu trùng sán lợn\n\nTrả lời: bệnh cần được phát hiện, chẩn đoán sớm và điều trị đúng phác đồ. Trước khi chế biến thực phẩm hoặc trước khi ăn phải rửa tay bằng xà phòng.5. Cách đi",
+          "distance": 0.39066946506500244,
+          "vector_score": 0.9315658210839204,
+          "bm25_score": 0.9820916010429955,
+          "hybrid_score": 0.9517761330675505
+        },
+        {
+          "id": "26_0",
+          "text": "Câu hỏi: Cách điều trị ấu trùng sán lợn\n\nTrả lời: Chẩn đoán bệnh ấu trùng sán lợn cần dựa vào các yếu tố khai thác dịch tễ - tiền sử tiếp xúc, triệu chứng lâm sàng và các xét nghiệm. Chẩn đoán xác địn",
+          "distance": 0.3949257731437683,
+          "vector_score": 0.8952201840465817,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.937132110427949
+        },
+        {
+          "id": "28_19",
+          "text": "Câu hỏi: Lưu ý khi điều trị bệnh ấu trùng sán lợn\n\nTrả lời: sinh tại tỉnh Bắc Ninh đã làm cho dư luận xã hội nhiều lo lắng. Trường hợp nhiễm ấu trùng sán lợn mà các u nang không gây ra bất cứ triệu ch",
+          "distance": 0.45746076107025146,
+          "vector_score": 0.3612189014210676,
+          "bm25_score": 0.42055049953045864,
+          "hybrid_score": 0.38495154066482407
+        },
+        {
+          "id": "33_10",
+          "text": "Câu hỏi: Triệu chứng lâm sàng và chẩn đoán bệnh\n\nTrả lời: ên ăn các loại rau sống không bảo đảm an toàn vệ sinh thực phẩm. Đồng thời phát hiện và điều trị sán dây lợn trưởng thành càng sớm càng tốt nế",
+          "distance": 0.49976181983947754,
+          "vector_score": 0.0,
+          "bm25_score": 0.7226987145353665,
+          "hybrid_score": 0.2890794858141466
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b08",
+      "question": "Bệnh Alkapton niệu có chữa khỏi được không?",
+      "category": "metabolic_endocrine",
+      "difficulty": "hard",
+      "expected_topics": [
+        "alkapton",
+        "niệu",
+        "chữa"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.1636363636363636,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.5714285714285714,
+        "answer_relevance": 0.8571428571428571,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 26.33,
+      "generation_latency_ms": 817.88,
+      "total_latency_ms": 2851.3,
+      "answer": "Bệnh Alkapton niệu không thể chữa khỏi hoàn toàn, vì bản chất của bệnh là sự rối loạn di truyền gen đột biến HGD. Những trường hợp phát hiện Alkapton niệu sớm, chưa có triệu chứng hay bất kỳ sự ảnh hưởng nào đến sức khỏe, không nhất thiết phải điều trị. Tuy nhiên, với những trường hợp Alkapton niệu giai đoạn bùng phát triệu chứng và gây các biến chứng nghiêm trọng ở nhiều cơ quan nội tạng cần can thiệp điều trị y tế kịp thời. Điều trị hiện nay chủ yếu nhằm cải thiện các triệu chứng và ngăn ngừa bệnh tiến triển. Để có hướng điều trị phù hợp nhất, người bệnh nên tham khảo ý kiến của bác sĩ.",
+      "sources": [
+        {
+          "id": "54_0",
+          "question": "Alkapton niệu có chữa khỏi được không?",
+          "score": 0.33973607420921326,
+          "chunk_index": 0
+        },
+        {
+          "id": "53_18",
+          "question": "Các phương pháp điều trị Alkapton niệu",
+          "score": 0.38384634256362915,
+          "chunk_index": 18
+        },
+        {
+          "id": "52_4",
+          "question": "Đông y có chữa được Alkapton niệu không?",
+          "score": 0.408051073551178,
+          "chunk_index": 4
+        },
+        {
+          "id": "65_10",
+          "question": "Alkapton niệu có nguy hiểm không?",
+          "score": 0.4403594136238098,
+          "chunk_index": 10
+        },
+        {
+          "id": "66_0",
+          "question": "Các biện pháp điều trị Alkapton niệu",
+          "score": 0.47737568616867065,
+          "chunk_index": 0
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "54_0",
+          "text": "Câu hỏi: Alkapton niệu có chữa khỏi được không?\n\nTrả lời: Bệnh Alkapton niệu không thể chữa khỏi hoàn toàn, vì bản chất của bệnh là sự rối loạn di truyền gen đột biến HGD. Những trường hợp phát hiện A",
+          "distance": 0.33973607420921326,
+          "vector_score": 1.0,
+          "bm25_score": 0.962944709812125,
+          "hybrid_score": 0.98517788392485
+        },
+        {
+          "id": "53_18",
+          "text": "Câu hỏi: Các phương pháp điều trị Alkapton niệu\n\nTrả lời: u ảnh hưởng đến hoạt động của hệ thống niệu quản trong cơ thể.3. Alkapton niệu có chữa khỏi được không?Bệnh Alkapton niệu không thể chữa khỏi ",
+          "distance": 0.38384634256362915,
+          "vector_score": 0.7536925851415935,
+          "bm25_score": 0.9115061319552911,
+          "hybrid_score": 0.8168180038670725
+        },
+        {
+          "id": "52_4",
+          "text": "Câu hỏi: Đông y có chữa được Alkapton niệu không?\n\nTrả lời: u ảnh hưởng đến hoạt động của hệ thống niệu quản trong cơ thể.3. Alkapton niệu có chữa khỏi được không?Bệnh Alkapton niệu không thể chữa khỏ",
+          "distance": 0.408051073551178,
+          "vector_score": 0.6185357398242044,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.7711214438945226
+        },
+        {
+          "id": "65_10",
+          "text": "Câu hỏi: Alkapton niệu có nguy hiểm không?\n\nTrả lời: hường xuyên và điều trị kịp thời, tránh các biến chứng.Các ảnh hưởng lên cơ thể khi bị Alkapton niệu.2. Các biện pháp điều trị Alkapton niệu Alkapt",
+          "distance": 0.4403594136238098,
+          "vector_score": 0.4381291356812135,
+          "bm25_score": 0.06207334640342732,
+          "hybrid_score": 0.287706819970099
+        },
+        {
+          "id": "66_0",
+          "text": "Câu hỏi: Các biện pháp điều trị Alkapton niệu\n\nTrả lời: Alkapton niệu là bệnh di truyền, tính đến thời điểm hiện tại, vẫn chưa có phương pháp điều trị đặc hiệu. Việc điều trị hiện nay chủ yếu nhằm cải",
+          "distance": 0.47737568616867065,
+          "vector_score": 0.23143389807887554,
+          "bm25_score": 0.04601280635228033,
+          "hybrid_score": 0.15726546138823747
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b09",
+      "question": "Điều trị áp xe gan do amip như thế nào?",
+      "category": "infection_parasitic",
+      "difficulty": "medium",
+      "expected_topics": [
+        "áp xe gan",
+        "amip",
+        "điều trị"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.2454545454545454,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.5,
+        "answer_relevance": 0.7142857142857143,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 20.72,
+      "generation_latency_ms": 1391.66,
+      "total_latency_ms": 3416.16,
+      "answer": "Điều trị áp xe gan do amip thường bao gồm điều trị nội khoa bằng thuốc chống ký sinh trùng như metronidazole hoặc tinidazole. Đây là phương pháp chính và thường được áp dụng đầu tiên. Trong một số trường hợp, nếu bệnh nhân không đáp ứng với thuốc chống amip trong 3 đến 5 ngày, khi áp xe gan bị nhiễm vi khuẩn, hoặc khi có nguy cơ cao bị vỡ thùy trái của gan, có thể thực hiện dẫn lưu mủ qua da.\n\nNgoài ra, điều trị áp xe gan amip cũng có thể bao gồm kỹ thuật chọc hút dưới hướng dẫn của siêu âm hoặc CT-Scan, kết hợp với điều trị nội khoa. Trong điều trị nội khoa, các thuốc thuộc nhóm Imidazole như Metronidazole hoặc Tinidazole thường được sử dụng.\n\nTuy nhiên, cần lưu ý rằng điều trị áp xe gan do amip nên được thực hiện dưới sự giám sát của bác sĩ, vì việc sử dụng thuốc chống ký sinh trùng có thể gây ra các tác dụng phụ và cần được theo dõi cẩn thận. Ngoài ra, để phòng ngừa bệnh amip, việc đảm bảo vệ sinh và an toàn thực phẩm, rửa tay sau khi ăn và đi vệ sinh là rất quan trọng.\n\nĐể có được thông tin chính xác và phù hợp với tình trạng sức khỏe cụ thể của bạn, tôi khuyến nghị bạn nên tham khảo ý kiến của bác sĩ. Bác sĩ sẽ có thể cung cấp cho bạn thông tin chi tiết và tư vấn về phương pháp điều trị phù hợp nhất.",
+      "sources": [
+        {
+          "id": "123_0",
+          "question": "Biện pháp điều trị áp xe gan do amip",
+          "score": 0.38503652811050415,
+          "chunk_index": 0
+        },
+        {
+          "id": "124_12",
+          "question": "Các lưu ý trong quá trình điều trị áp xe gan do amip",
+          "score": 0.49217480421066284,
+          "chunk_index": 12
+        },
+        {
+          "id": "138_0",
+          "question": "Cách điều trị áp xe gan do amip",
+          "score": 0.4864652156829834,
+          "chunk_index": 0
+        },
+        {
+          "id": "135_128",
+          "question": "Dấu hiệu áp xe gan do amip",
+          "score": 0.5045208930969238,
+          "chunk_index": 128
+        },
+        {
+          "id": "116_101",
+          "question": "Điều trị áp xe gan do amip",
+          "score": 0.48475518822669983,
+          "chunk_index": 101
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "123_0",
+          "text": "Câu hỏi: Biện pháp điều trị áp xe gan do amip\n\nTrả lời: Phương pháp chính điều trị áp xe gan do amip là điều trị nội khoa bằng thuốc chống ký sinh trùng như metronidazole hoặc tinidazole.Dẫn lưu mủ qu",
+          "distance": 0.38503652811050415,
+          "vector_score": 1.0,
+          "bm25_score": 1.0,
+          "hybrid_score": 1.0
+        },
+        {
+          "id": "124_12",
+          "text": "Câu hỏi: Các lưu ý trong quá trình điều trị áp xe gan do amip\n\nTrả lời: gây kháng thuốc và làm phức tạp quá trình điều trị.- Sau khi hoàn thành liệu trình điều trị, nếu có các triệu chứng như sốt, đau",
+          "distance": 0.49217480421066284,
+          "vector_score": 0.11483434309709145,
+          "bm25_score": 0.9301001060245628,
+          "hybrid_score": 0.44094064826808
+        },
+        {
+          "id": "138_0",
+          "text": "Câu hỏi: Cách điều trị áp xe gan do amip\n\nTrả lời: Điều trị áp xe gan amip là một điều trị nội ngoại khoa hoặc kết hợp kỹ thuật chọc hút dưới hướng dẫn của siêu âm hoặc CT- Scan. Kết quả điều trị phụ ",
+          "distance": 0.4864652156829834,
+          "vector_score": 0.16200638901487338,
+          "bm25_score": 0.8588531772989313,
+          "hybrid_score": 0.44074510432849656
+        },
+        {
+          "id": "135_128",
+          "text": "Câu hỏi: Dấu hiệu áp xe gan do amip\n\nTrả lời: ngăn ngừa amip di chuyển vào gan, gây áp xe và tổn thương gan.5. Cách điều trị áp xe gan do amipĐiều trị áp xe gan amip là một điều trị nội ngoại khoa hoặ",
+          "distance": 0.5045208930969238,
+          "vector_score": 0.012832198980338046,
+          "bm25_score": 0.9928095061553053,
+          "hybrid_score": 0.404823121850325
+        },
+        {
+          "id": "116_101",
+          "text": "Câu hỏi: Điều trị áp xe gan do amip\n\nTrả lời: dụng phụ trên đường tiêu hóa như buồn nôn, đau bụng, tiêu chảy. Các phản ứng hiếm gặp nhưng nặng hơn là sốc phản vệ. Thuốc gây độc với thận, thậm chí là g",
+          "distance": 0.48475518822669983,
+          "vector_score": 0.17613446379599276,
+          "bm25_score": 0.6650470129417635,
+          "hybrid_score": 0.37169948345430104
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b10",
+      "question": "Các phương pháp điều trị áp xe hậu môn là gì?",
+      "category": "digestive",
+      "difficulty": "medium",
+      "expected_topics": [
+        "áp xe hậu môn",
+        "điều trị",
+        "phương pháp"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.012121212121212,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.3142857142857143,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 24.13,
+      "generation_latency_ms": 866.14,
+      "total_latency_ms": 2892.67,
+      "answer": "Các phương pháp điều trị áp xe hậu môn bao gồm rạch và dẫn lưu, đây là phương pháp điều trị phổ biến nhất cho tất cả các loại áp xe hậu môn. Cần nhanh chóng phát hiện bệnh và thực hiện phương pháp này, tốt nhất là trước khi áp xe bùng phát. Tuy nhiên, người bệnh cần lưu ý về các tác dụng phụ và biến chứng có thể xảy ra như ảnh hưởng đến hệ hô hấp và tuần hoàn do thuốc tê, chảy máu, rò hậu môn, gây hẹp hậu môn, són phân do tổn thương nhiều cơ thắt trong khi mổ, nhiễm trùng chảy mủ tái phát. Để có phương pháp điều trị phù hợp, người bệnh nên tham khảo ý kiến của bác sĩ.",
+      "sources": [
+        {
+          "id": "200_0",
+          "question": "Các phương pháp điều trị áp xe hậu môn",
+          "score": 0.4391809105873108,
+          "chunk_index": 0
+        },
+        {
+          "id": "12035_5",
+          "question": "Dấu hiệu cần đi khám",
+          "score": 0.4401214122772217,
+          "chunk_index": 5
+        },
+        {
+          "id": "12064_4",
+          "question": "Các phương pháp phòng bệnh",
+          "score": 0.44211387634277344,
+          "chunk_index": 4
+        },
+        {
+          "id": "13884_258",
+          "question": "Cách chăm sóc người bệnh vô kinh ra sao?",
+          "score": 0.45194169878959656,
+          "chunk_index": 258
+        },
+        {
+          "id": "4220_0",
+          "question": "Các biện pháp điều trị và phòng ngừa",
+          "score": 0.4653070271015167,
+          "chunk_index": 0
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "200_0",
+          "text": "Câu hỏi: Các phương pháp điều trị áp xe hậu môn\n\nTrả lời: Tác dụng: Rạch và dẫn lưu là phương pháp điều trị phổ biến nhất cho tất cả các loại áp xe hậu môn. Cần nhanh chóng phát hiện bệnh và thực hiện",
+          "distance": 0.4391809105873108,
+          "vector_score": 1.0,
+          "bm25_score": 1.0,
+          "hybrid_score": 1.0
+        },
+        {
+          "id": "12035_5",
+          "text": "Câu hỏi: Dấu hiệu cần đi khám\n\nTrả lời: ràng - ống hậu môn (táo bón đoạn xa): Đây là dạng phức tạp nhất. Việc điều trị cần kết hợp nhiều phương pháp cận lâm sàng như: đo thời gian lưu thông đại tràng,",
+          "distance": 0.4401214122772217,
+          "vector_score": 0.982921330315694,
+          "bm25_score": 0.45140645416621855,
+          "hybrid_score": 0.7703153798559038
+        },
+        {
+          "id": "12064_4",
+          "text": "Câu hỏi: Các phương pháp phòng bệnh\n\nTrả lời: n phương pháp điều trị thích hợp.Với trĩ ngoại, điều trị nội khoa đơn thuần trong trường hợp trĩ ngoại phù nề, điều trị thủ thuật với các trường hợp trĩ g",
+          "distance": 0.44211387634277344,
+          "vector_score": 0.9467399645633028,
+          "bm25_score": 0.0,
+          "hybrid_score": 0.5680439787379816
+        },
+        {
+          "id": "13884_258",
+          "text": "Câu hỏi: Cách chăm sóc người bệnh vô kinh ra sao?\n\nTrả lời: i bác sĩ sẽ giúp điều chỉnh kịp thời các biện pháp điều trị.3.9. Sử dụng đông y hoặc các liệu pháp bổ sungTrong một số trường hợp, phương ph",
+          "distance": 0.45194169878959656,
+          "vector_score": 0.7682754970500086,
+          "bm25_score": 0.024528891116660106,
+          "hybrid_score": 0.4707768546766692
+        },
+        {
+          "id": "4220_0",
+          "text": "Câu hỏi: Các biện pháp điều trị và phòng ngừa\n\nTrả lời: Việc đầu tiên là xác định tình trạng nặng nhẹ để có thái độ xử trí phù hợp. Cần căn cứ vào mức độ mất máu, đánh giá nguy cơ chảy máu lại, biến c",
+          "distance": 0.4653070271015167,
+          "vector_score": 0.5255730862938778,
+          "bm25_score": 0.024316816818888753,
+          "hybrid_score": 0.32507057850388216
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b11",
+      "question": "Acid uric là gì và vai trò của nó trong cơ thể?",
+      "category": "metabolic_endocrine",
+      "difficulty": "easy",
+      "expected_topics": [
+        "acid uric",
+        "gout",
+        "bệnh"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.9424242424242425,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.43478260869565216,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 21.26,
+      "generation_latency_ms": 1174.23,
+      "total_latency_ms": 3205.29,
+      "answer": "Acid uric là một sản phẩm dị hóa cuối cùng trong quá trình chuyển hóa nucleotide purine ngoại sinh và nội sinh ở người. Nó được tạo ra khi cơ thể phân hủy các bazơ purin ngoại sinh có trong thực phẩm hoặc purin nội sinh tạo ra trong quá trình phá hủy tế bào tự nhiên trong cơ thể. Quá trình này được thực hiện chủ yếu ở gan, sau đó acid uric được lọc ở thận và bài tiết ra ngoài theo nước tiểu. Một ít acid uric được thải qua đường tiêu hóa.\n\nVai trò của acid uric trong cơ thể là một phần của quá trình chuyển hóa tự nhiên. Tuy nhiên, khi nồng độ acid uric trong máu tăng cao, nó có thể gây ra các vấn đề sức khỏe như bệnh gout, sưng và đau do tích tụ tinh thể hình kim trong khớp. Vì vậy, việc kiểm soát nồng độ acid uric trong máu là quan trọng để duy trì sức khỏe tổng thể.\n\nNếu bạn có bất kỳ lo lắng nào về nồng độ acid uric hoặc các vấn đề sức khỏe liên quan, hãy tham khảo ý kiến bác sĩ để được tư vấn và hướng dẫn cụ thể.",
+      "sources": [
+        {
+          "id": "3071_0",
+          "question": "Vai trò của purine và acid uric",
+          "score": 0.4378916025161743,
+          "chunk_index": 0
+        },
+        {
+          "id": "264_27",
+          "question": "Chỉ định xét nghiệm acid uric máu",
+          "score": 0.43151557445526123,
+          "chunk_index": 27
+        },
+        {
+          "id": "3035_0",
+          "question": "Những thói quen ăn uống là nguyên nhân hàng đầu dẫn tới acid uric tăng",
+          "score": 0.4589475393295288,
+          "chunk_index": 0
+        },
+        {
+          "id": "247_0",
+          "question": "Nguyên nhân khiến acid uric máu tăng",
+          "score": 0.47573205828666687,
+          "chunk_index": 0
+        },
+        {
+          "id": "248_35",
+          "question": "Vai trò của tập luyện đối với người tăng acid uric",
+          "score": 0.5121257901191711,
+          "chunk_index": 35
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "3071_0",
+          "text": "Câu hỏi: Vai trò của purine và acid uric\n\nTrả lời: Tích tụ acid uric gây sưng và đau. Quá nhiều acid uric trong cơ thể sẽ gây ra bệnh gout. Cơ thể sản xuất hầu hết acid uric một cách tự nhiên - khoảng",
+          "distance": 0.4378916025161743,
+          "vector_score": 0.9446783730977567,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.966807023858654
+        },
+        {
+          "id": "264_27",
+          "text": "Câu hỏi: Chỉ định xét nghiệm acid uric máu\n\nTrả lời: Acid uric được tạo ra khi cơ thể phân hủy các bazơ purin ngoại sinh có trong thực phẩm hoặc purin nội sinh tạo ra trong quá trình phá hủy tế bào tự",
+          "distance": 0.43151557445526123,
+          "vector_score": 1.0,
+          "bm25_score": 0.2057233374335085,
+          "hybrid_score": 0.6822893349734034
+        },
+        {
+          "id": "3035_0",
+          "text": "Câu hỏi: Những thói quen ăn uống là nguyên nhân hàng đầu dẫn tới acid uric tăng\n\nTrả lời: Acid uric là sản phẩm dị hóa cuối cùng trong quá trình chuyển hóa nucleotide purine ngoại sinh và nội sinh ở n",
+          "distance": 0.4589475393295288,
+          "vector_score": 0.7619864731661252,
+          "bm25_score": 0.0,
+          "hybrid_score": 0.45719188389967513
+        },
+        {
+          "id": "247_0",
+          "text": "Câu hỏi: Nguyên nhân khiến acid uric máu tăng\n\nTrả lời: Acid uric được tạo ra khi cơ thể phân hủy các bazơ purin ngoại sinh có trong thực phẩm hoặc purin nội sinh tạo ra trong quá trình phá hủy tế bào",
+          "distance": 0.47573205828666687,
+          "vector_score": 0.6163555432816277,
+          "bm25_score": 0.2057233374335085,
+          "hybrid_score": 0.45210266094238
+        },
+        {
+          "id": "248_35",
+          "text": "Câu hỏi: Vai trò của tập luyện đối với người tăng acid uric\n\nTrả lời: yên nhân làm acid uric tăng bao gồm chế độ ăn và một số bệnh lý. Vì vậy xét nghiệm acid uric máu có thể chỉ ra một số tình trạng s",
+          "distance": 0.5121257901191711,
+          "vector_score": 0.3005852181225234,
+          "bm25_score": 0.6304092325265506,
+          "hybrid_score": 0.4325148238841343
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b12",
+      "question": "Mối liên hệ giữa tăng acid uric máu và bệnh Gout",
+      "category": "metabolic_endocrine",
+      "difficulty": "medium",
+      "expected_topics": [
+        "acid uric",
+        "gout",
+        "tăng"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.2454545454545454,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.4230769230769231,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 23.03,
+      "generation_latency_ms": 1128.07,
+      "total_latency_ms": 3156.81,
+      "answer": "Mối liên hệ giữa tăng acid uric máu và bệnh Gout là rất chặt chẽ. Gout là một bệnh khớp do rối loạn chuyển hóa, gây ra bởi tình trạng lắng đọng các tinh thể urat ở các mô của cơ thể, do tăng acid uric trong máu. Tuy nhiên, không phải bất kỳ ai tăng acid uric máu đều bị bệnh Gout. Tăng acid uric máu là một yếu tố nguy cơ quan trọng cho việc phát triển bệnh Gout, nhưng nó không phải là nguyên nhân duy nhất. Có nhiều người tăng acid uric máu mà không bị Gout, và ngược lại, có những người bị Gout mà không có tăng acid uric máu.\n\nTheo thông tin được cung cấp, tăng acid uric máu có thể làm tăng nguy cơ mắc các bệnh tim mạch, bệnh thận và rối loạn chuyển hóa khác, ngoài việc làm tăng nguy cơ phát triển bệnh Gout. Vì vậy, việc kiểm soát và điều trị tăng acid uric máu là rất quan trọng để ngăn chặn các biến chứng này.\n\nTuy nhiên, cần lưu ý rằng việc điều trị tăng acid uric máu không phải lúc nào cũng cần thiết, đặc biệt là trong trường hợp không có triệu chứng. Qua nhiều nghiên cứu cho thấy không có những bằng chứng mạnh mẽ ủng hộ việc dùng thuốc hạ acid uric trong trường hợp này. Do đó, việc tham khảo ý kiến bác sĩ để có quyết định điều trị phù hợp là rất quan trọng.",
+      "sources": [
+        {
+          "id": "239_0",
+          "question": "Tăng acid uric máu và bệnh Gout",
+          "score": 0.20766925811767578,
+          "chunk_index": 0
+        },
+        {
+          "id": "240_4",
+          "question": "Nguyên nhân tăng acid uric máu",
+          "score": 0.23948539793491364,
+          "chunk_index": 4
+        },
+        {
+          "id": "264_5",
+          "question": "Chỉ định xét nghiệm acid uric máu",
+          "score": 0.3140418827533722,
+          "chunk_index": 5
+        },
+        {
+          "id": "288_11",
+          "question": "Acid uric cao là bao nhiêu?",
+          "score": 0.31019631028175354,
+          "chunk_index": 11
+        },
+        {
+          "id": "238_7",
+          "question": "Acid uric là gì?",
+          "score": 0.2660054862499237,
+          "chunk_index": 7
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "239_0",
+          "text": "Câu hỏi: Tăng acid uric máu và bệnh Gout\n\nTrả lời: Gout là một bệnh khớp do rối loạn chuyển hóa, gây ra bởi tình trạng lắng đọng các tinh thể urat ở các mô của cơ thể, do tăng acid uric trong máu. Tuy",
+          "distance": 0.20766925811767578,
+          "vector_score": 1.0,
+          "bm25_score": 0.8869243496839285,
+          "hybrid_score": 0.9547697398735714
+        },
+        {
+          "id": "240_4",
+          "text": "Câu hỏi: Nguyên nhân tăng acid uric máu\n\nTrả lời: máu ở những bệnh nhân đã bị cơn Gout là điều đã được chứng minh. Nó góp phần hạn chế, ngừng các cơn Gout cấp tái phát cũng như biến chuyển bệnh thành ",
+          "distance": 0.23948539793491364,
+          "vector_score": 0.7008991747058855,
+          "bm25_score": 0.007208922716071182,
+          "hybrid_score": 0.4234230739099597
+        },
+        {
+          "id": "264_5",
+          "text": "Câu hỏi: Chỉ định xét nghiệm acid uric máu\n\nTrả lời: ị tăng acid uric máu, nhưng chỉ có một số tiến triển thành gout. Ngoài gout, tăng acid uric máu có thể làm tăng nguy cơ mắc các bệnh tim mạch, bệnh",
+          "distance": 0.3140418827533722,
+          "vector_score": 0.0,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.4
+        },
+        {
+          "id": "288_11",
+          "text": "Câu hỏi: Acid uric cao là bao nhiêu?\n\nTrả lời: ì nguy cơ tiến triển thành gout kèm theo các biến chứng rất cao. Acid uric máu có nguồn gốc ngoại sinh xuất phát từ các loại thức ăn động vật như thịt, c",
+          "distance": 0.31019631028175354,
+          "vector_score": 0.036151899840667835,
+          "bm25_score": 0.813365993867926,
+          "hybrid_score": 0.3470375374515711
+        },
+        {
+          "id": "238_7",
+          "text": "Câu hỏi: Acid uric là gì?\n\nTrả lời: máu ở những bệnh nhân đã bị cơn Gout là điều đã được chứng minh. Nó góp phần hạn chế, ngừng các cơn Gout cấp tái phát cũng như biến chuyển bệnh thành Gout mạn tính ",
+          "distance": 0.2660054862499237,
+          "vector_score": 0.45158607929401867,
+          "bm25_score": 0.0,
+          "hybrid_score": 0.2709516475764112
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b13",
+      "question": "Triệu chứng của bệnh đái tháo đường type 2 là gì?",
+      "category": "metabolic_endocrine",
+      "difficulty": "medium",
+      "expected_topics": [
+        "đái tháo đường",
+        "triệu chứng",
+        "type 2"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.0121212121212122,
+        "precision@5": 0.8,
+        "recall@5": 1.0,
+        "avg_precision": 0.95
+      },
+      "generation_metrics": {
+        "faithfulness": 0.23684210526315788,
+        "answer_relevance": 1.0,
+        "context_precision": 0.8905109489051095,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 22.36,
+      "generation_latency_ms": 694.62,
+      "total_latency_ms": 2719.37,
+      "answer": "Dù là đái tháo đường type 1 hay type 2, các bệnh nhân đều có các triệu chứng: Ăn nhiều, uống nhiều, tiểu nhiều, sút cân. Ngoài ra, người bệnh còn bị khô miệng, khô da, mệt mỏi, nhức đầu, chóng mặt, mất ngủ, rụng tóc và rối loạn kinh nguyệt (ở phụ nữ), vết thương lâu lành, có cảm giác kiến bò ở đầu chi... \n\nTuy nhiên, để có thông tin chính xác và đầy đủ về tình trạng sức khỏe của bạn, tôi khuyến nghị bạn nên tham khảo ý kiến của bác sĩ.",
+      "sources": [
+        {
+          "id": "2039_70",
+          "question": "Nguyên nhân đái tháo đường",
+          "score": 0.27851957082748413,
+          "chunk_index": 70
+        },
+        {
+          "id": "2040_0",
+          "question": "Triệu chứng của bệnh đái tháo đường",
+          "score": 0.3585323393344879,
+          "chunk_index": 0
+        },
+        {
+          "id": "13920_32",
+          "question": "Triệu chứng bệnh võng mạc tiểu đường",
+          "score": 0.40852606296539307,
+          "chunk_index": 32
+        },
+        {
+          "id": "13933_6",
+          "question": "Tổng quan bệnh võng mạc",
+          "score": 0.40817874670028687,
+          "chunk_index": 6
+        },
+        {
+          "id": "2022_74",
+          "question": "Những lưu ý khi tập luyện ở người bệnh đái tháo đường",
+          "score": 0.4330669641494751,
+          "chunk_index": 74
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "2039_70",
+          "text": "Câu hỏi: Nguyên nhân đái tháo đường\n\nTrả lời: ai.Nên theo dõi đường huyết thường xuyên ở người bệnh đái tháo đường.2. Triệu chứng của bệnh đái tháo đườngDù là đái tháo đường type 1 hay type 2 các bệnh",
+          "distance": 0.27851957082748413,
+          "vector_score": 1.0,
+          "bm25_score": 1.0,
+          "hybrid_score": 1.0
+        },
+        {
+          "id": "2040_0",
+          "text": "Câu hỏi: Triệu chứng của bệnh đái tháo đường\n\nTrả lời: Dù là đái tháo đường type 1 hay type 2 các bệnh nhân đều có các triệu chứng:Ăn nhiều.Uống nhiều.Tiểu nhiều.Sút cân.Ngoài ra người bệnh còn bị khô",
+          "distance": 0.3585323393344879,
+          "vector_score": 0.5574204013540569,
+          "bm25_score": 0.8831189208439003,
+          "hybrid_score": 0.6876998091499943
+        },
+        {
+          "id": "13920_32",
+          "text": "Câu hỏi: Triệu chứng bệnh võng mạc tiểu đường\n\nTrả lời: hêmPhòng ngừa bệnh võng mạc đái tháo đường - Thấy những vùng trống hoặc tối.- Mất thị lực.Bệnh nhân đái tháo đường: Khám mắt ngay khi được chẩn ",
+          "distance": 0.40852606296539307,
+          "vector_score": 0.2808870110934083,
+          "bm25_score": 0.07002397158207119,
+          "hybrid_score": 0.19654179528887347
+        },
+        {
+          "id": "13933_6",
+          "text": "Câu hỏi: Tổng quan bệnh võng mạc\n\nTrả lời: gBệnh võng mạc tiểu đường là một biến chứng của bệnh tiểu đường. Khi lượng đường trong máu cao, nó có thể gây tổn thương các mạch máu nhỏ trong võng mạc, dẫn",
+          "distance": 0.40817874670028687,
+          "vector_score": 0.2828081431337333,
+          "bm25_score": 0.0,
+          "hybrid_score": 0.16968488588023997
+        },
+        {
+          "id": "2022_74",
+          "text": "Câu hỏi: Những lưu ý khi tập luyện ở người bệnh đái tháo đường\n\nTrả lời: át bệnh.Đái tháo đường: Nguyên nhân, triệu chứng, cách điều trị và phòng bệnhSKĐS- Đái tháo đường (còn gọi là tiểu đường) là bệ",
+          "distance": 0.4330669641494751,
+          "vector_score": 0.14514239933797268,
+          "bm25_score": 0.06673875235535301,
+          "hybrid_score": 0.11378094054492481
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b14",
+      "question": "Nguyên nhân gây viêm tai xương chũm là gì?",
+      "category": "ent_ent",
+      "difficulty": "medium",
+      "expected_topics": [
+        "viêm tai",
+        "xương chũm",
+        "nguyên nhân"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.1636363636363636,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.4857142857142857,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 24.86,
+      "generation_latency_ms": 802.54,
+      "total_latency_ms": 2837.13,
+      "answer": "Nguyên nhân gây viêm tai xương chũm bao gồm:\n\n- Viêm tai giữa không được điều trị tốt.\n- Biến chứng của viêm tai giữa cấp và mạn tính.\n- Viêm tai giữa sau các bệnh cúm, sởi, ho gà và bạch hầu.\n- Bị nhiễm trùng bởi các loại vi khuẩn như Haemophilus influenza, Staphylococcus hoặc Streptococcus.\n- Viêm tai giữa có thể tiềm tàng hoặc biểu hiện rõ rệt và có thể gây viêm xương chũm cấp do những yếu tố thuận lợi như sai lầm về điều trị, không chích rạch màng nhĩ kịp thời, lỗ thủng không dẫn lưu được mủ hoặc khi rửa tai bơm nước quá mạnh; bệnh nhiễm trùng nặng làm mất sức đề kháng như sởi, cúm...; vi trùng độc tính cao; cấu tạo xương chũm nhiều thông bào; thể địa suy yếu như trẻ em ốm yếu suy dinh dưỡng.\n\nĐể có thông tin chính xác và đầy đủ về tình trạng sức khỏe của bạn, tôi khuyến nghị bạn nên tham khảo ý kiến của bác sĩ chuyên khoa.",
+      "sources": [
+        {
+          "id": "13518_1",
+          "question": "Viêm tai xương chũm là gì?",
+          "score": 0.2988390326499939,
+          "chunk_index": 1
+        },
+        {
+          "id": "341_1",
+          "question": "Nguyên nhân gây viêm tai xương chũm",
+          "score": 0.30887076258659363,
+          "chunk_index": 1
+        },
+        {
+          "id": "349_15",
+          "question": "Biểu hiện viêm tai xương chũm và biến chứng",
+          "score": 0.34549853205680847,
+          "chunk_index": 15
+        },
+        {
+          "id": "13982_1",
+          "question": "Một số nguyên nhân gây cản trở dẫn lưu xoang",
+          "score": 0.3268084228038788,
+          "chunk_index": 1
+        },
+        {
+          "id": "14489_18",
+          "question": "Biến chứng thường gặp ở bệnh viêm tai giữa",
+          "score": 0.3490339517593384,
+          "chunk_index": 18
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "13518_1",
+          "text": "Câu hỏi: Viêm tai xương chũm là gì?\n\nTrả lời: . Nguyên nhân của viêm tai xương chũm cấp tính là viêm tai giữa. Viêm tai giữa có thể tiềm tàng hoặc biểu hiện rõ rệt và có thể gây viêm xương chũm cấp do",
+          "distance": 0.2988390326499939,
+          "vector_score": 1.0,
+          "bm25_score": 1.0,
+          "hybrid_score": 1.0
+        },
+        {
+          "id": "341_1",
+          "text": "Câu hỏi: Nguyên nhân gây viêm tai xương chũm\n\nTrả lời: ng… dễ dẫn tới tử vong. - Viêm tai giữa không được điều trị tốt. - Biến chứng của viêm tai giữa cấp và mạn tính. - Viêm tai giữa sau các bệnh cúm",
+          "distance": 0.30887076258659363,
+          "vector_score": 0.9019871672428091,
+          "bm25_score": 0.5625142883817648,
+          "hybrid_score": 0.7661980156983914
+        },
+        {
+          "id": "349_15",
+          "text": "Câu hỏi: Biểu hiện viêm tai xương chũm và biến chứng\n\nTrả lời: sẽ và khô ráo, không tự ý điều trị, ngoáy tai dễ gây tổn thương. Bệnh viêm tai xương chũm nếu không được điều trị có thể gây ra các bệnh ",
+          "distance": 0.34549853205680847,
+          "vector_score": 0.5441235219850358,
+          "bm25_score": 0.5782689859851305,
+          "hybrid_score": 0.5577817075850737
+        },
+        {
+          "id": "13982_1",
+          "text": "Câu hỏi: Một số nguyên nhân gây cản trở dẫn lưu xoang\n\nTrả lời: ễ bị viêm xoang.Viêm xoang là một bệnh lý tai mũi họng phổ biến. Ảnh minh hoạ.Biến chứng của viêm mũi xoangViêm xoang có thể gây nhiều b",
+          "distance": 0.3268084228038788,
+          "vector_score": 0.726731164335697,
+          "bm25_score": 0.24067623875260438,
+          "hybrid_score": 0.5323091941024599
+        },
+        {
+          "id": "14489_18",
+          "text": "Câu hỏi: Biến chứng thường gặp ở bệnh viêm tai giữa\n\nTrả lời: giữa.Biến chứng viêm xương chũm và các biến chứng nguy hiểm khác do viêm tai giữaXương chũm là một xương sọ, cấu tạo nên thành trong của t",
+          "distance": 0.3490339517593384,
+          "vector_score": 0.5095814736822489,
+          "bm25_score": 0.5139156221875318,
+          "hybrid_score": 0.5113151330843622
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b15",
+      "question": "Người bệnh Alzheimer cần được chăm sóc như thế nào?",
+      "category": "neurological",
+      "difficulty": "medium",
+      "expected_topics": [
+        "alzheimer",
+        "chăm sóc",
+        "người bệnh"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.9272727272727272,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.55,
+        "answer_relevance": 0.7,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 19.33,
+      "generation_latency_ms": 725.09,
+      "total_latency_ms": 2747.05,
+      "answer": "Người bệnh Alzheimer cần được chăm sóc bằng cách hỗ trợ và hướng dẫn để họ có thể tự chăm sóc tối đa. Điều này bao gồm đơn giản hóa lịch sinh hoạt, cố định các vật dụng cá nhân để họ dễ dàng ghi nhớ và thực hiện. Áp dụng chế độ ăn khoa học, giảm đường, muối, tăng cường ăn rau xanh, đạm, hạn chế chất béo động vật. Luyện tập thể dục thường xuyên và kiểm soát cân nặng, tránh béo phì. Ngoài ra, người nhà nên thực hiện theo hướng dẫn của bác sĩ, uống thuốc đủ, đúng liều, theo dõi thường xuyên huyết áp, đường huyết bằng máy. Tùy thuộc vào các biểu hiện và triệu chứng, bác sĩ sẽ hướng dẫn người bệnh và người nhà tự chăm sóc. \n\nĐể có được kế hoạch chăm sóc cụ thể và phù hợp, người bệnh và người nhà nên tham khảo ý kiến của bác sĩ.",
+      "sources": [
+        {
+          "id": "435_15",
+          "question": "Cách xử trí khi bị Alzheimer",
+          "score": 0.322266161441803,
+          "chunk_index": 15
+        },
+        {
+          "id": "436_2",
+          "question": "Chăm sóc người mắc Alzheimer tại nhà",
+          "score": 0.34139934182167053,
+          "chunk_index": 2
+        },
+        {
+          "id": "396_0",
+          "question": "Chăm sóc đúng cách bệnh nhân  Alzheimer",
+          "score": 0.36140191555023193,
+          "chunk_index": 0
+        },
+        {
+          "id": "414_1",
+          "question": "Bệnh Alzheimer được điều trị như thế nào?",
+          "score": 0.44685909152030945,
+          "chunk_index": 1
+        },
+        {
+          "id": "395_3",
+          "question": "Điều trị bệnh Alzheimer",
+          "score": 0.4103660583496094,
+          "chunk_index": 3
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "435_15",
+          "text": "Câu hỏi: Cách xử trí khi bị Alzheimer\n\nTrả lời: ự chăm sóc được bản thân hoặc phụ thuộc một phần vào người khác. Bạn có thế hỗ trợ và hướng dẫn để bệnh nhân có thể tự chăm sóc tối đa. Đơn giản hóa lịc",
+          "distance": 0.322266161441803,
+          "vector_score": 1.0,
+          "bm25_score": 0.23406714455789127,
+          "hybrid_score": 0.6936268578231565
+        },
+        {
+          "id": "436_2",
+          "text": "Câu hỏi: Chăm sóc người mắc Alzheimer tại nhà\n\nTrả lời: thế hỗ trợ và hướng dẫn để bệnh nhân có thể tự chăm sóc tối đa. Đơn giản hóa lịch sinh hoạt, cố định các vật dụng cá nhân để bệnh nhân dễ dàng g",
+          "distance": 0.34139934182167053,
+          "vector_score": 0.8565585930832073,
+          "bm25_score": 0.2216706696203613,
+          "hybrid_score": 0.6026034236980689
+        },
+        {
+          "id": "396_0",
+          "text": "Câu hỏi: Chăm sóc đúng cách bệnh nhân  Alzheimer\n\nTrả lời: Tùy thuộc các biểu hiện và triệu chứng mà bác sĩ hướng dẫn người bệnh và người nhà tự chăm sóc. Chăm sóc đặc biệt khi bệnh nhân mắc các bệnh ",
+          "distance": 0.36140191555023193,
+          "vector_score": 0.7065993463392226,
+          "bm25_score": 0.34586341759290856,
+          "hybrid_score": 0.562304974840697
+        },
+        {
+          "id": "414_1",
+          "text": "Câu hỏi: Bệnh Alzheimer được điều trị như thế nào?\n\nTrả lời: bệnh Alzheimer có thể trải nghiệm chất lượng cuộc sống tốt hơn. Nhiều liệu pháp hỗ trợ khác cũng có sẵn, giúp những người mắc bệnh Alzheime",
+          "distance": 0.44685909152030945,
+          "vector_score": 0.06592710529443781,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.4395562631766627
+        },
+        {
+          "id": "395_3",
+          "text": "Câu hỏi: Điều trị bệnh Alzheimer\n\nTrả lời: c và sử dụng thuốc. Điều trị không dùng thuốc nên áp dụng trước. Việc kê đơn thuốc cho bệnh nhân Alzheimer phải được tiến hành vô cùng cẩn trọng. Việc sử dụn",
+          "distance": 0.4103660583496094,
+          "vector_score": 0.3395152864927087,
+          "bm25_score": 0.12588806958327514,
+          "hybrid_score": 0.25406439972893524
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b16",
+      "question": "Virus cúm A lây qua những con đường nào?",
+      "category": "respiratory",
+      "difficulty": "easy",
+      "expected_topics": [
+        "cúm A",
+        "virus",
+        "lây"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.209090909090909,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.18181818181818182,
+        "answer_relevance": 0.75,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 19.8,
+      "generation_latency_ms": 996.16,
+      "total_latency_ms": 3024.36,
+      "answer": "Virus cúm A lây qua các con đường sau:\n\n- Đường hô hấp: Virus cúm A lây qua đường hô hấp, chủ yếu là \"giọt bắn\" và \"không khí\", khi người bệnh ho, hắt hơi, sổ mũi, khạc nhổ...\n- Đường tiếp xúc: Virus cúm A cũng có thể lây qua đường tiếp xúc, khi người bệnh tiếp xúc trực tiếp với người lành, hoặc qua các bề mặt có chứa virus cúm.\n\nĐể phòng ngừa, cần thực hiện các biện pháp như hạn chế đến nơi đông người, rửa tay đúng cách và thường xuyên, che miệng và mũi khi hắt hơi hoặc ho, vệ sinh bề mặt có thể chứa virus cúm, và tiêm vaccine phòng cúm hàng năm.",
+      "sources": [
+        {
+          "id": "469_17",
+          "question": "Phân loại virus cúm",
+          "score": 0.3251688778400421,
+          "chunk_index": 17
+        },
+        {
+          "id": "471_1",
+          "question": "Con đường lây bệnh của virus cúm A",
+          "score": 0.35545238852500916,
+          "chunk_index": 1
+        },
+        {
+          "id": "458_0",
+          "question": "Đường lây truyền của cúm A",
+          "score": 0.3296512961387634,
+          "chunk_index": 0
+        },
+        {
+          "id": "463_13",
+          "question": "Virus cúm A lây qua đường nào?",
+          "score": 0.41728514432907104,
+          "chunk_index": 13
+        },
+        {
+          "id": "470_9",
+          "question": "Thế nào là virus cúm A?",
+          "score": 0.39471766352653503,
+          "chunk_index": 9
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "469_17",
+          "text": "Câu hỏi: Phân loại virus cúm\n\nTrả lời: qua phương thức lây truyền chủ yếu là \"giọt bắn\" và \"không khí\", virus cúm A đi vào cơ thể qua đường hô hấp, xâm nhiễm các tế bào niêm mạc đường hô hấp trên, gây",
+          "distance": 0.3251688778400421,
+          "vector_score": 1.0,
+          "bm25_score": 0.7373159148208267,
+          "hybrid_score": 0.8949263659283306
+        },
+        {
+          "id": "471_1",
+          "text": "Câu hỏi: Con đường lây bệnh của virus cúm A\n\nTrả lời: ủ yếu là \"giọt bắn\" và \"không khí\", virus cúm A đi vào cơ thể qua đường hô hấp, xâm nhiễm các tế bào niêm mạc đường hô hấp trên, gây tổn thương ni",
+          "distance": 0.35545238852500916,
+          "vector_score": 0.711388818434833,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.8268332910608998
+        },
+        {
+          "id": "458_0",
+          "text": "Câu hỏi: Đường lây truyền của cúm A\n\nTrả lời: Cúm A là một trong những căn bệnh rất dễ lây lan trực tiếp vì tốc độ phát triển của virus nhanh chóng. Bệnh nhân bị cúm A có thể lây l",
+          "distance": 0.3296512961387634,
+          "vector_score": 0.9572811734108003,
+          "bm25_score": 0.30615399862024056,
+          "hybrid_score": 0.6968303034945764
+        },
+        {
+          "id": "463_13",
+          "text": "Câu hỏi: Virus cúm A lây qua đường nào?\n\nTrả lời: theo dõi kỹ triệu chứng và điều trị kịp thời khi bị nhiễm cúm A. Bởi vì cúm A có thể gây ra các biến chứng nghiêm trọng, thậm chí dẫn đến tử vong tron",
+          "distance": 0.41728514432907104,
+          "vector_score": 0.12210361640905097,
+          "bm25_score": 0.7961702414762502,
+          "hybrid_score": 0.3917302664359307
+        },
+        {
+          "id": "470_9",
+          "text": "Câu hỏi: Thế nào là virus cúm A?\n\nTrả lời: hợp phải giao lưu tiếp xúcHạn chế đến nơi đông ngườiRửa tay đúng cách và thường xuyênChe miệng và mũi khi hắt hơi hoặc ho bằng khăn giấy hoặc vào khu vực bên",
+          "distance": 0.39471766352653503,
+          "vector_score": 0.3371786573157961,
+          "bm25_score": 0.2850427406079136,
+          "hybrid_score": 0.3163242906326431
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b17",
+      "question": "Các biện pháp phòng bệnh sốt rét hiệu quả nhất",
+      "category": "infection_parasitic",
+      "difficulty": "medium",
+      "expected_topics": [
+        "sốt rét",
+        "phòng",
+        "biện pháp"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.0333333333333334,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.23076923076923078,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 20.36,
+      "generation_latency_ms": 1092.91,
+      "total_latency_ms": 3121.96,
+      "answer": "Các biện pháp phòng bệnh sốt rét hiệu quả nhất bao gồm:\n\n1. Phòng chống muỗi truyền bệnh: Ngăn sự tiếp xúc giữa người và muỗi truyền bệnh bằng cách sử dụng màn chống muỗi được xử lý bằng thuốc diệt côn trùng, phun thuốc tồn lưu trong nhà, và diệt muỗi bằng các phương pháp khác.\n\n2. Sử dụng màn chống muỗi: Mắc màn mỗi khi đi ngủ và sử dụng màn chống muỗi được xử lý bằng thuốc diệt côn trùng để ngăn chặn muỗi truyền bệnh.\n\n3. Dọn dẹp nhà cửa gọn gàng: Loại bỏ các nguồn nước tĩnh và các vật dụng có thể chứa nước để ngăn chặn sự sinh sản của muỗi.\n\n4. Sử dụng quạt máy và đóng lưới: Sử dụng quạt máy và đóng lưới ở cửa sổ và cửa ra vào để giảm tối đa sự xâm nhập của muỗi vào nhà.\n\n5. Phun hóa chất diệt muỗi: Phun hóa chất diệt muỗi hoặc tẩm hóa chất vào màn để diệt muỗi.\n\n6. Sử dụng thuốc dự phòng: Sử dụng thuốc dự phòng để ngăn chặn giai đoạn nhiễm trùng sốt rét trong máu.\n\nNhững biện pháp này có thể giúp giảm thiểu nguy cơ mắc bệnh sốt rét. Tuy nhiên, để có thông tin chính xác và phù hợp với tình hình cụ thể, người dùng nên tham khảo ý kiến của bác sĩ hoặc chuyên gia y tế.",
+      "sources": [
+        {
+          "id": "9340_6",
+          "question": "Về điều trị bệnh sốt rét",
+          "score": 0.29883095622062683,
+          "chunk_index": 6
+        },
+        {
+          "id": "9369_55",
+          "question": "Sốt rét là bệnh nguy hiểm",
+          "score": 0.38123631477355957,
+          "chunk_index": 55
+        },
+        {
+          "id": "8917_5",
+          "question": "Đông y có chữa được sốt siêu vi",
+          "score": 0.365011066198349,
+          "chunk_index": 5
+        },
+        {
+          "id": "9372_18",
+          "question": "Các thể bệnh sốt rét",
+          "score": 0.37702715396881104,
+          "chunk_index": 18
+        },
+        {
+          "id": "9395_5",
+          "question": "Lưu ý khi điều trị bệnh sốt rét",
+          "score": 0.386518657207489,
+          "chunk_index": 5
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "9340_6",
+          "text": "Câu hỏi: Về điều trị bệnh sốt rét\n\nTrả lời: là phải giảm 40% trường hợp sốt rét và tỷ lệ tử vong do sốt rét. Nhiều quốc gia có sự lan truyền bệnh sốt rét gia tăng có những phân vân về lựa chọn giải ph",
+          "distance": 0.29883095622062683,
+          "vector_score": 1.0,
+          "bm25_score": 0.39898971223095336,
+          "hybrid_score": 0.7595958848923814
+        },
+        {
+          "id": "9369_55",
+          "text": "Câu hỏi: Sốt rét là bệnh nguy hiểm\n\nTrả lời: ư “kiểm soát véc tơ” (kiểm soát muỗi) được coi là hiệu quả nhất. WHO khuyến nghị hai phương pháp: Sử dụng màn chống muỗi được xử lý bằng thuốc diệt côn trù",
+          "distance": 0.38123631477355957,
+          "vector_score": 0.150881051519273,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.49052863091156385
+        },
+        {
+          "id": "8917_5",
+          "text": "Câu hỏi: Đông y có chữa được sốt siêu vi\n\nTrả lời: phương pháp hỗ trợ hiệu quả cho bệnh nhân sốt siêu vi là: sử dụng thuốc hạ sốt theo chỉ định của bác sĩ. Nghỉ ngơi ở phòng thoáng mát, giữ quần áo sạ",
+          "distance": 0.365011066198349,
+          "vector_score": 0.3180687957503901,
+          "bm25_score": 0.6126416788409067,
+          "hybrid_score": 0.43589794898659673
+        },
+        {
+          "id": "9372_18",
+          "text": "Câu hỏi: Các thể bệnh sốt rét\n\nTrả lời: g pháp phòng bệnh hữu hiệu nhất là phòng chống muỗi truyền bệnh. Ngăn sự tiếp xúc giữa người và muỗi truyền bệnh; Diệt muỗi bằng phun tồn lưu và tẩm màn hóa chấ",
+          "distance": 0.37702715396881104,
+          "vector_score": 0.19425296639564082,
+          "bm25_score": 0.537197528925377,
+          "hybrid_score": 0.3314307914075353
+        },
+        {
+          "id": "9395_5",
+          "text": "Câu hỏi: Lưu ý khi điều trị bệnh sốt rét\n\nTrả lời: nh sốt rét, sử dụng chung bơm kim tiêm có chứa ký sinh trùng sốt rét.Xem thêm video đang được quan tâm:Tăng cường phòng chống bệnh sốt rét. - Điều tr",
+          "distance": 0.386518657207489,
+          "vector_score": 0.09645088906652238,
+          "bm25_score": 0.616876152844753,
+          "hybrid_score": 0.3046209945778146
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b18",
+      "question": "Nhận biết dấu hiệu cấp cứu ở trẻ bị bệnh tim bẩm sinh",
+      "category": "pediatric",
+      "difficulty": "hard",
+      "expected_topics": [
+        "tim bẩm sinh",
+        "cấp cứu",
+        "trẻ"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.2454545454545454,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.75,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 20.1,
+      "generation_latency_ms": 1113.74,
+      "total_latency_ms": 3135.58,
+      "answer": "Để nhận biết dấu hiệu cấp cứu ở trẻ bị bệnh tim bẩm sinh, bạn cần theo dõi các dấu hiệu bất thường của trẻ, bao gồm:\n\n- Tình trạng hô hấp: Nếu trẻ có dấu hiệu khó thở hoặc thở nhanh.\n- Da, môi và móng tay: Nếu trẻ có dấu hiệu tím tái, da nhợt nhạt hoặc môi và móng tay có màu xanh.\n- Khó thở: Nếu trẻ có dấu hiệu khó thở hoặc thở nhanh.\n\nNếu bạn phát hiện bất kỳ dấu hiệu nào trong số này, cần đưa trẻ đi khám ngay để được bác sĩ đánh giá và đưa ra phương án điều trị thích hợp. Ngoài ra, việc theo dõi cân nặng và phát triển của trẻ cũng rất quan trọng để đảm bảo trẻ đang phát triển khỏe mạnh.\n\nTuy nhiên, để có thông tin chính xác và đầy đủ về cách nhận biết và xử lý tình huống cấp cứu ở trẻ bị bệnh tim bẩm sinh, bạn nên tham khảo ý kiến của bác sĩ hoặc chuyên gia y tế. Họ có thể cung cấp cho bạn thông tin cụ thể và hướng dẫn phù hợp với tình trạng sức khỏe của trẻ.",
+      "sources": [
+        {
+          "id": "10793_80",
+          "question": "Cách nhận biết các tình huống cấp cứu ở trẻ bị bệnh tim bẩm sinh",
+          "score": 0.360635370016098,
+          "chunk_index": 80
+        },
+        {
+          "id": "10793_272",
+          "question": "Cách nhận biết các tình huống cấp cứu ở trẻ bị bệnh tim bẩm sinh",
+          "score": 0.360635370016098,
+          "chunk_index": 272
+        },
+        {
+          "id": "10793_339",
+          "question": "Cách nhận biết các tình huống cấp cứu ở trẻ bị bệnh tim bẩm sinh",
+          "score": 0.360635370016098,
+          "chunk_index": 339
+        },
+        {
+          "id": "10793_5",
+          "question": "Cách nhận biết các tình huống cấp cứu ở trẻ bị bệnh tim bẩm sinh",
+          "score": 0.37125635147094727,
+          "chunk_index": 5
+        },
+        {
+          "id": "10793_154",
+          "question": "Cách nhận biết các tình huống cấp cứu ở trẻ bị bệnh tim bẩm sinh",
+          "score": 0.40530720353126526,
+          "chunk_index": 154
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "10793_80",
+          "text": "Câu hỏi: Cách nhận biết các tình huống cấp cứu ở trẻ bị bệnh tim bẩm sinh\n\nTrả lời: g tình trạng mà bác sĩ sẽ đưa ra phương án điều trị thích hợp.3. Cách chăm sóc trẻ bị bệnh tim bẩm sinh tại nhàTheo ",
+          "distance": 0.360635370016098,
+          "vector_score": 1.0,
+          "bm25_score": 1.0,
+          "hybrid_score": 1.0
+        },
+        {
+          "id": "10793_272",
+          "text": "Câu hỏi: Cách nhận biết các tình huống cấp cứu ở trẻ bị bệnh tim bẩm sinh\n\nTrả lời: g tình trạng mà bác sĩ sẽ đưa ra phương án điều trị thích hợp.3. Cách chăm sóc trẻ bị bệnh tim bẩm sinh tại nhàTheo ",
+          "distance": 0.360635370016098,
+          "vector_score": 1.0,
+          "bm25_score": 1.0,
+          "hybrid_score": 1.0
+        },
+        {
+          "id": "10793_339",
+          "text": "Câu hỏi: Cách nhận biết các tình huống cấp cứu ở trẻ bị bệnh tim bẩm sinh\n\nTrả lời: g tình trạng mà bác sĩ sẽ đưa ra phương án điều trị thích hợp.3. Cách chăm sóc trẻ bị bệnh tim bẩm sinh tại nhàTheo ",
+          "distance": 0.360635370016098,
+          "vector_score": 1.0,
+          "bm25_score": 1.0,
+          "hybrid_score": 1.0
+        },
+        {
+          "id": "10793_5",
+          "text": "Câu hỏi: Cách nhận biết các tình huống cấp cứu ở trẻ bị bệnh tim bẩm sinh\n\nTrả lời: hăn mỏng, đặc biệt là trong thời tiết lạnh.Tùy từng tình trạng mà bác sĩ sẽ đưa ra phương án điều trị thích hợp.3. C",
+          "distance": 0.37125635147094727,
+          "vector_score": 0.7864969494514764,
+          "bm25_score": 0.9670678228708369,
+          "hybrid_score": 0.8587252988192207
+        },
+        {
+          "id": "10793_154",
+          "text": "Câu hỏi: Cách nhận biết các tình huống cấp cứu ở trẻ bị bệnh tim bẩm sinh\n\nTrả lời: o trẻ bằng cách đắp chăn mỏng, đặc biệt là trong thời tiết lạnh.Tùy từng tình trạng mà bác sĩ sẽ đưa ra phương án đi",
+          "distance": 0.40530720353126526,
+          "vector_score": 0.10200646054895496,
+          "bm25_score": 0.9517235522476668,
+          "hybrid_score": 0.44189329722843973
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b19",
+      "question": "Triệu chứng và cách điều trị bệnh giun kim",
+      "category": "infection_parasitic",
+      "difficulty": "easy",
+      "expected_topics": [
+        "giun kim",
+        "triệu chứng",
+        "điều trị"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.6787878787878788,
+        "precision@5": 1.0,
+        "recall@5": 0.6666666666666666,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.034482758620689655,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 0.6666666666666666
+      },
+      "retrieval_latency_ms": 20.59,
+      "generation_latency_ms": 2659.23,
+      "total_latency_ms": 4682.47,
+      "answer": "Tôi không tìm thấy thông tin về bệnh giun kim trong ngữ cảnh được cung cấp. Để có thông tin chính xác và đầy đủ về triệu chứng và cách điều trị bệnh giun kim, tôi khuyến nghị bạn tham khảo ý kiến của bác sĩ hoặc các nguồn thông tin y tế uy tín.",
+      "sources": [
+        {
+          "id": "5763_10",
+          "question": "Triệu chứng của lao hạch",
+          "score": 0.43306565284729004,
+          "chunk_index": 10
+        },
+        {
+          "id": "7235_1",
+          "question": "Triệu chứng bệnh nấm móng",
+          "score": 0.4441770613193512,
+          "chunk_index": 1
+        },
+        {
+          "id": "14837_43",
+          "question": "Các biểu hiện khác nhau của viêm nang lông",
+          "score": 0.5151985883712769,
+          "chunk_index": 43
+        },
+        {
+          "id": "15904_13",
+          "question": "Triệu chứng của bệnh vảy nến",
+          "score": 0.5203408598899841,
+          "chunk_index": 13
+        },
+        {
+          "id": "7216_0",
+          "question": "Triệu chứng của bệnh nấm móng",
+          "score": 0.5156640410423279,
+          "chunk_index": 0
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "5763_10",
+          "text": "Câu hỏi: Triệu chứng của lao hạch\n\nTrả lời: rị kết hợp với kháng sinh, hoặc là bị u lympho lao hạch, lao không thành mủ, khu trú. Mổ và nạo vét sạch mủ bã đậu ở hạch cũng là cách điều trị có hiệu quả.",
+          "distance": 0.43306565284729004,
+          "vector_score": 1.0,
+          "bm25_score": 0.8253816756345892,
+          "hybrid_score": 0.9301526702538356
+        },
+        {
+          "id": "7235_1",
+          "text": "Câu hỏi: Triệu chứng bệnh nấm móng\n\nTrả lời: ấn công từ bờ vào và không bị viêm quanh móng (nếu do Dermatophytes) hoặc từ vùng chân móng đi ra và có viêm quanh móng (nếu do nấm Candida). Khi viêm vùng",
+          "distance": 0.4441770613193512,
+          "vector_score": 0.8954851134328107,
+          "bm25_score": 0.0,
+          "hybrid_score": 0.5372910680596864
+        },
+        {
+          "id": "14837_43",
+          "text": "Câu hỏi: Các biểu hiện khác nhau của viêm nang lông\n\nTrả lời: iểu hiện là các mụn mủ tiến triển kinh diễn, hay gặp ở nam giới. Thương tổn từng mảng giống chàm, các mụn tập trung, da trợt, chảy nước ho",
+          "distance": 0.5151985883712769,
+          "vector_score": 0.22745037577334182,
+          "bm25_score": 0.15639994049678477,
+          "hybrid_score": 0.199030201662719
+        },
+        {
+          "id": "15904_13",
+          "text": "Câu hỏi: Triệu chứng của bệnh vảy nến\n\nTrả lời: ệnh vảy nến có thể biểu hiện sưng và đau khớp (viêm khớp), nhưng ít phổ biến ở trẻ em hơn ở người lớn, và biểu hiện ở móng như dày sừng dưới móng, tách ",
+          "distance": 0.5203408598899841,
+          "vector_score": 0.17908171703608602,
+          "bm25_score": 0.22517601333621667,
+          "hybrid_score": 0.1975194355561383
+        },
+        {
+          "id": "7216_0",
+          "text": "Câu hỏi: Triệu chứng của bệnh nấm móng\n\nTrả lời: Triệu chứng bệnh nấm móng: Bề mặt móng bị xù xì, phủ một lớp vảy mịn như cám, có lằn sọc dọc hay ngang. Chỗ bị tổn thương có màu hơi vàng, hay nâu đen.",
+          "distance": 0.5156640410423279,
+          "vector_score": 0.2230722869613238,
+          "bm25_score": 0.14086734523761904,
+          "hybrid_score": 0.1901903102718419
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b20",
+      "question": "Nguyên nhân gây lồng ruột ở trẻ em là gì?",
+      "category": "pediatric",
+      "difficulty": "medium",
+      "expected_topics": [
+        "lồng ruột",
+        "trẻ em",
+        "nguyên nhân"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.006060606060606,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.4230769230769231,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 20.4,
+      "generation_latency_ms": 2804.98,
+      "total_latency_ms": 4828.39,
+      "answer": "Nguyên nhân gây lồng ruột ở trẻ em thường không rõ ràng, đặc biệt là ở trẻ dưới 2 tuổi. Tuy nhiên, có một số yếu tố thuận lợi khiến trẻ dễ bị lồng ruột như trẻ bụ bẫm, nhiễm siêu vi hô hấp. Ở trẻ lớn, lồng ruột thường có nguyên nhân như túi thừa Meckel’s, nang ruột đôi, polyp ruột, u thành ruột. Để có hướng xử trí kịp thời, cần xác định nguyên nhân gây lồng ruột. Tuy nhiên, người dùng nên tham khảo ý kiến bác sĩ để được tư vấn chính xác và đầy đủ về tình trạng sức khỏe của trẻ.",
+      "sources": [
+        {
+          "id": "5397_0",
+          "question": "Nguyên nhân gây lồng ruột",
+          "score": 0.25122860074043274,
+          "chunk_index": 0
+        },
+        {
+          "id": "5393_10",
+          "question": "Nguyên nhân và lứa tuổi trẻ em bị lồng ruột",
+          "score": 0.2608667016029358,
+          "chunk_index": 10
+        },
+        {
+          "id": "5408_1",
+          "question": "Các yếu tố làm tăng nguy cơ lồng ruột ở trẻ",
+          "score": 0.33398178219795227,
+          "chunk_index": 1
+        },
+        {
+          "id": "8017_70",
+          "question": "Nguyên nhân gây rối loạn tiêu hóa ở trẻ",
+          "score": 0.32488757371902466,
+          "chunk_index": 70
+        },
+        {
+          "id": "4493_93",
+          "question": "Nguyên nhân khởi phát cơn hen cấp ở trẻ",
+          "score": 0.3352881669998169,
+          "chunk_index": 93
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "5397_0",
+          "text": "Câu hỏi: Nguyên nhân gây lồng ruột\n\nTrả lời: Lồng ruột là tình trạng một đoạn ruột chui vào trong lòng một đoạn ruột kế cận, gây ứ trệ thức ăn và dịch tiêu hóa. Lồng ruột làm tắc nghẽn dòng máu nuôi r",
+          "distance": 0.25122860074043274,
+          "vector_score": 1.0,
+          "bm25_score": 0.9808388612082056,
+          "hybrid_score": 0.9923355444832822
+        },
+        {
+          "id": "5393_10",
+          "text": "Câu hỏi: Nguyên nhân và lứa tuổi trẻ em bị lồng ruột\n\nTrả lời: để có hướng xử trí kịp thời tùy theo nguyên nhân.Các yếu tố làm tăng nguy cơ lồng ruột ở trẻ và cách phát hiệnSKĐS - Lồng ruột là tình tr",
+          "distance": 0.2608667016029358,
+          "vector_score": 0.9051559628238331,
+          "bm25_score": 0.8976590206482858,
+          "hybrid_score": 0.9021571859536143
+        },
+        {
+          "id": "5408_1",
+          "text": "Câu hỏi: Các yếu tố làm tăng nguy cơ lồng ruột ở trẻ\n\nTrả lời: polyp lòng ruột hoặc mắc bệnh gây rối loạn co bóp…Hậu quả của lồng ruột là các mạch máu ruột bị thắt nghẹt, tổn thương, gây chảy máu. Nếu",
+          "distance": 0.33398178219795227,
+          "vector_score": 0.18566469363916382,
+          "bm25_score": 0.6780972131601666,
+          "hybrid_score": 0.3826377014475649
+        },
+        {
+          "id": "8017_70",
+          "text": "Câu hỏi: Nguyên nhân gây rối loạn tiêu hóa ở trẻ\n\nTrả lời: ệnh về đường tiêu hóa thường xuyên gặp ở cả người lớn và trẻ em. Đây là một hội chứng được tạo ra bởi sự co thắt bất thường của các cơ vòng t",
+          "distance": 0.32488757371902466,
+          "vector_score": 0.27515654056710925,
+          "bm25_score": 0.5383403174030599,
+          "hybrid_score": 0.3804300513014895
+        },
+        {
+          "id": "4493_93",
+          "text": "Câu hỏi: Nguyên nhân khởi phát cơn hen cấp ở trẻ\n\nTrả lời: lại là một trong những biểu hiện của hen phế quản.",
+          "distance": 0.3352881669998169,
+          "vector_score": 0.17280917256898387,
+          "bm25_score": 0.08594632089210556,
+          "hybrid_score": 0.13806403189823255
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b21",
+      "question": "Hiện tượng bóng đè là gì và có nguy hiểm không?",
+      "category": "neurological",
+      "difficulty": "easy",
+      "expected_topics": [
+        "bóng đè",
+        "hiện tượng",
+        "nguy hiểm"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.5454545454545455,
+        "precision@5": 0.4,
+        "recall@5": 0.6666666666666666,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.36,
+        "answer_relevance": 1.0,
+        "context_precision": 0.6569343065693432,
+        "context_recall": 0.6666666666666666
+      },
+      "retrieval_latency_ms": 20.89,
+      "generation_latency_ms": 4246.75,
+      "total_latency_ms": 6270.65,
+      "answer": "Hiện tượng bóng đè là một trạng thái mà con người cảm thấy khó thở, tức ngực, nghẹn họng, hoảng loạn hoặc bất lực, không cử động tay, chân được khi đang ngủ. Điều này có thể xuất hiện cùng lúc hoặc xuất hiện riêng biệt và thường đi kèm với cảm giác sợ hãi khi thức dậy, mệt mỏi hoặc buồn ngủ vào hôm sau.\n\nVề mức độ nguy hiểm, bóng đè không phải là một bệnh lây nhiễm và không gây ra các vấn đề sức khỏe nghiêm trọng trực tiếp. Tuy nhiên, nó có thể ảnh hưởng đến chất lượng giấc ngủ và gây ra cảm giác khó chịu, sợ hãi cho người bị bóng đè.\n\nNếu bạn thường xuyên gặp phải hiện tượng bóng đè, bạn nên tham khảo ý kiến của bác sĩ để được tư vấn và điều trị phù hợp. Bác sĩ có thể giúp bạn xác định nguyên nhân gây bóng đè và đề xuất các biện pháp để giảm thiểu và ngăn chặn tình trạng này.",
+      "sources": [
+        {
+          "id": "594_4",
+          "question": "Triệu chứng bóng đè",
+          "score": 0.5784199237823486,
+          "chunk_index": 4
+        },
+        {
+          "id": "593_6",
+          "question": "Nguyên nhân gây bóng đè",
+          "score": 0.5816099047660828,
+          "chunk_index": 6
+        },
+        {
+          "id": "8578_4",
+          "question": "Nguyên nhân gây bong võng mạc",
+          "score": 0.6914295554161072,
+          "chunk_index": 4
+        },
+        {
+          "id": "5490_31",
+          "question": "Thế nào được gọi là loạn thị?",
+          "score": 0.7338744401931763,
+          "chunk_index": 31
+        },
+        {
+          "id": "13933_16",
+          "question": "Tổng quan bệnh võng mạc",
+          "score": 0.72627192735672,
+          "chunk_index": 16
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "594_4",
+          "text": "Câu hỏi: Triệu chứng bóng đè\n\nTrả lời: này có thể xuất hiện cùng lúc hoặc xuất hiện riêng biệt.Thông thường, sau khi trạng thái bóng đè qua đi người bị bóng đè sẽ có cảm giác sợ hãi khi thức dậy, mệt ",
+          "distance": 0.5784199237823486,
+          "vector_score": 1.0,
+          "bm25_score": 0.9511639878682355,
+          "hybrid_score": 0.9804655951472943
+        },
+        {
+          "id": "593_6",
+          "text": "Câu hỏi: Nguyên nhân gây bóng đè\n\nTrả lời: này có thể xuất hiện cùng lúc hoặc xuất hiện riêng biệt.Thông thường, sau khi trạng thái bóng đè qua đi người bị bóng đè sẽ có cảm giác sợ hãi khi thức dậy, ",
+          "distance": 0.5816099047660828,
+          "vector_score": 0.9794796506567631,
+          "bm25_score": 0.9479120955546312,
+          "hybrid_score": 0.9668526286159103
+        },
+        {
+          "id": "8578_4",
+          "text": "Câu hỏi: Nguyên nhân gây bong võng mạc\n\nTrả lời: vùng: Một vùng nào đó của mắt nhìn không rõ vật, nhìn lòe, vùng nhìn mờ cố định không thay đổi khi liếc mắt, khi tra thuốc hay nghỉ ngơi, vùng đó vẫn n",
+          "distance": 0.6914295554161072,
+          "vector_score": 0.2730373215075837,
+          "bm25_score": 0.314981215889305,
+          "hybrid_score": 0.2898148792602722
+        },
+        {
+          "id": "5490_31",
+          "text": "Câu hỏi: Thế nào được gọi là loạn thị?\n\nTrả lời: n bác sĩ trước khi quyết định mua và sử dụng để đảm bảo an toàn và hiệu quả.Xem thêm video được quan tâm:Sáng 11/4: Thanh Niên 2k1 Sát Hại Dã Man Gái L",
+          "distance": 0.7338744401931763,
+          "vector_score": 0.0,
+          "bm25_score": 0.3994847761790054,
+          "hybrid_score": 0.15979391047160219
+        },
+        {
+          "id": "13933_16",
+          "text": "Câu hỏi: Tổng quan bệnh võng mạc\n\nTrả lời: kéo căng bởi dịch kính, gây kích thích các tế bào võng mạc.3.5. Giảm khả năng nhìn ban đêmViêm võng mạc sắc tố thường gây mất khả năng nhìn rõ trong điều kiệ",
+          "distance": 0.72627192735672,
+          "vector_score": 0.048905062470907874,
+          "bm25_score": 0.0,
+          "hybrid_score": 0.029343037482544722
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b22",
+      "question": "Những lưu ý quan trọng trước khi dùng thuốc",
+      "category": "pharmacology",
+      "difficulty": "easy",
+      "expected_topics": [
+        "thuốc",
+        "lưu ý",
+        "dùng"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.184848484848485,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.8095238095238095,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 21.83,
+      "generation_latency_ms": 4125.33,
+      "total_latency_ms": 6146.89,
+      "answer": "Trước khi dùng thuốc, người bệnh cần đọc kỹ hướng dẫn sử dụng để hiểu kỹ thêm về thuốc và những lưu ý cần thiết khi sử dụng. Không tự ý sử dụng, ngừng sử dụng hoặc thay đổi liều lượng mà không có sự hướng dẫn từ chuyên gia y tế. Điều này giúp tránh sự tương tác bất lợi do thuốc gây ra và đảm bảo an toàn cho người bệnh.\n\nNgoài ra, người bệnh cũng nên tuân thủ các nguyên tắc sau:\n\n- Uống thuốc đúng, đủ, đều vào giờ cố định để tránh quên thuốc.\n- Giữ các toa thuốc cẩn thận vào nơi dễ nhớ, dễ tìm để có thể tra cứu khi quên liều dùng, thời điểm dùng, cách dùng.\n- Không dùng chung toa thuốc với người bệnh khác dù cùng mức độ bệnh, cùng triệu chứng.\n- Không tự ý tăng/giảm/ngừng thuốc.\n- Khi uống thuốc thấy triệu chứng không giảm hoặc xuất hiện các biểu hiện bất thường, cần tái khám hoặc gọi ngay cho bác sĩ.\n\nNgười bệnh cũng nên tái khám theo hẹn với bác sĩ, để đánh giá tình trạng sau khi sử dụng thuốc và điều chỉnh liệu trình điều trị nếu cần. Kết hợp với biện pháp phòng ngừa cũng là điều quan trọng để đạt hiệu quả tốt nhất trong việc điều trị bệnh.\n\nNhớ rằng, đây là những thông tin chung và không thay thế cho lời khuyên của bác sĩ. Người bệnh nên tham khảo ý kiến bác sĩ trước khi bắt đầu sử dụng bất kỳ loại thuốc nào.",
+      "sources": [
+        {
+          "id": "8721_19",
+          "question": "Các thuốc điều trị suy tĩnh mạch chân",
+          "score": 0.40810152888298035,
+          "chunk_index": 19
+        },
+        {
+          "id": "9042_2",
+          "question": "Những điều lưu ý khi dùng thuốc",
+          "score": 0.4105865955352783,
+          "chunk_index": 2
+        },
+        {
+          "id": "14712_6",
+          "question": "Những lưu ý khi sử dụng thuốc",
+          "score": 0.41987326741218567,
+          "chunk_index": 6
+        },
+        {
+          "id": "16448_16",
+          "question": "Chống chỉ định thuốc điều trị bệnh xơ cột bên teo cơ",
+          "score": 0.4347018599510193,
+          "chunk_index": 16
+        },
+        {
+          "id": "8724_5",
+          "question": "Chống chỉ định thuốc điều trị suy tĩnh mạch chân",
+          "score": 0.4178040623664856,
+          "chunk_index": 5
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "8721_19",
+          "text": "Câu hỏi: Các thuốc điều trị suy tĩnh mạch chân\n\nTrả lời: lời khuyên thích hợp tránh sự tương tác bất lợi do thuốc gây ra. Trước khi dùng thuốc, người bệnh cần đọc kỹ hướng dẫn sử dụng để hiểu kỹ thêm ",
+          "distance": 0.40810152888298035,
+          "vector_score": 1.0,
+          "bm25_score": 0.29085932686052746,
+          "hybrid_score": 0.716343730744211
+        },
+        {
+          "id": "9042_2",
+          "text": "Câu hỏi: Những điều lưu ý khi dùng thuốc\n\nTrả lời: ết nhất định để tránh những sai lầm đáng tiếc khi sử dụng thuốc. Đối với người bệnh cần: Uống thuốc đúng, đủ, đều vào giờ cố định để tránh quên thuốc",
+          "distance": 0.4105865955352783,
+          "vector_score": 0.9429786890671714,
+          "bm25_score": 0.2473462013343698,
+          "hybrid_score": 0.6647256939740507
+        },
+        {
+          "id": "14712_6",
+          "text": "Câu hỏi: Những lưu ý khi sử dụng thuốc\n\nTrả lời: h tái khám theo hẹn với bác sĩ, để đánh giá tình trạng sau khi sử dụng thuốc và điều chỉnh liệu trình điều trị nếu cần. Kết hợp với biện pháp phòng ngừ",
+          "distance": 0.41987326741218567,
+          "vector_score": 0.7298905595658489,
+          "bm25_score": 0.5579033857342719,
+          "hybrid_score": 0.6610956900332181
+        },
+        {
+          "id": "16448_16",
+          "text": "Câu hỏi: Chống chỉ định thuốc điều trị bệnh xơ cột bên teo cơ\n\nTrả lời: ơ cột bên teo cơ, có một số lưu ý quan trọng mà bệnh nhân và người chăm sóc nên biết:Theo dõi tác dụng phụ: Thường xuyên kiểm tr",
+          "distance": 0.4347018599510193,
+          "vector_score": 0.3896398121377401,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.6337838872826441
+        },
+        {
+          "id": "8724_5",
+          "text": "Câu hỏi: Chống chỉ định thuốc điều trị suy tĩnh mạch chân\n\nTrả lời: lời khuyên thích hợp tránh sự tương tác bất lợi do thuốc gây ra. Trước khi dùng thuốc, người bệnh cần đọc kỹ hướng dẫn sử dụng để hi",
+          "distance": 0.4178040623664856,
+          "vector_score": 0.7773696821823534,
+          "bm25_score": 0.2881571518681268,
+          "hybrid_score": 0.5816846700566627
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b23",
+      "question": "Đông y có thể chữa bệnh mất thính lực không?",
+      "category": "traditional_medicine",
+      "difficulty": "medium",
+      "expected_topics": [
+        "đông y",
+        "thính lực",
+        "chữa"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.0333333333333334,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.4230769230769231,
+        "answer_relevance": 0.75,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 19.87,
+      "generation_latency_ms": 3825.46,
+      "total_latency_ms": 5848.0,
+      "answer": "Đông y có thể hỗ trợ điều trị bệnh mất thính lực bằng cách tăng lưu thông khí huyết, thông kinh lạc, giúp giảm các triệu chứng khó chịu kèm theo như chóng mặt, nặng vùng tai. Các phương pháp như ấn huyệt đạo và cấy chỉ có thể được sử dụng để hỗ trợ điều trị. Tuy nhiên, hiệu quả của điều trị còn phụ thuộc vào nguyên nhân gây bệnh và mức độ nghiêm trọng của bệnh. Để có được lời khuyên chính xác và phù hợp, bạn nên tham khảo ý kiến của bác sĩ chuyên khoa.",
+      "sources": [
+        {
+          "id": "6396_68",
+          "question": "Đông y có chữa được bệnh mất thính lực?",
+          "score": 0.19873429834842682,
+          "chunk_index": 68
+        },
+        {
+          "id": "6397_87",
+          "question": "Có thể điều trị mất thính lực tại nhà không?",
+          "score": 0.18767081201076508,
+          "chunk_index": 87
+        },
+        {
+          "id": "6378_49",
+          "question": "Điều trị mất thính lực bằng thuốc",
+          "score": 0.23115819692611694,
+          "chunk_index": 49
+        },
+        {
+          "id": "6396_30",
+          "question": "Đông y có chữa được bệnh mất thính lực?",
+          "score": 0.2014380842447281,
+          "chunk_index": 30
+        },
+        {
+          "id": "6396_52",
+          "question": "Đông y có chữa được bệnh mất thính lực?",
+          "score": 0.2014380842447281,
+          "chunk_index": 52
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "6396_68",
+          "text": "Câu hỏi: Đông y có chữa được bệnh mất thính lực?\n\nTrả lời: í huyệt đạo có ảnh hưởng đến thính lực giúp tăng lưu thông khí huyết, thông kinh lạc, giúp hỗ trợ điều trị, làm giảm các triệu chứng khó chịu",
+          "distance": 0.19873429834842682,
+          "vector_score": 0.7455932022770096,
+          "bm25_score": 0.9043074966197321,
+          "hybrid_score": 0.8090789200140986
+        },
+        {
+          "id": "6397_87",
+          "text": "Câu hỏi: Có thể điều trị mất thính lực tại nhà không?\n\nTrả lời: riệu chứng, biện pháp phòng ngừa và cách điều trị bệnhĐỌC NGAY3. Mất thính lực có chữa khỏi hoàn toàn không?Mất thính lực là hiện tượng ",
+          "distance": 0.18767081201076508,
+          "vector_score": 1.0,
+          "bm25_score": 0.4164768721021709,
+          "hybrid_score": 0.7665907488408683
+        },
+        {
+          "id": "6378_49",
+          "text": "Câu hỏi: Điều trị mất thính lực bằng thuốc\n\nTrả lời: ng thính giác trước đó (như ốc tai và dây thần kinh thính giác). Những người bị mất thính lực nghiêm trọng đến rất nghiêm trọng do dây thần kinh th",
+          "distance": 0.23115819692611694,
+          "vector_score": 0.0,
+          "bm25_score": 0.0,
+          "hybrid_score": 0.0
+        },
+        {
+          "id": "6396_30",
+          "text": "Câu hỏi: Đông y có chữa được bệnh mất thính lực?\n\nTrả lời: ũi họng sẽ dùng dụng cụ chuyên dụng để lấy ráy tai, vệ sinh tai. Đây cũng là cách điều trị suy giảm thính lực hiệu quả.Mất thính lực: Nguyên ",
+          "distance": 0.2014380842447281,
+          "vector_score": 0.6834191740717225,
+          "bm25_score": 0.8512204432597018,
+          "hybrid_score": 0.7505396817469142
+        },
+        {
+          "id": "6396_52",
+          "text": "Câu hỏi: Đông y có chữa được bệnh mất thính lực?\n\nTrả lời: ũi họng sẽ dùng dụng cụ chuyên dụng để lấy ráy tai, vệ sinh tai. Đây cũng là cách điều trị suy giảm thính lực hiệu quả.Mất thính lực: Nguyên ",
+          "distance": 0.2014380842447281,
+          "vector_score": 0.6834191740717225,
+          "bm25_score": 0.8512204432597018,
+          "hybrid_score": 0.7505396817469142
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b24",
+      "question": "Cách khắc phục chứng nói lắp ở người lớn và trẻ em",
+      "category": "mental_health",
+      "difficulty": "medium",
+      "expected_topics": [
+        "nói lắp",
+        "khắc phục",
+        "trẻ em"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.0636363636363637,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.7692307692307693,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 20.18,
+      "generation_latency_ms": 4113.08,
+      "total_latency_ms": 6132.43,
+      "answer": "Cách khắc phục chứng nói lắp ở người lớn và trẻ em bao gồm:\n\n- Sử dụng liệu pháp nhận thức hành vi giúp người nói lắp nhận dạng và thay đổi lối suy nghĩ tiêu cực khi nói lắp nhằm giảm nhẹ áp lực, lo âu quá mức và lấy lại sự tự tin.\n- Tăng cường tương tác giữa cha mẹ và con cái là chìa khóa quan trọng giúp trẻ đối mặt với việc nói lắp một cách thoải mái. Từ đó bé dễ dàng thay đổi cách thức phát ngôn và giao tiếp.\n- Người lớn bị nói lắp có thể tự điều trị bằng cách tập thư giãn trước khi nói, tập hít sâu nhịp nhàng, luyện kéo dài hơi khi nói chuyện.\n- Động viên trẻ nhỏ tích cực tham gia các hoạt động nhằm luyện tập ngôn ngữ, bổ sung vốn từ, học cách nói chậm rãi rõ ràng.\n- Học nói bắt đầu từ các câu ngắn 2-3 từ, ngắt nghỉ rõ ràng rồi tăng dần số từ lên, luyện nói câu 5-6 từ tới khi trôi chảy.\n- Cần kết hợp liệu pháp tư vấn tâm lý trong một số trường hợp bệnh nhân bị nói lắp sau khi gặp cú sốc mạnh nào đó.\n\nTuy nhiên, để có được phương pháp điều trị phù hợp và hiệu quả, bạn nên tham khảo ý kiến của bác sĩ hoặc chuyên gia ngôn ngữ.",
+      "sources": [
+        {
+          "id": "6796_10",
+          "question": "Cách khắc phục chứng nói lắp cho người lớn và trẻ em",
+          "score": 0.30565211176872253,
+          "chunk_index": 10
+        },
+        {
+          "id": "6795_28",
+          "question": "Biện pháp phòng ngừa chứng nói lắp",
+          "score": 0.3063850998878479,
+          "chunk_index": 28
+        },
+        {
+          "id": "6796_7",
+          "question": "Cách khắc phục chứng nói lắp cho người lớn và trẻ em",
+          "score": 0.30687570571899414,
+          "chunk_index": 7
+        },
+        {
+          "id": "6796_15",
+          "question": "Cách khắc phục chứng nói lắp cho người lớn và trẻ em",
+          "score": 0.32003170251846313,
+          "chunk_index": 15
+        },
+        {
+          "id": "6796_12",
+          "question": "Cách khắc phục chứng nói lắp cho người lớn và trẻ em",
+          "score": 0.3221533000469208,
+          "chunk_index": 12
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "6796_10",
+          "text": "Câu hỏi: Cách khắc phục chứng nói lắp cho người lớn và trẻ em\n\nTrả lời: trường hợp bệnh nhân bị nói lắp sau khi gặp cú sốc mạnh nào đó. Sử dụng liệu pháp nhận thức hành vi giúp người nói lắp nhận dạng",
+          "distance": 0.30565211176872253,
+          "vector_score": 1.0,
+          "bm25_score": 0.7574408361178554,
+          "hybrid_score": 0.9029763344471422
+        },
+        {
+          "id": "6795_28",
+          "text": "Câu hỏi: Biện pháp phòng ngừa chứng nói lắp\n\nTrả lời: ức và lấy lại sự tự tin.Tăng cường tương tác giữa cha mẹ và con cái là chìa khóa quan trọng giúp trẻ đối mặt với việc nói lắp một cách thoải mái. ",
+          "distance": 0.3063850998878479,
+          "vector_score": 0.98994419118098,
+          "bm25_score": 0.10829943292680727,
+          "hybrid_score": 0.6372862878793109
+        },
+        {
+          "id": "6796_7",
+          "text": "Câu hỏi: Cách khắc phục chứng nói lắp cho người lớn và trẻ em\n\nTrả lời: yện tập ngôn ngữ, bổ sung vốn từ, học cách nói chậm rãi rõ ràng. Đặc biệt khi điều trị cho trẻ em, bố mẹ phải thật kiên trì.Học ",
+          "distance": 0.30687570571899414,
+          "vector_score": 0.9832136067215896,
+          "bm25_score": 0.720506894053527,
+          "hybrid_score": 0.8781309216543646
+        },
+        {
+          "id": "6796_15",
+          "text": "Câu hỏi: Cách khắc phục chứng nói lắp cho người lớn và trẻ em\n\nTrả lời: trường hợp bệnh nhân bị nói lắp sau khi gặp cú sốc mạnh nào đó. Động viên trẻ nhỏ tích cực tham gia các hoạt động nhằm luyện tập",
+          "distance": 0.32003170251846313,
+          "vector_score": 0.8027274771551812,
+          "bm25_score": 0.6988568280041694,
+          "hybrid_score": 0.7611792174947765
+        },
+        {
+          "id": "6796_12",
+          "text": "Câu hỏi: Cách khắc phục chứng nói lắp cho người lớn và trẻ em\n\nTrả lời: số trường hợp bệnh nhân bị nói lắp sau khi gặp cú sốc mạnh nào đó. Tăng cường tương tác giữa cha mẹ và con cái là chìa khóa quan",
+          "distance": 0.3221533000469208,
+          "vector_score": 0.7736214403990432,
+          "bm25_score": 0.742413514483321,
+          "hybrid_score": 0.7611382700327544
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b25",
+      "question": "Thuốc điều trị nhiệt miệng tại nhà có hiệu quả không?",
+      "category": "dermatology",
+      "difficulty": "easy",
+      "expected_topics": [
+        "nhiệt miệng",
+        "thuốc",
+        "điều trị"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.6939393939393939,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.27586206896551724,
+        "answer_relevance": 0.8,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 19.94,
+      "generation_latency_ms": 4111.86,
+      "total_latency_ms": 6145.87,
+      "answer": "Theo thông tin được cung cấp trong ngữ cảnh, có đề cập đến việc sử dụng nước súc miệng để điều trị nhiệt miệng tại nhà. Cụ thể, hướng dẫn súc miệng 2-3 lần/ngày cho tới khi kiểm soát được tình trạng nhiệt miệng, nhưng cần chú ý không nên lạm dụng nước súc miệng trị loét miệng kéo dài khiến vết loét càng lâu lành hơn mà cần thực hiện theo đúng liều lượng được khuyến cáo.\n\nTuy nhiên, không có thông tin cụ thể về việc sử dụng \"thuốc\" điều trị nhiệt miệng tại nhà. Vì vậy, để có thông tin chính xác và đầy đủ về việc sử dụng thuốc điều trị nhiệt miệng tại nhà, bạn nên tham khảo ý kiến của bác sĩ hoặc chuyên gia y tế.",
+      "sources": [
+        {
+          "id": "6966_5",
+          "question": "Một số phương pháp điều trị nhiệt miệng hiệu quả tại nhà",
+          "score": 0.5624202489852905,
+          "chunk_index": 5
+        },
+        {
+          "id": "9593_13",
+          "question": "Cách chăm sóc bệnh sỏi mật tại nhà",
+          "score": 0.6117924451828003,
+          "chunk_index": 13
+        },
+        {
+          "id": "7867_25",
+          "question": "Đông y có chữa được bệnh quai bị không?",
+          "score": 0.637718915939331,
+          "chunk_index": 25
+        },
+        {
+          "id": "14807_0",
+          "question": "Các biện pháp khắc phục tại nhà",
+          "score": 0.6524161100387573,
+          "chunk_index": 0
+        },
+        {
+          "id": "116_15",
+          "question": "Điều trị áp xe gan do amip",
+          "score": 0.6655336618423462,
+          "chunk_index": 15
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "6966_5",
+          "text": "Câu hỏi: Một số phương pháp điều trị nhiệt miệng hiệu quả tại nhà\n\nTrả lời: ướng dẫn, súc miệng 2 - 3 lần/ngày cho tới khi kiểm soát được tình trạng nhiệt miệng. Chú ý không nên lạm dụng nước súc miện",
+          "distance": 0.5624202489852905,
+          "vector_score": 1.0,
+          "bm25_score": 0.9770458405485878,
+          "hybrid_score": 0.9908183362194352
+        },
+        {
+          "id": "9593_13",
+          "text": "Câu hỏi: Cách chăm sóc bệnh sỏi mật tại nhà\n\nTrả lời: ng có công dụng hỗ trợ ngăn ngừa và điều trị sỏi mật khá tốt như giá đỗ, thuốc viên bổ sung enzyme cho tuyến tuỵ, B-complex, vitamin B",
+          "distance": 0.6117924451828003,
+          "vector_score": 0.5585838497136194,
+          "bm25_score": 0.2295478251467211,
+          "hybrid_score": 0.4269694398868601
+        },
+        {
+          "id": "7867_25",
+          "text": "Câu hỏi: Đông y có chữa được bệnh quai bị không?\n\nTrả lời: khi ăn. Những ngày đầu bệnh nhân quai bị nên ăn nhẹ, ăn lỏng.2. Xử trí khi bị quai bịTrường hợp quai bị không biến chứng, bệnh nhân có thể đư",
+          "distance": 0.637718915939331,
+          "vector_score": 0.3267861215737182,
+          "bm25_score": 0.3900256677057313,
+          "hybrid_score": 0.3520819400265235
+        },
+        {
+          "id": "14807_0",
+          "text": "Câu hỏi: Các biện pháp khắc phục tại nhà\n\nTrả lời: Một số biện pháp khắc phục tại nhà có hiệu quả trong việc điều trị viêm nang lông và các triệu chứng, bao gồm:- Chườm ấm: Đặt một miếng gạc ấm (khăn/",
+          "distance": 0.6524161100387573,
+          "vector_score": 0.19538465801663074,
+          "bm25_score": 0.4356829261905605,
+          "hybrid_score": 0.29150396528620265
+        },
+        {
+          "id": "116_15",
+          "text": "Câu hỏi: Điều trị áp xe gan do amip\n\nTrả lời: ùy tình huống tác dụng phụ, bác sĩ có thể hướng dẫn cách xử trí. Nếu tác dụng phụ không nghiêm trọng, có thể được xử trí tại nhà bằng các biện pháp:Dùng t",
+          "distance": 0.6655336618423462,
+          "vector_score": 0.07810611534944398,
+          "bm25_score": 0.41126570136007523,
+          "hybrid_score": 0.2113699497536965
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b26",
+      "question": "Ngộ độc botulinum là gì và nguy hiểm như thế nào?",
+      "category": "emergency_critical",
+      "difficulty": "medium",
+      "expected_topics": [
+        "botulinum",
+        "ngộ độc",
+        "nguy hiểm"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.8303030303030304,
+        "precision@5": 1.0,
+        "recall@5": 0.6666666666666666,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.4,
+        "answer_relevance": 0.625,
+        "context_precision": 1.0,
+        "context_recall": 0.6666666666666666
+      },
+      "retrieval_latency_ms": 20.22,
+      "generation_latency_ms": 4158.65,
+      "total_latency_ms": 6181.55,
+      "answer": "Ngộ độc botulinum, hay còn gọi là Botulism, là một căn bệnh hiếm gặp nhưng nghiêm trọng do độc tố tấn công các dây thần kinh của cơ thể. Ngộ độc Botulism gây ra bởi một loại vi khuẩn có tên là Clostridium botulinum. Loại vi khuẩn này tồn tại trong thực phẩm không được bảo quản đúng cách hợp lý và sinh ra độc tố gây ngộ độc cho con người khi ăn phải loại thực phẩm này.\n\nĐộc tố botulinum là cực độc, với liều lượng chưa đến 0,1mg đã có thể gây tử vong, và được coi là một trong các chất độc độc nhất hiện nay. Ngộ độc do độc tố botulinum là ngộ độc nặng, với nguy cơ tử vong cao hoặc ảnh hưởng lâu dài tới sức khỏe.\n\nĐể phòng tránh ngộ độc botulinum, cần chú ý đến việc bảo quản thực phẩm đúng cách, tránh để thực phẩm bị biến màu, mốc hoặc có mùi khó chịu. Khi sử dụng các sản phẩm đóng hộp, cần kiểm tra kỹ trước khi ăn và nếu gặp phải các triệu chứng ngộ độc, cần đến ngay cơ sở y tế gần nhất để được thăm khám và điều trị kịp thời.\n\nLưu ý: Nếu bạn có bất kỳ câu hỏi hoặc lo lắng nào về sức khỏe, hãy tham khảo ý kiến của bác sĩ để được tư vấn và điều trị phù hợp.",
+      "sources": [
+        {
+          "id": "7195_0",
+          "question": "Ngộ độc botulinum là gì?",
+          "score": 0.4090665578842163,
+          "chunk_index": 0
+        },
+        {
+          "id": "7196_32",
+          "question": "Bảo quản đồ hộp đúng cách ngừa ngộ độc botulinum",
+          "score": 0.47454965114593506,
+          "chunk_index": 32
+        },
+        {
+          "id": "7195_1",
+          "question": "Ngộ độc botulinum là gì?",
+          "score": 0.4278044104576111,
+          "chunk_index": 1
+        },
+        {
+          "id": "7195_15",
+          "question": "Ngộ độc botulinum là gì?",
+          "score": 0.4278044104576111,
+          "chunk_index": 15
+        },
+        {
+          "id": "7195_28",
+          "question": "Ngộ độc botulinum là gì?",
+          "score": 0.4944209158420563,
+          "chunk_index": 28
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "7195_0",
+          "text": "Câu hỏi: Ngộ độc botulinum là gì?\n\nTrả lời: Ngộ độc botulinum hay còn gọi là Botulism là một căn bệnh hiếm gặp nhưng nghiêm trọng do độc tố tấn công các dây thần kinh của cơ thể. Ngộ độc Botulism gây ",
+          "distance": 0.4090665578842163,
+          "vector_score": 1.0,
+          "bm25_score": 0.6091482326946157,
+          "hybrid_score": 0.8436592930778463
+        },
+        {
+          "id": "7196_32",
+          "text": "Câu hỏi: Bảo quản đồ hộp đúng cách ngừa ngộ độc botulinum\n\nTrả lời: hiện tượng có bọt hay mùi vị khác thường.Thực phẩm bị biến màu, mốc hoặc có mùi khó chịu.Người dân khi sử dụng các sản phẩm đóng hộp",
+          "distance": 0.47454965114593506,
+          "vector_score": 0.4266290690519545,
+          "bm25_score": 0.0110848797007055,
+          "hybrid_score": 0.2604113933114549
+        },
+        {
+          "id": "7195_1",
+          "text": "Câu hỏi: Ngộ độc botulinum là gì?\n\nTrả lời: nguy cơ tử vong cao hoặc ảnh hưởng lâu dài tới sức khỏe. TS.BS. Nguyễn Trung Nguyên - Giám đốc Trung tâm Chống độc, Bệnh viện Bạch Mai cho biết, độc tố botu",
+          "distance": 0.4278044104576111,
+          "vector_score": 0.8359310863487361,
+          "bm25_score": 0.46984925651195236,
+          "hybrid_score": 0.6894983544140226
+        },
+        {
+          "id": "7195_15",
+          "text": "Câu hỏi: Ngộ độc botulinum là gì?\n\nTrả lời: nguy cơ tử vong cao hoặc ảnh hưởng lâu dài tới sức khỏe. TS.BS. Nguyễn Trung Nguyên - Giám đốc Trung tâm Chống độc, Bệnh viện Bạch Mai cho biết, độc tố botu",
+          "distance": 0.4278044104576111,
+          "vector_score": 0.8359310863487361,
+          "bm25_score": 0.46984925651195236,
+          "hybrid_score": 0.6894983544140226
+        },
+        {
+          "id": "7195_28",
+          "text": "Câu hỏi: Ngộ độc botulinum là gì?\n\nTrả lời: ra một số vụ ngộ độc botulinum khiến nhiều bệnh nhân nguy kịch. Để phòng tránh ngộ độc, đặc biệt là trong những ngày hè nóng nực, bạn cần biết những “chìa k",
+          "distance": 0.4944209158420563,
+          "vector_score": 0.2526359821280855,
+          "bm25_score": 0.9210965257592101,
+          "hybrid_score": 0.5200201995805354
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b27",
+      "question": "Các tai biến và biến chứng có thể xảy ra sau phẫu thuật",
+      "category": "emergency_critical",
+      "difficulty": "hard",
+      "expected_topics": [
+        "tai biến",
+        "biến chứng",
+        "phẫu thuật"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.012121212121212,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.5172413793103449,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 26.1,
+      "generation_latency_ms": 5241.45,
+      "total_latency_ms": 7273.94,
+      "answer": "Các tai biến và biến chứng có thể xảy ra sau phẫu thuật bao gồm:\n\n- Nhiễm khuẩn\n- Chảy máu\n- Phù nề tại mắt và quanh mắt\n- Phù võng mạc\n- Bong võng mạc\n- Tổn hại các vùng phụ cận\n- Đau nhức\n- Giảm hay mất thị lực\n- IOL có thể bị đặt lệch, rơi khỏi vị trí an toàn\n- Đục bao sau TTT thứ phát\n- Chảy máu mũi nhiều\n- Nhiễm trùng\n- Đau\n- Mi mắt chảy xệ\n- Xuất huyết dưới võng mạc\n- Kẹt nội nhãn vào vết mổ\n- Rơi mảnh nhân vào buồng dịch kính\n- Kẹt dịch kính\n- Bong nội mô giác mạc\n- Viêm nội nhãn\n- Glôcôm\n- Phù hoàng điểm\n- Bong võng mạc\n- Đục bao sau\n\nNhững biến chứng này có thể xảy ra sau phẫu thuật đục thủy tinh thể, phẫu thuật xoang, và các loại phẫu thuật khác. Tuy nhiên, cần lưu ý rằng không phải tất cả các biến chứng này đều xảy ra thường xuyên và một số có thể được điều trị bằng thuốc hoặc các phương pháp khác.\n\nĐể được tư vấn cụ thể và chính xác về các tai biến và biến chứng có thể xảy ra sau phẫu thuật, bạn nên tham khảo ý kiến của bác sĩ hoặc chuyên gia y tế. Họ có thể cung cấp thông tin chi tiết và giúp bạn hiểu rõ về các rủi ro và biến chứng có thể xảy ra trong trường hợp cụ thể của bạn.",
+      "sources": [
+        {
+          "id": "2091_9",
+          "question": "Những điều cần làm sau phẫu thuật",
+          "score": 0.4498405456542969,
+          "chunk_index": 9
+        },
+        {
+          "id": "13967_1",
+          "question": "Điều gì sẽ xảy ra trong quá trình phẫu thuật viêm xoang?",
+          "score": 0.5238446593284607,
+          "chunk_index": 1
+        },
+        {
+          "id": "13964_19",
+          "question": "Viêm xoang gây nhiều biến chứng",
+          "score": 0.52175372838974,
+          "chunk_index": 19
+        },
+        {
+          "id": "2086_4",
+          "question": "Buồn nôn hoặc mất phương hướng sau phẫu thuật đục thủy tinh thể",
+          "score": 0.5113717913627625,
+          "chunk_index": 4
+        },
+        {
+          "id": "2107_5",
+          "question": "Chăm sóc hậu phẫu và biến chứng sau mổ",
+          "score": 0.5304399132728577,
+          "chunk_index": 5
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "2091_9",
+          "text": "Câu hỏi: Những điều cần làm sau phẫu thuật\n\nTrả lời: t khác, phẫu thuật đục TTT cũng có những tai biến và biến chứng. Có thể kể ra sau đây như: nhiễm khuẩn, chảy máu, phù nề tại mắt và quanh mắt, phù ",
+          "distance": 0.4498405456542969,
+          "vector_score": 1.0,
+          "bm25_score": 0.9817115767958141,
+          "hybrid_score": 0.9926846307183257
+        },
+        {
+          "id": "13967_1",
+          "text": "Câu hỏi: Điều gì sẽ xảy ra trong quá trình phẫu thuật viêm xoang?\n\nTrả lời: rút sau 1 - 3 ngày sau mổ.Rủi ro của phẫu thuật xoang là ít gặp. Các biến chứng nhỏ như chảy máu, nhiễm trùng và đau, xảy ra",
+          "distance": 0.5238446593284607,
+          "vector_score": 0.14343163261434233,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.48605897956860544
+        },
+        {
+          "id": "13964_19",
+          "text": "Câu hỏi: Viêm xoang gây nhiều biến chứng\n\nTrả lời: rút sau 1 - 3 ngày sau mổ.Rủi ro của phẫu thuật xoang là ít gặp. Các biến chứng nhỏ như chảy máu, nhiễm trùng và đau, xảy ra ở khoảng 5%. Cơn đau thư",
+          "distance": 0.52175372838974,
+          "vector_score": 0.16763333183854956,
+          "bm25_score": 0.9043740603892865,
+          "hybrid_score": 0.4623296232588443
+        },
+        {
+          "id": "2086_4",
+          "text": "Câu hỏi: Buồn nôn hoặc mất phương hướng sau phẫu thuật đục thủy tinh thể\n\nTrả lời: ó phun ra những đốm sáng hoặc những tia sáng lóe lên, giống như một chiếc máy ảnh đang hoạt động hoặc thấy một cái bó",
+          "distance": 0.5113717913627625,
+          "vector_score": 0.28780014970834467,
+          "bm25_score": 0.7056434925629078,
+          "hybrid_score": 0.4549374868501699
+        },
+        {
+          "id": "2107_5",
+          "text": "Câu hỏi: Chăm sóc hậu phẫu và biến chứng sau mổ\n\nTrả lời: ất hiếm khi gặp các biến chứng sau khi phẫu thuật thủy tinh thể. Có thể có các biến chứng như:-Trong khi mổ: xuất huyết dưới võng mạc, kẹt nội",
+          "distance": 0.5304399132728577,
+          "vector_score": 0.06709417482761118,
+          "bm25_score": 0.9302124941886257,
+          "hybrid_score": 0.41234150257201707
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b28",
+      "question": "Suy tim là gì và có những dấu hiệu nào?",
+      "category": "cardiovascular",
+      "difficulty": "medium",
+      "expected_topics": [
+        "suy tim",
+        "dấu hiệu",
+        "tim"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.8545454545454546,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.4444444444444444,
+        "answer_relevance": 0.8333333333333334,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 21.32,
+      "generation_latency_ms": 4241.28,
+      "total_latency_ms": 6267.43,
+      "answer": "Suy tim là tình trạng khi tim không thể bơm máu đủ để đáp ứng nhu cầu của cơ thể. Về các dấu hiệu của suy tim, theo thông tin được cung cấp, nhiều người bệnh chủ quan và bỏ qua các dấu hiệu của suy tim. Tuy nhiên, thông tin cụ thể về các dấu hiệu của suy tim không được cung cấp đầy đủ trong ngữ cảnh này. Để phát hiện suy tim, cách tốt nhất là thăm khám sức khỏe định kỳ hoặc khám sức khỏe khi có bất kỳ dấu hiệu bất thường nào của cơ thể. Người bệnh cần được thăm khám tại các chuyên khoa tim mạch để tìm nguyên nhân và điều trị sớm.\n\nĐể có thông tin chính xác và đầy đủ về suy tim và các dấu hiệu của nó, tôi khuyến nghị bạn nên tham khảo ý kiến của bác sĩ hoặc các chuyên gia y tế. Họ có thể cung cấp cho bạn thông tin cụ thể và phù hợp với tình trạng sức khỏe của bạn.",
+      "sources": [
+        {
+          "id": "2367_44",
+          "question": "Dấu hiệu cơn đau động mạch vành",
+          "score": 0.424862802028656,
+          "chunk_index": 44
+        },
+        {
+          "id": "6893_28",
+          "question": "Dấu hiệu cảnh báo nhồi máu cơ tim sớm",
+          "score": 0.4399500787258148,
+          "chunk_index": 28
+        },
+        {
+          "id": "9022_11",
+          "question": "Triệu chứng suy tim",
+          "score": 0.4872014820575714,
+          "chunk_index": 11
+        },
+        {
+          "id": "6881_38",
+          "question": "Dấu hiệu cảnh báo nhồi máu cơ tim cấp tính",
+          "score": 0.4590985178947449,
+          "chunk_index": 38
+        },
+        {
+          "id": "8401_81",
+          "question": "Nhịp tim là gì?",
+          "score": 0.46106570959091187,
+          "chunk_index": 81
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "2367_44",
+          "text": "Câu hỏi: Dấu hiệu cơn đau động mạch vành\n\nTrả lời: điện tim có thể bình thường. Bác sĩ thăm khám cho bệnh nhân. 2. Siêu âm-Doppler tim: Siêu âm cho thấy các buồng tim, thành tim, các van tim và chức n",
+          "distance": 0.424862802028656,
+          "vector_score": 1.0,
+          "bm25_score": 0.23603834560060588,
+          "hybrid_score": 0.6944153382402424
+        },
+        {
+          "id": "6893_28",
+          "text": "Câu hỏi: Dấu hiệu cảnh báo nhồi máu cơ tim sớm\n\nTrả lời: ao. Đây là tình trạng hoại tử cơ tim do thiếu máu cơ tim cục bộ. Nguyên nhân thường gặp nhất là do vỡ mảng xơ vữa với sự hình thành của cục máu",
+          "distance": 0.4399500787258148,
+          "vector_score": 0.8403605852462397,
+          "bm25_score": 0.407678952893886,
+          "hybrid_score": 0.6672879323052981
+        },
+        {
+          "id": "9022_11",
+          "text": "Câu hỏi: Triệu chứng suy tim\n\nTrả lời: ay Nhiều người bệnh chủ quan và bỏ qua các dấu hiệu của suy tim. Do vậy, cách tốt nhất để phát hiện suy tim là thăm khám sức khỏe định kỳ hoặc khám sức khỏe khi ",
+          "distance": 0.4872014820575714,
+          "vector_score": 0.340390542568093,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.6042343255408558
+        },
+        {
+          "id": "6881_38",
+          "text": "Câu hỏi: Dấu hiệu cảnh báo nhồi máu cơ tim cấp tính\n\nTrả lời: , một số khác xuất hiện dấu hiệu đầu tiên là ngưng tim đột ngột. Nhồi máu cơ tim gây cơn đau thắt ngực lan đến có thể lan lên cổ, cằm, vai",
+          "distance": 0.4590985178947449,
+          "vector_score": 0.637749757345693,
+          "bm25_score": 0.34981537916305744,
+          "hybrid_score": 0.5225760060726388
+        },
+        {
+          "id": "8401_81",
+          "text": "Câu hỏi: Nhịp tim là gì?\n\nTrả lời: ng mặt, đánh trống ngực, đổ mồ hôi, mệt mỏi, ngất xỉu hoặc thoáng ngất…Ngoài ra, có thể gặp tình trạng tim đập không đều (lúc nhanh, lúc chậm), thường là",
+          "distance": 0.46106570959091187,
+          "vector_score": 0.6169347794415829,
+          "bm25_score": 0.2690286017435498,
+          "hybrid_score": 0.4777723083623697
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b29",
+      "question": "Trà xanh có tác dụng gì đối với bệnh đái tháo đường?",
+      "category": "metabolic_endocrine",
+      "difficulty": "easy",
+      "expected_topics": [
+        "trà xanh",
+        "đái tháo đường",
+        "tác dụng"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.2454545454545454,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.47368421052631576,
+        "answer_relevance": 0.9,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 21.6,
+      "generation_latency_ms": 2778.74,
+      "total_latency_ms": 4798.09,
+      "answer": "Trà xanh có thể giúp giảm nguy cơ mắc đái tháo đường và các biến chứng của bệnh. Một số lý do trà xanh có tác dụng này bao gồm:\n\n- Chứa hợp chất epigallocatechin gallate (EGCG), có tác dụng làm tăng sự hấp thu glucose vào các tế bào cơ.\n- Cải thiện tình trạng kháng insulin và giảm phản ứng viêm.\n- Là một lựa chọn lành mạnh với ít calo, không chứa carbohydrate, đường hoặc chất béo.\n\nTuy nhiên, để có thông tin chính xác và phù hợp với tình trạng sức khỏe của bạn, tôi khuyến nghị bạn nên tham khảo ý kiến của bác sĩ hoặc chuyên gia y tế.",
+      "sources": [
+        {
+          "id": "1999_3",
+          "question": "Trà xanh có thể giúp bạn giảm cân, giảm nguy cơ mắc đái tháo đường",
+          "score": 0.3457990884780884,
+          "chunk_index": 3
+        },
+        {
+          "id": "1999_26",
+          "question": "Trà xanh có thể giúp bạn giảm cân, giảm nguy cơ mắc đái tháo đường",
+          "score": 0.3457990884780884,
+          "chunk_index": 26
+        },
+        {
+          "id": "1999_1",
+          "question": "Trà xanh có thể giúp bạn giảm cân, giảm nguy cơ mắc đái tháo đường",
+          "score": 0.3581295907497406,
+          "chunk_index": 1
+        },
+        {
+          "id": "1999_13",
+          "question": "Trà xanh có thể giúp bạn giảm cân, giảm nguy cơ mắc đái tháo đường",
+          "score": 0.38203537464141846,
+          "chunk_index": 13
+        },
+        {
+          "id": "1999_56",
+          "question": "Trà xanh có thể giúp bạn giảm cân, giảm nguy cơ mắc đái tháo đường",
+          "score": 0.3910458981990814,
+          "chunk_index": 56
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "1999_3",
+          "text": "Câu hỏi: Trà xanh có thể giúp bạn giảm cân, giảm nguy cơ mắc đái tháo đường\n\nTrả lời: t loại cây với trà xanh, nhưng khác nhau ở cách xử lý, chế biến. Do đó, cũng như trà xanh, trà đen cũng mang lại l",
+          "distance": 0.3457990884780884,
+          "vector_score": 1.0,
+          "bm25_score": 0.9328563434423118,
+          "hybrid_score": 0.9731425373769247
+        },
+        {
+          "id": "1999_26",
+          "text": "Câu hỏi: Trà xanh có thể giúp bạn giảm cân, giảm nguy cơ mắc đái tháo đường\n\nTrả lời: t loại cây với trà xanh, nhưng khác nhau ở cách xử lý, chế biến. Do đó, cũng như trà xanh, trà đen cũng mang lại l",
+          "distance": 0.3457990884780884,
+          "vector_score": 1.0,
+          "bm25_score": 0.9328563434423118,
+          "hybrid_score": 0.9731425373769247
+        },
+        {
+          "id": "1999_1",
+          "text": "Câu hỏi: Trà xanh có thể giúp bạn giảm cân, giảm nguy cơ mắc đái tháo đường\n\nTrả lời: eo nhỏ hơn so với những người không uống, theo một nghiên cứu công bố vào năm 2020 cho thấy.Một trong những lý do ",
+          "distance": 0.3581295907497406,
+          "vector_score": 0.7738723760553712,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.8643234256332227
+        },
+        {
+          "id": "1999_13",
+          "text": "Câu hỏi: Trà xanh có thể giúp bạn giảm cân, giảm nguy cơ mắc đái tháo đường\n\nTrả lời: trà xanh có thể đóng vai trò ngăn ngừa bệnh đái tháo đường là chứa một hợp chất mạnh gọi là epigallocatechin galla",
+          "distance": 0.38203537464141846,
+          "vector_score": 0.3354670304445348,
+          "bm25_score": 0.5740345015022069,
+          "hybrid_score": 0.43089401886760365
+        },
+        {
+          "id": "1999_56",
+          "text": "Câu hỏi: Trà xanh có thể giúp bạn giảm cân, giảm nguy cơ mắc đái tháo đường\n\nTrả lời: hấy, uống trà đen, trà xanh hoặc trà ô long có thể làm giảm nguy cơ phát triển bệnh đái tháo đường hoặc các biến c",
+          "distance": 0.3910458981990814,
+          "vector_score": 0.17022410378162833,
+          "bm25_score": 0.6280412777239447,
+          "hybrid_score": 0.35335097335855487
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b30",
+      "question": "Bệnh cường lách có nguy hiểm không?",
+      "category": "hematology",
+      "difficulty": "medium",
+      "expected_topics": [
+        "cường lách",
+        "nguy hiểm",
+        "lách"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.37878787878787884,
+        "precision@5": 0.8,
+        "recall@5": 0.3333333333333333,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.11764705882352941,
+        "answer_relevance": 0.6666666666666666,
+        "context_precision": 0.9124087591240875,
+        "context_recall": 0.3333333333333333
+      },
+      "retrieval_latency_ms": 22.67,
+      "generation_latency_ms": 5819.28,
+      "total_latency_ms": 7841.43,
+      "answer": "Tôi không tìm thấy thông tin về \"bệnh cường lách\" trong ngữ cảnh được cung cấp. Để có thông tin chính xác và đầy đủ về tình trạng sức khỏe này, tôi khuyên bạn nên tham khảo ý kiến của bác sĩ hoặc các nguồn thông tin y tế uy tín.",
+      "sources": [
+        {
+          "id": "7857_35",
+          "question": "Biến chứng teo tinh hoàn rất nguy hiểm",
+          "score": 0.4274734854698181,
+          "chunk_index": 35
+        },
+        {
+          "id": "772_14",
+          "question": "Các biến chứng của bệnh Basedow là gì?",
+          "score": 0.4854002594947815,
+          "chunk_index": 14
+        },
+        {
+          "id": "980_0",
+          "question": "Biến chứng nguy hiểm của bệnh bạch hầu",
+          "score": 0.4460740387439728,
+          "chunk_index": 0
+        },
+        {
+          "id": "7750_11",
+          "question": "Cách điều trị bệnh phình động mạch chủ",
+          "score": 0.4768800139427185,
+          "chunk_index": 11
+        },
+        {
+          "id": "7748_7",
+          "question": "Biểu hiện của bệnh phình động mạch chủ",
+          "score": 0.4788992404937744,
+          "chunk_index": 7
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "7857_35",
+          "text": "Câu hỏi: Biến chứng teo tinh hoàn rất nguy hiểm\n\nTrả lời: ra, một số biến chứng như viêm tụy cấp tính, viêm não, viêm màng não, viêm cơ tim, giảm bạch cầu… cũng có thể gặp do biến chứng của bệnh quai ",
+          "distance": 0.4274734854698181,
+          "vector_score": 1.0,
+          "bm25_score": 0.43493194192033136,
+          "hybrid_score": 0.7739727767681326
+        },
+        {
+          "id": "772_14",
+          "text": "Câu hỏi: Các biến chứng của bệnh Basedow là gì?\n\nTrả lời: p nhưng đe dọa tính mạng của bệnh Basedow là cơn bão tuyến giáp. Còn được gọi là cường giáp cấp tốc hoặc khủng hoảng nhiễm độc giáp. Nó có nhi",
+          "distance": 0.4854002594947815,
+          "vector_score": 0.5376356977497652,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.7225814186498591
+        },
+        {
+          "id": "980_0",
+          "text": "Câu hỏi: Biến chứng nguy hiểm của bệnh bạch hầu\n\nTrả lời: Nguy hiểm nhất của bệnh bạch hầu cấp (bạch hầu ác tính) là gây các biến chứng, do độc tố của vi khuẩn bạch hầu cực mạnh cho nên khi bị mắc bện",
+          "distance": 0.4460740387439728,
+          "vector_score": 0.8515326982930795,
+          "bm25_score": 0.260097808780073,
+          "hybrid_score": 0.6149587424878769
+        },
+        {
+          "id": "7750_11",
+          "text": "Câu hỏi: Cách điều trị bệnh phình động mạch chủ\n\nTrả lời: chủ là bệnh lý gặp chủ yếu ở người lớn tuổi, thường kèm theo bệnh lý nội khoa nặng nề, nhiều yếu tố nguy cơ, thường k",
+          "distance": 0.4768800139427185,
+          "vector_score": 0.6056432375444476,
+          "bm25_score": 0.15035894910015207,
+          "hybrid_score": 0.4235295221667294
+        },
+        {
+          "id": "7748_7",
+          "text": "Câu hỏi: Biểu hiện của bệnh phình động mạch chủ\n\nTrả lời: hời các biến chứng để xử trí kịp thời.Tóm lại: Bệnh lý phình phình động mạch chủ là bệnh lý gặp chủ yếu ở người lớn tuổ",
+          "distance": 0.4788992404937744,
+          "vector_score": 0.5895260224728509,
+          "bm25_score": 0.0015306741913219994,
+          "hybrid_score": 0.35432788316023933
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b31",
+      "question": "Tầm quan trọng của dinh dưỡng đối với trẻ bị còi xương",
+      "category": "pediatric",
+      "difficulty": "medium",
+      "expected_topics": [
+        "còi xương",
+        "dinh dưỡng",
+        "trẻ"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 1.2454545454545454,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.5,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 22.21,
+      "generation_latency_ms": 3092.37,
+      "total_latency_ms": 5126.5,
+      "answer": "Tầm quan trọng của dinh dưỡng đối với trẻ bị còi xương là rất lớn. Chế độ ăn của trẻ cần đảm bảo cung cấp đầy đủ các dưỡng chất thiết yếu như vitamin D, canxi, phospho, kẽm, sắt. Ngoài ra, chất béo từ dầu hoặc mỡ cũng đóng vai trò quan trọng trong việc hấp thụ vitamin D. Khi bổ sung dinh dưỡng cho trẻ còi xương, cần quan tâm và theo dõi để kịp thời điều chỉnh chế độ ăn hàng ngày. Điều trị còi xương thường bắt đầu bằng việc bổ sung vitamin D và canxi. Để có một chế độ dinh dưỡng phù hợp, nên tham khảo ý kiến của bác sĩ hoặc chuyên gia dinh dưỡng để đảm bảo trẻ nhận được đủ chất dinh dưỡng cần thiết cho sự phát triển và phục hồi.",
+      "sources": [
+        {
+          "id": "1399_10",
+          "question": "Tầm quan trọng của chế độ ăn cho trẻ bị còi xương",
+          "score": 0.25474515557289124,
+          "chunk_index": 10
+        },
+        {
+          "id": "1401_25",
+          "question": "Lưu ý khi xây dựng chế độ dinh dưỡng cho trẻ còi xương",
+          "score": 0.24351033568382263,
+          "chunk_index": 25
+        },
+        {
+          "id": "1400_88",
+          "question": "Các dưỡng chất thiết yếu đối với trẻ còi xương",
+          "score": 0.266988605260849,
+          "chunk_index": 88
+        },
+        {
+          "id": "1399_31",
+          "question": "Tầm quan trọng của chế độ ăn cho trẻ bị còi xương",
+          "score": 0.2547452449798584,
+          "chunk_index": 31
+        },
+        {
+          "id": "1399_51",
+          "question": "Tầm quan trọng của chế độ ăn cho trẻ bị còi xương",
+          "score": 0.2547452449798584,
+          "chunk_index": 51
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "1399_10",
+          "text": "Câu hỏi: Tầm quan trọng của chế độ ăn cho trẻ bị còi xương\n\nTrả lời: ương của trẻ phát triển như vitamin D, canxi, phospho, kẽm, sắt. Ngoài ra, trong mỗi bữa ăn hàng ngày của trẻ cũng cần được tăng cư",
+          "distance": 0.25474515557289124,
+          "vector_score": 0.7251138802257844,
+          "bm25_score": 0.6740142874641551,
+          "hybrid_score": 0.7046740431211327
+        },
+        {
+          "id": "1401_25",
+          "text": "Câu hỏi: Lưu ý khi xây dựng chế độ dinh dưỡng cho trẻ còi xương\n\nTrả lời: ăn bổ sung cần chú ý thức ăn giàu canxi và các khoáng chất như tôm, cua, cá, trứng, rau xanh, đậu, sữa, chế phẩm từ sữa. Chú ý",
+          "distance": 0.24351033568382263,
+          "vector_score": 1.0,
+          "bm25_score": 0.001521635021122962,
+          "hybrid_score": 0.6006086540084492
+        },
+        {
+          "id": "1400_88",
+          "text": "Câu hỏi: Các dưỡng chất thiết yếu đối với trẻ còi xương\n\nTrả lời: có nguồn gốc từ động vật nói chung hoặc không dung nạp lactose. Đối với những trẻ này, điều quan trọng là chế độ ăn của trẻ còi xương ",
+          "distance": 0.266988605260849,
+          "vector_score": 0.4255492756656169,
+          "bm25_score": 0.7298375227947015,
+          "hybrid_score": 0.5472645745172507
+        },
+        {
+          "id": "1399_31",
+          "text": "Câu hỏi: Tầm quan trọng của chế độ ăn cho trẻ bị còi xương\n\nTrả lời: ương của trẻ phát triển như vitamin D, canxi, phospho, kẽm, sắt. Ngoài ra, trong mỗi bữa ăn hàng ngày của trẻ cũng cần được tăng cư",
+          "distance": 0.2547452449798584,
+          "vector_score": 0.7251116926754251,
+          "bm25_score": 0.6740142874641551,
+          "hybrid_score": 0.7046727305909171
+        },
+        {
+          "id": "1399_51",
+          "text": "Câu hỏi: Tầm quan trọng của chế độ ăn cho trẻ bị còi xương\n\nTrả lời: ương của trẻ phát triển như vitamin D, canxi, phospho, kẽm, sắt. Ngoài ra, trong mỗi bữa ăn hàng ngày của trẻ cũng cần được tăng cư",
+          "distance": 0.2547452449798584,
+          "vector_score": 0.7251116926754251,
+          "bm25_score": 0.6740142874641551,
+          "hybrid_score": 0.7046727305909171
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b32",
+      "question": "Người bệnh chán ăn tâm thần cần bổ sung dưỡng chất gì?",
+      "category": "mental_health",
+      "difficulty": "hard",
+      "expected_topics": [
+        "chán ăn tâm thần",
+        "dưỡng chất",
+        "bệnh nhân"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.7393939393939394,
+        "precision@5": 1.0,
+        "recall@5": 0.6666666666666666,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.21739130434782608,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 0.6666666666666666
+      },
+      "retrieval_latency_ms": 21.38,
+      "generation_latency_ms": 2935.58,
+      "total_latency_ms": 4960.07,
+      "answer": "Người bệnh chán ăn tâm thần cần bổ sung các dưỡng chất như: \n\n- Carbohydrate: cung cấp năng lượng để duy trì hoạt động của cơ thể, đặc biệt là não.\n- Các dưỡng chất có trong rau xanh, trái cây, các loại đậu, các loại hạt, hải sản, sữa…\n\nChế độ ăn uống cho người bệnh chán ăn tâm thần phải đầy đủ dưỡng chất, uống đủ nước và ăn đa dạng thực phẩm. Tuy nhiên, để có thông tin chính xác và phù hợp với tình trạng sức khỏe cụ thể, người bệnh nên tham khảo ý kiến bác sĩ.",
+      "sources": [
+        {
+          "id": "1599_74",
+          "question": "Những dưỡng chất cần thiết cho cơ thể người bệnh chán ăn tâm thần",
+          "score": 0.22800534963607788,
+          "chunk_index": 74
+        },
+        {
+          "id": "8383_187",
+          "question": "Một số dưỡng chất cần thiết với người bị rối loạn tăng động giảm chú ý",
+          "score": 0.3668469190597534,
+          "chunk_index": 187
+        },
+        {
+          "id": "1598_4",
+          "question": "Tầm quan trọng của chế độ ăn đối với người bệnh chán ăn tâm thần",
+          "score": 0.40798860788345337,
+          "chunk_index": 4
+        },
+        {
+          "id": "1599_56",
+          "question": "Những dưỡng chất cần thiết cho cơ thể người bệnh chán ăn tâm thần",
+          "score": 0.3677235543727875,
+          "chunk_index": 56
+        },
+        {
+          "id": "1599_18",
+          "question": "Những dưỡng chất cần thiết cho cơ thể người bệnh chán ăn tâm thần",
+          "score": 0.34485381841659546,
+          "chunk_index": 18
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "1599_74",
+          "text": "Câu hỏi: Những dưỡng chất cần thiết cho cơ thể người bệnh chán ăn tâm thần\n\nTrả lời: iều trong rau xanh, trái cây, các loại đậu, các loại hạt, hải sản, sữa… Chế độ ăn uống cho người bệnh chán ăn tâm t",
+          "distance": 0.22800534963607788,
+          "vector_score": 1.0,
+          "bm25_score": 0.012282646680345522,
+          "hybrid_score": 0.6049130586721382
+        },
+        {
+          "id": "8383_187",
+          "text": "Câu hỏi: Một số dưỡng chất cần thiết với người bị rối loạn tăng động giảm chú ý\n\nTrả lời: i bác sĩ nếu bạn đang cân nhắc dùng thực phẩm bổ sung.",
+          "distance": 0.3668469190597534,
+          "vector_score": 0.22858619865161753,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.5371517191909705
+        },
+        {
+          "id": "1598_4",
+          "text": "Câu hỏi: Tầm quan trọng của chế độ ăn đối với người bệnh chán ăn tâm thần\n\nTrả lời: i thiện tâm trạng, phục hồi sức khỏe tinh thần cho người bệnh.2. Những dưỡng chất cần thiết cho cơ thể người bệnh ch",
+          "distance": 0.40798860788345337,
+          "vector_score": 0.0,
+          "bm25_score": 0.009629544364184053,
+          "hybrid_score": 0.0038518177456736214
+        },
+        {
+          "id": "1599_56",
+          "text": "Câu hỏi: Những dưỡng chất cần thiết cho cơ thể người bệnh chán ăn tâm thần\n\nTrả lời: n uống cho người bệnh chán ăn tâm thần phải đầy đủ dưỡng chất.3. Một số lưu ý khi ăn uống đối với người bệnh chán ă",
+          "distance": 0.3677235543727875,
+          "vector_score": 0.2237155494502947,
+          "bm25_score": 0.2311627774230435,
+          "hybrid_score": 0.2266944406393942
+        },
+        {
+          "id": "1599_18",
+          "text": "Câu hỏi: Những dưỡng chất cần thiết cho cơ thể người bệnh chán ăn tâm thần\n\nTrả lời: thầnSKĐS - Trong khi rất nhiều người chú trọng đến sức khỏe và cố gắng ăn uống lành mạnh, cân bằng thì có một số ng",
+          "distance": 0.34485381841659546,
+          "vector_score": 0.35078145646237374,
+          "bm25_score": 0.00820295305032682,
+          "hybrid_score": 0.213750055097555
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b33",
+      "question": "Cách xử trí khi bị dị ứng thời tiết",
+      "category": "dermatology",
+      "difficulty": "easy",
+      "expected_topics": [
+        "dị ứng thời tiết",
+        "xử trí",
+        "dị ứng"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.8303030303030304,
+        "precision@5": 1.0,
+        "recall@5": 0.6666666666666666,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.4583333333333333,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 0.6666666666666666
+      },
+      "retrieval_latency_ms": 18504.02,
+      "generation_latency_ms": 1680.4,
+      "total_latency_ms": 25183.76,
+      "answer": "Khi bị dị ứng thời tiết, bạn có thể thực hiện các biện pháp sau để xử trí:\n\n- Giữ ấm cơ thể: Sử dụng khăn quàng cổ, ngâm chân bằng nước ấm hàng ngày, tránh để mũi, mặt và chân tiếp xúc trực tiếp với gió liên tục.\n- Cải thiện sức đề kháng và khả năng thích ứng: Thực hiện chế độ ăn và tập luyện phù hợp để tăng cường sức khỏe.\n- Hạn chế tiếp xúc với các tác nhân gây dị ứng: Tránh tiếp xúc với các yếu tố gây dị ứng như bụi, phấn hoa, lạnh, gió,...\n- Sử dụng thuốc theo chỉ định của bác sĩ: Thuốc kháng histamine, corticosteroid, thuốc chống viêm... có thể giúp giảm viêm và ngứa, kiểm soát các triệu chứng cấp tính và mạn tính.\n- Sử dụng các loại thảo dược hoặc gia vị có tác dụng chống viêm, kháng khuẩn và thanh lọc cơ thể: Gừng, trà xanh, nghệ... có thể giúp giảm nhẹ các triệu chứng.\n\nTuy nhiên, để có được cách xử trí hiệu quả và an toàn, bạn nên tham khảo ý kiến của bác sĩ.",
+      "sources": [
+        {
+          "id": "1793_80",
+          "question": "Biểu hiện thường gặp của dị ứng thời tiết",
+          "score": 0.3031257688999176,
+          "chunk_index": 80
+        },
+        {
+          "id": "1801_91",
+          "question": "Cách nhận biết triệu chứng của dị ứng thời tiết",
+          "score": 0.31341442465782166,
+          "chunk_index": 91
+        },
+        {
+          "id": "1809_103",
+          "question": "Cách kiểm soát triệu chứng dị ứng thời tiết",
+          "score": 0.33882179856300354,
+          "chunk_index": 103
+        },
+        {
+          "id": "1782_8",
+          "question": "Triệu chứng dị ứng thời tiết",
+          "score": 0.3475859761238098,
+          "chunk_index": 8
+        },
+        {
+          "id": "1793_83",
+          "question": "Biểu hiện thường gặp của dị ứng thời tiết",
+          "score": 0.31579190492630005,
+          "chunk_index": 83
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "1793_80",
+          "text": "Câu hỏi: Biểu hiện thường gặp của dị ứng thời tiết\n\nTrả lời: đổi đột ngột của thời tiết.Giữ ấm cơ thể ngừa dị ứng thời tiết: Những người có tiền sử dị ứng thời tiết cần đặc biệt lưu ý giữ ấm cơ thể kh",
+          "distance": 0.3031257688999176,
+          "vector_score": 1.0,
+          "bm25_score": 0.9960385427461528,
+          "hybrid_score": 0.9984154170984612
+        },
+        {
+          "id": "1801_91",
+          "text": "Câu hỏi: Cách nhận biết triệu chứng của dị ứng thời tiết\n\nTrả lời: ược áp dụng trong trường hợp dị ứng thời tiết lạnh và ngược lại. Biện pháp này giúp điều hòa thân nhiệt, giảm mức độ ngứa ngáy và tiê",
+          "distance": 0.31341442465782166,
+          "vector_score": 0.7685873188558804,
+          "bm25_score": 0.31935148839925037,
+          "hybrid_score": 0.5888929866732283
+        },
+        {
+          "id": "1809_103",
+          "text": "Câu hỏi: Cách kiểm soát triệu chứng dị ứng thời tiết\n\nTrả lời: trái để xịt vào lỗ mũi phải và tay phải để xịt vào lỗ mũi trái. Điều này sẽ hướng thuốc xịt ra khỏi vách ngăn mũi (giữa mũi) và sẽ làm gi",
+          "distance": 0.33882179856300354,
+          "vector_score": 0.19712408259079242,
+          "bm25_score": 0.8139630783761437,
+          "hybrid_score": 0.4438596809049329
+        },
+        {
+          "id": "1782_8",
+          "text": "Câu hỏi: Triệu chứng dị ứng thời tiết\n\nTrả lời: vệ sinh rửa mũi thường xuyên bằng dung dịch nước muối sinh lý.5. Điều trị dị ứng thời tiếtĐể đối phó với tình trạng phản ứng thời tiết, người bệnh có th",
+          "distance": 0.3475859761238098,
+          "vector_score": 0.0,
+          "bm25_score": 0.27680569321808274,
+          "hybrid_score": 0.1107222772872331
+        },
+        {
+          "id": "1793_83",
+          "text": "Câu hỏi: Biểu hiện thường gặp của dị ứng thời tiết\n\nTrả lời: t ngột của thời tiết.Giữ ấm cơ thể ngừa dị ứng thời tiết: Những người có tiền sử dị ứng thời tiết cần đặc biệt lưu ý giữ ấm cơ thể khi đến ",
+          "distance": 0.31579190492630005,
+          "vector_score": 0.7151129781604827,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.8290677868962897
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b34",
+      "question": "Biểu hiện của bệnh viêm da cơ địa và cách chăm sóc",
+      "category": "dermatology",
+      "difficulty": "medium",
+      "expected_topics": [
+        "viêm da cơ địa",
+        "biểu hiện",
+        "chăm sóc"
+      ],
+      "status": "success",
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "ndcg@k": 0.8303030303030304,
+        "precision@5": 1.0,
+        "recall@5": 1.0,
+        "avg_precision": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness": 0.20689655172413793,
+        "answer_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      "retrieval_latency_ms": 16995.82,
+      "generation_latency_ms": 1778.41,
+      "total_latency_ms": 38776.93,
+      "answer": "Biểu hiện của bệnh viêm da cơ địa thường bao gồm các triệu chứng như khô da, viêm da, và các vấn đề về da khác. Để chăm sóc bệnh nhân viêm da cơ địa tại nhà, việc vệ sinh da và duy trì làn da sạch sẽ là rất quan trọng. Điều này giúp loại bỏ các tác nhân bên ngoài có thể khởi phát hoặc làm trầm trọng thêm tình trạng viêm da.\n\nCách chăm sóc bệnh nhân viêm da cơ địa tại nhà bao gồm:\n\n- Vệ sinh da thường xuyên để duy trì làn da sạch sẽ.\n- Tránh các tác nhân gây kích ứng da.\n- Sử dụng các sản phẩm chăm sóc da phù hợp và nhẹ nhàng.\n- Giữ cho da đủ ẩm để giảm khô da.\n\nKhi nghi ngờ bị viêm da cơ địa, việc đi khám bác sĩ chuyên khoa da liễu là rất quan trọng để được điều trị đúng và kịp thời, tránh để bệnh gây ra biến chứng. Bác sĩ sẽ cung cấp hướng dẫn cụ thể về cách chăm sóc và điều trị dựa trên tình trạng cụ thể của từng bệnh nhân.\n\nNhắc nhở: Để có thông tin chính xác và phù hợp với tình trạng sức khỏe của bạn, hãy tham khảo ý kiến của bác sĩ chuyên khoa.",
+      "sources": [
+        {
+          "id": "15605_3",
+          "question": "Đông y có chữa bệnh viêm da cơ địa?",
+          "score": 0.4913409650325775,
+          "chunk_index": 3
+        },
+        {
+          "id": "15595_5",
+          "question": "Các yếu tố thuận lợi làm khởi phát viêm da cơ địa",
+          "score": 0.5147063732147217,
+          "chunk_index": 5
+        },
+        {
+          "id": "12137_10",
+          "question": "Biểu hiện của uốn ván",
+          "score": 0.5036160349845886,
+          "chunk_index": 10
+        },
+        {
+          "id": "14368_46",
+          "question": "Tổng quan bệnh viêm thanh quản cấp tính",
+          "score": 0.5266162753105164,
+          "chunk_index": 46
+        },
+        {
+          "id": "14372_14",
+          "question": "Cách điều trị bệnh viêm thanh quản cấp tính",
+          "score": 0.5304276943206787,
+          "chunk_index": 14
+        }
+      ],
+      "retrieved_docs": [
+        {
+          "id": "15605_3",
+          "text": "Câu hỏi: Đông y có chữa bệnh viêm da cơ địa?\n\nTrả lời: ể không nhận thấy được sự cải thiện trên lâm sàng khi áp dụng.2. Cách chăm sóc bệnh nhân viêm da cơ địa tại nhàĐối với bệnh nhân mắc viêm da cơ đ",
+          "distance": 0.4913409650325775,
+          "vector_score": 1.0,
+          "bm25_score": 0.9766748549187834,
+          "hybrid_score": 0.9906699419675133
+        },
+        {
+          "id": "15595_5",
+          "text": "Câu hỏi: Các yếu tố thuận lợi làm khởi phát viêm da cơ địa\n\nTrả lời: ai đoạn nào của bệnh bao gồm: Các biểu hiện khô da, viêm da lòng bàn tay bàn chân, chàm xung quanh nang lông, dày sừng chân lông.Kh",
+          "distance": 0.5147063732147217,
+          "vector_score": 0.41514132234055967,
+          "bm25_score": 1.0,
+          "hybrid_score": 0.6490847934043358
+        },
+        {
+          "id": "12137_10",
+          "text": "Câu hỏi: Biểu hiện của uốn ván\n\nTrả lời: gười bệnh nên đi khám và tiêm phòng uốn ván càng sớm càng tốt.5. Cách điều trị uốn vánHiện tại, không có phương pháp chữa trị hiệu quả bệnh uốn ván. Nếu nhiễm ",
+          "distance": 0.5036160349845886,
+          "vector_score": 0.6927431729698318,
+          "bm25_score": 0.06560574098053754,
+          "hybrid_score": 0.4418882001741141
+        },
+        {
+          "id": "14368_46",
+          "text": "Câu hỏi: Tổng quan bệnh viêm thanh quản cấp tính\n\nTrả lời: , bạn cần đến bác sĩ thăm khám.Lưu ý: Điều trị viêm thanh quản cấp tính chủ yếu là tự chăm sóc và điều trị triệu chứng. Tuy nhiên, nếu tình t",
+          "distance": 0.5266162753105164,
+          "vector_score": 0.11702499856398688,
+          "bm25_score": 0.0,
+          "hybrid_score": 0.07021499913839212
+        },
+        {
+          "id": "14372_14",
+          "text": "Câu hỏi: Cách điều trị bệnh viêm thanh quản cấp tính\n\nTrả lời: , bạn cần đến bác sĩ thăm khám.Lưu ý: Điều trị viêm thanh quản cấp tính chủ yếu là tự chăm sóc và điều trị triệu chứng. Tuy nhiên, nếu tì",
+          "distance": 0.5304276943206787,
+          "vector_score": 0.021621508716413145,
+          "bm25_score": 0.023258142430676164,
+          "hybrid_score": 0.022276162202118352
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "b35",
+      "question": "Các động tác giảm đau vai gáy hiệu quả",
+      "category": "musculoskeletal",
+      "difficulty": "easy",
+      "expected_topics": [
+        "vai gáy",
+        "giảm đau",
+        "động tác"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 38971.73,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b36",
+      "question": "Lợi ích của tập luyện đối với người bệnh giãn phế quản",
+      "category": "respiratory",
+      "difficulty": "medium",
+      "expected_topics": [
+        "giãn phế quản",
+        "tập luyện",
+        "lợi ích"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 22053.59,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b37",
+      "question": "Biểu hiện người bệnh suy giáp là gì?",
+      "category": "metabolic_endocrine",
+      "difficulty": "medium",
+      "expected_topics": [
+        "suy giáp",
+        "biểu hiện",
+        "tuyến giáp"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 25494.35,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b38",
+      "question": "Gabapentin được sử dụng để điều trị những bệnh gì?",
+      "category": "pharmacology",
+      "difficulty": "medium",
+      "expected_topics": [
+        "gabapentin",
+        "thuốc",
+        "điều trị"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 21609.51,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b39",
+      "question": "Hội chứng tiền kinh nguyệt ảnh hưởng tới phụ nữ như thế nào?",
+      "category": "gynecology",
+      "difficulty": "medium",
+      "expected_topics": [
+        "tiền kinh nguyệt",
+        "hội chứng",
+        "phụ nữ"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 24016.59,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b40",
+      "question": "Những đối tượng nào dễ bị hẹp động mạch cảnh?",
+      "category": "cardiovascular",
+      "difficulty": "hard",
+      "expected_topics": [
+        "hẹp động mạch cảnh",
+        "đối tượng",
+        "nguy cơ"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 21581.45,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b41",
+      "question": "Bệnh kiết lỵ có nguy hiểm không và cách điều trị",
+      "category": "infection_parasitic",
+      "difficulty": "easy",
+      "expected_topics": [
+        "kiết lỵ",
+        "nguy hiểm",
+        "điều trị"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 21603.03,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b42",
+      "question": "Phân biệt nhiễm lao dạng tiềm ẩn và bệnh lao phổi",
+      "category": "respiratory",
+      "difficulty": "hard",
+      "expected_topics": [
+        "lao",
+        "tiềm ẩn",
+        "phổi"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 21630.37,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b43",
+      "question": "Công dụng của cây sâm cau trong y học",
+      "category": "traditional_medicine",
+      "difficulty": "easy",
+      "expected_topics": [
+        "sâm cau",
+        "công dụng",
+        "y học"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 21616.2,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b44",
+      "question": "Cách ngăn ngừa mãn dục ở nam giới",
+      "category": "geriatric",
+      "difficulty": "medium",
+      "expected_topics": [
+        "mãn dục",
+        "nam giới",
+        "ngăn ngừa"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 21630.0,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b45",
+      "question": "Người bệnh ngoại tâm thu cần làm những xét nghiệm gì?",
+      "category": "cardiovascular",
+      "difficulty": "hard",
+      "expected_topics": [
+        "ngoại tâm thu",
+        "xét nghiệm",
+        "chẩn đoán"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 21616.83,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b46",
+      "question": "Cách chăm sóc và điều trị bệnh viêm loét dạ dày tại nhà",
+      "category": "digestive",
+      "difficulty": "medium",
+      "expected_topics": [
+        "viêm loét dạ dày",
+        "chăm sóc",
+        "điều trị"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 21727.21,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b47",
+      "question": "Vai trò của dinh dưỡng đối với sức khỏe làn da",
+      "category": "dermatology",
+      "difficulty": "easy",
+      "expected_topics": [
+        "dinh dưỡng",
+        "làn da",
+        "sức khỏe"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 21575.1,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b48",
+      "question": "Triệu chứng của bệnh tiền liệt tuyến phì đại là gì?",
+      "category": "geriatric",
+      "difficulty": "medium",
+      "expected_topics": [
+        "tiền liệt tuyến",
+        "phì đại",
+        "triệu chứng"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 61200.43,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Server error '520 <none>' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/520"
+    },
+    {
+      "id": "b49",
+      "question": "Nguyên nhân gây bệnh Parkinson là gì?",
+      "category": "neurological",
+      "difficulty": "medium",
+      "expected_topics": [
+        "parkinson",
+        "nguyên nhân",
+        "bệnh"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 24932.42,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "id": "b50",
+      "question": "Tại sao nam giới bị rối loạn cương dương thường không đi khám sớm?",
+      "category": "geriatric",
+      "difficulty": "easy",
+      "expected_topics": [
+        "rối loạn cương dương",
+        "khám",
+        "nam giới"
+      ],
+      "status": "error",
+      "retrieval_metrics": {},
+      "generation_metrics": {},
+      "retrieval_latency_ms": 0,
+      "generation_latency_ms": 0,
+      "total_latency_ms": 21727.21,
+      "answer": "",
+      "sources": [],
+      "retrieved_docs": [],
+      "error": "Client error '429 Too Many Requests' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    }
+  ],
+  "config": {
+    "benchmark_size": 50,
+    "top_k": 5,
+    "generator_mode": "api",
+    "generator_model": "llama-3.3-70b-versatile",
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "vector_search_type": "hybrid",
+    "retrieval_top_k": 5,
+    "score_threshold": 0.3
+  }
+}

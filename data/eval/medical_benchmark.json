@@ -1,168 +1,78 @@
 ﻿{
-  "version": 1,
-  "description": "UTF-8 corpus-grounded smoke benchmark for Medical RAG Chatbot.",
-  "source_report": "reports/evaluation_report_20260611_161148.json",
+  "version": 2,
+  "description": "Extended benchmark v2: 50 diverse Vietnamese medical Q&A questions sampled from corpus.",
+  "generated_date": "2026-06-16",
+  "categories": [
+    "infection_parasitic",
+    "cardiovascular",
+    "respiratory",
+    "metabolic_endocrine",
+    "neurological",
+    "musculoskeletal",
+    "dermatology",
+    "nutrition_diet",
+    "geriatric",
+    "pediatric",
+    "mental_health",
+    "pharmacology",
+    "prevention_hygiene",
+    "traditional_medicine",
+    "emergency_critical",
+    "gynecology",
+    "ent_ent",
+    "digestive",
+    "hematology"
+  ],
   "items": [
-    {
-      "id": "corpus_001",
-      "source_index": 0,
-      "question": "Phương pháp điều trị áp xe não do amip",
-      "expected_source_question": "Phương pháp điều trị áp xe não do amip",
-      "expected_terms": [
-        "áp xe",
-        "phương"
-      ],
-      "answer_excerpt": "Điều trị áp xe não do amip bao gồm cả nội khoa và ngoại khoa. Kết quả điều trị phụ thuộc vào các yếu tố: Tổng trạng của bệnh nhân; giai đoạn phát triển và chẩn đoán bệnh; giai đoạn áp xe, kích thước cùng số lượng và vị trí ổ áp xe; tình trạng tổn thương não...",
-      "category": "corpus_smoke",
-      "difficulty": "medium"
-    },
-    {
-      "id": "corpus_002",
-      "source_index": 1,
-      "question": "Dùng thuốc trong điều trị áp xe não",
-      "expected_source_question": "Dùng thuốc trong điều trị áp xe não",
-      "expected_terms": [
-        "amip",
-        "thuốc",
-        "trong"
-      ],
-      "answer_excerpt": "Trên lý thuyết, phác đồ điều trị cần sử thuốc diệt amip (đơn trị liệu hoặc phối hợp thuốc) có thể ngấm tốt qua hàng rào máu não. Theo khuyến cáo của Trung tâm Kiểm soát và phòng ngừa dịch bệnh Hoa Kỳ (CDC), các thuốc được sử dụng để điều trị amip não bao gồ...",
-      "category": "corpus_smoke",
-      "difficulty": "medium"
-    },
-    {
-      "id": "corpus_003",
-      "source_index": 342,
-      "question": "Nguyên nhân gây viêm tai xương chũm",
-      "expected_source_question": "Nguyên nhân gây viêm tai xương chũm",
-      "expected_terms": [
-        "bạch hầu",
-        "nguyên",
-        "xương"
-      ],
-      "answer_excerpt": "Viêm tai xương chũm cấp tính: Thường xuất hiện sau khi mắc viêm tai giữa. Thông thường bệnh nhân bị viêm tai giữa trước đó khoảng 20 ngày với tình trạng viêm thông bào xương chũm. Viêm tai xương chũm mạn tính: Được xác định khi tình trạng chảy mủ tai kéo dà...",
-      "category": "corpus_smoke",
-      "difficulty": "medium"
-    },
-    {
-      "id": "corpus_004",
-      "source_index": 238,
-      "question": "Acid uric là gì?",
-      "expected_source_question": "Acid uric là gì?",
-      "expected_terms": [
-        "gout"
-      ],
-      "answer_excerpt": "Vậy câu hỏi đặt ra là nguyên nhân của tình trạng tăng acid uric máu là gì, khi nào thì phải điều trị tình trạng tăng acid uric máu không triệu chứng.Bình thường lượng acid uric trong máu luôn được giữ ổn định ở nồng độ dưới 7,0 mg/dl (420 micromol/l) và đượ...",
-      "category": "corpus_smoke",
-      "difficulty": "medium"
-    },
-    {
-      "id": "corpus_005",
-      "source_index": 239,
-      "question": "Tăng acid uric máu và bệnh Gout",
-      "expected_source_question": "Tăng acid uric máu và bệnh Gout",
-      "expected_terms": [
-        "acid uric"
-      ],
-      "answer_excerpt": "Gout là một bệnh khớp do rối loạn chuyển hóa, gây ra bởi tình trạng lắng đọng các tinh thể urat ở các mô của cơ thể, do tăng acid uric trong máu. Tuy nhiên không phải bất kỳ ai tăng acid uric máu đều bị bệnh Gout.Hiện nay có một thực tế là rất nhiều người, ...",
-      "category": "corpus_smoke",
-      "difficulty": "medium"
-    },
-    {
-      "id": "corpus_006",
-      "source_index": 33,
-      "question": "Triệu chứng lâm sàng và chẩn đoán bệnh",
-      "expected_source_question": "Triệu chứng lâm sàng và chẩn đoán bệnh",
-      "expected_terms": [
-        "lao",
-        "triệu",
-        "chứng"
-      ],
-      "answer_excerpt": "Khi mắc bệnh ấu trùng sán lợn, biểu hiện triệu chứng bệnh lý tùy thuộc vào vị trí ký sinh của nang ấu trùng sán. Trên lâm sàng thường phát hiện được các nốt sán dưới da bằng hạt đỗ, hạt lạc, di động dễ, không ngứa, không đau, nằm ở vị trí cơ vân, không ở tr...",
-      "category": "corpus_smoke",
-      "difficulty": "medium"
-    },
-    {
-      "id": "corpus_007",
-      "source_index": 464,
-      "question": "Virus cúm A lây qua đường nào?",
-      "expected_source_question": "Virus cúm A lây qua đường nào?",
-      "expected_terms": [
-        "tê bì",
-        "virus",
-        "đường"
-      ],
-      "answer_excerpt": "Cúm A là căn bệnh nhiễm trùng đường hô hấp cấp tính thường lưu hành khi thời tiết chuyển mùa, do các chủng virus cúm phổ biến như A/H1N1, A/H3N2, A/H5N1, A/H7N9 gây nên. Bệnh cúm A thường bị nhầm lẫn với bệnh cảm thông thường do những triệu chứng tương tự. ...",
-      "category": "corpus_smoke",
-      "difficulty": "medium"
-    },
-    {
-      "id": "corpus_008",
-      "source_index": 52,
-      "question": "Đông y có chữa được Alkapton niệu không?",
-      "expected_source_question": "Đông y có chữa được Alkapton niệu không?",
-      "expected_terms": [
-        "viêm khớp",
-        "alkapton",
-        "không"
-      ],
-      "answer_excerpt": "Alkapton niệu là một loại bệnh di truyền hiếm gặp, ảnh hưởng đến hoạt động của hệ thống niệu quản trong cơ thể. Bệnh có thể gây ra nhiều vấn đề sức khỏe nguy hiểm nếu không được phát hiện và điều trị kịp thời nên đông y không thể chữa được căn bệnh này.2. C...",
-      "category": "corpus_smoke",
-      "difficulty": "medium"
-    },
-    {
-      "id": "corpus_009",
-      "source_index": 116,
-      "question": "Điều trị áp xe gan do amip",
-      "expected_source_question": "Điều trị áp xe gan do amip",
-      "expected_terms": [
-        "xoa bóp"
-      ],
-      "answer_excerpt": "Điều trị áp xe gan do amip thì lựa chọn đầu tay là tinidazole hoặc metronidazole phối hợp với một số loại thuốc khác (theo chỉ định của bác sĩ).- Tinidazole chỉ định trong điều trị các nhiễm khuẩn do vi khuẩn kỵ khí, trong đó có áp xe gan do amip entamoeba ...",
-      "category": "corpus_smoke",
-      "difficulty": "medium"
-    },
-    {
-      "id": "corpus_010",
-      "source_index": 3,
-      "question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
-      "expected_source_question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip",
-      "expected_terms": [
-        "dinh dưỡng",
-        "trọng",
-        "người"
-      ],
-      "answer_excerpt": "Áp xe não do Entamoeba histolytica thường có các biểu hiện phổ biến bao gồm đau đầu, nôn mửa và thay đổi trạng thái tinh thần.Các dấu hiệu của áp xe não do amip bao gồm phổ biến nhất là các dấu hiệu màng não, liệt dây thần kinh mặt (VII), liệt vận động và c...",
-      "category": "corpus_smoke",
-      "difficulty": "medium"
-    },
-    {
-      "id": "corpus_011",
-      "source_index": 5,
-      "question": "Vai trò của tập luyện với người bệnh áp xe não do amip",
-      "expected_source_question": "Vai trò của tập luyện với người bệnh áp xe não do amip",
-      "expected_terms": [
-        "thuốc",
-        "luyện",
-        "người"
-      ],
-      "answer_excerpt": "- Giảm các triệu chứng stress, lo lắng; giảm triệu chứng sốt, đau đầu, buồn nôn, chóng mặt của bệnh áp xe não do amip.- Tăng cường lưu thông khí huyết vùng cổ gáy, não... giúp giảm triệu chứng đau vai gáy, động kinh, co quắp chân tay, giãn cơ, thư giãn tinh...",
-      "category": "corpus_smoke",
-      "difficulty": "medium"
-    },
-    {
-      "id": "corpus_012",
-      "source_index": 2,
-      "question": "Dự phòng nhiễm amip",
-      "expected_source_question": "Dự phòng nhiễm amip",
-      "expected_terms": [
-        "dự phòng",
-        "phòng",
-        "nhiễm"
-      ],
-      "answer_excerpt": "Áp xe não do amip là bệnh lý nguy hiểm, nếu không được phát hiện sớm và điều trị còn đe dọa đến tính mạng. Nếu điều trị sống sót thì nguy cơ để lại di chứng khá cao. Do đó, phòng bệnh là ưu tiên hàng đầu. Phòng bệnh cũng khá đơn giản, chỉ bằng việc vệ sinh ...",
-      "category": "corpus_smoke",
-      "difficulty": "medium"
-    }
+    {"id": "b01", "source_index": 0, "question": "Phương pháp điều trị áp xe não do amip", "expected_source_question": "Phương pháp điều trị áp xe não do amip", "expected_terms": ["áp xe", "điều trị", "amip"], "answer_excerpt": "", "category": "infection_parasitic", "difficulty": "medium"},
+    {"id": "b02", "source_index": 3, "question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip", "expected_source_question": "Tầm quan trọng của chế độ ăn cho người bị áp xe não do amip", "expected_terms": ["dinh dưỡng", "chế độ ăn", "áp xe não"], "answer_excerpt": "", "category": "infection_parasitic", "difficulty": "medium"},
+    {"id": "b03", "source_index": 9, "question": "Amip ăn não lây qua những con đường nào?", "expected_source_question": "Amip là gì?", "expected_terms": ["amip", "lây", "đường"], "answer_excerpt": "", "category": "infection_parasitic", "difficulty": "easy"},
+    {"id": "b04", "source_index": 15, "question": "Triệu chứng lâm sàng của bệnh áp xe não do amip là gì?", "expected_source_question": "Nguyên nhân gây áp xe não do amip", "expected_terms": ["triệu chứng", "áp xe não", "lâm sàng"], "answer_excerpt": "", "category": "infection_parasitic", "difficulty": "medium"},
+    {"id": "b05", "source_index": 18, "question": "Cách phòng ngừa nhiễm amip ăn não", "expected_source_question": "Phòng ngừa áp xe não do amip", "expected_terms": ["phòng ngừa", "amip", "vệ sinh"], "answer_excerpt": "", "category": "infection_parasitic", "difficulty": "medium"},
+    {"id": "b06", "source_index": 27, "question": "Thuốc điều trị nhiễm ấu trùng sán lợn có hiệu quả không?", "expected_source_question": "Dùng thuốc điều trị nhiễm ấu trùng sán lợn", "expected_terms": ["ấu trùng sán lợn", "thuốc", "điều trị"], "answer_excerpt": "", "category": "infection_parasitic", "difficulty": "medium"},
+    {"id": "b07", "source_index": 33, "question": "Triệu chứng và cách chẩn đoán bệnh ấu trùng sán lợn", "expected_source_question": "Triệu chứng lâm sàng và chẩn đoán bệnh", "expected_terms": ["ấu trùng sán lợn", "triệu chứng", "chẩn đoán"], "answer_excerpt": "", "category": "infection_parasitic", "difficulty": "medium"},
+    {"id": "b08", "source_index": 52, "question": "Bệnh Alkapton niệu có chữa khỏi được không?", "expected_source_question": "Alkapton niệu có chữa khỏi được không?", "expected_terms": ["alkapton", "niệu", "chữa"], "answer_excerpt": "", "category": "metabolic_endocrine", "difficulty": "hard"},
+    {"id": "b09", "source_index": 116, "question": "Điều trị áp xe gan do amip như thế nào?", "expected_source_question": "Điều trị áp xe gan do amip", "expected_terms": ["áp xe gan", "amip", "điều trị"], "answer_excerpt": "", "category": "infection_parasitic", "difficulty": "medium"},
+    {"id": "b10", "source_index": 200, "question": "Các phương pháp điều trị áp xe hậu môn là gì?", "expected_source_question": "Các phương pháp điều trị áp xe hậu môn", "expected_terms": ["áp xe hậu môn", "điều trị", "phương pháp"], "answer_excerpt": "", "category": "digestive", "difficulty": "medium"},
+    {"id": "b11", "source_index": 238, "question": "Acid uric là gì và vai trò của nó trong cơ thể?", "expected_source_question": "Acid uric là gì?", "expected_terms": ["acid uric", "gout", "bệnh"], "answer_excerpt": "", "category": "metabolic_endocrine", "difficulty": "easy"},
+    {"id": "b12", "source_index": 239, "question": "Mối liên hệ giữa tăng acid uric máu và bệnh Gout", "expected_source_question": "Tăng acid uric máu và bệnh Gout", "expected_terms": ["acid uric", "gout", "tăng"], "answer_excerpt": "", "category": "metabolic_endocrine", "difficulty": "medium"},
+    {"id": "b13", "source_index": 300, "question": "Triệu chứng của bệnh đái tháo đường type 2 là gì?", "expected_source_question": "Triệu chứng đái tháo đường type 2", "expected_terms": ["đái tháo đường", "triệu chứng", "type 2"], "answer_excerpt": "", "category": "metabolic_endocrine", "difficulty": "medium"},
+    {"id": "b14", "source_index": 342, "question": "Nguyên nhân gây viêm tai xương chũm là gì?", "expected_source_question": "Nguyên nhân gây viêm tai xương chũm", "expected_terms": ["viêm tai", "xương chũm", "nguyên nhân"], "answer_excerpt": "", "category": "ent_ent", "difficulty": "medium"},
+    {"id": "b15", "source_index": 400, "question": "Người bệnh Alzheimer cần được chăm sóc như thế nào?", "expected_source_question": "Người bệnh Alzheimer cần làm gì?", "expected_terms": ["alzheimer", "chăm sóc", "người bệnh"], "answer_excerpt": "", "category": "neurological", "difficulty": "medium"},
+    {"id": "b16", "source_index": 458, "question": "Virus cúm A lây qua những con đường nào?", "expected_source_question": "Virus cúm A lây qua đường nào?", "expected_terms": ["cúm A", "virus", "lây"], "answer_excerpt": "", "category": "respiratory", "difficulty": "easy"},
+    {"id": "b17", "source_index": 480, "question": "Các biện pháp phòng bệnh sốt rét hiệu quả nhất", "expected_source_question": "Phòng bệnh sốt rét", "expected_terms": ["sốt rét", "phòng", "biện pháp"], "answer_excerpt": "", "category": "infection_parasitic", "difficulty": "medium"},
+    {"id": "b18", "source_index": 500, "question": "Nhận biết dấu hiệu cấp cứu ở trẻ bị bệnh tim bẩm sinh", "expected_source_question": "Cách nhận biết các tình huống cấp cứu ở trẻ bị bệnh tim bẩm sinh", "expected_terms": ["tim bẩm sinh", "cấp cứu", "trẻ"], "answer_excerpt": "", "category": "pediatric", "difficulty": "hard"},
+    {"id": "b19", "source_index": 520, "question": "Triệu chứng và cách điều trị bệnh giun kim", "expected_source_question": "Biểu hiện khi mắc bệnh giun kim", "expected_terms": ["giun kim", "triệu chứng", "điều trị"], "answer_excerpt": "", "category": "infection_parasitic", "difficulty": "easy"},
+    {"id": "b20", "source_index": 540, "question": "Nguyên nhân gây lồng ruột ở trẻ em là gì?", "expected_source_question": "Nguyên nhân gây lồng ruột", "expected_terms": ["lồng ruột", "trẻ em", "nguyên nhân"], "answer_excerpt": "", "category": "pediatric", "difficulty": "medium"},
+    {"id": "b21", "source_index": 600, "question": "Hiện tượng bóng đè là gì và có nguy hiểm không?", "expected_source_question": "Các trạng thái khác nhau của hiện tượng bóng đè", "expected_terms": ["bóng đè", "hiện tượng", "nguy hiểm"], "answer_excerpt": "", "category": "neurological", "difficulty": "easy"},
+    {"id": "b22", "source_index": 620, "question": "Những lưu ý quan trọng trước khi dùng thuốc", "expected_source_question": "Một số lưu ý trước khi dùng thuốc", "expected_terms": ["thuốc", "lưu ý", "dùng"], "answer_excerpt": "", "category": "pharmacology", "difficulty": "easy"},
+    {"id": "b23", "source_index": 640, "question": "Đông y có thể chữa bệnh mất thính lực không?", "expected_source_question": "Đông y có chữa được bệnh mất thính lực?", "expected_terms": ["đông y", "thính lực", "chữa"], "answer_excerpt": "", "category": "traditional_medicine", "difficulty": "medium"},
+    {"id": "b24", "source_index": 680, "question": "Cách khắc phục chứng nói lắp ở người lớn và trẻ em", "expected_source_question": "Cách khắc phục chứng nói lắp cho người lớn và trẻ em", "expected_terms": ["nói lắp", "khắc phục", "trẻ em"], "answer_excerpt": "", "category": "mental_health", "difficulty": "medium"},
+    {"id": "b25", "source_index": 700, "question": "Thuốc điều trị nhiệt miệng tại nhà có hiệu quả không?", "expected_source_question": "Lưu ý khi dùng thuốc chữa nhiệt miệng", "expected_terms": ["nhiệt miệng", "thuốc", "điều trị"], "answer_excerpt": "", "category": "dermatology", "difficulty": "easy"},
+    {"id": "b26", "source_index": 720, "question": "Ngộ độc botulinum là gì và nguy hiểm như thế nào?", "expected_source_question": "Ngộ độc botulinum là gì?", "expected_terms": ["botulinum", "ngộ độc", "nguy hiểm"], "answer_excerpt": "", "category": "emergency_critical", "difficulty": "medium"},
+    {"id": "b27", "source_index": 800, "question": "Các tai biến và biến chứng có thể xảy ra sau phẫu thuật", "expected_source_question": "Các tai biến và biến chứng của cuộc mổ", "expected_terms": ["tai biến", "biến chứng", "phẫu thuật"], "answer_excerpt": "", "category": "emergency_critical", "difficulty": "hard"},
+    {"id": "b28", "source_index": 900, "question": "Suy tim là gì và có những dấu hiệu nào?", "expected_source_question": "Suy tim là gì?", "expected_terms": ["suy tim", "dấu hiệu", "tim"], "answer_excerpt": "", "category": "cardiovascular", "difficulty": "medium"},
+    {"id": "b29", "source_index": 1000, "question": "Trà xanh có tác dụng gì đối với bệnh đái tháo đường?", "expected_source_question": "Trà xanh có thể giúp bạn giảm cân, giảm nguy cơ mắc đái tháo đường", "expected_terms": ["trà xanh", "đái tháo đường", "tác dụng"], "answer_excerpt": "", "category": "metabolic_endocrine", "difficulty": "easy"},
+    {"id": "b30", "source_index": 1200, "question": "Bệnh cường lách có nguy hiểm không?", "expected_source_question": "Cường lách có nguy hiểm cho sức khỏe không?", "expected_terms": ["cường lách", "nguy hiểm", "lách"], "answer_excerpt": "", "category": "hematology", "difficulty": "medium"},
+    {"id": "b31", "source_index": 1400, "question": "Tầm quan trọng của dinh dưỡng đối với trẻ bị còi xương", "expected_source_question": "Tầm quan trọng của chế độ ăn cho trẻ bị còi xương", "expected_terms": ["còi xương", "dinh dưỡng", "trẻ"], "answer_excerpt": "", "category": "pediatric", "difficulty": "medium"},
+    {"id": "b32", "source_index": 1600, "question": "Người bệnh chán ăn tâm thần cần bổ sung dưỡng chất gì?", "expected_source_question": "Những dưỡng chất cần thiết cho cơ thể người bệnh chán ăn tâm thần", "expected_terms": ["chán ăn tâm thần", "dưỡng chất", "bệnh nhân"], "answer_excerpt": "", "category": "mental_health", "difficulty": "hard"},
+    {"id": "b33", "source_index": 1800, "question": "Cách xử trí khi bị dị ứng thời tiết", "expected_source_question": "Làm gì khi bị dị ứng thời tiết?", "expected_terms": ["dị ứng thời tiết", "xử trí", "dị ứng"], "answer_excerpt": "", "category": "dermatology", "difficulty": "easy"},
+    {"id": "b34", "source_index": 2000, "question": "Biểu hiện của bệnh viêm da cơ địa và cách chăm sóc", "expected_source_question": "Cách chăm sóc điều trị bệnh viêm da cơ địa", "expected_terms": ["viêm da cơ địa", "biểu hiện", "chăm sóc"], "answer_excerpt": "", "category": "dermatology", "difficulty": "medium"},
+    {"id": "b35", "source_index": 2200, "question": "Các động tác giảm đau vai gáy hiệu quả", "expected_source_question": "Các động tác giảm đau vai gáy", "expected_terms": ["vai gáy", "giảm đau", "động tác"], "answer_excerpt": "", "category": "musculoskeletal", "difficulty": "easy"},
+    {"id": "b36", "source_index": 2600, "question": "Lợi ích của tập luyện đối với người bệnh giãn phế quản", "expected_source_question": "Lợi ích của việc tập luyện đối với người bệnh giãn phế quản", "expected_terms": ["giãn phế quản", "tập luyện", "lợi ích"], "answer_excerpt": "", "category": "respiratory", "difficulty": "medium"},
+    {"id": "b37", "source_index": 3000, "question": "Biểu hiện người bệnh suy giáp là gì?", "expected_source_question": "Biểu hiện người bệnh bị suy giáp", "expected_terms": ["suy giáp", "biểu hiện", "tuyến giáp"], "answer_excerpt": "", "category": "metabolic_endocrine", "difficulty": "medium"},
+    {"id": "b38", "source_index": 3400, "question": "Gabapentin được sử dụng để điều trị những bệnh gì?", "expected_source_question": "Gabapentin", "expected_terms": ["gabapentin", "thuốc", "điều trị"], "answer_excerpt": "", "category": "pharmacology", "difficulty": "medium"},
+    {"id": "b39", "source_index": 4000, "question": "Hội chứng tiền kinh nguyệt ảnh hưởng tới phụ nữ như thế nào?", "expected_source_question": "Hội chứng tiền kinh nguyệt ảnh hưởng tới đa số phụ nữ", "expected_terms": ["tiền kinh nguyệt", "hội chứng", "phụ nữ"], "answer_excerpt": "", "category": "gynecology", "difficulty": "medium"},
+    {"id": "b40", "source_index": 4400, "question": "Những đối tượng nào dễ bị hẹp động mạch cảnh?", "expected_source_question": "Những trường hợp nào dễ bị hẹp động mạch cảnh?", "expected_terms": ["hẹp động mạch cảnh", "đối tượng", "nguy cơ"], "answer_excerpt": "", "category": "cardiovascular", "difficulty": "hard"},
+    {"id": "b41", "source_index": 4800, "question": "Bệnh kiết lỵ có nguy hiểm không và cách điều trị", "expected_source_question": "Bệnh kiết lỵ nguy hiểm không?", "expected_terms": ["kiết lỵ", "nguy hiểm", "điều trị"], "answer_excerpt": "", "category": "infection_parasitic", "difficulty": "easy"},
+    {"id": "b42", "source_index": 5200, "question": "Phân biệt nhiễm lao dạng tiềm ẩn và bệnh lao phổi", "expected_source_question": "Nhiễm lao dạng tiềm ẩn và bệnh lao", "expected_terms": ["lao", "tiềm ẩn", "phổi"], "answer_excerpt": "", "category": "respiratory", "difficulty": "hard"},
+    {"id": "b43", "source_index": 5600, "question": "Công dụng của cây sâm cau trong y học", "expected_source_question": "Công dụng của sâm cau", "expected_terms": ["sâm cau", "công dụng", "y học"], "answer_excerpt": "", "category": "traditional_medicine", "difficulty": "easy"},
+    {"id": "b44", "source_index": 6000, "question": "Cách ngăn ngừa mãn dục ở nam giới", "expected_source_question": "Ngăn ngừa mãn dục ở nam giới", "expected_terms": ["mãn dục", "nam giới", "ngăn ngừa"], "answer_excerpt": "", "category": "geriatric", "difficulty": "medium"},
+    {"id": "b45", "source_index": 6200, "question": "Người bệnh ngoại tâm thu cần làm những xét nghiệm gì?", "expected_source_question": "Người bệnh ngoại tâm thu cần làm các xét nghiệm chẩn đoán nào?", "expected_terms": ["ngoại tâm thu", "xét nghiệm", "chẩn đoán"], "answer_excerpt": "", "category": "cardiovascular", "difficulty": "hard"},
+    {"id": "b46", "source_index": 7000, "question": "Cách chăm sóc và điều trị bệnh viêm loét dạ dày tại nhà", "expected_source_question": "Bệnh viêm loét dạ dày", "expected_terms": ["viêm loét dạ dày", "chăm sóc", "điều trị"], "answer_excerpt": "", "category": "digestive", "difficulty": "medium"},
+    {"id": "b47", "source_index": 7400, "question": "Vai trò của dinh dưỡng đối với sức khỏe làn da", "expected_source_question": "Vai trò của dinh dưỡng với sức khoẻ làn da", "expected_terms": ["dinh dưỡng", "làn da", "sức khỏe"], "answer_excerpt": "", "category": "dermatology", "difficulty": "easy"},
+    {"id": "b48", "source_index": 7600, "question": "Triệu chứng của bệnh tiền liệt tuyến phì đại là gì?", "expected_source_question": "Biểu hiện khi tiền liệt tuyến phì đại", "expected_terms": ["tiền liệt tuyến", "phì đại", "triệu chứng"], "answer_excerpt": "", "category": "geriatric", "difficulty": "medium"},
+    {"id": "b49", "source_index": 7800, "question": "Nguyên nhân gây bệnh Parkinson là gì?", "expected_source_question": "Điều gì gây ra bệnh Parkinson?", "expected_terms": ["parkinson", "nguyên nhân", "bệnh"], "answer_excerpt": "", "category": "neurological", "difficulty": "medium"},
+    {"id": "b50", "source_index": 8200, "question": "Tại sao nam giới bị rối loạn cương dương thường không đi khám sớm?", "expected_source_question": "Rất ít người rối loạn cương dương đi khám sớm", "expected_terms": ["rối loạn cương dương", "khám", "nam giới"], "answer_excerpt": "", "category": "geriatric", "difficulty": "easy"}
   ]
 }
