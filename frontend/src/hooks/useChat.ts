@@ -34,7 +34,9 @@ export function useChat() {
       setIsSending(true);
 
       try {
+        let receivedAnyChunk = false;
         await streamChat({ message: text, top_k: topK, session_id: sessionId ?? undefined }, (chunk) => {
+          receivedAnyChunk = true;
           setMessages((prev) => {
             const next = [...prev];
             const last = next[next.length - 1];
@@ -42,6 +44,9 @@ export function useChat() {
             return next;
           });
         }, onSessionId);
+        if (!receivedAnyChunk) {
+          throw new Error('Stream resolved with no chunks');
+        }
       } catch {
         try {
           const res = await askChat({
