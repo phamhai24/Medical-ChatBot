@@ -33,6 +33,8 @@ export function useChat() {
       setMessages((prev) => [...prev, { role: 'user', content: text }, { role: 'assistant', content: '' }]);
       setIsSending(true);
 
+      let streamSessionId: string | null = null;
+
       try {
         let receivedAnyChunk = false;
         await streamChat({ message: text, top_k: topK, session_id: sessionId ?? undefined }, (chunk) => {
@@ -43,10 +45,13 @@ export function useChat() {
             next[next.length - 1] = { ...last, content: last.content + chunk };
             return next;
           });
-        }, onSessionId);
+        }, (id) => {
+          streamSessionId = id;
+        });
         if (!receivedAnyChunk) {
           throw new Error('Stream resolved with no chunks');
         }
+        if (streamSessionId) onSessionId(streamSessionId);
       } catch {
         try {
           const res = await askChat({
