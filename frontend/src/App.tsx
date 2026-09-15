@@ -1,7 +1,12 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { ChatPage } from './pages/ChatPage';
+
 export function App() {
   return (
-    <div className="flex h-screen items-center justify-center bg-slate-100 text-slate-500">
-      Medical RAG Chatbot — scaffold OK
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ChatPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
