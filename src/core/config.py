@@ -31,6 +31,7 @@ class Settings(BaseSettings):
     api_cors_origins: list[str] = ["*"]
     api_warmup_enabled: bool = True
     api_warmup_query: str = "kiểm tra sức khỏe hệ thống"
+    admin_api_key: Optional[str] = None
 
     # ─── Redis ──────────────────────────────────────────────────────────────
     redis_host: str = "localhost"
