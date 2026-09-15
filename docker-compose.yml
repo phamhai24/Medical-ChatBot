@@ -16,7 +16,8 @@ services:
       # API
       - API_HOST=0.0.0.0
       - API_PORT=8000
-      - API_CORS_ORIGINS=*
+      - API_CORS_ORIGINS=["http://localhost:${WEB_PORT:-3000}"]
+      - ADMIN_API_KEY=${ADMIN_API_KEY:-}
 
       # Redis
       - REDIS_ENABLED=true
@@ -73,21 +74,14 @@ services:
       timeout: 5s
       retries: 3
 
-  # ─── Streamlit UI ─────────────────────────────────────────────────────────
-  streamlit:
+  # ─── React Frontend ──────────────────────────────────────────────────────
+  web:
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile
-    container_name: medical-rag-ui
-    command: streamlit run src/web/app.py --server.port 8501 --server.address 0.0.0.0
+    container_name: medical-rag-web
     ports:
-      - "${STREAMLIT_PORT:-8501}:8501"
-    environment:
-      - API_BASE_URL=http://api:8000
-      - STREAMLIT_SERVER_HEADLESS=true
-    volumes:
-      - ./src:/app/src
-      - ./config:/app/config
+      - "${WEB_PORT:-3000}:80"
     depends_on:
       - api
     restart: unless-stopped
