@@ -27,7 +27,7 @@ Assistant: Bệnh tiểu đường type 2 có các triệu chứng thường g�
 |---|---|
 | **RAG Pipeline** | Retrieval-Augmented Generation với ChromaDB vector store |
 | **Embedder** | `paraphrase-multilingual-MiniLM-L12-v2` — hỗ trợ tiếng Việt |
-| **Generator** | Local (Qwen2.5-7B-Instruct) hoặc API (Groq/OpenAI) |
+| **Generator** | API (Groq/OpenAI) |
 | **Retrieval** | Vector search + BM25 hybrid + MMR (Max Marginal Relevance) |
 | **Evaluation** | Hit Rate, MRR, NDCG, RAGAS, LLM-as-Judge |
 | **API** | FastAPI với versioned endpoints, Pydantic schemas |
@@ -265,7 +265,7 @@ Chatbot Y tế/
 | **Backend** | FastAPI + Pydantic v2 | 0.109+ / 2.4+ |
 | **Embedder** | sentence-transformers | 2.2+ |
 | **Vector DB** | ChromaDB | 0.4+ |
-| **Generator** | Qwen2.5-7B-Instruct / Groq API | - |
+| **Generator** | Groq API | - |
 | **Cache** | Redis | 7+ |
 | **Metrics** | prometheus-client | 0.17+ |
 | **Logging** | Loguru | 3.8+ |
