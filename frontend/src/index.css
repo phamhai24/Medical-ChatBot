@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.markdown-content p {
+  margin: 0.25rem 0;
+}
+.markdown-content ul,
+.markdown-content ol {
+  margin: 0.25rem 0 0.25rem 1.25rem;
+  list-style: disc;
+}
+.markdown-content strong {
+  font-weight: 600;
+}

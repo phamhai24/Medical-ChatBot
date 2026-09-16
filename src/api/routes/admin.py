@@ -2,13 +2,17 @@
 
 import time
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 
-from src.api.deps import get_pipeline
+from src.api.deps import get_pipeline, verify_admin_key
 from src.api.schemas import IngestRequest, IngestResponse, ReindexRequest
 from src.core.logging import logger
 
-router = APIRouter(prefix="/api/v1/admin", tags=["Admin"])
+router = APIRouter(
+    prefix="/api/v1/admin",
+    tags=["Admin"],
+    dependencies=[Depends(verify_admin_key)],
+)
 
 
 @router.post("/ingest", response_model=IngestResponse)

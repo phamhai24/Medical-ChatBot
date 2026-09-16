@@ -28,9 +28,10 @@ class Settings(BaseSettings):
     api_port: int = 8000
     api_reload: bool = True
     api_workers: int = 1
-    api_cors_origins: list[str] = ["*"]
+    api_cors_origins: list[str] = ["http://localhost:5173"]
     api_warmup_enabled: bool = True
     api_warmup_query: str = "kiểm tra sức khỏe hệ thống"
+    admin_api_key: Optional[str] = None
 
     # ─── Redis ──────────────────────────────────────────────────────────────
     redis_host: str = "localhost"

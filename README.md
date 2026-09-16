@@ -38,10 +38,10 @@ Assistant: Bệnh tiểu đường type 2 có các triệu chứng thường g�
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                         Streamlit UI                          │
-│               (http://localhost:8501)                        │
+│                    React Frontend (Vite + TS)                 │
+│               (http://localhost:3000, dev: :5173)             │
 └──────────────────────┬────────────────────────────────────────┘
-                       │ HTTP / Streaming
+                       │ HTTP / Streaming (proxied by nginx or Vite)
 ┌──────────────────────▼────────────────────────────────────┐
 │                   FastAPI Backend                            │
 │  /api/v1/chat/ask  ·  /api/v1/chat/stream                 │
@@ -78,7 +78,7 @@ cp .env.example .env
 docker compose up -d
 
 # API: http://localhost:8000/docs
-# UI:   http://localhost:8501
+# UI:   http://localhost:3000
 ```
 
 ### Local Development
@@ -101,7 +101,8 @@ python -m src.rag.ingest --config config/rag_config.yaml --rebuild
 python -m src.api.main
 
 # 6. (Separate terminal) Start UI
-streamlit run src/web/app.py
+cd frontend && npm install && npm run dev
+# UI: http://localhost:5173
 ```
 
 ### CLI Usage
@@ -204,6 +205,15 @@ Swagger docs: `http://localhost:8000/docs`
 
 ```
 Chatbot Y tế/
+├── frontend/             # React + Vite + TypeScript SPA
+│   ├── src/
+│   │   ├── api/          # Typed fetch client
+│   │   ├── components/   # Chat/Admin UI components
+│   │   ├── hooks/        # useChat, useSessions, useAdminKey
+│   │   ├── pages/        # ChatPage, AdminPage
+│   │   └── types/        # Mirrors src/api/schemas.py
+│   ├── Dockerfile
+│   └── nginx.conf
 ├── src/
 │   ├── api/              # FastAPI (routes, schemas, deps)
 │   │   ├── main.py      # App entry + middleware
@@ -235,8 +245,6 @@ Chatbot Y tế/
 │   │   ├── exceptions.py # Custom exceptions
 │   │   ├── metrics.py  # Prometheus metrics
 │   │   └── redis_client.py # Redis session/cache
-│   ├── web/             # Streamlit UI
-│   │   └── app.py      # Refactored Streamlit app
 │   ├── utils/           # Utilities
 │   └── cli/             # CLI tools
 ├── tests/               # pytest tests
@@ -269,7 +277,7 @@ Chatbot Y tế/
 | **Cache** | Redis | 7+ |
 | **Metrics** | prometheus-client | 0.17+ |
 | **Logging** | Loguru | 3.8+ |
-| **UI** | Streamlit | 1.29+ |
+| **UI** | React + Vite + TypeScript + Tailwind | 18 / 5 / 5 / 3 |
 | **Tests** | pytest + pytest-asyncio | 7.4+ / 0.21+ |
 | **Container** | Docker + Compose | 24+ |
 

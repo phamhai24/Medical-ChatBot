@@ -8,7 +8,7 @@ help:
 	@echo "  make ingest       Ingest data into vector store"
 	@echo "  make eval         Run evaluation"
 	@echo "  make serve        Start API server"
-	@echo "  make ui           Start Streamlit UI"
+	@echo "  make ui           Start React frontend (dev server)"
 	@echo "  make docker-build Build Docker image"
 	@echo "  make docker-up    Start all services with Docker"
 	@echo "  make docker-down  Stop Docker services"
@@ -46,7 +46,7 @@ serve:
 	python -m src.api.main
 
 ui:
-	streamlit run src/web/app.py
+	cd frontend && npm run dev
 
 docker-build:
 	docker build -t medical-rag-chatbot:latest .

@@ -16,7 +16,8 @@ services:
       # API
       - API_HOST=0.0.0.0
       - API_PORT=8000
-      - API_CORS_ORIGINS=*
+      - API_CORS_ORIGINS=["http://localhost:${WEB_PORT:-3000}"]
+      - ADMIN_API_KEY=${ADMIN_API_KEY:-}
 
       # Redis
       - REDIS_ENABLED=true
@@ -37,6 +38,14 @@ services:
       - GENERATOR_MODEL=Qwen/Qwen2.5-7B-Instruct
       - GENERATOR_MAX_TOKENS=512
       - GENERATOR_TEMPERATURE=0.3
+      # Only used when GENERATOR_MODE=api; harmless/unread otherwise. Without these, "api" mode
+      # falls back to Settings defaults (Groq) regardless of what the host's .env has, since
+      # only variables listed here are forwarded into the container.
+      - API_GENERATOR_PROVIDER=${API_GENERATOR_PROVIDER:-groq}
+      - API_GENERATOR_MODEL=${API_GENERATOR_MODEL:-llama-3.3-70b-versatile}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
 
       # Logging
       - LOG_LEVEL=INFO
@@ -73,21 +82,14 @@ services:
       timeout: 5s
       retries: 3
 
-  # ─── Streamlit UI ─────────────────────────────────────────────────────────
-  streamlit:
+  # ─── React Frontend ──────────────────────────────────────────────────────
+  web:
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile
-    container_name: medical-rag-ui
-    command: streamlit run src/web/app.py --server.port 8501 --server.address 0.0.0.0
+    container_name: medical-rag-web
     ports:
-      - "${STREAMLIT_PORT:-8501}:8501"
-    environment:
-      - API_BASE_URL=http://api:8000
-      - STREAMLIT_SERVER_HEADLESS=true
-    volumes:
-      - ./src:/app/src
-      - ./config:/app/config
+      - "${WEB_PORT:-3000}:80"
     depends_on:
       - api
     restart: unless-stopped
