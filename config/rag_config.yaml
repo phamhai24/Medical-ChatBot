@@ -23,14 +23,26 @@ rag:
     type: "chroma"  # "chroma", "faiss", "milvus"
     persist_directory: "data/vectorstore"
     collection_name: "medical_qa"
-    search_type: "mmr"  # "similarity", "mmr" (max marginal relevance)
+    # NOTE: this "vector_store" block (like "retrieval"/"embedding"/"generation" below) is NOT
+    # actually read by src/utils/config_loader.py — only "rag.prompt" is loaded from this YAML
+    # file; everything else comes from Settings/.env (see src/core/config.py). The real search
+    # mode is controlled by the VECTOR_SEARCH_TYPE env var (currently "hybrid" in .env). Kept
+    # here for documentation only; edit .env / Settings defaults to actually change behavior.
+    search_type: "hybrid"  # "similarity" or "hybrid" (vector + BM25). "mmr" was set here
+                            # previously but Retriever never implements an "mmr" branch, so it
+                            # would have silently fallen back to plain top-k similarity search
+                            # even if this block were read.
     fetch_k: 20
     lambda_mult: 0.5  # For MMR diversity control
 
-  # Retrieval settings
+  # Retrieval settings (also documentation-only here, see note above; real defaults are the
+  # retrieval_rerank_* Settings fields / RETRIEVAL_RERANK_* env vars in src/core/config.py)
   retrieval:
     top_k: 5
     score_threshold: 0.3  # Minimum similarity score
+    rerank_enabled: true
+    rerank_model: "BAAI/bge-reranker-v2-m3"  # multilingual cross-encoder, covers Vietnamese
+    rerank_fetch_k: 20  # candidates to rerank before cutting to top_k
 
   # Generation settings
   generation:
@@ -58,6 +70,8 @@ rag:
       - Nếu câu hỏi yêu cầu thông tin y tế chuyên môn, hãy trình bày logic và chi tiết.
       - Luôn nhắc nhở người dùng tham khảo ý kiến bác sĩ cho các quyết định y tế quan trọng.
       - Không đưa ra chẩn đoán y khoa cụ thể cho cá nhân.
+      - Nếu người dùng hỏi liều lượng thuốc cụ thể dựa trên thông tin cá nhân của họ (cân nặng, tuổi, tình trạng bệnh...), KHÔNG tính toán hay đưa ra một con số liều lượng cụ thể nào, dù bạn có kiến thức chung về liều tham khảo. Chỉ nói rằng liều dùng cần được bác sĩ hoặc dược sĩ chỉ định dựa trên tình trạng thực tế.
+      - Nếu người dùng hỏi tiên lượng sống, thời gian còn lại, hoặc mức độ nghiêm trọng cụ thể cho tình trạng cá nhân của họ, KHÔNG đưa ra con số thời gian hay tỷ lệ phần trăm cụ thể nào, dù có thống kê chung. Chỉ khuyên họ trao đổi trực tiếp với bác sĩ điều trị, người hiểu đầy đủ bệnh sử của họ.
 
     user_template: |
       Ngữ cảnh (Context):

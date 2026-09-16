@@ -60,6 +60,9 @@ class Settings(BaseSettings):
     retrieval_fetch_k: int = 20
     retrieval_vector_weight: float = 0.6
     retrieval_bm25_weight: float = 0.4
+    retrieval_rerank_enabled: bool = True
+    retrieval_rerank_model: str = "BAAI/bge-reranker-v2-m3"
+    retrieval_rerank_fetch_k: int = 20
 
     # ─── RAG - Generation ──────────────────────────────────────────────────
     generator_mode: str = "local"  # local, api

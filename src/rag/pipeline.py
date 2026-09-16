@@ -96,6 +96,16 @@ class RAGPipeline:
             embedding_dimension=None,  # Will be set after loading embedder
         )
 
+        # Optional cross-encoder reranker (final precision pass over candidates)
+        reranker = None
+        if self._retrieval_config.get("rerank_enabled", False):
+            from src.rag.reranker import Reranker
+
+            reranker = Reranker(
+                model_name=self._retrieval_config.get("rerank_model", "BAAI/bge-reranker-v2-m3"),
+                top_k=self._retrieval_config.get("top_k", 5),
+            )
+
         # Retriever
         self.retriever = Retriever(
             vector_store=self.vector_store,
@@ -106,6 +116,8 @@ class RAGPipeline:
             fetch_k=self._retrieval_config.get("fetch_k", 20),
             vector_weight=self._retrieval_config.get("vector_weight", 0.6),
             bm25_weight=self._retrieval_config.get("bm25_weight", 0.4),
+            reranker=reranker,
+            rerank_fetch_k=self._retrieval_config.get("rerank_fetch_k", 20),
         )
 
         # Generator - local or API

@@ -89,9 +89,11 @@ class LLMJudge:
                 logger.warning("No generator available for LLM-as-Judge")
                 return self._default_scores()
 
-            # Parse JSON response
+            # Parse JSON response (strip markdown code fences some models add)
             import json
-            scores = json.loads(raw_response)
+            import re
+            cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw_response.strip())
+            scores = json.loads(cleaned)
             return self._validate_scores(scores)
 
         except json.JSONDecodeError:

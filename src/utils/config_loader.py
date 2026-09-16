@@ -65,6 +65,9 @@ def _build_rag_config(yaml_config: dict[str, Any], settings) -> dict[str, Any]:
                 "fetch_k": settings.retrieval_fetch_k,
                 "vector_weight": settings.retrieval_vector_weight,
                 "bm25_weight": settings.retrieval_bm25_weight,
+                "rerank_enabled": settings.retrieval_rerank_enabled,
+                "rerank_model": settings.retrieval_rerank_model,
+                "rerank_fetch_k": settings.retrieval_rerank_fetch_k,
             },
             "generation": {
                 "model_name": generation_model,

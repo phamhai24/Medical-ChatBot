@@ -22,6 +22,8 @@ class Retriever:
         fetch_k: int = 20,
         vector_weight: float = 0.6,
         bm25_weight: float = 0.4,
+        reranker=None,
+        rerank_fetch_k: int = 20,
     ):
         """
         Args:
@@ -33,6 +35,9 @@ class Retriever:
             fetch_k: Candidate pool size for hybrid retrieval
             vector_weight: Dense vector score weight for hybrid retrieval
             bm25_weight: Keyword score weight for hybrid retrieval
+            reranker: Optional Reranker instance applied as a final cross-encoder
+                pass over candidates before cutting to top_k
+            rerank_fetch_k: Candidate pool size kept for the reranker to choose from
         """
         self.vector_store = vector_store
         self.embedder = embedder
@@ -42,6 +47,8 @@ class Retriever:
         self.fetch_k = fetch_k
         self.vector_weight = vector_weight
         self.bm25_weight = bm25_weight
+        self.reranker = reranker
+        self.rerank_fetch_k = rerank_fetch_k
 
     def retrieve(self, query: str, top_k: Optional[int] = None) -> List[Dict[str, Any]]:
         """
@@ -74,9 +81,16 @@ class Retriever:
         elif self.search_type == "hybrid":
             fetch_k = max(k, self.fetch_k)
             raw_results = self.vector_store.search(query_embedding, top_k=fetch_k)
-            results = self._hybrid_rerank(query, raw_results, top_k=k)
+            pre_rerank_k = max(k, self.rerank_fetch_k) if self.reranker else k
+            results = self._hybrid_rerank(query, raw_results, top_k=pre_rerank_k)
         else:
-            results = self.vector_store.search(query_embedding, top_k=k)
+            fetch_k = max(k, self.rerank_fetch_k) if self.reranker else k
+            results = self.vector_store.search(query_embedding, top_k=fetch_k)
+
+        if self.reranker and results:
+            results = self.reranker.rerank(query, results, top_k=k)
+        else:
+            results = results[:k]
 
         logger.info(f"Retrieved {len(results)} documents for query: {query[:50]}...")
         return results
