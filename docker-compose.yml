@@ -4,11 +4,18 @@ services:
   # ─── FastAPI Backend ────────────────────────────────────────────────────────
   api:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     container_name: medical-rag-api
     ports:
       - "${API_PORT:-8000}:8000"
+    # Real secrets/config (API_GENERATOR_PROVIDER, API_GENERATOR_MODEL, ADMIN_API_KEY,
+    # OPENAI_API_KEY, GROQ_API_KEY, ANTHROPIC_API_KEY, GENERATOR_MODE, ...) come straight from
+    # this file — not compose-level ${VAR} substitution, which would need a .env next to this
+    # docker-compose.yml (there isn't one; backend/.env is backend-local, same as backend/'s own
+    # requirements.txt/Dockerfile).
+    env_file:
+      - ./backend/.env
     environment:
       - PYTHONUNBUFFERED=1
       - PYTHONPATH=/app
@@ -17,7 +24,6 @@ services:
       - API_HOST=0.0.0.0
       - API_PORT=8000
       - API_CORS_ORIGINS=["http://localhost:${WEB_PORT:-3000}"]
-      - ADMIN_API_KEY=${ADMIN_API_KEY:-}
 
       # Redis
       - REDIS_ENABLED=true
@@ -33,29 +39,15 @@ services:
       - VECTOR_STORE_COLLECTION=medical_qa
       - RETRIEVAL_TOP_K=5
 
-      # Generation (local or API)
-      - GENERATOR_MODE=${GENERATOR_MODE:-local}
-      - GENERATOR_MODEL=Qwen/Qwen2.5-7B-Instruct
-      - GENERATOR_MAX_TOKENS=512
-      - GENERATOR_TEMPERATURE=0.3
-      # Only used when GENERATOR_MODE=api; harmless/unread otherwise. Without these, "api" mode
-      # falls back to Settings defaults (Groq) regardless of what the host's .env has, since
-      # only variables listed here are forwarded into the container.
-      - API_GENERATOR_PROVIDER=${API_GENERATOR_PROVIDER:-groq}
-      - API_GENERATOR_MODEL=${API_GENERATOR_MODEL:-llama-3.3-70b-versatile}
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
-      - GROQ_API_KEY=${GROQ_API_KEY:-}
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
-
       # Logging
       - LOG_LEVEL=INFO
       - LOG_JSON=false
       - LOG_FILE=/app/logs/app.log
 
     volumes:
-      - ./data:/app/data
-      - ./logs:/app/logs
-      - ./config:/app/config
+      - ./backend/data:/app/data
+      - ./backend/logs:/app/logs
+      - ./backend/config:/app/config
     depends_on:
       redis:
         condition: service_healthy

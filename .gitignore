@@ -1,39 +1,13 @@
-__pycache__
+# Byte-compiled
+__pycache__/
+*.py[cod]
+*$py.class
 *.pyc
 *.pyo
 *.egg-info/
 dist/
 build/
 *.egg
-
-# Data
-data/processed/*.json
-!data/processed/.gitkeep
-
-# Generated vector DB / Chroma artifacts
-data/vectorstore*
-data/vectorstore*/
-data/*.ingest.lock
-data/**/*.sqlite
-data/**/*.sqlite3
-data/**/*.sqlite3-*
-data/**/*.db
-data/**/*.index
-data/**/*.faiss
-data/**/*.pickle
-data/**/*.pkl
-data/**/*.npy
-data/**/*.npz
-data/**/*.parquet
-data/**/*.arrow
-
-logs/
-*.log
-
-# Environment
-.env
-.env.local
-.env.production
 
 # IDE
 .vscode/
@@ -45,31 +19,6 @@ logs/
 .DS_Store
 Thumbs.db
 
-# Models
-models/
-*.bin
-*.safetensors
-*.pt
-*.pth
-
-# Test
-.pytest_cache/
-.coverage
-htmlcov/
-.nox/
-
 # Docs
 docs/_build/
 site/
-
-# Jupyter
-.ipynb_checkpoints/
-*.ipynb_checkpoints
-
-# Byte-compiled
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Docker
-.dockerignore

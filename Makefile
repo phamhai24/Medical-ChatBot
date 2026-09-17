@@ -2,8 +2,8 @@
 
 help:
 	@echo "Medical RAG Chatbot - Available commands:"
-	@echo "  make install       Install dependencies"
-	@echo "  make test         Run tests"
+	@echo "  make install       Install backend dependencies"
+	@echo "  make test         Run backend tests"
 	@echo "  make lint         Run linting"
 	@echo "  make ingest       Ingest data into vector store"
 	@echo "  make eval         Run evaluation"
@@ -15,41 +15,41 @@ help:
 	@echo "  make clean        Clean cache and generated files"
 
 install:
-	pip install -r requirements.txt
+	cd backend && pip install -r requirements.txt
 
 test:
-	pytest tests/ -v --cov=src --cov-report=html --cov-report=term
+	cd backend && pytest tests/ -v --cov=src --cov-report=html --cov-report=term
 
 test-unit:
-	pytest tests/unit/ -v
+	cd backend && pytest tests/unit/ -v
 
 test-integration:
-	pytest tests/integration/ -v
+	cd backend && pytest tests/integration/ -v
 
 lint:
-	ruff check src/ tests/ --fix
-	mypy src/ --ignore-missing-imports || true
+	cd backend && ruff check src/ tests/ --fix
+	cd backend && mypy src/ --ignore-missing-imports || true
 
 ingest:
-	python scripts/ingest_data.py --rebuild
+	cd backend && python scripts/ingest_data.py --rebuild
 
 ingest-no-rebuild:
-	python scripts/ingest_data.py
+	cd backend && python scripts/ingest_data.py
 
 eval:
-	python scripts/run_eval.py --output reports/ --format html --format csv
+	cd backend && python scripts/run_eval.py --output reports/ --format html --format csv
 
 eval-llm:
-	python scripts/run_eval.py --output reports/ --llm-judge --use-api-judge
+	cd backend && python scripts/run_eval.py --output reports/ --llm-judge --use-api-judge
 
 serve:
-	python -m src.api.main
+	cd backend && python -m src.api.main
 
 ui:
 	cd frontend && npm run dev
 
 docker-build:
-	docker build -t medical-rag-chatbot:latest .
+	docker build -t medical-rag-chatbot:latest ./backend
 
 docker-up:
 	docker compose up -d
@@ -61,7 +61,7 @@ docker-logs:
 	docker compose logs -f
 
 clean:
-	rm -rf __pycache__ .pytest_cache .mypy_cache
-	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
-	find . -type f -name "*.pyc" -delete
-	rm -rf htmlcov/ .coverage reports/
+	rm -rf backend/__pycache__ backend/.pytest_cache .mypy_cache
+	find backend -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+	find backend -type f -name "*.pyc" -delete
+	rm -rf backend/htmlcov/ backend/.coverage

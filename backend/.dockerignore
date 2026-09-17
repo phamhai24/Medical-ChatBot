@@ -1,0 +1,12 @@
+__pycache__
+*.pyc
+.pytest_cache
+.coverage
+htmlcov
+data/vectorstore*
+data/processed
+logs
+reports
+.env
+.env.local
+*.ipynb_checkpoints

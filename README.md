@@ -70,9 +70,9 @@ User Query → Embed Query → ChromaDB Retrieval → Hybrid Rerank (BM25 + vect
 git clone https://github.com/YOUR_USERNAME/medical-rag-chatbot.git
 cd medical-rag-chatbot
 
-# Configure environment
-cp .env.example .env
-# Edit .env with your API keys
+# Configure environment (backend is a self-contained project under backend/)
+cp backend/.env.example backend/.env
+# Edit backend/.env with your API keys
 
 # Start all services
 docker compose up -d
@@ -83,7 +83,12 @@ docker compose up -d
 
 ### Local Development
 
+The repo is split into `backend/` (FastAPI + RAG pipeline, Python) and `frontend/` (React + Vite, Node) — each is a self-contained project you `cd` into.
+
 ```bash
+# Backend
+cd backend
+
 # 1. Create environment
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
@@ -99,8 +104,10 @@ python -m src.rag.ingest --config config/rag_config.yaml --rebuild
 
 # 5. Start API
 python -m src.api.main
+```
 
-# 6. (Separate terminal) Start UI
+```bash
+# Frontend (separate terminal, from repo root)
 cd frontend && npm install && npm run dev
 # UI: http://localhost:5173
 ```
@@ -108,6 +115,8 @@ cd frontend && npm install && npm run dev
 ### CLI Usage
 
 ```bash
+cd backend
+
 # Ingest data
 python -m src.cli.main ingest --rebuild
 
@@ -131,21 +140,26 @@ Evaluation framework bao gồm:
 | **Generation** | Faithfulness, Answer Relevance, Context Precision/Recall |
 | **LLM-as-Judge** | Accuracy, Completeness, Clarity, Safety, Hallucination |
 
-Chạy evaluation:
+Chạy evaluation (từ `backend/`):
 
 ```bash
+cd backend
+
 # Basic evaluation (20 benchmark questions)
 python scripts/run_eval.py --output reports/
 
 # With LLM-as-Judge
 python scripts/run_eval.py --output reports/ --llm-judge --use-api-judge
+
+# Independent, corpus-free benchmark (see reports/Independent_Benchmark_Report_v1_20260916.md)
+python scripts/run_independent_eval.py --output reports/
 ```
 
 Output: `reports/eval_report_YYYYMMDD_HHMM.html` (HTML report + CSV)
 
 ## Configuration
 
-Cấu hình qua `.env`:
+Cấu hình qua `backend/.env`:
 
 ```env
 # API Server
@@ -205,64 +219,69 @@ Swagger docs: `http://localhost:8000/docs`
 
 ```
 Chatbot Y tế/
-├── frontend/             # React + Vite + TypeScript SPA
+├── frontend/             # React + Vite + TypeScript SPA (self-contained: npm install/run)
 │   ├── src/
 │   │   ├── api/          # Typed fetch client
 │   │   ├── components/   # Chat/Admin UI components
 │   │   ├── hooks/        # useChat, useSessions, useAdminKey
 │   │   ├── pages/        # ChatPage, AdminPage
-│   │   └── types/        # Mirrors src/api/schemas.py
+│   │   └── types/        # Mirrors backend/src/api/schemas.py
 │   ├── Dockerfile
 │   └── nginx.conf
-├── src/
-│   ├── api/              # FastAPI (routes, schemas, deps)
-│   │   ├── main.py      # App entry + middleware
-│   │   ├── schemas.py   # Pydantic models
-│   │   ├── deps.py      # Dependency injection
-│   │   └── routes/      # /chat, /admin, /health
-│   ├── rag/              # RAG pipeline modules
-│   │   ├── pipeline.py  # Orchestrator
-│   │   ├── embedder.py  # Sentence-transformers
-│   │   ├── retriever.py # Retrieval logic
-│   │   ├── generator.py # LLM (local)
-│   │   ├── api_generator.py # LLM (API)
-│   │   ├── vector_store.py # ChromaDB/FAISS
-│   │   ├── chunker.py  # Text splitting
-│   │   ├── reranker.py # Cross-encoder reranking
-│   │   └── hybrid_search.py # BM25 + vector fusion
-│   ├── ingestion/        # Data ingestion pipeline
-│   │   ├── pipeline.py  # Orchestrator
-│   │   └── loaders/    # JSON loader
-│   ├── eval/            # Evaluation framework
-│   │   ├── evaluator.py # Main orchestrator
-│   │   ├── metrics/    # Retrieval + generation metrics
-│   │   ├── benchmarks/ # Medical Q&A dataset
-│   │   └── reporters/   # HTML/CSV reports
-│   │       └── report.py
-│   ├── core/            # Foundation modules
-│   │   ├── config.py   # Pydantic Settings
-│   │   ├── logging.py  # Loguru setup
-│   │   ├── exceptions.py # Custom exceptions
-│   │   ├── metrics.py  # Prometheus metrics
-│   │   └── redis_client.py # Redis session/cache
-│   ├── utils/           # Utilities
-│   └── cli/             # CLI tools
-├── tests/               # pytest tests
-│   ├── unit/           # Unit tests
-│   └── integration/    # API tests
-├── scripts/             # CLI scripts
-│   ├── run_eval.py     # Evaluation runner
-│   └── ingest_data.py  # Ingestion runner
-├── config/
-│   └── rag_config.yaml # RAG configuration
+├── backend/              # FastAPI + RAG pipeline (self-contained: pip install/run)
+│   ├── src/
+│   │   ├── api/              # FastAPI (routes, schemas, deps)
+│   │   │   ├── main.py      # App entry + middleware
+│   │   │   ├── schemas.py   # Pydantic models
+│   │   │   ├── deps.py      # Dependency injection
+│   │   │   └── routes/      # /chat, /admin, /health
+│   │   ├── rag/              # RAG pipeline modules
+│   │   │   ├── pipeline.py  # Orchestrator
+│   │   │   ├── embedder.py  # Sentence-transformers
+│   │   │   ├── retriever.py # Retrieval logic (hybrid + cross-encoder rerank)
+│   │   │   ├── generator.py # LLM (local)
+│   │   │   ├── api_generator.py # LLM (API)
+│   │   │   ├── vector_store.py # ChromaDB/FAISS
+│   │   │   ├── chunker.py  # Text splitting
+│   │   │   ├── reranker.py # Cross-encoder reranking
+│   │   │   └── hybrid_search.py # BM25 + vector fusion
+│   │   ├── ingestion/        # Data ingestion pipeline
+│   │   │   ├── pipeline.py  # Orchestrator
+│   │   │   └── loaders/    # JSON loader
+│   │   ├── eval/            # Evaluation framework
+│   │   │   ├── evaluator.py # Main orchestrator
+│   │   │   ├── metrics/    # Retrieval + generation metrics
+│   │   │   ├── benchmarks/ # Medical Q&A dataset
+│   │   │   └── reporters/   # HTML/CSV reports
+│   │   │       └── report.py
+│   │   ├── core/            # Foundation modules
+│   │   │   ├── config.py   # Pydantic Settings
+│   │   │   ├── logging.py  # Loguru setup
+│   │   │   ├── exceptions.py # Custom exceptions
+│   │   │   ├── metrics.py  # Prometheus metrics
+│   │   │   └── redis_client.py # Redis session/cache
+│   │   ├── utils/           # Utilities
+│   │   └── cli/             # CLI tools
+│   ├── tests/               # pytest tests
+│   │   ├── unit/           # Unit tests
+│   │   └── integration/    # API tests
+│   ├── scripts/             # CLI scripts
+│   │   ├── run_eval.py     # Evaluation runner (corpus-derived benchmark)
+│   │   ├── run_independent_eval.py # Evaluation runner (corpus-free benchmark)
+│   │   └── ingest_data.py  # Ingestion runner
+│   ├── config/
+│   │   └── rag_config.yaml # RAG configuration
+│   ├── data/                # Corpus, vectorstore (mostly gitignored), eval benchmarks
+│   ├── reports/             # Evaluation reports
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── .env / .env.example
 ├── .github/workflows/   # CI/CD pipelines
-│   ├── ci.yml         # Lint, test, docker
-│   ├── eval.yml       # Automated evaluation
-│   └── release.yml    # Docker release
-├── Dockerfile
-├── docker-compose.yml
+│   ├── ci.yml         # Lint, test, docker (backend)
+│   ├── eval.yml       # Automated evaluation (backend)
+│   └── release.yml    # Docker release (backend)
+├── docker-compose.yml   # Orchestrates backend/ (api), redis, frontend/ (web)
 ├── Makefile
-├── requirements.txt
 └── README.md
 ```
 
@@ -284,8 +303,8 @@ Chatbot Y tế/
 ## Contributing
 
 1. Fork và create a feature branch
-2. Run tests: `pytest tests/ -v`
-3. Ensure linting passes: `ruff check src/ tests/`
+2. Run tests: `cd backend && pytest tests/ -v`
+3. Ensure linting passes: `cd backend && ruff check src/ tests/`
 4. Submit a pull request
 
 ## License

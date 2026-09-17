@@ -1,0 +1,45 @@
+# Data
+data/processed/*.json
+!data/processed/.gitkeep
+
+# Generated vector DB / Chroma artifacts
+data/vectorstore*
+data/vectorstore*/
+data/*.ingest.lock
+data/**/*.sqlite
+data/**/*.sqlite3
+data/**/*.sqlite3-*
+data/**/*.db
+data/**/*.index
+data/**/*.faiss
+data/**/*.pickle
+data/**/*.pkl
+data/**/*.npy
+data/**/*.npz
+data/**/*.parquet
+data/**/*.arrow
+
+logs/
+*.log
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Models
+models/
+*.bin
+*.safetensors
+*.pt
+*.pth
+
+# Test
+.pytest_cache/
+.coverage
+htmlcov/
+.nox/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
