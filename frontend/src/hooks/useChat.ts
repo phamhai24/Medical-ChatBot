@@ -47,6 +47,13 @@ export function useChat() {
           });
         }, (id) => {
           streamSessionId = id;
+        }, (sources) => {
+          setMessages((prev) => {
+            const next = [...prev];
+            const last = next[next.length - 1];
+            next[next.length - 1] = { ...last, sources };
+            return next;
+          });
         });
         if (!receivedAnyChunk) {
           throw new Error('Stream resolved with no chunks');

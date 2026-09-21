@@ -183,3 +183,63 @@ class TestRetriever:
         results = retriever.retrieve("query", top_k=1)
 
         assert results[0]["id"] == "first"
+
+    def test_bm25_index_surfaces_a_doc_vector_search_missed(self, mock_embedder):
+        """A whole-corpus BM25 index should be able to add a doc vector search never returned."""
+        class FakeVectorStore:
+            def search(self, query_embedding, top_k=5):
+                return [
+                    {"id": "vector-only", "text": "t", "metadata": {"question": "q1"}, "distance": 0.3},
+                ][:top_k]
+
+        class FakeBM25Index:
+            def search(self, query, top_k=20):
+                return [
+                    {"id": "bm25-only", "text": "t", "metadata": {"question": "q2"}, "bm25_score": 5.0},
+                ][:top_k]
+
+        retriever = Retriever(
+            vector_store=FakeVectorStore(),
+            embedder=mock_embedder,
+            top_k=5,
+            search_type="hybrid",
+            fetch_k=5,
+            bm25_index=FakeBM25Index(),
+        )
+
+        results = retriever.retrieve("query", top_k=5)
+
+        ids = {r["id"] for r in results}
+        assert ids == {"vector-only", "bm25-only"}
+        # The BM25-only doc has no real vector distance; it should get a
+        # plausible synthetic one, not something that reads as near-zero relevance.
+        bm25_doc = next(r for r in results if r["id"] == "bm25-only")
+        assert 0.0 < bm25_doc["distance"] < 1.0
+
+    def test_bm25_index_ranks_docs_found_by_both_higher(self, mock_embedder):
+        """RRF should favor a doc that ranks well in both lists over one that ranks in only one."""
+        class FakeVectorStore:
+            def search(self, query_embedding, top_k=5):
+                return [
+                    {"id": "both", "text": "t", "metadata": {"question": "q1"}, "distance": 0.3},
+                    {"id": "vector-only", "text": "t", "metadata": {"question": "q2"}, "distance": 0.31},
+                ][:top_k]
+
+        class FakeBM25Index:
+            def search(self, query, top_k=20):
+                return [
+                    {"id": "both", "text": "t", "metadata": {"question": "q1"}, "bm25_score": 5.0},
+                ][:top_k]
+
+        retriever = Retriever(
+            vector_store=FakeVectorStore(),
+            embedder=mock_embedder,
+            top_k=5,
+            search_type="hybrid",
+            fetch_k=5,
+            bm25_index=FakeBM25Index(),
+        )
+
+        results = retriever.retrieve("query", top_k=5)
+
+        assert results[0]["id"] == "both"

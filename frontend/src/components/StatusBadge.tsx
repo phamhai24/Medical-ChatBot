@@ -3,11 +3,18 @@ import { getHealth } from '../api/client';
 
 type Status = 'checking' | 'healthy' | 'degraded' | 'unhealthy';
 
+const DOT_COLOR: Record<Status, string> = {
+  checking: 'bg-slate-300',
+  healthy: 'bg-emerald-500',
+  degraded: 'bg-amber-500',
+  unhealthy: 'bg-red-500',
+};
+
 const LABEL: Record<Status, string> = {
-  checking: '⏳ Đang kiểm tra...',
-  healthy: '🟢 API hoạt động',
-  degraded: '🟡 API suy giảm',
-  unhealthy: '🔴 API lỗi',
+  checking: 'Đang kiểm tra...',
+  healthy: 'API hoạt động',
+  degraded: 'API suy giảm',
+  unhealthy: 'API lỗi',
 };
 
 export function StatusBadge() {
@@ -33,5 +40,10 @@ export function StatusBadge() {
     };
   }, []);
 
-  return <span className="text-xs font-medium text-slate-500">{LABEL[status]}</span>;
+  return (
+    <span className="flex items-center gap-1.5 text-xs font-medium text-slate-500">
+      <span className={`h-2 w-2 rounded-full ${DOT_COLOR[status]} ${status === 'healthy' ? 'animate-pulse-ring' : ''}`} />
+      {LABEL[status]}
+    </span>
+  );
 }

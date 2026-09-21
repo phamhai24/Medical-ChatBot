@@ -104,6 +104,8 @@ class TestRAGPipeline:
             "question": "Source question",
             "score": 0.12,
             "chunk_index": 2,
+            "position": 1,
+            "snippet": "Context text",
         }]
         assert response.retrieval_latency >= 0
         assert response.generation_latency >= 0
@@ -138,3 +140,155 @@ class TestRAGPipeline:
 
         assert pipeline.retriever.calls == 1
         assert response.sources == []
+
+    def test_query_hides_sources_when_answer_declines(self, sample_config):
+        """An honest 'not found' answer shouldn't surface unrelated docs as citations."""
+        pipeline = RAGPipeline(sample_config)
+        docs = [{
+            "id": "doc-1",
+            "text": "Unrelated context",
+            "metadata": {"question": "Unrelated question"},
+            "distance": 0.1,  # would otherwise easily pass the relevance threshold
+        }]
+
+        class FakeRetriever:
+            def retrieve(self, question, top_k=None):
+                return docs
+
+        class FakeGenerator:
+            def generate_from_context(self, question, context, system_prompt=None, user_template=None):
+                return "Tôi không tìm thấy thông tin về vấn đề này trong dữ liệu được cung cấp."
+
+        pipeline._initialized = True
+        pipeline.retriever = FakeRetriever()
+        pipeline.generator = FakeGenerator()
+
+        response = pipeline.query("question", top_k=5, include_sources=True)
+
+        assert response.sources == []
+
+    def test_query_drops_low_relevance_sources(self, sample_config):
+        """Sources past the relevance threshold shouldn't be shown even on a normal answer."""
+        pipeline = RAGPipeline(sample_config)
+        docs = [
+            {"id": "close", "text": "t", "metadata": {"question": "q1"}, "distance": 0.3},
+            {"id": "far", "text": "t", "metadata": {"question": "q2"}, "distance": 0.9},
+        ]
+
+        class FakeRetriever:
+            def retrieve(self, question, top_k=None):
+                return docs
+
+        class FakeGenerator:
+            def generate_from_context(self, question, context, system_prompt=None, user_template=None):
+                return "A perfectly normal, grounded answer."
+
+        pipeline._initialized = True
+        pipeline.retriever = FakeRetriever()
+        pipeline.generator = FakeGenerator()
+
+        response = pipeline.query("question", top_k=5, include_sources=True)
+
+        assert [s["id"] for s in response.sources] == ["close"]
+
+    def test_query_collapses_same_document_chunks_into_one_citation(self, sample_config):
+        """Multiple chunks of one document shouldn't look like 3 independent sources."""
+        pipeline = RAGPipeline(sample_config)
+        docs = [
+            {"id": "doc-1_0", "text": "part 1", "metadata": {"question": "Migraine treatment", "chunk_index": 0}, "distance": 0.4},
+            {"id": "doc-1_1", "text": "part 2", "metadata": {"question": "Migraine treatment", "chunk_index": 1}, "distance": 0.41},
+            {"id": "doc-1_2", "text": "part 3", "metadata": {"question": "Migraine treatment", "chunk_index": 2}, "distance": 0.42},
+        ]
+
+        class FakeRetriever:
+            def retrieve(self, question, top_k=None):
+                return docs
+
+        class FakeGenerator:
+            def generate_from_context(self, question, context, system_prompt=None, user_template=None):
+                return "A normal answer."
+
+        pipeline._initialized = True
+        pipeline.retriever = FakeRetriever()
+        pipeline.generator = FakeGenerator()
+
+        response = pipeline.query("question", top_k=5, include_sources=True)
+
+        assert len(response.sources) == 1
+        assert response.sources[0]["id"] == "doc-1_0"
+
+    def test_query_uses_inline_citation_markers_when_present(self, sample_config):
+        """When the model cites specific [n] markers, only those sources are kept."""
+        pipeline = RAGPipeline(sample_config)
+        docs = [
+            {"id": "cited", "text": "t", "metadata": {"question": "Used topic"}, "distance": 0.1},
+            {"id": "uncited", "text": "t", "metadata": {"question": "Unused topic"}, "distance": 0.1},
+        ]
+
+        class FakeRetriever:
+            def retrieve(self, question, top_k=None):
+                return docs
+
+        class FakeGenerator:
+            def generate_from_context(self, question, context, system_prompt=None, user_template=None):
+                # Cites only source [1], even though [2] also passes the score threshold.
+                return "The answer draws on the first source [1]."
+
+        pipeline._initialized = True
+        pipeline.retriever = FakeRetriever()
+        pipeline.generator = FakeGenerator()
+
+        response = pipeline.query("question", top_k=5, include_sources=True)
+
+        assert [s["id"] for s in response.sources] == ["cited"]
+
+    def test_chunk_snippet_strips_prefix_and_truncates(self, sample_config):
+        """Citations should show the chunk's actual content, not the chunker's title prefix."""
+        pipeline = RAGPipeline(sample_config)
+
+        assert pipeline._chunk_snippet("Câu hỏi: Sốt là gì?\n\nTrả lời: Sốt là tình trạng...") == (
+            "Sốt là tình trạng..."
+        )
+        long_text = "Trả lời: " + "a" * 200
+        snippet = pipeline._chunk_snippet(long_text, max_length=160)
+        assert len(snippet) == 161  # 160 chars + the truncation ellipsis
+        assert snippet.endswith("…")
+
+    def test_warm_up_loads_bm25_index_eagerly(self, sample_config):
+        """warm_up() should trigger the BM25 index's lazy load, not leave it for the first user."""
+        pipeline = RAGPipeline(sample_config)
+
+        class FakeEmbedder:
+            def load(self):
+                pass
+
+            def embed_query(self, text):
+                return [0.0]
+
+        class FakeVectorStore:
+            def count(self):
+                return 1
+
+            def search(self, embedding, top_k=1):
+                return [{"id": "d"}]
+
+        class FakeGenerator:
+            pass
+
+        class FakeBM25Index:
+            def __init__(self):
+                self.load_calls = 0
+
+            def load(self):
+                self.load_calls += 1
+
+        bm25_index = FakeBM25Index()
+        pipeline._initialized = True
+        pipeline.embedder = FakeEmbedder()
+        pipeline.vector_store = FakeVectorStore()
+        pipeline.generator = FakeGenerator()
+        pipeline.retriever = type("R", (), {"bm25_index": bm25_index})()
+
+        pipeline.warm_up("probe")
+
+        assert bm25_index.load_calls == 1

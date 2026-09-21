@@ -1,7 +1,9 @@
 """Chat endpoints - ask and stream."""
 
+import json
+import queue
+import threading
 import time
-import uuid
 from datetime import datetime
 
 from fastapi import APIRouter, HTTPException
@@ -17,7 +19,6 @@ from src.core.logging import logger
 from src.core.metrics import track_rag_metrics
 from src.core.redis_client import (
     generate_session_id,
-    get_chat_history,
     save_chat_message,
 )
 
@@ -110,20 +111,29 @@ def ask(request: ChatRequest):
 
 @router.post("/stream")
 def ask_stream(request: ChatStreamRequest):
-    """Gửi câu hỏi và nhận câu trả lời dạng streaming."""
+    """Gửi câu hỏi và nhận câu trả lời dạng streaming (NDJSON: chunk/sources/done/error lines)."""
     pipeline = get_pipeline()
     pipeline._lazy_init()
 
     session_id = request.session_id or generate_session_id()
-    full_answer = []
+
+    def _line(payload: dict) -> str:
+        return json.dumps(payload, ensure_ascii=False) + "\n"
 
     try:
         retrieved_docs = pipeline.retriever.retrieve(request.message, top_k=request.top_k)
 
         if not retrieved_docs:
             def empty():
-                yield "Xin lỗi, tôi không tìm thấy thông tin phù hợp."
-            return StreamingResponse(empty(), media_type="text/plain")
+                yield _line({"type": "chunk", "text": "Xin lỗi, tôi không tìm thấy thông tin phù hợp."})
+                yield _line({"type": "sources", "sources": []})
+                yield _line({"type": "done", "session_id": session_id})
+
+            return StreamingResponse(
+                empty(),
+                media_type="application/x-ndjson",
+                headers={"X-Session-ID": session_id},
+            )
 
         context_result = pipeline._format_context_with_citations(retrieved_docs)
         context = context_result["context"]
@@ -133,26 +143,65 @@ def ask_stream(request: ChatStreamRequest):
         prompt = user_template.format(question=request.message, context=context)
 
         def generate():
-            full = []
-            def callback(chunk):
-                full.append(chunk)
-                yield chunk
+            # generate_streaming() calls its callback synchronously from inside a
+            # blocking network call, so a background thread + queue is the
+            # standard bridge to turn that into an actual incremental generator
+            # instead of collecting everything before yielding anything.
+            chunk_queue: "queue.Queue" = queue.Queue()
+            full: list[str] = []
+            errors: list[Exception] = []
 
-            pipeline.generator.generate_streaming(
-                prompt=prompt,
-                system_prompt=system_prompt,
-                callback=callback,
+            def callback(chunk: str) -> None:
+                full.append(chunk)
+                chunk_queue.put(chunk)
+
+            def run() -> None:
+                try:
+                    pipeline.generator.generate_streaming(
+                        prompt=prompt,
+                        system_prompt=system_prompt,
+                        callback=callback,
+                    )
+                except Exception as exc:  # noqa: BLE001 - surfaced to the client below
+                    errors.append(exc)
+                finally:
+                    chunk_queue.put(None)  # sentinel: generation finished
+
+            thread = threading.Thread(target=run, daemon=True)
+            thread.start()
+
+            while True:
+                item = chunk_queue.get()
+                if item is None:
+                    break
+                yield _line({"type": "chunk", "text": item})
+
+            thread.join()
+
+            if errors:
+                logger.exception(f"Stream generation error: {errors[0]}")
+                yield _line({"type": "error", "message": str(errors[0])})
+                return
+
+            answer = "".join(full)
+            cited_questions = pipeline._extract_cited_questions(
+                answer, context_result["position_to_question"]
+            )
+            sources = pipeline._filter_sources_for_display(
+                answer, context_result["sources"], cited_questions
             )
 
-            # Save after streaming completes
+            yield _line({"type": "sources", "sources": sources})
+            yield _line({"type": "done", "session_id": session_id})
+
             save_chat_message(session_id, "user", request.message)
-            save_chat_message(session_id, "assistant", "".join(full), {
-                "sources": len(context_result["sources"]),
+            save_chat_message(session_id, "assistant", answer, {
+                "sources": len(sources),
             })
 
         return StreamingResponse(
             generate(),
-            media_type="text/plain",
+            media_type="application/x-ndjson",
             headers={
                 "X-Accel-Buffering": "no",
                 "X-Session-ID": session_id,

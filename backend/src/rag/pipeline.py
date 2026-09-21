@@ -1,15 +1,18 @@
 """Main RAG Pipeline - Combines retrieval and generation"""
 
 import logging
+import re
 import time
 from typing import List, Dict, Any, Optional
 from dataclasses import dataclass
 
+from src.rag.bm25_index import PersistedBM25Index
 from src.rag.chunker import TextChunker
 from src.rag.embedder import Embedder
 from src.rag.vector_store import VectorStore, VectorStoreUnavailable
 from src.rag.retriever import Retriever
 from src.rag.generator import Generator
+from src.utils.answer_signals import SOURCE_RELEVANCE_THRESHOLD, looks_like_decline
 
 logger = logging.getLogger(__name__)
 
@@ -104,7 +107,18 @@ class RAGPipeline:
             reranker = Reranker(
                 model_name=self._retrieval_config.get("rerank_model", "BAAI/bge-reranker-v2-m3"),
                 top_k=self._retrieval_config.get("top_k", 5),
+                max_length=self._retrieval_config.get("rerank_max_length", 512),
+                batch_size=self._retrieval_config.get("rerank_batch_size", 16),
             )
+
+        # Optional whole-corpus BM25 index (see src/rag/bm25_index.py for why this
+        # is not the same as the candidate-only BM25 rerank below) — additive:
+        # silently absent until `python scripts/build_bm25_index.py` has been run.
+        bm25_index = None
+        bm25_index_path = self._retrieval_config.get("bm25_index_path", "data/bm25_index")
+        candidate_bm25_index = PersistedBM25Index(bm25_index_path)
+        if candidate_bm25_index.is_available:
+            bm25_index = candidate_bm25_index
 
         # Retriever
         self.retriever = Retriever(
@@ -118,6 +132,7 @@ class RAGPipeline:
             bm25_weight=self._retrieval_config.get("bm25_weight", 0.4),
             reranker=reranker,
             rerank_fetch_k=self._retrieval_config.get("rerank_fetch_k", 20),
+            bm25_index=bm25_index,
         )
 
         # Generator - local or API
@@ -252,9 +267,23 @@ class RAGPipeline:
                 else:
                     self.vector_store.clear()
 
-            for i in tqdm(range(0, len(texts), batch_size), disable=not show_progress):
+            # ONE progress line for the whole run, rewritten in place (unit =
+            # iteration = one batch). Kept short (no wide bar, fixed ncols) so it
+            # never wraps to a new terminal line, and refreshed at most once per
+            # second. The embedder's own per-call bar is suppressed, otherwise
+            # every batch would print an extra "Batches" line.
+            progress = tqdm(
+                total=(len(texts) + batch_size - 1) // batch_size,
+                desc="Ingest",
+                unit="it",
+                disable=not show_progress,
+                ncols=70,
+                mininterval=1.0,
+                bar_format="{desc} {n_fmt}/{total_fmt} it [{elapsed}<{remaining}, {rate_fmt}]",
+            )
+            for i in range(0, len(texts), batch_size):
                 batch_texts = texts[i:i + batch_size]
-                batch_embeddings = self.embedder.embed(batch_texts)
+                batch_embeddings = self.embedder.embed(batch_texts, show_progress=False)
 
                 target_store.add_documents(
                     texts=batch_texts,
@@ -262,6 +291,8 @@ class RAGPipeline:
                     metadatas=metadatas[i:i + batch_size],
                     ids=ids[i:i + batch_size]
                 )
+                progress.update(1)
+            progress.close()
 
             probe_embedding = self.embedder.embed_query(texts[0]) if texts else None
 
@@ -320,6 +351,7 @@ class RAGPipeline:
 
         context_parts = []
         sources = []
+        seen_questions = set()
 
         for i, doc in enumerate(docs):
             metadata = doc.get("metadata", {}) or {}
@@ -327,17 +359,92 @@ class RAGPipeline:
             chunk_idx = metadata.get("chunk_index", 0)
 
             context_parts.append(f"[{i + 1}] {doc.get('text', '')}")
+
+            # Multiple chunks of the same source document shouldn't each count as
+            # a separate "citation" — that inflates one weak match into what
+            # looks like several independent supporting sources (e.g. a document
+            # split into 3 chunks all landing in the top-3 when nothing else
+            # matched). Keep only the first (best-ranked) chunk per document.
+            if question in seen_questions:
+                continue
+            seen_questions.add(question)
             sources.append({
                 "id": doc.get("id"),
                 "question": question,
                 "score": doc.get("distance", 0),
                 "chunk_index": chunk_idx,
+                # The [n] label this source was shown as in the LLM's context —
+                # the frontend displays sources under this same number so an
+                # inline "...[2][3]." in the answer matches the sources panel
+                # instead of the panel renumbering from 1.
+                "position": i + 1,
+                # Source records in this corpus are often long articles (one
+                # record can be 100+ chunks — see reports/ for the "Cao huyết
+                # áp - hồi chuông cảnh báo" example, 66,948 chars / 149 chunks).
+                # The parent "question" title describes the whole article, not
+                # necessarily this specific chunk, so show an excerpt of the
+                # actual retrieved text alongside it for an honest citation.
+                "snippet": self._chunk_snippet(doc.get("text", "")),
             })
 
         return {
             "context": "\n\n---\n\n".join(context_parts),
             "sources": sources,
+            # Maps each [n] label shown to the LLM to the question it belongs
+            # to, so a citation like "[2]" can be resolved back to a source
+            # even after _extract_cited_questions collapses duplicate chunks.
+            "position_to_question": {
+                i + 1: (doc.get("metadata", {}) or {}).get("question", "Unknown title")
+                for i, doc in enumerate(docs)
+            },
         }
+
+    @staticmethod
+    def _extract_cited_questions(answer: str, position_to_question: Dict[int, str]) -> set:
+        """Parse [n] markers the model actually wrote and resolve them to source questions."""
+        positions = {int(n) for n in re.findall(r"\[(\d+)\]", answer or "")}
+        return {position_to_question[p] for p in positions if p in position_to_question}
+
+    @staticmethod
+    def _chunk_snippet(chunk_text: str, max_length: int = 160) -> str:
+        """Excerpt of the actual chunk content, without the "Câu hỏi: ...\\n\\nTrả lời: " prefix
+        the chunker prepends (see TextChunker.chunk_qa_pairs) — that prefix just repeats the
+        source's title, which is already shown separately."""
+        text = chunk_text or ""
+        marker = "Trả lời:"
+        idx = text.find(marker)
+        if idx != -1:
+            text = text[idx + len(marker):]
+        text = text.strip()
+        if len(text) > max_length:
+            text = text[:max_length].rstrip() + "…"
+        return text
+
+    @staticmethod
+    def _filter_sources_for_display(
+        answer: str,
+        sources: List[Dict[str, Any]],
+        cited_questions: Optional[set] = None,
+    ) -> List[Dict[str, Any]]:
+        """Drop sources that don't plausibly back the answer.
+
+        Three checks, in order: if the answer itself reads as "I didn't find
+        this", none of the retrieved docs actually grounded it, so hide all of
+        them. If the model wrote [n] citation markers (per the system prompt),
+        trust them and keep only the sources it actually pointed to — the most
+        precise signal available. Otherwise (no markers — not every generation
+        follows the instruction), fall back to dropping individual sources
+        whose vector-store distance is past SOURCE_RELEVANCE_THRESHOLD, a
+        coarser secondary net (this threshold alone can't perfectly separate
+        good from bad matches; see answer_signals.py for why).
+        """
+        if not sources:
+            return sources
+        if looks_like_decline(answer):
+            return []
+        if cited_questions:
+            return [s for s in sources if s.get("question") in cited_questions]
+        return [s for s in sources if s.get("score", 0) <= SOURCE_RELEVANCE_THRESHOLD]
 
     def query(
         self,
@@ -401,8 +508,13 @@ class RAGPipeline:
 
         latency = time.perf_counter() - start_time
 
-        # Build sources
+        # Build sources: only surface citations that plausibly back the answer.
+        # An honest "not found" answer means the retrieved docs weren't relevant,
+        # even though they were fed to the LLM as candidate context — showing
+        # them as "sources" would misrepresent unrelated content as citations.
         sources = context_result["sources"] if include_sources else []
+        cited_questions = self._extract_cited_questions(answer, context_result["position_to_question"])
+        sources = self._filter_sources_for_display(answer, sources, cited_questions)
 
         return RAGResponse(
             answer=answer,
@@ -498,14 +610,24 @@ class RAGPipeline:
         timings: Dict[str, float] = {}
         start_total = time.perf_counter()
 
+        # Step 1: Embedder
+        embedder_name = getattr(self.embedder, "model_name", "BAAI/bge-m3")
+        embedder_dev = getattr(self.embedder, "device", "unknown")
+        logger.info(f"⏳ [1/6] Loading Embedding model '{embedder_name}' on device '{embedder_dev}'...")
         start = time.perf_counter()
         self.embedder.load()
         timings["embedder_load_seconds"] = round(time.perf_counter() - start, 3)
+        logger.info(f"✅ [1/6] Embedding model ready in {timings['embedder_load_seconds']}s")
 
+        # Step 2: Probe Embedding
+        logger.info(f"⏳ [2/6] Running probe embedding query ('{probe_query[:30]}...')...")
         start = time.perf_counter()
         probe_embedding = self.embedder.embed_query(probe_query)
         timings["probe_embedding_seconds"] = round(time.perf_counter() - start, 3)
+        logger.info(f"✅ [2/6] Probe embedding completed in {timings['probe_embedding_seconds']}s (dim: {len(probe_embedding)})")
 
+        # Step 3: Vector Store Count & Probe Search
+        logger.info("⏳ [3/6] Verifying Vector Store (counting indexed documents)...")
         start = time.perf_counter()
         doc_count = self.vector_store.count() if self.vector_store else 0
         timings["vector_count_seconds"] = round(time.perf_counter() - start, 3)
@@ -515,8 +637,42 @@ class RAGPipeline:
             start = time.perf_counter()
             retrieved_count = len(self.vector_store.search(probe_embedding, top_k=1))
             timings["probe_search_seconds"] = round(time.perf_counter() - start, 3)
+        logger.info(f"✅ [3/6] Vector store verified: {doc_count:,} documents indexed in {timings['vector_count_seconds']}s")
 
+        # Step 4: BM25 Index
+        bm25_index = getattr(self.retriever, "bm25_index", None) if self.retriever else None
+        if bm25_index is not None:
+            logger.info("⏳ [4/6] Loading BM25 search index...")
+            start = time.perf_counter()
+            bm25_index.load()
+            timings["bm25_index_load_seconds"] = round(time.perf_counter() - start, 3)
+            logger.info(f"✅ [4/6] BM25 index loaded in {timings['bm25_index_load_seconds']}s")
+        else:
+            logger.info("ℹ️ [4/6] BM25 index not configured, skipping")
+
+        # Step 5: Cross-Encoder Reranker
+        reranker = getattr(self.retriever, "reranker", None) if self.retriever else None
+        if reranker is not None:
+            reranker_model = getattr(reranker, "model_name", "cross-encoder")
+            reranker_dev = getattr(reranker, "device", "unknown")
+            logger.info(f"⏳ [5/6] Loading Reranker model '{reranker_model}' on '{reranker_dev}'...")
+            start = time.perf_counter()
+            reranker.load()
+            timings["reranker_load_seconds"] = round(time.perf_counter() - start, 3)
+
+            # First rerank on CUDA pays a one-off kernel/cuBLAS init (~4s); absorb
+            # it here with a throwaway pair instead of on the first user chat.
+            start = time.perf_counter()
+            reranker.rerank(probe_query, [{"text": probe_query}], top_k=1)
+            timings["reranker_probe_seconds"] = round(time.perf_counter() - start, 3)
+            logger.info(f"✅ [5/6] Reranker model ready in {timings['reranker_load_seconds']}s")
+        else:
+            logger.info("ℹ️ [5/6] Reranker not enabled, skipping")
+
+        # Step 6: LLM Generator
         generator_mode = self._generation_config.get("mode", "local")
+        gen_model = self._generation_config.get("model_name", "unknown")
+        logger.info(f"⏳ [6/6] Initializing Generator ({generator_mode} mode - '{gen_model}')...")
         if self.generator:
             start = time.perf_counter()
             if generator_mode == "api":
@@ -531,8 +687,10 @@ class RAGPipeline:
                 if callable(load):
                     load()
             timings["generator_warmup_seconds"] = round(time.perf_counter() - start, 3)
+            logger.info(f"✅ [6/6] Generator ready in {timings['generator_warmup_seconds']}s")
 
         timings["total_seconds"] = round(time.perf_counter() - start_total, 3)
+        logger.info(f"🎉 Warm-up complete in {timings['total_seconds']}s! All components ready.")
         return {
             "document_count": doc_count,
             "probe_results": retrieved_count,

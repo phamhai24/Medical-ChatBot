@@ -1,18 +1,24 @@
-.PHONY: help install test lint eval docker-build docker-up docker-down ingest clean
+.PHONY: help install test lint eval docker-build docker-up docker-down ingest clean be fe
 
 help:
 	@echo "Medical RAG Chatbot - Available commands:"
+	@echo "  make be           Start backend (API server)"
+	@echo "  make fe           Start frontend (dev server)"
 	@echo "  make install       Install backend dependencies"
 	@echo "  make test         Run backend tests"
 	@echo "  make lint         Run linting"
 	@echo "  make ingest       Ingest data into vector store"
 	@echo "  make eval         Run evaluation"
-	@echo "  make serve        Start API server"
-	@echo "  make ui           Start React frontend (dev server)"
 	@echo "  make docker-build Build Docker image"
 	@echo "  make docker-up    Start all services with Docker"
 	@echo "  make docker-down  Stop Docker services"
 	@echo "  make clean        Clean cache and generated files"
+
+be:
+	cd backend && python -m src.api.main
+
+fe:
+	cd frontend && npm run dev
 
 install:
 	cd backend && pip install -r requirements.txt
@@ -41,12 +47,6 @@ eval:
 
 eval-llm:
 	cd backend && python scripts/run_eval.py --output reports/ --llm-judge --use-api-judge
-
-serve:
-	cd backend && python -m src.api.main
-
-ui:
-	cd frontend && npm run dev
 
 docker-build:
 	docker build -t medical-rag-chatbot:latest ./backend

@@ -41,7 +41,24 @@ class Settings(BaseSettings):
     redis_enabled: bool = False  # Set True to enable session + cache
 
     # ─── RAG - Embedding ───────────────────────────────────────────────────
-    embedding_model: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    # BAAI/bge-m3, not the previous paraphrase-multilingual-MiniLM-L12-v2: a
+    # general-purpose similarity model, not retrieval-optimized. bge-m3 is
+    # trained specifically for retrieval, covers Vietnamese as part of its
+    # 100+ language training, and consistently ranks at the top of
+    # multilingual retrieval benchmarks (MIRACL/MTEB) — the strongest
+    # available choice given no well-validated Vietnamese-medical-specific
+    # embedding model exists (English medical models like PubMedBERT don't
+    # transfer to Vietnamese text at all).
+    #
+    # !!! CHANGING THIS BREAKS RETRIEVAL UNTIL YOU RE-INGEST !!! The existing
+    # ChromaDB collection holds 384-dim vectors from the old model; bge-m3
+    # produces 1024-dim vectors. Querying old vectors with a new-dimension
+    # query embedding does not silently degrade — it errors outright. Do not
+    # restart the API server after pulling this change without first running
+    # `python -m src.rag.ingest --config config/rag_config.yaml --rebuild`
+    # (which will also need `python scripts/build_bm25_index.py` re-run after,
+    # same as any re-ingest — see src/rag/bm25_index.py).
+    embedding_model: str = "BAAI/bge-m3"
     embedding_device: str = "auto"  # auto, cpu, cuda
     embedding_batch_size: int = 32
     embedding_normalize: bool = True
@@ -58,12 +75,23 @@ class Settings(BaseSettings):
     # ─── RAG - Retrieval ────────────────────────────────────────────────────
     retrieval_top_k: int = 5
     retrieval_score_threshold: float = 0.3
-    retrieval_fetch_k: int = 20
+    # 40, not the previous 20: widens the vector-search candidate pool the
+    # reranker chooses from, to catch borderline matches that wouldn't have
+    # made a narrower top-20 cut. Chosen as a middle ground — doubling the
+    # reranker's per-query cost (~3.4s -> observed ~doubling) rather than 5x
+    # (fetch_k=100) since there's no confirmed case needing more than this.
+    retrieval_fetch_k: int = 40
     retrieval_vector_weight: float = 0.6
     retrieval_bm25_weight: float = 0.4
     retrieval_rerank_enabled: bool = True
     retrieval_rerank_model: str = "BAAI/bge-reranker-v2-m3"
-    retrieval_rerank_fetch_k: int = 20
+    retrieval_rerank_fetch_k: int = 40
+    retrieval_rerank_max_length: int = 512
+    retrieval_rerank_batch_size: int = 16
+    # Whole-corpus BM25 index (src/rag/bm25_index.py), built by
+    # scripts/build_bm25_index.py. Retriever silently skips it if this path
+    # doesn't exist yet, falling back to the candidate-only BM25 rerank.
+    retrieval_bm25_index_path: str = "data/bm25_index"
 
     # ─── RAG - Generation ──────────────────────────────────────────────────
     generator_mode: str = "local"  # local, api
@@ -101,8 +129,16 @@ class Settings(BaseSettings):
     log_format: str = "{time:YYYY-MM-DD HH:mm:ss} | {level} | {name}:{function}:{line} | {message}"
 
     # ─── Chunking ───────────────────────────────────────────────────────────
-    chunk_size: int = 512
-    chunk_overlap: int = 64
+    # 1200/100, not the previous 512/64: this corpus's records are often long
+    # articles (median ~9.7k chars, some 400k+); at 512 chars they fragment
+    # into so many chunks per record that retrieval's top-k ends up dominated
+    # by several chunks of one weakly-relevant document. See
+    # src/rag/chunker.py's TextChunker docstring for the measurements behind
+    # this. Changing these only affects the NEXT `python -m src.rag.ingest
+    # --rebuild` — already-ingested vectors keep whatever chunking produced
+    # them until re-ingested.
+    chunk_size: int = 1200
+    chunk_overlap: int = 100
     chunk_min_length: int = 50
 
     # ─── Rate Limiting ─────────────────────────────────────────────────────

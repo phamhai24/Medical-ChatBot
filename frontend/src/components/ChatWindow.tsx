@@ -12,16 +12,19 @@ export function ChatWindow({ messages }: { messages: UiMessage[] }) {
   if (messages.length === 0) {
     return (
       <div className="flex flex-1 items-center justify-center text-center text-slate-400">
-        <div>
-          <p className="text-lg font-medium text-slate-500">🏥 Trợ lý Y tế</p>
-          <p className="mt-1 text-sm">Hỏi về sức khỏe, bệnh tật, thuốc men...</p>
+        <div className="animate-bubble-in">
+          <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400 to-brand-600 text-2xl shadow-md">
+            🏥
+          </span>
+          <p className="mt-4 text-lg font-medium text-slate-600">Trợ lý Y tế</p>
+          <p className="mt-1 text-sm text-slate-400">Hỏi về sức khỏe, bệnh tật, thuốc men...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex-1 space-y-4 overflow-y-auto px-4 py-6 sm:px-8">
+    <div className="thin-scrollbar flex-1 space-y-4 overflow-y-auto px-4 py-6 sm:px-8">
       {messages.map((m, i) => (
         <MessageBubble key={i} message={m} />
       ))}

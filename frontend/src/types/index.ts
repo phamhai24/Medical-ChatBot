@@ -11,6 +11,15 @@ export interface ChatSource {
   question?: string;
   score?: number;
   chunk_index?: number;
+  /** The [n] label this source was shown as in the LLM's context — display
+   * citations under this number so it matches any inline "[n]" markers the
+   * model wrote in the answer, instead of renumbering from 1. */
+  position?: number;
+  /** Excerpt of the actual retrieved chunk text. Source records in this corpus
+   * can be very long articles (one record can be 100+ chunks), so `question`
+   * alone (the whole article's title) doesn't reliably describe what this
+   * specific chunk says — show the excerpt too. */
+  snippet?: string;
   [key: string]: unknown;
 }
 

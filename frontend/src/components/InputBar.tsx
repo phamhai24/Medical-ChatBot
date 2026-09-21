@@ -20,7 +20,7 @@ export function InputBar({ onSend, disabled }: InputBarProps) {
   };
 
   return (
-    <form onSubmit={submit} className="border-t border-slate-200 bg-white px-4 py-3 sm:px-8">
+    <form onSubmit={submit} className="border-t border-white/60 bg-white/70 px-4 py-3 backdrop-blur-sm sm:px-8">
       {showAdvanced && (
         <div className="mb-2 flex items-center gap-2 text-xs text-slate-500">
           <label htmlFor="top-k">top_k</label>
@@ -39,7 +39,7 @@ export function InputBar({ onSend, disabled }: InputBarProps) {
         <button
           type="button"
           onClick={() => setShowAdvanced((v) => !v)}
-          className="shrink-0 rounded-full border border-slate-300 px-2 py-1 text-xs text-slate-500 hover:bg-slate-50"
+          className="shrink-0 rounded-full border border-slate-300 px-2 py-1 text-xs text-slate-500 transition-transform duration-150 hover:scale-105 hover:bg-slate-50"
           aria-label="Tùy chọn nâng cao"
         >
           ⚙️
@@ -55,12 +55,12 @@ export function InputBar({ onSend, disabled }: InputBarProps) {
           }}
           rows={1}
           placeholder="Hỏi về sức khỏe, bệnh tật, thuốc men..."
-          className="flex-1 resize-none rounded-2xl border border-slate-300 px-4 py-2 text-sm focus:border-teal-500 focus:outline-none"
+          className="flex-1 resize-none rounded-2xl border border-slate-300 bg-white px-4 py-2 text-sm shadow-sm transition-shadow focus:border-brand-500 focus:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-200"
         />
         <button
           type="submit"
           disabled={disabled || !text.trim()}
-          className="shrink-0 rounded-full bg-teal-600 px-4 py-2 text-sm font-medium text-white disabled:opacity-40"
+          className="shrink-0 rounded-full bg-gradient-to-br from-brand-500 to-brand-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:shadow-md hover:brightness-105 active:scale-95 disabled:opacity-40 disabled:hover:shadow-sm disabled:active:scale-100"
         >
           Gửi
         </button>

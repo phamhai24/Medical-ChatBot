@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+}
+
 .markdown-content p {
   margin: 0.25rem 0;
 }
@@ -12,4 +17,17 @@
 }
 .markdown-content strong {
   font-weight: 600;
+}
+
+/* Soft, thin scrollbars for the chat/sidebar scroll areas */
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(153 246 228) transparent;
+}
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(153 246 228);
+  border-radius: 9999px;
 }

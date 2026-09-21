@@ -51,14 +51,18 @@ class Embedder:
         from sentence_transformers import SentenceTransformer
 
         logger.info(f"Loading embedding model: {self.model_name}")
-        self.model = SentenceTransformer(
-            self.model_name,
-            device=self.device,
-        )
+        # fp16 on GPU: halves VRAM (bge-m3 2.2GB -> 1.1GB). On a 4GB card the
+        # embedder + reranker in fp32 overflow VRAM and Windows spills to shared
+        # system RAM, which made reranking ~100x slower.
+        self.model = SentenceTransformer(self.model_name, device=self.device)
+        if self.device == "cuda":
+            self.model.half()
         self.model.max_seq_length = self.max_length
         logger.info(f"Embedding model loaded on {self.device}")
 
-    def embed(self, texts: Union[str, List[str]]) -> List[List[float]]:
+    def embed(
+        self, texts: Union[str, List[str]], show_progress: Optional[bool] = None
+    ) -> List[List[float]]:
         """
         Generate embeddings for texts.
 
@@ -78,7 +82,7 @@ class Embedder:
             texts,
             batch_size=self.batch_size,
             normalize_embeddings=self.normalize,
-            show_progress_bar=len(texts) > 100,
+            show_progress_bar=(len(texts) > 100) if show_progress is None else show_progress,
             convert_to_numpy=True,
         )
 

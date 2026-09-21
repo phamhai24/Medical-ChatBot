@@ -2,6 +2,7 @@ import type {
   ChatHistoryResponse,
   ChatRequest,
   ChatResponse,
+  ChatSource,
   ChatStreamRequest,
   HealthResponse,
   IngestRequest,
@@ -32,10 +33,25 @@ export async function askChat(req: ChatRequest): Promise<ChatResponse> {
   return handle<ChatResponse>(res);
 }
 
+interface StreamEvent {
+  type?: 'chunk' | 'sources' | 'done' | 'error';
+  text?: string;
+  sources?: ChatSource[];
+  session_id?: string;
+  message?: string;
+}
+
+/**
+ * The backend streams NDJSON lines (one JSON object per line: "chunk", then a
+ * final "sources" and "done") rather than raw text, since the sources for an
+ * answer can only be known once the full answer text has been generated and
+ * checked against it (see backend/src/rag/pipeline.py's citation filtering).
+ */
 export async function streamChat(
   req: ChatStreamRequest,
   onChunk: (text: string) => void,
   onSessionId: (sessionId: string) => void,
+  onSources?: (sources: ChatSource[]) => void,
 ): Promise<void> {
   const res = await fetch('/api/v1/chat/stream', {
     method: 'POST',
@@ -46,16 +62,40 @@ export async function streamChat(
     throw new Error(`Stream request failed: ${res.status}`);
   }
 
-  const sessionId = res.headers.get('X-Session-ID');
-  if (sessionId) onSessionId(sessionId);
+  const headerSessionId = res.headers.get('X-Session-ID');
+  if (headerSessionId) onSessionId(headerSessionId);
+
+  const handleLine = (line: string) => {
+    if (!line.trim()) return;
+    let event: StreamEvent;
+    try {
+      event = JSON.parse(line);
+    } catch {
+      return; // malformed line - skip rather than crash the stream
+    }
+    if (event.type === 'chunk' && typeof event.text === 'string') {
+      onChunk(event.text);
+    } else if (event.type === 'sources' && Array.isArray(event.sources)) {
+      onSources?.(event.sources);
+    } else if (event.type === 'done' && event.session_id) {
+      onSessionId(event.session_id);
+    } else if (event.type === 'error') {
+      throw new Error(event.message ?? 'Stream error');
+    }
+  };
 
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
+  let buffer = '';
   for (;;) {
     const { done, value } = await reader.read();
     if (done) break;
-    onChunk(decoder.decode(value, { stream: true }));
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split('\n');
+    buffer = lines.pop() ?? ''; // last element may be an incomplete line
+    for (const line of lines) handleLine(line);
   }
+  if (buffer.trim()) handleLine(buffer);
 }
 
 export async function getHistory(sessionId: string): Promise<ChatHistoryResponse> {

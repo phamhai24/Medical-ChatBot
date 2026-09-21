@@ -68,6 +68,9 @@ def _build_rag_config(yaml_config: dict[str, Any], settings) -> dict[str, Any]:
                 "rerank_enabled": settings.retrieval_rerank_enabled,
                 "rerank_model": settings.retrieval_rerank_model,
                 "rerank_fetch_k": settings.retrieval_rerank_fetch_k,
+                "rerank_max_length": settings.retrieval_rerank_max_length,
+                "rerank_batch_size": settings.retrieval_rerank_batch_size,
+                "bm25_index_path": settings.retrieval_bm25_index_path,
             },
             "generation": {
                 "model_name": generation_model,

@@ -43,3 +43,6 @@ htmlcov/
 # Jupyter
 .ipynb_checkpoints/
 *.ipynb_checkpoints
+
+# Whole-corpus BM25 index (rebuilt by scripts/build_bm25_index.py after each ingest)
+data/bm25_index/

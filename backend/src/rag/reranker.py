@@ -17,16 +17,22 @@ class Reranker:
         model_name: str = "BAAI/bge-reranker-v2-m3",
         device: Optional[str] = None,
         top_k: int = 5,
+        max_length: int = 512,
+        batch_size: int = 16,
     ):
         """
         Args:
             model_name: HuggingFace cross-encoder model
             device: "cuda", "cpu", or None (auto)
             top_k: Number of documents to return after reranking
+            max_length: Max tokens per (query, document) pair
+            batch_size: Pairs scored per forward pass (small keeps peak VRAM low)
         """
         self.model_name = model_name
         self.device = device or ("cuda" if _has_cuda() else "cpu")
         self.top_k = top_k
+        self.max_length = max_length
+        self.batch_size = batch_size
         self.model = None
         self.tokenizer = None
 
@@ -37,7 +43,7 @@ class Reranker:
 
         try:
             from sentence_transformers import CrossEncoder
-            self.model = CrossEncoder(self.model_name, max_length=512)
+            self.model = CrossEncoder(self.model_name, max_length=512, device=self.device)
             logger.info(f"Cross-encoder loaded: {self.model_name} on {self.device}")
         except ImportError:
             logger.warning("sentence-transformers not available, reranking disabled")
@@ -75,7 +81,9 @@ class Reranker:
         pairs = [(query, doc["text"]) for doc in documents]
 
         try:
-            scores = self.model.predict(pairs, show_progress_bar=False)
+            scores = self.model.predict(
+                pairs, batch_size=self.batch_size, show_progress_bar=False
+            )
         except Exception as e:
             logger.warning(f"Reranking failed: {e}, returning original order")
             return documents[:k]

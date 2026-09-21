@@ -24,6 +24,8 @@ class Retriever:
         bm25_weight: float = 0.4,
         reranker=None,
         rerank_fetch_k: int = 20,
+        bm25_index=None,
+        rrf_k: int = 60,
     ):
         """
         Args:
@@ -33,11 +35,21 @@ class Retriever:
             score_threshold: Minimum similarity score
             search_type: "similarity", "hybrid", or "similarity_score_threshold"
             fetch_k: Candidate pool size for hybrid retrieval
-            vector_weight: Dense vector score weight for hybrid retrieval
-            bm25_weight: Keyword score weight for hybrid retrieval
+            vector_weight: Dense vector score weight for the candidate-only BM25
+                fallback used when bm25_index is None (see _hybrid_rerank)
+            bm25_weight: Keyword score weight for that same fallback
             reranker: Optional Reranker instance applied as a final cross-encoder
                 pass over candidates before cutting to top_k
             rerank_fetch_k: Candidate pool size kept for the reranker to choose from
+            bm25_index: Optional PersistedBM25Index (src/rag/bm25_index.py) queried
+                over the WHOLE corpus, fused with vector results via RRF. Without
+                it, hybrid mode falls back to _hybrid_rerank, which can only ever
+                re-score vector search's own top-`fetch_k` candidates — it can't
+                surface a document vector search missed entirely (e.g. an exact
+                drug/disease name embeddings rank low). See bm25_index.py's
+                docstring for the measurements behind this distinction.
+            rrf_k: Reciprocal Rank Fusion constant (higher = flatter weighting of
+                lower ranks) used when bm25_index is set.
         """
         self.vector_store = vector_store
         self.embedder = embedder
@@ -49,6 +61,8 @@ class Retriever:
         self.bm25_weight = bm25_weight
         self.reranker = reranker
         self.rerank_fetch_k = rerank_fetch_k
+        self.bm25_index = bm25_index
+        self.rrf_k = rrf_k
 
     def retrieve(self, query: str, top_k: Optional[int] = None) -> List[Dict[str, Any]]:
         """
@@ -82,7 +96,11 @@ class Retriever:
             fetch_k = max(k, self.fetch_k)
             raw_results = self.vector_store.search(query_embedding, top_k=fetch_k)
             pre_rerank_k = max(k, self.rerank_fetch_k) if self.reranker else k
-            results = self._hybrid_rerank(query, raw_results, top_k=pre_rerank_k)
+            if self.bm25_index is not None:
+                bm25_results = self.bm25_index.search(query, top_k=fetch_k)
+                results = self._rrf_fuse(raw_results, bm25_results, top_k=pre_rerank_k)
+            else:
+                results = self._hybrid_rerank(query, raw_results, top_k=pre_rerank_k)
         else:
             fetch_k = max(k, self.rerank_fetch_k) if self.reranker else k
             results = self.vector_store.search(query_embedding, top_k=fetch_k)
@@ -94,6 +112,62 @@ class Retriever:
 
         logger.info(f"Retrieved {len(results)} documents for query: {query[:50]}...")
         return results
+
+    def _rrf_fuse(
+        self,
+        vector_results: List[Dict[str, Any]],
+        bm25_results: List[Dict[str, Any]],
+        top_k: int,
+    ) -> List[Dict[str, Any]]:
+        """Fuse two independently-ranked result lists via Reciprocal Rank Fusion.
+
+        RRF combines rankings (not raw scores, which live on incomparable
+        scales between a vector distance and a BM25 score) — a document's
+        fused score is the sum of 1/(rrf_k + rank) across every list it
+        appears in, so a document that ranks well in either list (or both)
+        surfaces, including one only BM25 found.
+        """
+        if not vector_results and not bm25_results:
+            return []
+
+        def doc_key(doc: Dict[str, Any], fallback: int) -> Any:
+            doc_id = doc.get("id")
+            return doc_id if doc_id is not None else fallback
+
+        vector_ranks = {doc_key(d, i): i for i, d in enumerate(vector_results)}
+        bm25_ranks = {doc_key(d, i): i for i, d in enumerate(bm25_results)}
+        bm25_pool_size = max(len(bm25_results), 1)
+
+        doc_map: Dict[Any, Dict[str, Any]] = {}
+        for i, d in enumerate(vector_results):
+            doc_map[doc_key(d, i)] = d
+        for i, d in enumerate(bm25_results):
+            doc_map.setdefault(doc_key(d, i), d)
+
+        fused = []
+        for doc_id in set(vector_ranks) | set(bm25_ranks):
+            score = 0.0
+            if doc_id in vector_ranks:
+                score += 1.0 / (self.rrf_k + vector_ranks[doc_id] + 1)
+            if doc_id in bm25_ranks:
+                score += 1.0 / (self.rrf_k + bm25_ranks[doc_id] + 1)
+            doc = doc_map[doc_id].copy()
+            doc["hybrid_score"] = score
+            # A doc BM25 found but vector search never returned at all has no
+            # real "distance" — approximate one from its BM25 rank instead of
+            # deriving it from the (tiny, differently-scaled) RRF score, which
+            # would make every BM25-only doc look like a near-zero-relevance
+            # match to downstream distance-based logic (citation threshold,
+            # displayed "similarity") regardless of how well it actually
+            # matched. Scaled to roughly the same range real vector distances
+            # occupy for good-to-weak matches (~0.2-0.7; see reports/).
+            if "distance" not in doc:
+                bm25_rank = bm25_ranks.get(doc_id, bm25_pool_size - 1)
+                doc["distance"] = 0.2 + 0.5 * (bm25_rank / bm25_pool_size)
+            fused.append(doc)
+
+        fused.sort(key=lambda d: d["hybrid_score"], reverse=True)
+        return self._deduplicate_results(fused)[:top_k]
 
     def _hybrid_rerank(
         self,

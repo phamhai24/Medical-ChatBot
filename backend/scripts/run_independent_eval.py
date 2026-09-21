@@ -71,7 +71,9 @@ def main():
 
     config = load_config(args.config)
     pipeline = RAGPipeline(config)
-    pipeline._lazy_init()
+    # warm_up (not just _lazy_init): loads embedder/BM25/reranker up front so the
+    # first question isn't charged ~40s of model loading in its latency.
+    pipeline.warm_up()
 
     judge = None
     if not args.no_judge:
