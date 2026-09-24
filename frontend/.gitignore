@@ -1,4 +1,9 @@
 node_modules
 dist
-.env
 *.local
+*.log
+
+# Environment
+.env
+.env.*
+!.env.example

@@ -1,9 +1,9 @@
-# Data
-data/processed/*.json
+# ─── Data ──────────────────────────────────────────────────────────────────
+# The processed corpus is large and produced by data/CrawlData.ipynb.
+data/processed/*
 !data/processed/.gitkeep
 
-# Generated vector DB / Chroma artifacts
-data/vectorstore*
+# Generated vector DB / Chroma artifacts (rebuilt by ingest)
 data/vectorstore*/
 data/*.ingest.lock
 data/**/*.sqlite
@@ -19,30 +19,38 @@ data/**/*.npz
 data/**/*.parquet
 data/**/*.arrow
 
+# Whole-corpus BM25 index (rebuilt by scripts/build_bm25_index.py after each ingest)
+data/bm25_index/
+
+# ─── Evaluation outputs ────────────────────────────────────────────────────
+# Generated per run (timestamped HTML/CSV/raw JSON). Only the written-up
+# analysis reports (*.md) are kept in git.
+reports/*
+!reports/*.md
+
+# ─── Logs ──────────────────────────────────────────────────────────────────
 logs/
 *.log
 
-# Environment
+# ─── Environment ───────────────────────────────────────────────────────────
 .env
-.env.local
-.env.production
+.env.*
+!.env.example
 
-# Models
+# ─── Models ────────────────────────────────────────────────────────────────
 models/
 *.bin
 *.safetensors
 *.pt
 *.pth
 
-# Test
+# ─── Test / tooling ────────────────────────────────────────────────────────
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
 .coverage
 htmlcov/
 .nox/
 
-# Jupyter
+# ─── Jupyter ───────────────────────────────────────────────────────────────
 .ipynb_checkpoints/
-*.ipynb_checkpoints
-
-# Whole-corpus BM25 index (rebuilt by scripts/build_bm25_index.py after each ingest)
-data/bm25_index/

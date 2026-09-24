@@ -1,24 +1,39 @@
-# Byte-compiled
+# ─── Python ────────────────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *$py.class
-*.pyc
-*.pyo
 *.egg-info/
+*.egg
 dist/
 build/
-*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 
-# IDE
+# ─── Node ──────────────────────────────────────────────────────────────────
+node_modules/
+
+# ─── Secrets (defense in depth — backend/ and frontend/ also ignore these) ─
+.env
+.env.*
+!.env.example
+
+# ─── Logs ──────────────────────────────────────────────────────────────────
+*.log
+
+# ─── IDE / tooling ─────────────────────────────────────────────────────────
 .vscode/
 .idea/
 *.swp
 *.swo
+.claude/
 
-# OS
+# ─── OS ────────────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
 
-# Docs
-docs/_build/
+# ─── Docs (local design notes/plans, not published) ────────────────────────
+docs/
 site/
