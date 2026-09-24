@@ -24,14 +24,16 @@
 
 Đo trên benchmark độc lập (`backend/data/eval/independent_benchmark_v1.json`): 48 câu trong phạm vi + 12 câu đối kháng (hỏi ngoài phạm vi, hỏi liều thuốc/tiên lượng cá nhân…).
 
-| Chỉ số | Giá trị |
-|---|---|
-| NDCG@5 | 83.9% |
-| Hit Rate@5 | 80.0% |
-| MRR | 0.80 |
-| LLM-as-Judge (tổng thể) | 4.85 / 5 |
-| Câu đối kháng được từ chối đúng | 12 / 12 |
-| Độ trễ mỗi câu hỏi (chạy trực tiếp, sau warm-up, RTX 3050 Laptop 4GB) | ~3.5–5.6 s |
+| Chỉ số | 48 câu trong phạm vi | Cả 60 câu |
+|---|---|---|
+| Hit Rate@5 | 100% | 80.0% |
+| MRR | 1.00 | 0.80 |
+| NDCG@5 | 95.0% | 76.0% |
+| LLM-as-Judge (tổng thể) | — | 4.85 / 5 |
+| Câu đối kháng được từ chối đúng | — | 12 / 12 |
+| Độ trễ mỗi câu hỏi (chạy trực tiếp, sau warm-up, RTX 3050 Laptop 4GB) | ~3.5–5.6 s | |
+
+12 câu đối kháng không có đáp án trong corpus, nên chúng luôn tính là "không tìm thấy" và kéo các chỉ số truy xuất của cả 60 câu xuống; cột 48 câu phản ánh chất lượng truy xuất thực tế.
 
 Độ trễ giảm từ ~126 s xuống còn vài giây nhờ chạy embedder và reranker ở fp16 (hai model fp32 cộng lại tràn 4GB VRAM, khiến Windows đẩy sang RAM dùng chung) và giới hạn rerank ở 20 ứng viên. Cách xây dựng benchmark và phân tích lỗi (đo trên phiên bản trước khi chuyển sang bge-m3): [`backend/reports/Independent_Benchmark_Report_v1_20260916.md`](backend/reports/Independent_Benchmark_Report_v1_20260916.md).
 

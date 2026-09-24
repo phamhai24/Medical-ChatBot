@@ -86,9 +86,8 @@ class Settings(BaseSettings):
     retrieval_rerank_enabled: bool = True
     retrieval_rerank_model: str = "BAAI/bge-reranker-v2-m3"
     # 20 candidates / 384 tokens, not 40 / 512: measured on the independent
-    # benchmark this cut mean latency 14.7s -> 9.9s with NDCG@5 84.8% -> 83.9%
-    # (within noise for 48 questions), and keeps the fp16 reranker well inside
-    # a 4GB GPU.
+    # benchmark this cut mean latency 14.7s -> 9.9s with hit rate and MRR
+    # unchanged (80% / 0.80), and keeps the fp16 reranker well inside a 4GB GPU.
     retrieval_rerank_fetch_k: int = 20
     retrieval_rerank_max_length: int = 384
     retrieval_rerank_batch_size: int = 16

@@ -1,5 +1,7 @@
 # Medical RAG Chatbot — Independent Benchmark Report (v1)
 
+> **Đính chính (2026-09-24):** Các con số NDCG@5 trong báo cáo này được tính bằng `ndcg_at_k` trước khi sửa lỗi: IDCG khi đó lấy theo *số chủ đề mong đợi* thay vì *số tài liệu liên quan*, nên NDCG có thể vượt 1 và bị thổi phồng khi lấy trung bình. Hit Rate, MRR, Precision, Recall và điểm LLM-as-Judge không bị ảnh hưởng. Số liệu NDCG hiện hành (sau khi sửa, hệ thống bge-m3): xem `README.md`.
+
 > **Mục đích:** Đo lại chất lượng hệ thống bằng một bộ benchmark **hoàn toàn độc lập với corpus** để loại bỏ vấn đề của báo cáo v4 cũ.
 > **Ngày:** 2026-09-16
 > **Benchmark:** `data/eval/independent_benchmark_v1.json` — 60 câu (48 trong-phạm-vi + 12 câu "đánh đố"), do Claude tự soạn từ kiến thức y khoa chung, **không đọc/copy** `data/processed/data.json`.
