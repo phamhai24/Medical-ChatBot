@@ -85,8 +85,12 @@ class Settings(BaseSettings):
     retrieval_bm25_weight: float = 0.4
     retrieval_rerank_enabled: bool = True
     retrieval_rerank_model: str = "BAAI/bge-reranker-v2-m3"
-    retrieval_rerank_fetch_k: int = 40
-    retrieval_rerank_max_length: int = 512
+    # 20 candidates / 384 tokens, not 40 / 512: measured on the independent
+    # benchmark this cut mean latency 14.7s -> 9.9s with NDCG@5 84.8% -> 83.9%
+    # (within noise for 48 questions), and keeps the fp16 reranker well inside
+    # a 4GB GPU.
+    retrieval_rerank_fetch_k: int = 20
+    retrieval_rerank_max_length: int = 384
     retrieval_rerank_batch_size: int = 16
     # Whole-corpus BM25 index (src/rag/bm25_index.py), built by
     # scripts/build_bm25_index.py. Retriever silently skips it if this path

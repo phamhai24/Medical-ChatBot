@@ -15,7 +15,7 @@ class Embedder:
 
     def __init__(
         self,
-        model_name: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        model_name: str = "BAAI/bge-m3",
         device: Optional[str] = None,
         normalize: bool = True,
         batch_size: int = 32,
