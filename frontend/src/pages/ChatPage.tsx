@@ -1,5 +1,5 @@
-import { useCallback, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Icon } from '../components/Icon';
 import { deleteSession as deleteSessionOnServer } from '../api/client';
 import { Sidebar } from '../components/Sidebar';
 import { ChatWindow } from '../components/ChatWindow';
@@ -13,17 +13,41 @@ export function ChatPage() {
   const { messages, isSending, send, hydrate, reset } = useChat();
   const [activeSessionId, setActiveSessionId] = useState<string | null>(null);
   const titledRef = useRef(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sessionError, setSessionError] = useState('');
+  const [isLoadingSession, setIsLoadingSession] = useState(false);
+
+  useEffect(() => {
+    if (!sidebarOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setSidebarOpen(false);
+        document.querySelector<HTMLButtonElement>('[aria-controls="chat-sidebar"]')?.focus();
+      }
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [sidebarOpen]);
 
   const selectSession = useCallback(
     async (sessionId: string) => {
-      setActiveSessionId(sessionId);
-      titledRef.current = true;
-      await hydrate(sessionId);
+      setIsLoadingSession(true);
+      try {
+        await hydrate(sessionId);
+        setActiveSessionId(sessionId);
+        titledRef.current = true;
+        setSessionError('');
+      } catch {
+        setSessionError('Không tải được cuộc trò chuyện. Vui lòng thử lại.');
+      } finally {
+        setIsLoadingSession(false);
+      }
     },
     [hydrate],
   );
 
   const handleNewChat = useCallback(() => {
+    setSessionError('');
     setActiveSessionId(null);
     titledRef.current = false;
     reset();
@@ -45,9 +69,12 @@ export function ChatPage() {
 
   return (
     <div
-      className="flex h-screen bg-gradient-to-br from-brand-50 via-sky-50 to-brand-100 bg-[length:200%_200%] animate-gradient-shift"
+      className="app-shell"
     >
       <Sidebar
+        open={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        disabled={isSending || isLoadingSession}
         sessions={sessions}
         activeSessionId={activeSessionId}
         onSelect={selectSession}
@@ -60,30 +87,15 @@ export function ChatPage() {
           });
         }}
       />
-      <div className="flex flex-1 flex-col">
-        <header className="flex items-center justify-between border-b border-white/60 bg-white/70 px-4 py-3 backdrop-blur-sm sm:px-8">
-          <div className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-400 to-brand-600 text-lg shadow-sm">
-              🏥
-            </span>
-            <div>
-              <h1 className="text-base font-semibold text-slate-800">Medical RAG Chatbot</h1>
-              <p className="text-xs text-slate-400">Trợ lý y tế sử dụng Retrieval-Augmented Generation</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <StatusBadge />
-            <Link
-              to="/admin"
-              className="text-xs font-medium text-brand-700 transition-colors hover:text-brand-500 hover:underline"
-            >
-              Quản trị
-            </Link>
-          </div>
+      <main className="main-panel">
+        <header className="topbar">
+          <div className="topbar-title"><button className="mobile-menu tool-button" aria-label="Mở lịch sử trò chuyện" aria-controls="chat-sidebar" aria-expanded={sidebarOpen} onClick={() => setSidebarOpen(v => !v)}><Icon name="menu" /></button><span className="assistant-mark"><Icon name="spark" size={18} /></span><span>Trợ lý sức khỏe<span className="ai-label">AI</span></span></div>
+          <div className="topbar-right"><StatusBadge /><span className="topbar-separator" /><span className="private-label">Không gian của bạn</span><span className="profile-mark">M</span></div>
         </header>
-        <ChatWindow messages={messages} />
-        <InputBar onSend={handleSend} disabled={isSending} />
-      </div>
+        {sessionError && <div role="alert" className="session-error">{sessionError}<button onClick={() => setSessionError('')} aria-label="Đóng thông báo"><Icon name="close" size={16} /></button></div>}
+        <ChatWindow messages={messages} onSuggest={text => { if (!isSending && !isLoadingSession) void handleSend(text, 5); }} disabled={isSending || isLoadingSession} />
+        <InputBar onSend={handleSend} disabled={isSending || isLoadingSession} />
+      </main>
     </div>
   );
 }

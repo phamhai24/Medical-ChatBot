@@ -51,8 +51,9 @@ export function AdminPanel() {
   return (
     <div className="mx-auto max-w-2xl space-y-6 p-6">
       <section>
-        <label className="block text-sm font-medium text-slate-700">Admin API Key</label>
+        <label htmlFor="admin-api-key" className="block text-sm font-medium text-slate-700">Admin API Key</label>
         <input
+          id="admin-api-key"
           type="password"
           value={adminKey}
           onChange={(e) => setAdminKey(e.target.value)}

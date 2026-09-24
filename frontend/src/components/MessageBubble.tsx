@@ -24,12 +24,9 @@ export function MessageBubble({ message }: { message: UiMessage }) {
   return (
     <div className={`flex animate-bubble-in ${isUser ? 'justify-end' : 'justify-start'}`}>
       <div
-        className={`max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm transition-shadow hover:shadow-md ${
-          isUser
-            ? 'bg-gradient-to-br from-brand-500 to-brand-600 text-white'
-            : 'border border-slate-200/70 bg-white text-slate-800'
-        }`}
+        className={`message-bubble ${isUser ? 'user-message' : 'assistant-message'}`}
       >
+        <div className="message-author">{isUser ? 'Bạn' : 'Medora · Trợ lý sức khỏe'}</div>
         {isWaiting ? (
           <TypingDots />
         ) : (

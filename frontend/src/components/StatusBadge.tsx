@@ -41,7 +41,7 @@ export function StatusBadge() {
   }, []);
 
   return (
-    <span className="flex items-center gap-1.5 text-xs font-medium text-slate-500">
+    <span className="status-badge" role="status">
       <span className={`h-2 w-2 rounded-full ${DOT_COLOR[status]} ${status === 'healthy' ? 'animate-pulse-ring' : ''}`} />
       {LABEL[status]}
     </span>

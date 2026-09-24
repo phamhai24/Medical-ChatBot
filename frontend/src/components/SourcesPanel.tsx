@@ -12,6 +12,7 @@ export function SourcesPanel({ sources }: SourcesPanelProps) {
     <div className="mt-3 border-t border-slate-100 pt-2">
       <button
         type="button"
+        aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
         className="text-xs font-medium text-teal-700 hover:underline"
       >
