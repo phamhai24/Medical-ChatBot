@@ -72,6 +72,20 @@ class TestRetrievalMetrics:
         score = ndcg_at_k(docs, topics, k=5)
         assert 0.0 <= score <= 1.0
 
+    def test_ndcg_at_k_is_one_for_ideal_order_and_rank_sensitive(self):
+        """Regression: IDCG must come from the relevant docs, not the topic count.
+
+        With one topic and two relevant docs the old IDCG was 1.0 while DCG
+        was 1.5, so NDCG came out as 1.5 — above its upper bound, and higher
+        than hit rate when averaged over a benchmark.
+        """
+        topics = ["tiểu đường"]
+        ideal = [{"text": "Tiểu đường triệu chứng"}, {"text": "Tiểu đường type 2"}]
+        assert ndcg_at_k(ideal, topics, k=5) == pytest.approx(1.0)
+
+        worse = [{"text": "Cảm cúm"}, {"text": "Tiểu đường type 2"}]
+        assert 0.0 < ndcg_at_k(worse, topics, k=5) < 1.0
+
     def test_precision_at_k(self):
         """Precision@k should be between 0 and 1."""
         docs = [

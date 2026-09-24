@@ -92,15 +92,16 @@ def ndcg_at_k(
                 score += 1.0
         return min(score / len(expected_lower), 1.0)
 
-    # DCG
-    dcg = 0.0
-    for i, doc in enumerate(docs_to_evaluate):
-        rel = relevance(doc)
-        dcg += rel / (i + 1)
+    relevances = [relevance(doc) for doc in docs_to_evaluate]
 
-    # Ideal DCG
-    ideal_relevances = sorted([1.0] * len(expected_lower), reverse=True)
-    idcg = sum(r / (i + 1) for i, r in enumerate(ideal_relevances[:k]))
+    # DCG
+    dcg = sum(rel / (i + 1) for i, rel in enumerate(relevances))
+
+    # Ideal DCG: the same retrieved relevance grades in the best possible order.
+    # (It used to assume one ideal doc per expected topic, so with one topic and
+    # several relevant docs DCG exceeded IDCG and NDCG went above 1.)
+    ideal_relevances = sorted(relevances, reverse=True)
+    idcg = sum(r / (i + 1) for i, r in enumerate(ideal_relevances))
 
     if idcg == 0:
         return 0.0
@@ -214,7 +215,9 @@ def retrieval_metrics_summary(
         "hit_rate": hit_rate(retrieved_docs, expected_topics),
         "mrr": mean_reciprocal_rank(retrieved_docs, expected_topics),
         "ndcg@k": ndcg_at_k(retrieved_docs, expected_topics, k),
-        f"precision@{k}": precision_at_k(retrieved_docs, expected_topics, k),
-        f"recall@{k}": recall_at_k(retrieved_docs, expected_topics, k),
+        # Literal "@k" keys, like "ndcg@k": the reporters and per-question CSV
+        # read "precision@k"/"recall@k", so "@5" left those columns blank.
+        "precision@k": precision_at_k(retrieved_docs, expected_topics, k),
+        "recall@k": recall_at_k(retrieved_docs, expected_topics, k),
         "avg_precision": average_precision(retrieved_docs, expected_topics),
     }

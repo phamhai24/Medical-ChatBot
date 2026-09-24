@@ -91,9 +91,13 @@ def mock_embedder():
         def load(self):
             pass
 
-        def embed(self, texts):
+        def embed(self, texts, show_progress=None):
             # Return deterministic fake embeddings
             import hashlib
+            # Same contract as the real Embedder.embed: a single string is one
+            # text, not an iterable of characters.
+            if isinstance(texts, str):
+                texts = [texts]
             embeddings = []
             for text in texts:
                 # Create fake embedding based on text hash
