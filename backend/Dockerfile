@@ -14,7 +14,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy requirements first (for caching)
 COPY requirements.txt .
 
-# Install Python dependencies
+# CUDA 12.6 build of torch first (matches the locally verified environment and
+# older host drivers; the default PyPI wheel is CUDA 13 and much larger). Its own
+# layer so it stays cached when requirements.txt changes.
+RUN pip install --no-cache-dir --user torch==2.12.0 \
+    --index-url https://download.pytorch.org/whl/cu126
+
+# Install the remaining runtime dependencies (torch is already satisfied)
 RUN pip install --no-cache-dir --user -r requirements.txt
 
 # =============================================================================

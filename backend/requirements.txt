@@ -1,58 +1,32 @@
 # ══════════════════════════════════════════════════════════════
-# Medical RAG Chatbot - Production Dependencies
+# Medical RAG Chatbot - runtime dependencies (what the API actually imports)
+#
+# Kept deliberately minimal: this file is what the Docker image installs.
+# Test/lint/notebook tooling lives in requirements-dev.txt.
+#
+# torch is NOT pinned to a CUDA build here so CI/CPU machines get a normal
+# wheel. The Dockerfile installs the CUDA 12.6 build of torch first (the same
+# build verified locally), and pip then sees torch as already satisfied.
 # ══════════════════════════════════════════════════════════════
 
 # ─── Core RAG ────────────────────────────────────────────────────────────────
-sentence-transformers>=2.2.0,<3.0.0
-chromadb==1.5.9
-bm25s>=0.2.0
-faiss-cpu>=1.7.0
-tiktoken>=0.5.0
+sentence-transformers>=2.2.0,<3.0.0   # embedder (bge-m3) + cross-encoder reranker
+transformers>=4.36.0                  # imported directly (generator, preprocessing)
+torch>=2.1.0
+chromadb==1.5.9                       # vector store
+bm25s>=0.2.0                          # whole-corpus BM25 index
 
-# ─── FastAPI & Web ─────────────────────────────────────────────────────────
+# ─── FastAPI & Web ───────────────────────────────────────────────────────────
 fastapi>=0.109.0
 uvicorn[standard]>=0.27.0
 pydantic>=2.4.0
-pydantic-settings>=2.0.0
-requests>=2.31.0
-sse-starlette>=2.0.0
-httpx>=0.26.0
+pydantic-settings>=2.0.0              # also brings python-dotenv for .env
+httpx>=0.26.0                         # OpenAI/Groq API generator
 
-# ─── LLM Generation ─────────────────────────────────────────────────────────
-transformers>=4.36.0
-accelerate>=0.25.0
-torch>=2.1.0
-# unsloth @ git+https://github.com/unslothai/unsloth.git
-
-# ─── Utilities ──────────────────────────────────────────────────────────────
-python-dotenv>=1.0.0
+# ─── Utilities ───────────────────────────────────────────────────────────────
 pyyaml>=6.0.1
 tqdm>=4.66.1
 numpy>=1.24.0
-pandas>=2.1.0
 loguru>=0.7.0
 prometheus-client>=0.19.0
-
-
-# ─── Redis ──────────────────────────────────────────────────────────────────
 redis>=5.0.0
-# fastapi-limiter>=0.1.5
-
-# ─── Evaluation ─────────────────────────────────────────────────────────────
-ragas>=0.4.0
-beautifulsoup4>=4.12.0
-
-# ─── Data Processing ─────────────────────────────────────────────────────────
-datasets>=2.14.0
-
-# ─── Development & Testing ─────────────────────────────────────────────────
-pytest>=7.4.0
-pytest-asyncio>=0.21.0
-pytest-cov>=4.1.0
-pytest-mock>=3.12.0
-ruff>=0.1.0
-mypy>=1.7.0
-
-# ─── Jupyter ────────────────────────────────────────────────────────────────
-jupyter>=1.0.0
-ipython>=8.16.0

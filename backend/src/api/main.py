@@ -77,7 +77,7 @@ async def lifespan(app: FastAPI):
             logger.info("Warming up RAG pipeline...")
             pipeline = get_pipeline()
             warmup_stats = pipeline.warm_up(settings.api_warmup_query)
-            logger.info(f"RAG pipeline warm-up complete: {warmup_stats}")
+            logger.info("🚀 Medical RAG Chatbot is now LIVE and READY! Access at http://localhost:3000")
         except Exception as e:
             logger.exception(f"RAG pipeline warm-up failed: {e}")
             raise

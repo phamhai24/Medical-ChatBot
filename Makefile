@@ -1,4 +1,4 @@
-.PHONY: help install test lint eval docker-build docker-up docker-down ingest clean be fe
+.PHONY: help install test lint eval docker-build docker-up docker-down docker-ingest ingest clean be fe
 
 help:
 	@echo "Medical RAG Chatbot - Available commands:"
@@ -12,6 +12,7 @@ help:
 	@echo "  make docker-build Build Docker image"
 	@echo "  make docker-up    Start all services with Docker"
 	@echo "  make docker-down  Stop Docker services"
+	@echo "  make docker-ingest Re-ingest data into the Docker volume (rebuild + BM25)"
 	@echo "  make clean        Clean cache and generated files"
 
 be:
@@ -21,7 +22,7 @@ fe:
 	cd frontend && npm run dev
 
 install:
-	cd backend && pip install -r requirements.txt
+	cd backend && pip install -r requirements-dev.txt
 
 test:
 	cd backend && pytest tests/ -v --cov=src --cov-report=html --cov-report=term
@@ -59,6 +60,9 @@ docker-down:
 
 docker-logs:
 	docker compose logs -f
+
+docker-ingest:
+	powershell -NoProfile -ExecutionPolicy Bypass -File backend/scripts/docker_ingest.ps1
 
 clean:
 	rm -rf backend/__pycache__ backend/.pytest_cache .mypy_cache
