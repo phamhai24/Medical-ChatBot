@@ -1,312 +1,232 @@
 # Medical RAG Chatbot
 
-> **Portfolio Project** — Retrieval-Augmented Generation cho chatbot y tế tiếng Việt. Dự án chuẩn production với full evaluation framework, Docker containerization, và automated CI/CD.
+> Chatbot hỏi đáp y tế tiếng Việt dựa trên **Retrieval-Augmented Generation**: truy xuất lai (vector + BM25), rerank bằng cross-encoder, trả lời có trích dẫn nguồn, kèm bộ đánh giá độc lập.
 
-[![CI](https://github.com/YOUR_USERNAME/medical-rag-chatbot/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/medical-rag-chatbot/actions/workflows/ci.yml)
+[![CI](https://github.com/phamhai24/Medical-ChatBot/actions/workflows/ci.yml/badge.svg)](https://github.com/phamhai24/Medical-ChatBot/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-## Demo
+> ⚠️ Thông tin do chatbot cung cấp chỉ mang tính tham khảo, không thay thế chẩn đoán hay chỉ định của bác sĩ.
 
-```
-User: Triệu chứng bệnh tiểu đường type 2 là gì?
+## Điểm nổi bật
 
-Assistant: Bệnh tiểu đường type 2 có các triệu chứng thường gặp:
-- Khát nhiều nước (polydipsia)
-- Đi tiểu thường xuyên (polyuria)
-- Mệt mỏi, tăng cảm giác đói
-- Nhìn mờ
-- Vết thương lâu lành
-
-⚠️ Lưu ý: Thông tin này chỉ mang tính tham khảo. Hãy tham khảo ý kiến bác sĩ.
-```
-
-## Features
-
-| Module | Chi tiết |
+| | |
 |---|---|
-| **RAG Pipeline** | Retrieval-Augmented Generation với ChromaDB vector store |
-| **Embedder** | `paraphrase-multilingual-MiniLM-L12-v2` — hỗ trợ tiếng Việt |
-| **Generator** | API (Groq/OpenAI) |
-| **Retrieval** | Vector search + BM25 hybrid + MMR (Max Marginal Relevance) |
-| **Evaluation** | Hit Rate, MRR, NDCG, RAGAS, LLM-as-Judge |
-| **API** | FastAPI với versioned endpoints, Pydantic schemas |
-| **CI/CD** | GitHub Actions — lint, test, eval, Docker build |
-| **Container** | Multi-stage Dockerfile, Docker Compose |
+| **Truy xuất lai** | Vector search (ChromaDB) + BM25 trên toàn bộ corpus (`bm25s`), gộp bằng Reciprocal Rank Fusion |
+| **Rerank** | Cross-encoder `BAAI/bge-reranker-v2-m3` chấm lại 20 ứng viên, giữ top 5 |
+| **Embedding** | `BAAI/bge-m3` (1024 chiều, đa ngôn ngữ, có tiếng Việt), chạy fp16 trên GPU |
+| **Trích dẫn** | Câu trả lời đánh số `[1]`, `[2]`… trỏ đúng đoạn nguồn; nguồn không liên quan bị lọc bỏ; phát hiện khi mô hình từ chối trả lời |
+| **Streaming** | `/api/v1/chat/stream` trả NDJSON (từng đoạn chữ, rồi danh sách nguồn) |
+| **Đánh giá** | Benchmark độc lập 60 câu (có 12 câu đối kháng), Hit Rate / MRR / NDCG, LLM-as-Judge |
+| **Triển khai** | Docker Compose (API + Redis + React/nginx), có GPU |
 
-## Architecture
+## Kết quả
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    React Frontend (Vite + TS)                 │
-│               (http://localhost:3000, dev: :5173)             │
-└──────────────────────┬────────────────────────────────────────┘
-                       │ HTTP / Streaming (proxied by nginx or Vite)
-┌──────────────────────▼────────────────────────────────────┐
-│                   FastAPI Backend                            │
-│  /api/v1/chat/ask  ·  /api/v1/chat/stream                 │
-│  /api/v1/chat/history  ·  /api/v1/admin/ingest             │
-│  /api/v1/admin/reindex  ·  /health  ·  /metrics             │
-└──────┬──────────────────┬──────────────────┬───────────────┘
-       │                  │                  │
-┌──────▼──────┐  ┌───────▼──────┐  ┌──────▼──────┐
-│  ChromaDB   │  │  Redis Cache │  │ Prometheus   │
-│ (vector DB) │  │ (sessions)   │  │  (metrics)   │
-└─────────────┘  └──────────────┘  └──────────────┘
-```
+Đo trên benchmark độc lập (`backend/data/eval/independent_benchmark_v1.json`): 48 câu trong phạm vi + 12 câu đối kháng (hỏi ngoài phạm vi, hỏi liều thuốc/tiên lượng cá nhân…).
+
+| Chỉ số | Giá trị |
+|---|---|
+| NDCG@5 | 83.9% |
+| Hit Rate@5 | 80.0% |
+| MRR | 0.80 |
+| LLM-as-Judge (tổng thể) | 4.85 / 5 |
+| Câu đối kháng được từ chối đúng | 12 / 12 |
+| Độ trễ mỗi câu hỏi (chạy trực tiếp, sau warm-up, RTX 3050 Laptop 4GB) | ~3.5–5.6 s |
+
+Độ trễ giảm từ ~126 s xuống còn vài giây nhờ chạy embedder và reranker ở fp16 (hai model fp32 cộng lại tràn 4GB VRAM, khiến Windows đẩy sang RAM dùng chung) và giới hạn rerank ở 20 ứng viên. Cách xây dựng benchmark và phân tích lỗi (đo trên phiên bản trước khi chuyển sang bge-m3): [`backend/reports/Independent_Benchmark_Report_v1_20260916.md`](backend/reports/Independent_Benchmark_Report_v1_20260916.md).
+
+## Kiến trúc
 
 ```
-RAG Pipeline Flow:
-User Query → Embed Query → ChromaDB Retrieval → Hybrid Rerank (BM25 + vector)
-           → Build Context → LLM Generation → Response + Sources
+                ┌──────────────────────────────────────────┐
+                │  React + Vite + TypeScript (nginx :3000) │
+                └────────────────────┬─────────────────────┘
+                                     │ /api/v1/chat/ask · /api/v1/chat/stream (NDJSON)
+                ┌────────────────────▼─────────────────────┐
+                │              FastAPI (:8000)             │
+                └───┬──────────────┬───────────────┬───────┘
+                    │              │               │
+             ┌──────▼─────┐ ┌──────▼──────┐ ┌──────▼──────┐
+             │  ChromaDB  │ │ BM25 (bm25s)│ │ Redis (tùy  │
+             │  + bge-m3  │ │ toàn corpus │ │ chọn)       │
+             └────────────┘ └─────────────┘ └─────────────┘
 ```
 
-## Quick Start
+Luồng xử lý một câu hỏi:
 
-### Docker (Recommended)
+```
+Câu hỏi ─► bge-m3 embed ─► Chroma top-40 ─┐
+        └─► BM25 top-40 ──────────────────┴─► RRF ─► bge-reranker (20 → 5)
+        ─► ngữ cảnh đánh số [1..5] ─► LLM (gpt-4o-mini) ─► câu trả lời + trích dẫn + nguồn
+```
+
+Dữ liệu: 16.506 cặp hỏi–đáp y tế tiếng Việt, cắt thành ~289.000 đoạn (gom theo đoạn văn, 1200 ký tự, chồng lấn 100, không cắt giữa câu).
+
+## Chạy bằng Docker
+
+**Yêu cầu:** Docker Desktop có hỗ trợ GPU NVIDIA (WSL2 trên Windows), khoảng 20 GB trống.
+
+**1. Tải sẵn model về máy.** Container đọc cache HuggingFace của máy ở chế độ chỉ đọc và offline, nên model phải có sẵn (~4.4 GB, chỉ tải một lần):
 
 ```bash
-# Clone
-git clone https://github.com/YOUR_USERNAME/medical-rag-chatbot.git
-cd medical-rag-chatbot
+pip install "sentence-transformers>=2.2,<3"
+python -c "from sentence_transformers import SentenceTransformer, CrossEncoder; SentenceTransformer('BAAI/bge-m3'); CrossEncoder('BAAI/bge-reranker-v2-m3')"
+```
 
-# Configure environment (backend is a self-contained project under backend/)
+**2. Cấu hình.**
+
+```bash
 cp backend/.env.example backend/.env
-# Edit backend/.env with your API keys
-
-# Start all services
-docker compose up -d
-
-# API: http://localhost:8000/docs
-# UI:   http://localhost:3000
+# Điền OPENAI_API_KEY (hoặc đổi API_GENERATOR_PROVIDER sang groq/anthropic và điền key tương ứng)
 ```
 
-### Local Development
-
-The repo is split into `backend/` (FastAPI + RAG pipeline, Python) and `frontend/` (React + Vite, Node) — each is a self-contained project you `cd` into.
+**3. Chuẩn bị dữ liệu.** Corpus không nằm trong repo. Đặt file đã xử lý tại `backend/data/processed/data.json` (sinh bởi `backend/data/CrawlData.ipynb`), rồi nạp thư mục `data/` vào named volume của Docker:
 
 ```bash
-# Backend
-cd backend
-
-# 1. Create environment
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Configure
-cp .env.example .env
-
-# 4. Ingest data
-python -m src.rag.ingest --config config/rag_config.yaml --rebuild
-
-# 5. Start API
-python -m src.api.main
+docker volume create medical_rag_chatbot_data
+docker run --rm -v "$PWD/backend/data:/from:ro" -v medical_rag_chatbot_data:/to \
+  alpine sh -c "cp -a /from/. /to/ && chown -R 1000:1000 /to"
 ```
+
+Dữ liệu nằm trong named volume thay vì mount thư mục Windows, vì đọc qua bind-mount làm bước khởi động chậm thêm hàng trăm giây.
+
+**4. Khởi động và ingest.**
 
 ```bash
-# Frontend (separate terminal, from repo root)
-cd frontend && npm install && npm run dev
-# UI: http://localhost:5173
+docker compose up -d --build
+make docker-ingest          # lần đầu: chunk + embed + dựng BM25, ghi thẳng vào volume (khá lâu)
 ```
 
-### CLI Usage
+`make docker-ingest` gọi `backend/scripts/docker_ingest.ps1` (PowerShell). Trên máy không có PowerShell, chạy tương đương:
 
 ```bash
-cd backend
-
-# Ingest data
-python -m src.cli.main ingest --rebuild
-
-# Run evaluation
-python -m src.cli.main eval --output reports --format html --format csv
-
-# Start server
-python -m src.cli.main serve --port 8000
-
-# Check stats
-python -m src.cli.main stats
+docker compose exec api python scripts/ingest_data.py --config config/rag_config.yaml --rebuild
+docker compose exec api python scripts/build_bm25_index.py
+docker compose restart api
 ```
 
-## Evaluation
-
-Evaluation framework bao gồm:
-
-| Loại | Metrics |
+| Dịch vụ | Địa chỉ |
 |---|---|
-| **Retrieval** | Hit Rate, MRR, NDCG@k, Precision@k, Recall@k |
-| **Generation** | Faithfulness, Answer Relevance, Context Precision/Recall |
-| **LLM-as-Judge** | Accuracy, Completeness, Clarity, Safety, Hallucination |
+| Giao diện | http://localhost:3000 |
+| API + Swagger | http://localhost:8000/docs |
 
-Chạy evaluation (từ `backend/`):
+Xem log: `docker compose logs -f api`. Backend sẵn sàng khi thấy dòng `LIVE and READY` (warm-up khoảng 1 phút).
+
+> **Máy không có GPU:** xóa khối `deploy.resources` của service `api` trong `docker-compose.yml` và đặt `EMBEDDING_DEVICE=cpu` trong `backend/.env`. Rerank trên CPU sẽ chậm hơn đáng kể.
+
+**Dọn dẹp sau khi build lại.** Mỗi lần `--build` để lại build cache và image cũ:
+
+```bash
+docker builder prune -f
+docker image prune -f
+```
+
+## Chạy trực tiếp (không Docker)
 
 ```bash
 cd backend
+python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
 
-# Basic evaluation (20 benchmark questions)
-python scripts/run_eval.py --output reports/
+# GPU: cài torch bản CUDA trước (bỏ qua nếu chạy CPU)
+pip install torch==2.12.0 --index-url https://download.pytorch.org/whl/cu126
+pip install -r requirements-dev.txt
 
-# With LLM-as-Judge
-python scripts/run_eval.py --output reports/ --llm-judge --use-api-judge
-
-# Independent, corpus-free benchmark (see reports/Independent_Benchmark_Report_v1_20260916.md)
-python scripts/run_independent_eval.py --output reports/
+cp .env.example .env
+python -m src.rag.ingest --config config/rag_config.yaml --rebuild
+python scripts/build_bm25_index.py      # chạy lại sau mỗi lần ingest
+python -m src.api.main                  # http://localhost:8000
 ```
 
-Output: `reports/eval_report_YYYYMMDD_HHMM.html` (HTML report + CSV)
-
-## Configuration
-
-Cấu hình qua `backend/.env`:
-
-```env
-# API Server
-API_HOST=0.0.0.0
-API_PORT=8000
-
-# Redis (optional)
-REDIS_ENABLED=false
-REDIS_HOST=localhost
-REDIS_PORT=6379
-
-# Embedding
-EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
-EMBEDDING_DEVICE=cpu  # or cuda
-
-# Vector Store
-VECTOR_STORE_TYPE=chroma
-VECTOR_STORE_PATH=data/vectorstore
-RETRIEVAL_TOP_K=5
-
-# Generation (local)
-GENERATOR_MODE=local
-GENERATOR_MODEL=Qwen/Qwen2.5-7B-Instruct
-GENERATOR_TEMPERATURE=0.3
-
-# Generation (API - Groq)
-GENERATOR_MODE=api
-GENERATOR_API_PROVIDER=groq
-GENERATOR_API_MODEL=llama-3.3-70b-versatile
-GROQ_API_KEY=your_key_here
-
-# Evaluation
-RAGAS_ENABLED=false
-
-# Logging
-LOG_LEVEL=INFO
-LOG_JSON=false
+```bash
+cd frontend && npm install && npm run dev   # http://localhost:5173
 ```
 
-## API Endpoints
+Hoặc dùng `make be` và `make fe` ở hai terminal.
+
+> Chạy trực tiếp dùng dữ liệu trong `backend/data/` trên máy; Docker dùng volume `medical_rag_chatbot_data`. Hai nơi độc lập với nhau: ingest ở đâu thì chỉ nơi đó có dữ liệu mới.
+
+## Đánh giá
+
+```bash
+cd backend
+python scripts/run_independent_eval.py --output reports/            # đầy đủ, có LLM judge
+python scripts/run_independent_eval.py --no-judge --limit 10        # chạy nhanh
+python scripts/run_eval.py --output reports/                        # benchmark lấy từ corpus
+```
+
+Kết quả (HTML, CSV, JSON thô) được ghi vào `backend/reports/` và không đưa lên git; chỉ các báo cáo phân tích `.md` được giữ lại.
+
+## API
 
 | Method | Endpoint | Mô tả |
 |---|---|---|
-| `POST` | `/api/v1/chat/ask` | Hỏi câu hỏi, nhận JSON response |
-| `POST` | `/api/v1/chat/stream` | Streaming response |
-| `GET` | `/api/v1/chat/history/{session_id}` | Lấy lịch sử chat |
-| `POST` | `/api/v1/chat/history/new` | Tạo session ID mới |
-| `DELETE` | `/api/v1/chat/history/{session_id}` | Xóa lịch sử chat |
-| `POST` | `/api/v1/admin/ingest` | Trigger data ingestion |
-| `POST` | `/api/v1/admin/reindex` | Rebuild vector index |
-| `GET` | `/health` | Health check |
+| `POST` | `/api/v1/chat/ask` | Hỏi, nhận JSON (câu trả lời + nguồn) |
+| `POST` | `/api/v1/chat/stream` | Hỏi, nhận NDJSON streaming |
+| `POST` | `/api/v1/chat/history/new` | Tạo phiên chat mới |
+| `GET` | `/api/v1/chat/history/{session_id}` | Lấy lịch sử phiên |
+| `DELETE` | `/api/v1/chat/history/{session_id}` | Xóa lịch sử phiên |
+| `POST` | `/api/v1/admin/ingest` | Chạy ingest (header `X-Admin-Key` nếu có đặt `ADMIN_API_KEY`) |
+| `POST` | `/api/v1/admin/reindex` | Dựng lại index |
+| `GET` | `/health` | Trạng thái + số tài liệu |
+| `GET` | `/stats` | Cấu hình đang chạy |
 | `GET` | `/metrics` | Prometheus metrics |
 
-Swagger docs: `http://localhost:8000/docs`
+## Cấu hình chính
 
-## Project Structure
+Toàn bộ cấu hình nằm trong `backend/.env` (mẫu: [`backend/.env.example`](backend/.env.example)). `config/rag_config.yaml` chỉ còn dùng cho system prompt.
 
-```
-Chatbot Y tế/
-├── frontend/             # React + Vite + TypeScript SPA (self-contained: npm install/run)
-│   ├── src/
-│   │   ├── api/          # Typed fetch client
-│   │   ├── components/   # Chat/Admin UI components
-│   │   ├── hooks/        # useChat, useSessions, useAdminKey
-│   │   ├── pages/        # ChatPage, AdminPage
-│   │   └── types/        # Mirrors backend/src/api/schemas.py
-│   ├── Dockerfile
-│   └── nginx.conf
-├── backend/              # FastAPI + RAG pipeline (self-contained: pip install/run)
-│   ├── src/
-│   │   ├── api/              # FastAPI (routes, schemas, deps)
-│   │   │   ├── main.py      # App entry + middleware
-│   │   │   ├── schemas.py   # Pydantic models
-│   │   │   ├── deps.py      # Dependency injection
-│   │   │   └── routes/      # /chat, /admin, /health
-│   │   ├── rag/              # RAG pipeline modules
-│   │   │   ├── pipeline.py  # Orchestrator
-│   │   │   ├── embedder.py  # Sentence-transformers
-│   │   │   ├── retriever.py # Retrieval logic (hybrid + cross-encoder rerank)
-│   │   │   ├── generator.py # LLM (local)
-│   │   │   ├── api_generator.py # LLM (API)
-│   │   │   ├── vector_store.py # ChromaDB/FAISS
-│   │   │   ├── chunker.py  # Text splitting
-│   │   │   ├── reranker.py # Cross-encoder reranking
-│   │   │   └── hybrid_search.py # BM25 + vector fusion
-│   │   ├── ingestion/        # Data ingestion pipeline
-│   │   │   ├── pipeline.py  # Orchestrator
-│   │   │   └── loaders/    # JSON loader
-│   │   ├── eval/            # Evaluation framework
-│   │   │   ├── evaluator.py # Main orchestrator
-│   │   │   ├── metrics/    # Retrieval + generation metrics
-│   │   │   ├── benchmarks/ # Medical Q&A dataset
-│   │   │   └── reporters/   # HTML/CSV reports
-│   │   │       └── report.py
-│   │   ├── core/            # Foundation modules
-│   │   │   ├── config.py   # Pydantic Settings
-│   │   │   ├── logging.py  # Loguru setup
-│   │   │   ├── exceptions.py # Custom exceptions
-│   │   │   ├── metrics.py  # Prometheus metrics
-│   │   │   └── redis_client.py # Redis session/cache
-│   │   ├── utils/           # Utilities
-│   │   └── cli/             # CLI tools
-│   ├── tests/               # pytest tests
-│   │   ├── unit/           # Unit tests
-│   │   └── integration/    # API tests
-│   ├── scripts/             # CLI scripts
-│   │   ├── run_eval.py     # Evaluation runner (corpus-derived benchmark)
-│   │   ├── run_independent_eval.py # Evaluation runner (corpus-free benchmark)
-│   │   └── ingest_data.py  # Ingestion runner
-│   ├── config/
-│   │   └── rag_config.yaml # RAG configuration
-│   ├── data/                # Corpus, vectorstore (mostly gitignored), eval benchmarks
-│   ├── reports/             # Evaluation reports
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   └── .env / .env.example
-├── .github/workflows/   # CI/CD pipelines
-│   ├── ci.yml         # Lint, test, docker (backend)
-│   ├── eval.yml       # Automated evaluation (backend)
-│   └── release.yml    # Docker release (backend)
-├── docker-compose.yml   # Orchestrates backend/ (api), redis, frontend/ (web)
-├── Makefile
-└── README.md
-```
-
-## Tech Stack
-
-| Layer | Technology | Version |
+| Biến | Giá trị mẫu | Ý nghĩa |
 |---|---|---|
-| **Backend** | FastAPI + Pydantic v2 | 0.109+ / 2.4+ |
-| **Embedder** | sentence-transformers | 2.2+ |
-| **Vector DB** | ChromaDB | 0.4+ |
-| **Generator** | Groq API | - |
-| **Cache** | Redis | 7+ |
-| **Metrics** | prometheus-client | 0.17+ |
-| **Logging** | Loguru | 3.8+ |
-| **UI** | React + Vite + TypeScript + Tailwind | 18 / 5 / 5 / 3 |
-| **Tests** | pytest + pytest-asyncio | 7.4+ / 0.21+ |
-| **Container** | Docker + Compose | 24+ |
+| `API_GENERATOR_PROVIDER` / `API_GENERATOR_MODEL` | `openai` / `gpt-4o-mini` | LLM sinh câu trả lời |
+| `OPENAI_API_KEY`, `GROQ_API_KEY` | — | Key theo provider |
+| `EMBEDDING_MODEL` | `BAAI/bge-m3` | Đổi model thì **bắt buộc** ingest lại (khác số chiều vector) |
+| `EMBEDDING_DEVICE` | `cpu` | `cuda` hoặc `cpu` (Docker Compose tự đặt `cuda`) |
+| `VECTOR_SEARCH_TYPE` | `hybrid` | `hybrid` (vector + BM25) hoặc `similarity` |
+| `RETRIEVAL_FETCH_K` | `40` | Số ứng viên lấy từ mỗi nhánh vector/BM25 |
+| `RETRIEVAL_RERANK_ENABLED` | `true` | Bật cross-encoder rerank |
+| `RETRIEVAL_RERANK_FETCH_K` | `20` | Số ứng viên đưa vào rerank |
+| `RETRIEVAL_TOP_K` | `5` | Số đoạn đưa vào ngữ cảnh |
+| `CHUNK_SIZE` / `CHUNK_OVERLAP` | `1200` / `100` | Chỉ có hiệu lực ở lần ingest tiếp theo |
+| `REDIS_ENABLED` | `false` | Lưu phiên chat và cache |
+| `ADMIN_API_KEY` | trống | Bảo vệ các endpoint `/api/v1/admin/*` |
 
-## Contributing
+## Cấu trúc thư mục
 
-1. Fork và create a feature branch
-2. Run tests: `cd backend && pytest tests/ -v`
-3. Ensure linting passes: `cd backend && ruff check src/ tests/`
-4. Submit a pull request
+```
+├── backend/                  FastAPI + RAG pipeline
+│   ├── src/
+│   │   ├── api/              App, routes (chat, session, admin, health), schemas
+│   │   ├── rag/              pipeline, embedder, retriever, bm25_index, reranker,
+│   │   │                     chunker, vector_store, api_generator, ingest
+│   │   ├── eval/             Metrics, LLM judge, reporters
+│   │   ├── core/             Settings, logging, metrics, Redis
+│   │   └── utils/            Config loader, answer_signals (phát hiện từ chối)
+│   ├── scripts/              ingest_data, build_bm25_index, run_independent_eval,
+│   │                         run_eval, docker_ingest.ps1
+│   ├── tests/                unit/, integration/
+│   ├── data/                 eval/ (benchmark), processed/ (corpus, không có trên git)
+│   ├── reports/              Báo cáo đánh giá (.md)
+│   ├── requirements.txt      Thư viện runtime (cài vào Docker image)
+│   └── requirements-dev.txt  + test, lint, notebook
+├── frontend/                 React 18 + Vite 5 + TypeScript + Tailwind, nginx
+├── docker-compose.yml        api + redis + web
+└── Makefile                  be, fe, install, test-unit, docker-ingest, …
+```
+
+## Kiểm thử
+
+```bash
+cd backend
+pytest tests/unit -q
+ruff check src tests
+```
+
+## Hạn chế đã biết
+
+- BM25 tách từ theo khoảng trắng, chưa nhận diện từ ghép tiếng Việt.
+- Chế độ sinh câu trả lời cục bộ (`GENERATOR_MODE=local`, Qwen2.5-7B) cần thêm thư viện không có trong `requirements.txt` và không được kiểm thử thường xuyên.
+- Cấu hình mặc định được tinh chỉnh cho GPU 4 GB VRAM.
 
 ## License
 
-MIT License — xem [LICENSE](LICENSE).
+MIT — xem [LICENSE](LICENSE).
