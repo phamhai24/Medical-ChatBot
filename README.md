@@ -22,20 +22,26 @@
 
 ## Kết quả
 
-Đo trên benchmark độc lập (`backend/data/eval/independent_benchmark_v1.json`): 48 câu trong phạm vi + 12 câu đối kháng (hỏi ngoài phạm vi, hỏi liều thuốc/tiên lượng cá nhân…).
+Đo trên benchmark độc lập [`backend/data/eval/independent_benchmark_v1.json`](backend/data/eval/independent_benchmark_v1.json), soạn riêng, không lấy từ corpus: 48 câu hỏi y tế thông thường và 12 câu đối kháng (hỏi ngoài phạm vi, hỏi liều thuốc hay tiên lượng cho cá nhân…).
 
-| Chỉ số | 48 câu trong phạm vi | Cả 60 câu |
-|---|---|---|
-| Hit Rate@5 | 100% | 80.0% |
-| MRR | 1.00 | 0.80 |
-| NDCG@5 | 95.0% | 76.0% |
-| LLM-as-Judge (tổng thể) | — | 4.85 / 5 |
-| Câu đối kháng được từ chối đúng | — | 12 / 12 |
-| Độ trễ mỗi câu hỏi (chạy trực tiếp, sau warm-up, RTX 3050 Laptop 4GB) | ~3.5–5.6 s | |
+**Truy xuất** (48 câu hỏi y tế, top 5 đoạn):
 
-12 câu đối kháng không có đáp án trong corpus, nên chúng luôn tính là "không tìm thấy" và kéo các chỉ số truy xuất của cả 60 câu xuống; cột 48 câu phản ánh chất lượng truy xuất thực tế.
+| Chỉ số | Giá trị |
+|---|---|
+| Hit Rate@5 | 100% |
+| MRR | 1.00 |
+| NDCG@5 | 95.0% |
+| Recall@5 | 95.1% |
 
-Độ trễ giảm từ ~126 s xuống còn vài giây nhờ chạy embedder và reranker ở fp16 (hai model fp32 cộng lại tràn 4GB VRAM, khiến Windows đẩy sang RAM dùng chung) và giới hạn rerank ở 20 ứng viên. Cách xây dựng benchmark và phân tích lỗi (đo trên phiên bản trước khi chuyển sang bge-m3): [`backend/reports/Independent_Benchmark_Report_v1_20260916.md`](backend/reports/Independent_Benchmark_Report_v1_20260916.md).
+**Câu trả lời:**
+
+| Chỉ số | Giá trị |
+|---|---|
+| LLM-as-Judge (độ chính xác, đầy đủ, rõ ràng, an toàn) | 4.85 / 5 |
+| Câu đối kháng được từ chối đúng | 12 / 12 |
+| Điểm không bịa thông tin trên câu đối kháng | 5.0 / 5 |
+
+**Độ trễ:** khoảng 3.5–5.6 giây mỗi câu hỏi (chạy trực tiếp trên RTX 3050 Laptop 4 GB, sau warm-up), trong đó truy xuất khoảng 1.7 giây, phần còn lại là gọi LLM. Embedder và reranker chạy fp16 và reranker chỉ chấm 20 ứng viên để cả hai model vừa trong 4 GB VRAM.
 
 ## Kiến trúc
 
