@@ -1,6 +1,6 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { askChat, getHistory, streamChat } from '../api/client';
-import type { ChatMessage, ChatSource } from '../types';
+import type { ChatMessage, ChatSource, HistoryMessage } from '../types';
 
 export interface UiMessage {
   role: 'user' | 'assistant';
@@ -10,9 +10,23 @@ export interface UiMessage {
   latencyMs?: number;
 }
 
+// How many earlier messages go with each question, so follow-ups like
+// "có cách chữa nào dứt điểm không?" can be resolved to the disease being discussed.
+const HISTORY_MESSAGES = 6;
+
+function recentHistory(messages: UiMessage[]): HistoryMessage[] {
+  return messages
+    .filter((m) => m.content.trim() && !m.content.startsWith('⚠️'))
+    .slice(-HISTORY_MESSAGES)
+    .map(({ role, content }) => ({ role, content }));
+}
+
 export function useChat() {
   const [messages, setMessages] = useState<UiMessage[]>([]);
   const [isSending, setIsSending] = useState(false);
+  // send() is memoized with no deps, so it reads the latest messages via a ref.
+  const messagesRef = useRef<UiMessage[]>(messages);
+  messagesRef.current = messages;
 
   const hydrate = useCallback(async (sessionId: string) => {
     const history = await getHistory(sessionId);
@@ -30,6 +44,7 @@ export function useChat() {
 
   const send = useCallback(
     async (text: string, sessionId: string | null, topK: number, onSessionId: (id: string) => void) => {
+      const history = recentHistory(messagesRef.current);
       setMessages((prev) => [...prev, { role: 'user', content: text }, { role: 'assistant', content: '' }]);
       setIsSending(true);
 
@@ -37,7 +52,7 @@ export function useChat() {
 
       try {
         let receivedAnyChunk = false;
-        await streamChat({ message: text, top_k: topK, session_id: sessionId ?? undefined }, (chunk) => {
+        await streamChat({ message: text, history, top_k: topK, session_id: sessionId ?? undefined }, (chunk) => {
           receivedAnyChunk = true;
           setMessages((prev) => {
             const next = [...prev];
@@ -63,6 +78,7 @@ export function useChat() {
         try {
           const res = await askChat({
             message: text,
+            history,
             top_k: topK,
             session_id: sessionId ?? undefined,
             include_sources: true,

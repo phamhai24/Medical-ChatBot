@@ -19,10 +19,35 @@ from src.core.logging import logger
 from src.core.metrics import track_rag_metrics
 from src.core.redis_client import (
     generate_session_id,
+    get_chat_history,
     save_chat_message,
 )
+from src.rag.query_condenser import condense_question
 
 router = APIRouter(prefix="/api/v1/chat", tags=["Chat"])
+
+# Recent messages used to resolve follow-up questions ("có cách chữa nào dứt
+# điểm không?" -> which disease?). See src/rag/query_condenser.py.
+_HISTORY_MESSAGES = 6
+
+
+def _conversation_history(request) -> list[dict]:
+    """Recent messages: from the request if the client sent them, else Redis."""
+    if request.history:
+        return [m.model_dump() for m in request.history][-_HISTORY_MESSAGES:]
+    if request.session_id:
+        return get_chat_history(request.session_id, limit=_HISTORY_MESSAGES)
+    return []
+
+
+def _standalone_question(request, pipeline) -> str:
+    """The question to retrieve and answer with: follow-ups rewritten using history."""
+    return condense_question(
+        request.message,
+        _conversation_history(request),
+        pipeline.generator,
+        max_messages=_HISTORY_MESSAGES,
+    )
 
 
 @router.post("/ask", response_model=ChatResponse)
@@ -40,7 +65,7 @@ def ask(request: ChatRequest):
 
     try:
         response = pipeline.query(
-            question=request.message,
+            question=_standalone_question(request, pipeline),
             top_k=request.top_k,
             include_sources=request.include_sources,
         )
@@ -121,7 +146,8 @@ def ask_stream(request: ChatStreamRequest):
         return json.dumps(payload, ensure_ascii=False) + "\n"
 
     try:
-        retrieved_docs = pipeline.retriever.retrieve(request.message, top_k=request.top_k)
+        question = _standalone_question(request, pipeline)
+        retrieved_docs = pipeline.retriever.retrieve(question, top_k=request.top_k)
 
         if not retrieved_docs:
             def empty():
@@ -140,7 +166,7 @@ def ask_stream(request: ChatStreamRequest):
 
         system_prompt = pipeline._prompt_config.get("system", "")
         user_template = pipeline._prompt_config.get("user_template", "")
-        prompt = user_template.format(question=request.message, context=context)
+        prompt = user_template.format(question=question, context=context)
 
         def generate():
             # generate_streaming() calls its callback synchronously from inside a

@@ -1,12 +1,23 @@
 """Pydantic request/response schemas for the API."""
 
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any, Literal, Optional
 
 from pydantic import BaseModel, Field
 
 
 # ─── Chat ────────────────────────────────────────────────────────────────────
+
+class HistoryMessage(BaseModel):
+    """One earlier message of the conversation, sent by the client."""
+    role: Literal["user", "assistant"]
+    content: str = Field(..., max_length=8000)
+
+
+_HISTORY_FIELD_DESCRIPTION = (
+    "Các tin nhắn gần nhất (cũ trước, mới sau), dùng để hiểu câu hỏi nối tiếp. "
+    "Nếu bỏ trống, server lấy lịch sử từ Redis theo session_id."
+)
 
 class ChatRequest(BaseModel):
     message: str = Field(..., min_length=1, max_length=2000, description="Câu hỏi của người dùng")
@@ -14,6 +25,9 @@ class ChatRequest(BaseModel):
     temperature: Optional[float] = Field(None, ge=0.0, le=2.0, description="Temperature cho generation")
     include_sources: bool = Field(True, description="Bao gồm nguồn trích dẫn")
     session_id: Optional[str] = Field(None, description="Session ID cho lịch sử chat")
+    history: Optional[list[HistoryMessage]] = Field(
+        None, max_length=20, description=_HISTORY_FIELD_DESCRIPTION
+    )
 
 
 class SourceDocument(BaseModel):
@@ -37,6 +51,9 @@ class ChatStreamRequest(BaseModel):
     message: str = Field(..., min_length=1, max_length=2000)
     top_k: Optional[int] = Field(5, ge=1, le=20)
     session_id: Optional[str] = None
+    history: Optional[list[HistoryMessage]] = Field(
+        None, max_length=20, description=_HISTORY_FIELD_DESCRIPTION
+    )
 
 
 # ─── Session ─────────────────────────────────────────────────────────────────

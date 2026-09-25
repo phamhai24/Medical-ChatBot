@@ -1,5 +1,12 @@
+/** An earlier message, sent so the backend can resolve follow-up questions. */
+export interface HistoryMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
 export interface ChatRequest {
   message: string;
+  history?: HistoryMessage[];
   top_k?: number;
   temperature?: number;
   include_sources?: boolean;
@@ -35,6 +42,7 @@ export interface ChatResponse {
 
 export interface ChatStreamRequest {
   message: string;
+  history?: HistoryMessage[];
   top_k?: number;
   session_id?: string;
 }
