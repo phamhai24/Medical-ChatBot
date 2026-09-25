@@ -1,6 +1,5 @@
 """Unit tests for the RAG pipeline."""
 
-import pytest
 from src.rag.pipeline import RAGPipeline, RAGResponse
 
 
@@ -39,7 +38,7 @@ class TestRAGPipeline:
 
     def test_pipeline_query_no_results(self, sample_config):
         """Pipeline query should handle empty results."""
-        pipeline = RAGPipeline(sample_config)
+        RAGPipeline(sample_config)
 
         # We can't fully test query without real components,
         # but we can test the response structure

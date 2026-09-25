@@ -1,8 +1,8 @@
 """Health and metrics endpoints."""
 
-from fastapi import APIRouter, Response
+from fastapi import APIRouter
 
-from src.api.deps import get_pipeline, get_settings_dep
+from src.api.deps import get_pipeline
 from src.api.schemas import HealthResponse, StatsResponse
 from src.core.metrics import metrics_endpoint
 
@@ -13,7 +13,6 @@ router = APIRouter(tags=["System"])
 def health_check():
     """Check health of all pipeline components."""
     pipeline = get_pipeline()
-    settings = get_settings_dep()
 
     try:
         pipeline._lazy_init()

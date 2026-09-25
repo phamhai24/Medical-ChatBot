@@ -1,6 +1,5 @@
 """Unit tests for the TextChunker."""
 
-import pytest
 from src.rag.chunker import TextChunker
 
 

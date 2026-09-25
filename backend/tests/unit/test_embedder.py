@@ -1,7 +1,5 @@
 """Unit tests for the Embedder."""
 
-import pytest
-import numpy as np
 
 
 class TestEmbedder:

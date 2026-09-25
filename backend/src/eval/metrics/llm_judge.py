@@ -1,7 +1,7 @@
 """LLM-as-Judge evaluation using a separate LLM to score responses."""
 
 import logging
-from typing import Any, Optional
+from typing import Any
 
 logger = logging.getLogger(__name__)
 

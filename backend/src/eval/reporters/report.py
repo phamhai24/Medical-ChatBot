@@ -124,8 +124,8 @@ class EvaluationReporter:
                 {self._table_row('Hit Rate', summary.get('hit_rate', 0))}
                 {self._table_row('Mean Reciprocal Rank (MRR)', summary.get('mrr', 0))}
                 {self._table_row('NDCG@5', summary.get('ndcg@k', 0))}
-                {self._table_row(f"Precision@5", summary.get('precision@k', 0))}
-                {self._table_row(f"Recall@5", summary.get('recall@k', 0))}
+                {self._table_row("Precision@5", summary.get('precision@k', 0))}
+                {self._table_row("Recall@5", summary.get('recall@k', 0))}
                 {self._table_row('Average Precision', summary.get('avg_precision', 0))}
             </tbody>
         </table>
@@ -200,8 +200,8 @@ class EvaluationReporter:
                     "hit_rate": r.get("retrieval_metrics", {}).get("hit_rate", ""),
                     "mrr": r.get("retrieval_metrics", {}).get("mrr", ""),
                     "ndcg@k": r.get("retrieval_metrics", {}).get("ndcg@k", ""),
-                    "precision@k": r.get("retrieval_metrics", {}).get(f"precision@k", ""),
-                    "recall@k": r.get("retrieval_metrics", {}).get(f"recall@k", ""),
+                    "precision@k": r.get("retrieval_metrics", {}).get("precision@k", ""),
+                    "recall@k": r.get("retrieval_metrics", {}).get("recall@k", ""),
                     "faithfulness": r.get("generation_metrics", {}).get("faithfulness", ""),
                     "answer_relevance": r.get("generation_metrics", {}).get("answer_relevance", ""),
                     "context_precision": r.get("generation_metrics", {}).get("context_precision", ""),

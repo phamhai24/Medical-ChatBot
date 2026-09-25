@@ -2,7 +2,7 @@
 
 import logging
 import torch
-from typing import Optional, Dict, Any, Generator, List
+from typing import Optional, Dict, Any
 from threading import Thread
 
 logger = logging.getLogger(__name__)
@@ -228,10 +228,8 @@ class Generator:
         ).to(self.device)
 
         full_response = []
-        generated_ids = []
 
         from transformers import TextIteratorStreamer
-        from queue import Queue
 
         streamer = TextIteratorStreamer(
             self.tokenizer,

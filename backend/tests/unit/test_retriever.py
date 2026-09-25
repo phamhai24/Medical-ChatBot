@@ -1,6 +1,5 @@
 """Unit tests for the Retriever."""
 
-import pytest
 from src.rag.retriever import Retriever
 
 

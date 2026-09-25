@@ -1,7 +1,6 @@
 """Unit tests for the BM25 hybrid retriever."""
 
-import pytest
-from src.rag.hybrid_search import BM25Retriever, HybridRetriever
+from src.rag.hybrid_search import BM25Retriever
 
 
 class TestBM25Retriever:

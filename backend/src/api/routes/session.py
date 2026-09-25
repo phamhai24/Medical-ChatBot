@@ -1,9 +1,9 @@
 """Session history endpoints."""
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 
 from src.api.schemas import ChatHistoryResponse, ChatMessage
-from src.core.redis_client import clear_chat_history, delete_session, generate_session_id, get_chat_history
+from src.core.redis_client import delete_session, generate_session_id, get_chat_history
 
 router = APIRouter(prefix="/api/v1/chat", tags=["Session"])
 

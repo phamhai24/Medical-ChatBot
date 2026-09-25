@@ -16,7 +16,7 @@ the existing candidate-only behavior — this is purely additive.
 
 import logging
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 logger = logging.getLogger(__name__)
 

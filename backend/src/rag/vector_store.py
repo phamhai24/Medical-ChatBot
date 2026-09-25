@@ -661,7 +661,6 @@ class FaissStore(VectorStore):
     def load(self):
         """Load or create the FAISS index."""
         import faiss
-        import numpy as np
 
         Path(self.persist_directory).mkdir(parents=True, exist_ok=True)
         index_path = Path(self.persist_directory) / f"{self.collection_name}.index"
@@ -825,12 +824,10 @@ class MemoryStore(VectorStore):
         top_k: int = 5
     ) -> List[Dict[str, Any]]:
         """Simple cosine similarity search in memory."""
-        import numpy as np
 
         if not self.documents:
             return []
 
-        docs_emb = np.array([self.documents[0]] * len(self.documents))  # placeholder
         # For memory store, we need stored embeddings - this is a simplified version
         # In practice, use FAISS/Chroma for real similarity search
         return [{"text": "", "metadata": {}, "distance": 0.0, "id": ""}]

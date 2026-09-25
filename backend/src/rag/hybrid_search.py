@@ -31,7 +31,6 @@ class BM25Retriever:
 
     def build_index(self, documents: list[dict]):
         """Build BM25 index from documents."""
-        import math
         from collections import Counter
 
         if not documents:

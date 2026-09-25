@@ -1,11 +1,8 @@
 """Data ingestion pipeline."""
 
-import json
 import logging
 import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 logger = logging.getLogger(__name__)
 

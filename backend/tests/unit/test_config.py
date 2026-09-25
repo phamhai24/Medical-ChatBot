@@ -1,6 +1,5 @@
 """Unit tests for config module."""
 
-import pytest
 from src.core.config import Settings
 
 

@@ -9,7 +9,6 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from src.api.routes import admin, chat, health, session
 from src.api.deps import get_pipeline
-from src.api.schemas import ErrorResponse
 from src.core.config import get_settings
 from src.core.exceptions import setup_exception_handlers
 from src.core.logging import add_correlation_id, configure_from_settings, logger
@@ -76,7 +75,7 @@ async def lifespan(app: FastAPI):
         try:
             logger.info("Warming up RAG pipeline...")
             pipeline = get_pipeline()
-            warmup_stats = pipeline.warm_up(settings.api_warmup_query)
+            pipeline.warm_up(settings.api_warmup_query)
             logger.info("🚀 Medical RAG Chatbot is now LIVE and READY! Access at http://localhost:3000")
         except Exception as e:
             logger.exception(f"RAG pipeline warm-up failed: {e}")

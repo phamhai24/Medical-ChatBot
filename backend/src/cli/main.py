@@ -51,7 +51,7 @@ def main():
     serve_parser.add_argument("--workers", type=int, default=1)
 
     # ─── stats ─────────────────────────────────────────────────────────────────
-    stats_parser = subparsers.add_parser(
+    subparsers.add_parser(
         "stats",
         help="Show pipeline statistics",
     )
@@ -81,8 +81,6 @@ def main():
         from src.eval.evaluator import Evaluator
         from src.rag.pipeline import RAGPipeline
         from src.utils.config_loader import load_config
-        from src.eval.metrics.llm_judge import LLMJudge
-        from src.eval.reporters.report import EvaluationReporter
 
         config = load_config()
         pipeline = RAGPipeline(config)
@@ -111,13 +109,12 @@ def main():
             output_dir=args.output,
             formats=args.format,
         )
-        print(f"\nReports saved:")
+        print("\nReports saved:")
         for fmt, path in paths.items():
             print(f"  [{fmt}] {path}")
 
     elif args.command == "serve":
         import uvicorn
-        from src.api.main import app
 
         print(f"Starting server at http://{args.host}:{args.port}")
         print(f"  Docs: http://{args.host}:{args.port}/docs")
