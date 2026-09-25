@@ -2,7 +2,7 @@ name: Evaluation
 
 on:
   push:
-    branches: [main]
+    branches: [master, main]
     tags:
       - "v*"
   workflow_dispatch:
@@ -50,7 +50,7 @@ jobs:
       - name: Ingest data
         if: always()
         run: |
-          python -m src.rag.ingest --config config/rag_config.yaml --rebuild --no_progress || echo "Ingestion skipped"
+          python scripts/ingest_data.py --rebuild || echo "Ingestion skipped"
 
   # ─── Run Evaluation ─────────────────────────────────────────────────────────
   evaluate:
@@ -102,10 +102,10 @@ jobs:
     name: LLM-as-Judge Evaluation
     runs-on: ubuntu-latest
     needs: ingest
-    if: github.event_name == 'workflow_dispatch' && inputs.run_llm_judge == 'true'
     defaults:
       run:
         working-directory: backend
+    if: github.event_name == 'workflow_dispatch' && inputs.run_llm_judge == 'true'
     steps:
       - uses: actions/checkout@v4
 
