@@ -17,15 +17,26 @@ from typing import Any, Optional, Sequence
 
 logger = logging.getLogger(__name__)
 
-CONDENSE_SYSTEM_PROMPT = (
-    "Bạn viết lại câu hỏi mới nhất của người dùng thành MỘT câu hỏi độc lập, "
-    "hiểu được mà không cần đọc lịch sử hội thoại.\n"
-    "- Thay các từ như 'nó', 'bệnh này', 'thuốc đó', hoặc chủ đề bị lược bỏ, "
-    "bằng tên cụ thể đã được nhắc trong lịch sử.\n"
-    "- Giữ nguyên ý định và tiếng Việt. Không thêm thông tin mới, không trả lời câu hỏi.\n"
-    "- Nếu câu hỏi đã đủ nghĩa hoặc chuyển sang chủ đề mới, giữ nguyên câu hỏi.\n"
-    "Chỉ trả về đúng câu hỏi đã viết lại."
-)
+# The deciding test is "does the question NAME a specific subject?", not "is it
+# a complete sentence?". An earlier version said "keep it if it already makes
+# sense", and the model kept "gợi ý cho tôi một vài loại thuốc chữa tại nhà"
+# unchanged (it is grammatical) — so it was retrieved without the disease and
+# answered about a different one. The examples deliberately use a different
+# disease from tests/integration/test_query_condenser_live.py.
+CONDENSE_SYSTEM_PROMPT = """\
+Nhiệm vụ: viết lại câu hỏi mới nhất của người dùng thành MỘT câu hỏi độc lập để tra cứu tài liệu y khoa, hiểu được mà không cần đọc lịch sử hội thoại.
+
+Quy tắc:
+1. Nếu câu hỏi mới KHÔNG nêu tên một bệnh, thuốc, triệu chứng hay đối tượng cụ thể, thì nó đang hỏi tiếp về chủ đề gần nhất trong lịch sử: BẮT BUỘC chèn tên chủ đề đó vào. Áp dụng cả khi câu hỏi nghe đã trọn ý, và cả khi trợ lý trước đó trả lời là không tìm thấy thông tin.
+2. Nếu câu hỏi mới nêu rõ một bệnh hoặc đối tượng khác, đó là chủ đề mới: giữ nguyên, không chèn chủ đề cũ.
+3. Nếu không phải câu hỏi y tế (chào hỏi, cảm ơn...), giữ nguyên.
+Giữ nguyên ý định, cách hỏi và tiếng Việt. Không thêm thông tin, không trả lời câu hỏi. Chỉ trả về đúng một câu hỏi.
+
+Ví dụ, khi đang nói về viêm gan B:
+- "gợi ý vài loại thuốc điều trị" -> "Gợi ý vài loại thuốc điều trị viêm gan B"
+- "có lây qua ăn uống không" -> "Viêm gan B có lây qua ăn uống không?"
+- "Triệu chứng của sỏi thận là gì?" -> "Triệu chứng của sỏi thận là gì?"
+- "cảm ơn bạn" -> "cảm ơn bạn\""""
 
 _LABEL_RE = re.compile(r"^\s*(câu hỏi (độc lập|viết lại)|câu hỏi)\s*:\s*", re.IGNORECASE)
 _QUOTES = "\"'“”‘’`"
