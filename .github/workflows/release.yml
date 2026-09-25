@@ -10,9 +10,9 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  # ─── Build & Push Docker Image ─────────────────────────────────────────────
+  # ─── Build & Push Docker Images ────────────────────────────────────────────
   docker:
-    name: Build & Push Docker Image
+    name: Build & Push Docker Images
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -21,14 +21,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Extract metadata
-        id: meta
+      - name: Extract backend metadata
+        id: meta-backend
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-backend
           tags: |
             type=semver,pattern={{version}}
             type=sha,prefix=
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Extract frontend metadata
+        id: meta-frontend
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend
+          tags: |
+            type=semver,pattern={{version}}
+            type=sha,prefix=
+            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -40,21 +51,31 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build and push backend image
         uses: docker/build-push-action@v5
         with:
           context: ./backend
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-backend.outputs.tags }}
+          labels: ${{ steps.meta-backend.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          push: true
+          tags: ${{ steps.meta-frontend.outputs.tags }}
+          labels: ${{ steps.meta-frontend.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Summary
         run: |
-          echo "## Docker Image Published" >> $GITHUB_STEP_SUMMARY
-          echo "- Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Tags: ${{ steps.meta.outputs.tags }}" >> $GITHUB_STEP_SUMMARY
+          echo "## Docker Images Published" >> $GITHUB_STEP_SUMMARY
+          echo "- Backend: ${{ steps.meta-backend.outputs.tags }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Frontend: ${{ steps.meta-frontend.outputs.tags }}" >> $GITHUB_STEP_SUMMARY
 
   # ─── Run Full Evaluation on Release ────────────────────────────────────────
   evaluate-release:
