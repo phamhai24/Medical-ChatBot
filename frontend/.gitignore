@@ -7,3 +7,8 @@ dist
 .env
 .env.*
 !.env.example
+
+# Emitted by tsc -p (type-check); vite.config.js would shadow vite.config.ts
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts

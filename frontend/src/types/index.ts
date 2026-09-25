@@ -7,6 +7,8 @@ export interface HistoryMessage {
 export interface ChatRequest {
   message: string;
   history?: HistoryMessage[];
+  /** Topic returned by the previous answer; keeps follow-ups on the same disease. */
+  topic?: string;
   top_k?: number;
   temperature?: number;
   include_sources?: boolean;
@@ -37,12 +39,14 @@ export interface ChatResponse {
   model: string;
   top_k: number;
   session_id?: string;
+  topic?: string | null;
   generated_at: string;
 }
 
 export interface ChatStreamRequest {
   message: string;
   history?: HistoryMessage[];
+  topic?: string;
   top_k?: number;
   session_id?: string;
 }

@@ -12,7 +12,7 @@ import pytest
 
 from src.core.config import get_settings
 from src.rag.api_generator import APIGenerator
-from src.rag.query_condenser import condense_question
+from src.rag.query_condenser import resolve_question
 
 settings = get_settings()
 pytestmark = pytest.mark.skipif(
@@ -65,8 +65,9 @@ def generator():
     "có cần mổ không bác sĩ",
 ])
 def test_follow_up_without_subject_gets_the_disease_from_history(generator, follow_up):
-    rewritten = condense_question(follow_up, HISTORY, generator)
-    assert "áp xe não" in rewritten.lower(), rewritten
+    resolved = resolve_question(follow_up, HISTORY, generator)
+    assert "áp xe não" in resolved.question.lower(), resolved
+    assert "áp xe não" in (resolved.topic or "").lower(), resolved
 
 
 @pytest.mark.parametrize("new_topic, expected, forbidden", [
@@ -74,11 +75,24 @@ def test_follow_up_without_subject_gets_the_disease_from_history(generator, foll
     ("thế còn viêm màng não thì sao, có nguy hiểm không?", "viêm màng não", "áp xe"),
 ])
 def test_explicit_new_topic_is_not_pulled_back(generator, new_topic, expected, forbidden):
-    rewritten = condense_question(new_topic, HISTORY, generator)
-    assert expected in rewritten.lower(), rewritten
-    assert forbidden not in rewritten.lower(), rewritten
+    resolved = resolve_question(new_topic, HISTORY, generator, previous_topic="áp xe não")
+    assert expected in resolved.question.lower(), resolved
+    assert forbidden not in resolved.question.lower(), resolved
+    assert expected in (resolved.topic or "").lower(), resolved
 
 
-def test_non_medical_message_is_left_alone(generator):
-    rewritten = condense_question("cảm ơn bạn nhiều", HISTORY, generator)
-    assert "áp xe" not in rewritten.lower(), rewritten
+def test_non_medical_message_is_left_alone_but_keeps_the_topic(generator):
+    resolved = resolve_question("cảm ơn bạn nhiều", HISTORY, generator, previous_topic="áp xe não")
+    assert "áp xe" not in resolved.question.lower(), resolved
+    assert resolved.topic == "áp xe não", resolved
+
+
+def test_follow_up_after_a_thank_you_still_resolves_via_tracked_topic(generator):
+    """The last messages are small talk; only the tracked topic carries the disease."""
+    small_talk = [
+        {"role": "user", "content": "cảm ơn bạn nhiều"},
+        {"role": "assistant", "content": "Không có gì, chúc bạn nhiều sức khỏe!"},
+    ]
+    resolved = resolve_question("vậy có cần kiêng ăn gì không", small_talk, generator,
+                                previous_topic="áp xe não")
+    assert "áp xe não" in resolved.question.lower(), resolved

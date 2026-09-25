@@ -27,8 +27,13 @@ export function useChat() {
   // send() is memoized with no deps, so it reads the latest messages via a ref.
   const messagesRef = useRef<UiMessage[]>(messages);
   messagesRef.current = messages;
+  // Topic the server resolved for the last answer, sent back with the next
+  // question. Unknown after reloading a session: the server then reads it
+  // from the stored history.
+  const topicRef = useRef<string | null>(null);
 
   const hydrate = useCallback(async (sessionId: string) => {
+    topicRef.current = null;
     const history = await getHistory(sessionId);
     setMessages(
       history.messages.map((m: ChatMessage) => ({
@@ -40,11 +45,15 @@ export function useChat() {
     );
   }, []);
 
-  const reset = useCallback(() => setMessages([]), []);
+  const reset = useCallback(() => {
+    topicRef.current = null;
+    setMessages([]);
+  }, []);
 
   const send = useCallback(
     async (text: string, sessionId: string | null, topK: number, onSessionId: (id: string) => void) => {
       const history = recentHistory(messagesRef.current);
+      const topic = topicRef.current ?? undefined;
       setMessages((prev) => [...prev, { role: 'user', content: text }, { role: 'assistant', content: '' }]);
       setIsSending(true);
 
@@ -52,7 +61,7 @@ export function useChat() {
 
       try {
         let receivedAnyChunk = false;
-        await streamChat({ message: text, history, top_k: topK, session_id: sessionId ?? undefined }, (chunk) => {
+        await streamChat({ message: text, history, topic, top_k: topK, session_id: sessionId ?? undefined }, (chunk) => {
           receivedAnyChunk = true;
           setMessages((prev) => {
             const next = [...prev];
@@ -69,6 +78,8 @@ export function useChat() {
             next[next.length - 1] = { ...last, sources };
             return next;
           });
+        }, (resolvedTopic) => {
+          topicRef.current = resolvedTopic;
         });
         if (!receivedAnyChunk) {
           throw new Error('Stream resolved with no chunks');
@@ -79,11 +90,13 @@ export function useChat() {
           const res = await askChat({
             message: text,
             history,
+            topic,
             top_k: topK,
             session_id: sessionId ?? undefined,
             include_sources: true,
           });
           if (res.session_id) onSessionId(res.session_id);
+          topicRef.current = res.topic ?? null;
           setMessages((prev) => {
             const next = [...prev];
             next[next.length - 1] = {

@@ -72,6 +72,7 @@ rag:
       - Không đưa ra chẩn đoán y khoa cụ thể cho cá nhân.
       - Nếu người dùng hỏi liều lượng thuốc cụ thể dựa trên thông tin cá nhân của họ (cân nặng, tuổi, tình trạng bệnh...), KHÔNG tính toán hay đưa ra một con số liều lượng cụ thể nào, dù bạn có kiến thức chung về liều tham khảo. Chỉ nói rằng liều dùng cần được bác sĩ hoặc dược sĩ chỉ định dựa trên tình trạng thực tế.
       - Nếu người dùng hỏi tiên lượng sống, thời gian còn lại, hoặc mức độ nghiêm trọng cụ thể cho tình trạng cá nhân của họ, KHÔNG đưa ra con số thời gian hay tỷ lệ phần trăm cụ thể nào, dù có thống kê chung. Chỉ khuyên họ trao đổi trực tiếp với bác sĩ điều trị, người hiểu đầy đủ bệnh sử của họ.
+      - Nếu câu hỏi có ghi "(Chủ đề đang trao đổi: ...)", chỉ trả lời về đúng chủ đề đó. Bỏ qua các đoạn ngữ cảnh nói về bệnh, thuốc hay vấn đề khác. Nếu không đoạn nào nói về chủ đề đó, trả lời rằng không tìm thấy thông tin về chủ đề đó trong dữ liệu; tuyệt đối không trả lời về một bệnh khác thay thế.
       - Ngữ cảnh được đánh số [1], [2], [3]... Sau MỖI câu hoặc ý bạn viết dựa trên một đoạn ngữ cảnh cụ thể, thêm số đó ngay sau, ví dụ: "...triệu chứng bao gồm sốt và ho [1]." Nếu một câu dựa trên nhiều đoạn, ghi tất cả, ví dụ [1][3]. Chỉ đánh số đoạn bạn THỰC SỰ dùng — không đánh số đoạn không liên quan chỉ vì nó có trong ngữ cảnh. Nếu không đoạn nào trong ngữ cảnh liên quan, đừng đánh số gì cả.
 
     user_template: |

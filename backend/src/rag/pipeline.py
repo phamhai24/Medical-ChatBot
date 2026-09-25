@@ -451,16 +451,20 @@ class RAGPipeline:
         question: str,
         top_k: Optional[int] = None,
         include_sources: bool = True,
-        return_raw_context: bool = False
+        return_raw_context: bool = False,
+        generation_question: Optional[str] = None,
     ) -> RAGResponse:
         """
         Query the RAG pipeline.
 
         Args:
-            question: User question
+            question: User question (used for retrieval)
             top_k: Number of documents to retrieve
             include_sources: Include source citations
             return_raw_context: Return raw context string instead of formatted
+            generation_question: What the answer model sees, if different from
+                `question` (e.g. with the conversation topic noted; see
+                src/rag/query_condenser.py). Defaults to `question`.
 
         Returns:
             RAGResponse object
@@ -499,7 +503,7 @@ class RAGPipeline:
 
         generation_start = time.perf_counter()
         answer = self.generator.generate_from_context(
-            question=question,
+            question=generation_question or question,
             context=context,
             system_prompt=system_prompt,
             user_template=user_template,

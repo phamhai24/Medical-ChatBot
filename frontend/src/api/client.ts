@@ -38,6 +38,7 @@ interface StreamEvent {
   text?: string;
   sources?: ChatSource[];
   session_id?: string;
+  topic?: string | null;
   message?: string;
 }
 
@@ -52,6 +53,7 @@ export async function streamChat(
   onChunk: (text: string) => void,
   onSessionId: (sessionId: string) => void,
   onSources?: (sources: ChatSource[]) => void,
+  onTopic?: (topic: string | null) => void,
 ): Promise<void> {
   const res = await fetch('/api/v1/chat/stream', {
     method: 'POST',
@@ -77,8 +79,9 @@ export async function streamChat(
       onChunk(event.text);
     } else if (event.type === 'sources' && Array.isArray(event.sources)) {
       onSources?.(event.sources);
-    } else if (event.type === 'done' && event.session_id) {
-      onSessionId(event.session_id);
+    } else if (event.type === 'done') {
+      if (event.session_id) onSessionId(event.session_id);
+      onTopic?.(event.topic ?? null);
     } else if (event.type === 'error') {
       throw new Error(event.message ?? 'Stream error');
     }

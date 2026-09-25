@@ -22,7 +22,7 @@ from src.core.redis_client import (
     get_chat_history,
     save_chat_message,
 )
-from src.rag.query_condenser import condense_question
+from src.rag.query_condenser import ResolvedQuestion, question_with_topic, resolve_question
 
 router = APIRouter(prefix="/api/v1/chat", tags=["Chat"])
 
@@ -31,21 +31,36 @@ router = APIRouter(prefix="/api/v1/chat", tags=["Chat"])
 _HISTORY_MESSAGES = 6
 
 
-def _conversation_history(request) -> list[dict]:
+def _stored_history(request) -> list[dict]:
+    return get_chat_history(request.session_id, limit=_HISTORY_MESSAGES) if request.session_id else []
+
+
+def _conversation_history(request, stored: list[dict]) -> list[dict]:
     """Recent messages: from the request if the client sent them, else Redis."""
     if request.history:
         return [m.model_dump() for m in request.history][-_HISTORY_MESSAGES:]
-    if request.session_id:
-        return get_chat_history(request.session_id, limit=_HISTORY_MESSAGES)
-    return []
+    return stored
 
 
-def _standalone_question(request, pipeline) -> str:
-    """The question to retrieve and answer with: follow-ups rewritten using history."""
-    return condense_question(
+def _tracked_topic(request, stored: list[dict]):
+    """Topic from the previous turn: sent by the client, else saved in Redis."""
+    if request.topic:
+        return request.topic
+    for message in reversed(stored):
+        topic = (message.get("metadata") or {}).get("topic")
+        if message.get("role") == "assistant" and topic:
+            return topic
+    return None
+
+
+def _resolve(request, pipeline) -> ResolvedQuestion:
+    """The question to retrieve with (follow-ups resolved) and the active topic."""
+    stored = _stored_history(request)
+    return resolve_question(
         request.message,
-        _conversation_history(request),
+        _conversation_history(request, stored),
         pipeline.generator,
+        previous_topic=_tracked_topic(request, stored),
         max_messages=_HISTORY_MESSAGES,
     )
 
@@ -64,10 +79,12 @@ def ask(request: ChatRequest):
     status = "success"
 
     try:
+        resolved = _resolve(request, pipeline)
         response = pipeline.query(
-            question=_standalone_question(request, pipeline),
+            question=resolved.question,
             top_k=request.top_k,
             include_sources=request.include_sources,
+            generation_question=question_with_topic(resolved.question, resolved.question_topic),
         )
         retrieved_docs = response.retrieved_docs
         retrieval_time = response.retrieval_latency
@@ -88,6 +105,7 @@ def ask(request: ChatRequest):
                 model=pipeline._generation_config.get("model_name", ""),
                 top_k=request.top_k,
                 session_id=session_id,
+                topic=resolved.topic,
                 generated_at=datetime.utcnow(),
             )
 
@@ -108,6 +126,7 @@ def ask(request: ChatRequest):
         save_chat_message(session_id, "assistant", response.answer, {
             "sources": len(response.sources),
             "latency_ms": round(latency * 1000, 2),
+            "topic": resolved.topic,
         })
 
         return ChatResponse(
@@ -117,6 +136,7 @@ def ask(request: ChatRequest):
             model=pipeline._generation_config.get("model_name", ""),
             top_k=request.top_k,
             session_id=session_id,
+            topic=resolved.topic,
             generated_at=datetime.utcnow(),
         )
 
@@ -146,14 +166,14 @@ def ask_stream(request: ChatStreamRequest):
         return json.dumps(payload, ensure_ascii=False) + "\n"
 
     try:
-        question = _standalone_question(request, pipeline)
-        retrieved_docs = pipeline.retriever.retrieve(question, top_k=request.top_k)
+        resolved = _resolve(request, pipeline)
+        retrieved_docs = pipeline.retriever.retrieve(resolved.question, top_k=request.top_k)
 
         if not retrieved_docs:
             def empty():
                 yield _line({"type": "chunk", "text": "Xin lỗi, tôi không tìm thấy thông tin phù hợp."})
                 yield _line({"type": "sources", "sources": []})
-                yield _line({"type": "done", "session_id": session_id})
+                yield _line({"type": "done", "session_id": session_id, "topic": resolved.topic})
 
             return StreamingResponse(
                 empty(),
@@ -166,7 +186,9 @@ def ask_stream(request: ChatStreamRequest):
 
         system_prompt = pipeline._prompt_config.get("system", "")
         user_template = pipeline._prompt_config.get("user_template", "")
-        prompt = user_template.format(question=question, context=context)
+        prompt = user_template.format(
+            question=question_with_topic(resolved.question, resolved.question_topic), context=context
+        )
 
         def generate():
             # generate_streaming() calls its callback synchronously from inside a
@@ -218,11 +240,12 @@ def ask_stream(request: ChatStreamRequest):
             )
 
             yield _line({"type": "sources", "sources": sources})
-            yield _line({"type": "done", "session_id": session_id})
+            yield _line({"type": "done", "session_id": session_id, "topic": resolved.topic})
 
             save_chat_message(session_id, "user", request.message)
             save_chat_message(session_id, "assistant", answer, {
                 "sources": len(sources),
+                "topic": resolved.topic,
             })
 
         return StreamingResponse(

@@ -14,6 +14,11 @@ class HistoryMessage(BaseModel):
     content: str = Field(..., max_length=8000)
 
 
+_TOPIC_FIELD_DESCRIPTION = (
+    "Chủ đề đang trao đổi, lấy từ câu trả lời trước (trường `topic`). "
+    "Nếu bỏ trống, server lấy từ lịch sử Redis theo session_id."
+)
+
 _HISTORY_FIELD_DESCRIPTION = (
     "Các tin nhắn gần nhất (cũ trước, mới sau), dùng để hiểu câu hỏi nối tiếp. "
     "Nếu bỏ trống, server lấy lịch sử từ Redis theo session_id."
@@ -28,6 +33,7 @@ class ChatRequest(BaseModel):
     history: Optional[list[HistoryMessage]] = Field(
         None, max_length=20, description=_HISTORY_FIELD_DESCRIPTION
     )
+    topic: Optional[str] = Field(None, max_length=100, description=_TOPIC_FIELD_DESCRIPTION)
 
 
 class SourceDocument(BaseModel):
@@ -44,6 +50,7 @@ class ChatResponse(BaseModel):
     model: str
     top_k: int
     session_id: Optional[str] = None
+    topic: Optional[str] = Field(None, description="Chủ đề đang trao đổi; gửi lại ở câu hỏi tiếp theo")
     generated_at: datetime = Field(default_factory=datetime.utcnow)
 
 
@@ -54,6 +61,7 @@ class ChatStreamRequest(BaseModel):
     history: Optional[list[HistoryMessage]] = Field(
         None, max_length=20, description=_HISTORY_FIELD_DESCRIPTION
     )
+    topic: Optional[str] = Field(None, max_length=100, description=_TOPIC_FIELD_DESCRIPTION)
 
 
 # ─── Session ─────────────────────────────────────────────────────────────────
