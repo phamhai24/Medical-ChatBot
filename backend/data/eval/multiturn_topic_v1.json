@@ -1,0 +1,70 @@
+{
+  "name": "multiturn_topic_v1",
+  "created": "2026-09-25",
+  "description": "12 multi-turn conversations for follow-up topic tracking. Each turn has the topic the answer must be about (null = not a medical question; the answer must just not discuss another disease). Written without opening the corpus and committed before its first run. Measures the share of turns answered about the right topic, instead of patching individual phrasings.",
+  "dialogues": [
+    {"id": "d01", "turns": [
+      {"message": "Viêm gan B lây qua những đường nào?", "topic": "viêm gan B"},
+      {"message": "có vắc xin phòng không", "topic": "viêm gan B"},
+      {"message": "người đã nhiễm thì nên ăn uống thế nào", "topic": "viêm gan B"},
+      {"message": "có chữa khỏi hẳn được không", "topic": "viêm gan B"}
+    ]},
+    {"id": "d02", "turns": [
+      {"message": "Tiểu đường type 2 là gì?", "topic": "tiểu đường type 2"},
+      {"message": "những ai dễ mắc", "topic": "tiểu đường type 2"},
+      {"message": "cảm ơn nhé", "topic": null},
+      {"message": "vậy biến chứng ở mắt thì sao", "topic": "tiểu đường type 2"}
+    ]},
+    {"id": "d03", "turns": [
+      {"message": "Sốt xuất huyết có những triệu chứng gì?", "topic": "sốt xuất huyết"},
+      {"message": "cần kiêng những gì", "topic": "sốt xuất huyết"},
+      {"message": "còn bệnh sởi thì sao, có lây không?", "topic": "sởi"},
+      {"message": "trẻ mấy tháng tuổi thì tiêm phòng được", "topic": "sởi"}
+    ]},
+    {"id": "d04", "turns": [
+      {"message": "Thuốc paracetamol có tác dụng phụ gì?", "topic": "paracetamol"},
+      {"message": "uống lúc đói có sao không", "topic": "paracetamol"},
+      {"message": "phụ nữ có thai dùng được không", "topic": "paracetamol"}
+    ]},
+    {"id": "d05", "turns": [
+      {"message": "Hen suyễn có chữa khỏi được không?", "topic": "hen suyễn"},
+      {"message": "nó có di truyền không", "topic": "hen suyễn"},
+      {"message": "khi lên cơn thì xử lý thế nào", "topic": "hen suyễn"}
+    ]},
+    {"id": "d06", "turns": [
+      {"message": "Bệnh zona thần kinh là gì?", "topic": "zona thần kinh"},
+      {"message": "bao lâu thì khỏi", "topic": "zona thần kinh"},
+      {"message": "có để lại di chứng gì không", "topic": "zona thần kinh"}
+    ]},
+    {"id": "d07", "turns": [
+      {"message": "Người bị viêm dạ dày nên ăn gì?", "topic": "viêm dạ dày"},
+      {"message": "Còn trào ngược dạ dày thực quản thì nên kiêng gì?", "topic": "trào ngược dạ dày thực quản"},
+      {"message": "quay lại bệnh viêm dạ dày, có cần nội soi không", "topic": "viêm dạ dày"}
+    ]},
+    {"id": "d08", "turns": [
+      {"message": "Bệnh gút là gì?", "topic": "gút"},
+      {"message": "thuốc điều trị thường dùng là gì", "topic": "gút"},
+      {"message": "có cần kiêng bia rượu hoàn toàn không", "topic": "gút"}
+    ]},
+    {"id": "d09", "turns": [
+      {"message": "Dấu hiệu nhận biết đột quỵ là gì?", "topic": "đột quỵ"},
+      {"message": "người bị rồi có phục hồi được không", "topic": "đột quỵ"},
+      {"message": "làm sao để phòng tránh bị lại", "topic": "đột quỵ"}
+    ]},
+    {"id": "d10", "turns": [
+      {"message": "Trẻ bị tiêu chảy cấp thì phải làm sao?", "topic": "tiêu chảy cấp ở trẻ"},
+      {"message": "khi nào cần đưa đi viện", "topic": "tiêu chảy cấp ở trẻ"},
+      {"message": "nên cho bé ăn gì", "topic": "tiêu chảy cấp ở trẻ"}
+    ]},
+    {"id": "d11", "turns": [
+      {"message": "Thoát vị đĩa đệm cột sống thắt lưng có chữa được không?", "topic": "thoát vị đĩa đệm"},
+      {"message": "có nên mổ không", "topic": "thoát vị đĩa đệm"},
+      {"message": "tập bài tập gì tại nhà cho đỡ", "topic": "thoát vị đĩa đệm"}
+    ]},
+    {"id": "d12", "turns": [
+      {"message": "Trầm cảm có những biểu hiện nào?", "topic": "trầm cảm"},
+      {"message": "điều trị bằng cách nào", "topic": "trầm cảm"},
+      {"message": "thuốc điều trị có gây nghiện không", "topic": "trầm cảm"}
+    ]}
+  ]
+}
